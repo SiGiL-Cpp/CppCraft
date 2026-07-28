@@ -124,7 +124,7 @@ simplest switch between two states, such as the dark/light theme switch in the
 upper-right corner of this page, the ever-present tickbox, or a "yes/no" answer.
 
 Although only one binary digit (0, 1) would be sufficient to encode this
-information, in C++ a full Byte (8 bits) are used for the boolean
+information, in C++ at least a full Byte (8 bits) is used for the boolean
 representation. The reasons for this will make more sense later in this series,
 but for now we can say this is because a Byte is the smallest unit of memory
 the system can work with.
@@ -550,10 +550,15 @@ way than before, but we have many more values to play with.
 - For signed integral,
   - [-2,147,483,648, 2,147,483,647] with 4 Bytes (32 bits),
   - [-9,223,372,036,854,775,808, 9,223,372,036,854,775,807] with 8 Bytes (64 bits).
-- For booleans,
-  - nothing changes in their basic interpretation.
-  - Interpreted as several booleans, they can now represent 32 or 64 boolean values at once.
-- Characters are usually represented with smaller values, over one or two Bytes only.
+- Booleans are usually a single Byte, although there are exceptions:
+  - Some niche architectures use 2, 4, or 8-Byte long booleans.
+  - Windows API and some other historical APIs (mac-OS) define their own
+    boolean type over 4 or 8 Bytes.
+  - This doesn't change their basic interpretation.
+  - When interpreting values as multiple booleans, several Bytes means more
+    packed booleans (32 or 64 boolean values at once).
+- Characters are usually represented with smaller values, over one or two Bytes
+  only.
 - A fixed-point number over 4 Bytes (32 bit) can represent values up
   to 20,000 with a 0.000,01 (10<sup>-5</sup>) precision. That's enough to
   measure half the perimeter of the Earth in kilometres while retaining a

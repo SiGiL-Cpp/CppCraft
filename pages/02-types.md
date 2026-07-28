@@ -7,22 +7,22 @@ next: "03-processing"
 # 02 - Types
 
 In [this previous chapter](./?page=01-data), we have seen that the same value
-can be interpreted in many different ways. We will soon see that this makes no
-difference for the processor, which will mostly operate on the values without
-consideration for what these values represent.
+can be interpreted in many different ways. The processor has no idea about this
+and will operate on the values as it is told to, without consideration for what
+these values represent (we will look into this in more details in the next
+chapter).
 
-This means that the responsibility of knowing what a value represents and how it
-should be interpreted is mostly down to the programmer. In complex programs,
-keeping tabs on this consistently by hand would be difficult, error-prone, and
-take a lot of time.
-
-Different languages have different solutions for this.
+Yet, getting this wrong would lead to potentially catastrophic failures, so
+since the processor doesn't take care of it, someone or something else has to.
+Different languages have different solutions for this. In C++, the compiler
+helps the programmer keeping track of what values represent through its type
+system.
 
 ## The C++ type system
 
-C++ offers a type system to help the programmer keep track of how values should
-be interpreted. The main job of this system is to prevent mistakes with this
-while avoiding excessive friction.
+The main job of this system is to prevent mistakes with how values should be
+interpreted while avoiding excessive friction. The programmer remains in
+control.
 
 ```principle
 A Type is a compile-time attribute that keeps track of the size and semantic of
@@ -52,25 +52,26 @@ The Type specifies the semantic (the meaning) and avoids ambiguities.
 ### Keeping track of the "semantic"
 
 ```illus: Example
-- The type `char` means a Byte that should be interpreted as [an ASCII code for a
-character](?page=01-data#bytes-as-characters).
-- The type `bool` often means a single Byte (although it can be more than one
-  Byte for some architectures/compilers), that should be interpreted as [a
+- The type `char` means a Byte that should be interpreted as [an ASCII code for
+  a character](?page=01-data#bytes-as-characters).
+- The type `bool` usually means a single Byte, that should be interpreted as [a
   Boolean value](?page=01-data#bytes-as-true-false-on-off-yes-no-values).
 - The type `std::int8_t` means a Byte that should be interpreted as [a signed
   integer](?page=01-data#signed-bytes).
-- The type `std::uint8_t` means a Byte that should be interpreted as an [unsigned
-  integer](?page=01-data#octet).
-- The type `std::byte` specifically means a Byte without specifying a designated
-  way of interpreting it and is used to mean a Byte as ["raw data"](?page=01-data#byte).
+- The type `std::uint8_t` means a Byte that should be interpreted as an
+  [unsigned integer](?page=01-data#octet).
+- The type `std::byte` specifically means a Byte without specifying a
+  designated way of interpreting it and is used to mean a Byte as
+  ["raw data"](?page=01-data#byte).
 ```
 
 On an typical architecture, these 5 types are strictly the same thing from the
 processor's point of view. But we should read their bits in very different ways.
 
 In this case, the distinction between these types doesn't inform the processor
-on how these values should be processed, it informs the programmer (and the
-compiler) of how they should be interpreted.
+on how these values should be processed; it informs the programmer of how they
+should be interpreted, and it informs the compiler of which of the processor
+operations are valid on these values.
 
 ### Keeping track of the size
 
@@ -117,7 +118,8 @@ architectures.
 
 ## There is no value without a type
 
-In C++, every value has a type.
+In C++, every value has a type, and this type cannot change throughout the
+entire program.
 
 ### Literals
 
@@ -140,8 +142,8 @@ a little careful.
 
 This might be intimidating at first, but it is actually somewhat convenient:
 note that we wrote what we meant, mostly.
-It allows us to mostly ignore the underlying representation and its potential
-complexity.
+It allows us to pretty much ignore the underlying representation and its
+potential complexity.
 
 Since a `char` should be interpreted through the ASCII lense, `'£'` is much
 clearer than `163`.
@@ -159,7 +161,8 @@ The reason we didn't skip directly to this way of writing values with a type and
 the interpretation handled for us by the compiler is two-fold:
 - This is very much the philosophy of this course: we build everything from the
   very ground up. We appreciate the work the compiler does for us only when we
-  are aware of it.
+  are aware of it. We build an understanding first and only then use the tools
+  that hide or ease this complexity.
 - These underlying values are important in several contexts. Knowing about them
   will give us more options and more tools to understand and explain otherwise
   puzzling situations. Beyond having some applications when debugging, it points
@@ -167,7 +170,7 @@ the interpretation handled for us by the compiler is two-fold:
 ```
 
 Note that in the most common architectures, `163`, `163u`, and `163.f` will have
-a size of 4 Bytes, while `163.` will take 8 Bytes, and `'£'` only 1 Byte. It
+a size of 4 Bytes, while `163.0` will take 8 Bytes, and `'£'` only 1 Byte. It
 will be important to be aware of these differences when we try to make our
 programs efficient.
 
@@ -175,7 +178,7 @@ programs efficient.
 
 A variable is a placeholder value. Instead of giving the value directly (`42`),
 we use a label, representing that value. And since there is no value without a
-type, we have to attach a type to this label.
+type, we have to attach a type to this label as well.
 
 The *syntax* to do so follows this pattern:
 
@@ -184,7 +187,7 @@ type label;
 ```
 
 The technical term for the label is "identifier", but we often call it the
-variable's name.
+variable's "name".
 
 ````illus
 ```cpp
@@ -236,3 +239,57 @@ bool isUppercase {true};
 std::uint8_t alpha {42u};
 ```
 ````
+
+#### Varying variables
+
+Variables are labels for values, but sometimes, values can change over time.
+Suppose we read a file, and consider the line of the file we are currently
+reading. It is a value that will increase as we progress through the file.
+
+````illus
+```cpp
+std::size_t currentLine {0};
+// Further in the program we could change that value.
+// For instance when we reach the 10th line:
+currentLine = 10uz;
+```
+
+We define the variable `currentLine`, with the type `std::size_t`, and
+initialize it to `0`. Later, we change its value to `10`.
+
+Note that we don't reiterate the type of `currentLine` when we change its value.
+Since the type never changes, it would be redundant. 
+````
+
+Assigning a different value with `=` is only one way of varying the value a
+variable stands for. We will see other ways later.
+
+#### Constant variables
+
+Conversely, some values never change. Suppose I define the variable `pi`, for
+instance:
+
+```cpp
+float pi {3.14159265f};
+```
+
+It would be odd to later change its value. It would likely be a mistake.
+
+The type system gives us a tool to guard against such mistakes: we can declare
+that `pi` is meant to never change, to be constant, using the keyword `const`.
+
+```cpp
+const float pi {3.14159265f};
+```
+
+Remember how the syntax is `type identifier {value};`? Now, the type of `pi` is
+`const float`, which means it is a floating-point value that is meant to never
+change.
+
+## Let's put it to the test
+
+### wrong type
+
+### const
+
+## struct/class
