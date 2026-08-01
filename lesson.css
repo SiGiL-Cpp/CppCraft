@@ -545,3 +545,27 @@ body {
   .page-nav { padding: 1.5rem 1rem 0; margin-top: 3rem; }
   .page-nav-link, .page-nav-disabled { font-size: 0.78rem; padding: 0.4rem 0.75rem; }
 }
+
+/* ─── Highlight.js overrides ───────────────────────────────────────────────── */
+/* Let hljs colour the tokens but keep our own background, border and padding.  */
+
+.lesson pre code.hljs {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+[data-theme="light"] .lesson pre code.hljs { background: transparent; }
+
+/* ─── ANSI colour classes (compiler output) ────────────────────────────────── */
+
+.playground-output .ansi-bold   { font-weight: 600; }
+.playground-output .ansi-red    { color: #e07060; }
+.playground-output .ansi-green  { color: #5dba8a; }
+.playground-output .ansi-yellow { color: #b0a850; }
+.playground-output .ansi-blue   { color: #5a9ade; }
+
+[data-theme="light"] .playground-output .ansi-red    { color: #9a2a1a; }
+[data-theme="light"] .playground-output .ansi-green  { color: #1a6e42; }
+[data-theme="light"] .playground-output .ansi-yellow { color: #5a5010; }
+[data-theme="light"] .playground-output .ansi-blue   { color: #1a4a8a; }

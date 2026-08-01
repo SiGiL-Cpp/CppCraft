@@ -23,6 +23,14 @@ function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   const btn = document.getElementById('theme-toggle');
   if (btn) btn.textContent = theme === 'dark' ? '☀ Light' : '◑ Dark';
+
+  // Swap highlight.js stylesheet to match the site theme
+  const hljs_link = document.getElementById('hljs-theme');
+  if (hljs_link) {
+    hljs_link.href = theme === 'dark'
+      ? 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css'
+      : 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css';
+  }
 }
 
 function initTheme() {
@@ -238,7 +246,7 @@ function makePlayground(rawContent, title, fold) {
       const stderr      = execResult.stderr?.map(l => l.text).join('\n').trim() || '';
 
       if (buildFailed && compileErr) {
-        output.textContent = compileErr;
+        output.innerHTML = ansiToHtml(compileErr);
         output.className   = 'playground-output error';
       } else if (stdout.startsWith('<svg')) {
         renderSVGFrames(svgDisplay, stdout);
@@ -246,7 +254,8 @@ function makePlayground(rawContent, title, fold) {
         output.style.display     = 'none';
       } else {
         output.style.display = 'block';
-        output.textContent   = stdout + (stderr ? '\n--- stderr ---\n' + stderr : '') || '(no output)';
+        const combined = stdout + (stderr ? '\n--- stderr ---\n' + stderr : '') || '(no output)';
+        output.innerHTML   = ansiToHtml(combined);
         output.className     = 'playground-output';
       }
     } catch (err) {
@@ -270,6 +279,35 @@ function makePlayground(rawContent, title, fold) {
   content.appendChild(output);
   content.appendChild(svgDisplay);
   return wrapBox('playground', label, content, fold);
+}
+
+// ─── ANSI escape code renderer ───────────────────────────────────────────────
+// Converts GCC/Clang terminal output to safe HTML with basic colour support.
+
+function ansiToHtml(text) {
+  const SGR = {
+    '0':'', '1':'ansi-bold',
+    '31':'ansi-red',   '32':'ansi-green', '33':'ansi-yellow', '34':'ansi-blue',
+    '1;31':'ansi-bold ansi-red',   '1;32':'ansi-bold ansi-green',
+    '01':'ansi-bold',
+    '01;31':'ansi-bold ansi-red',  '01;32':'ansi-bold ansi-green',
+  };
+  let html = '', open = false;
+  const parts = text.split(/\x1b\[([0-9;]*)([mK])/);
+  for (let i = 0; i < parts.length; i++) {
+    if (i % 3 === 0) {
+      html += parts[i].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    } else if (i % 3 === 1) {
+      const code = parts[i], term = parts[i+1]; i++;
+      if (term === 'K') continue;
+      if (open) { html += '</span>'; open = false; }
+      if (code === '' || code === '0') continue;
+      const cls = SGR[code];
+      if (cls) { html += `<span class="${cls}">`; open = true; }
+    }
+  }
+  if (open) html += '</span>';
+  return html;
 }
 
 // ─── SVG Frame Scrubber ───────────────────────────────────────────────────────
@@ -477,6 +515,13 @@ async function loadPage(mdPath) {
     mountBoxes(root);
     mountFoldingSections(root);
     root.appendChild(buildPageNav(meta));
+
+    // Syntax highlight all code blocks not consumed as box types
+    if (typeof hljs !== 'undefined') {
+      root.querySelectorAll('pre code').forEach(block => {
+        hljs.highlightElement(block);
+      });
+    }
   } catch (err) {
     root.innerHTML = `<p class="load-error">Could not load page: ${err.message}</p>`;
   }

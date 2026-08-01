@@ -97,7 +97,7 @@ sizes to the same type.
 A given compiler has to be consistent, but different compilers don't have to
 agree.
 
-For instance, the type `std:size_t` has a size of 4 Bytes on x86 architectures,
+For instance, the type `std::size_t` has a size of 4 Bytes on x86 architectures,
 while it has a size of 8 Bytes on x64 architectures.
 
 This remains consistent on the given architecture, but changes across
@@ -169,7 +169,7 @@ the interpretation handled for us by the compiler is two-fold:
   us in the right direction to understand semantics.
 ```
 
-Note that in the most common architectures, `163`, `163u`, and `163.f` will have
+Note that in the most common architectures, `163`, `163u`, and `163.0f` will have
 a size of 4 Bytes, while `163.0` will take 8 Bytes, and `'£'` only 1 Byte. It
 will be important to be aware of these differences when we try to make our
 programs efficient.
@@ -284,12 +284,87 @@ const float pi {3.14159265f};
 
 Remember how the syntax is `type identifier {value};`? Now, the type of `pi` is
 `const float`, which means it is a floating-point value that is meant to never
-change.
+change, or a "read-only floatin-point".
 
-## Let's put it to the test
+```aside> constexpr
+`constexpr` is a different keyword in C++. Contrary to `const`, `constexpr` is
+not part of the type of the variable, but it implicitely makes the variable's
+type `const`.
 
-### wrong type
+`const` tells that the variable should never change after its initialization.
+`constexpr` says something more: not only should it never change after
+initialization, but also, we know the value it will be initialized with ahead of
+time (at compile time, specifically).
 
-### const
+Suppose that in a program, we ask for the name of the user. It cannot be known
+ahead of time, so we can store this data in a `const` variable but not in a
+`constexpr` variable.
+
+But `pi` is known ahead of time, and could (should) be stored in a `constexpr`
+variable rather than "only" a `const` one.
+
+`constexpr float pi {3.14159265f}` is equivalent to `constexpr const float pi
+{3.14159265f}` (so we usually write the first because it's more concise). In
+both cases, the type of `pi` is `const float`. 
+```
+
+## In practice
+
+First and example where we do things properly. If you press "Run", it should
+say: `This compiled and ran without error.`.
+
+```playground: Working example
+id: type-no-error
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+boilerplate_after: |
+  std::cout << "This compiled and ran without error.";
+  }
+default_code: |
+  char c {'A'};
+  int i {163};
+  float f {163.5f};
+  bool b {true};
+```
+
+But if we attempt to do nonsensical things, like initializing a character from a
+number or an integral number from a floating point, or a 4-Byte floating point
+from a value it cannot hold, or a boolean from a number, the compiler stops us.
+
+```playground: Compilation error — narrowing
+id: type-error-01
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+boilerplate_after: |
+  std::cout << "This compiled and ran without error.";
+  }
+default_code: |
+  char c {163};
+  int i {163.5f};
+  float f {1e50}; // 1 * 10^50
+  bool b {163};
+```
+
+It stops us if we attempt to modify a variable we have indicated as being
+constant.
+
+```playground: Compilation error — enforcing constness
+id: type-error-01
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+boilerplate_after: |
+  std::cout << "This compiled and ran without error.";
+  }
+default_code: |
+  const float pi {3.14159265f};
+  pi = 42.f; // <- oops, not a good idea.
+```
+
 
 ## struct/class
