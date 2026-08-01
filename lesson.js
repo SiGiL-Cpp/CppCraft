@@ -228,7 +228,7 @@ function makePlayground(rawContent, title, fold) {
         body: JSON.stringify({
           source: fullCode,
           options: {
-            userArguments:   '-std=c++17',
+            userArguments:   '-std=c++17 -finput-charset=UTF-8',
             executeParameters: { args: '', stdin: '' },
             compilerOptions:   { executorRequest: true },
             filters:           { execute: true },

@@ -367,4 +367,8 @@ default_code: |
 ```
 
 
-## struct/class
+## Aggregates
+
+### Arrays
+
+### `struct`/`class`
