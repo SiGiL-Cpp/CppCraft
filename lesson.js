@@ -533,7 +533,7 @@ function pageFromURL(fallback) {
   return param ? `pages/${param}.md` : fallback;
 }
 
-function scrollToAnchor(targetId) {
+function scrollToAnchor(targetId, retries = 5, delay = 300) {
     if(!targetId) return;
     const targetElement = document.querySelector(targetId);
 
@@ -548,6 +548,12 @@ function scrollToAnchor(targetId) {
             window.history.pushState(null, null, targetId);
         }
     } else {
-        console.warn(`Anchor element ${targetId} not found in the DOM.`);
+        if (retries > 0) {
+          setTimeout(() => scrollToAnchor(targetId, retries - 1, delay), delay);
+        }
+        else
+        {
+          console.warn(`Anchor element ${targetId} not found in the DOM.`);
+        }
     }
 }
