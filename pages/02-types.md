@@ -127,17 +127,20 @@ This type can be deduced from how we spell out the value. So we will have to be
 a little careful.
 
 ```illus
-- If we write `163`, the value is of type `int` (its underlying value is `163`).
-- If we write `163u`, the value is of type `unsigned int` (its underlying value
-  is `163`)
-- If we write `163.0`, the value is of type `double` (its underlying value is
-  `4639939069214720000`).
-- If we write `163.0f`, the value is of type `float` (its underlying value is
-  `1126367232`).
-- If we write `'£'`, the value is of type `char` (its underlying value is
-  `163`).
-- `true` and `false` are special values of type `bool` (with underlying values
-  `1` and `0` respectively).
+- If we write `163`, the value is of type `int`<br/>(the same bits interpreted as
+  unsigned integer read as `163`).
+- If we write `163u`, the value is of type `unsigned int`<br/>
+  (the same bits interpreted as unsigned integer read as `163`)
+- If we write `163.0`, the value is of type `double`<br/>
+  (the same bits interpreted as unsigned integer read as `4639939069214720000`).
+- If we write `163.0f`, the value is of type `float`<br/>
+  (the same bits interpreted as unsigned integer read as `1126367232`).
+- If we write `'£'`, the value is of type `char`<br/>
+  (the same bits interpreted as unsigned integer read as `163` with Windows-1252
+  or ISO-8859-1 encoding, or `153` with CP437 encoding).
+- `true` and `false` are special values of type `bool`<br/>
+  (with underlying values `1` and `0` respectively, although any non-zero value
+  is interpreed as `true`).
 ```
 
 This might be intimidating at first, but it is actually somewhat convenient:
@@ -256,6 +259,10 @@ currentLine = 10uz;
 
 We define the variable `currentLine`, with the type `std::size_t`, and
 initialize it to `0`. Later, we change its value to `10`.
+
+`uz` is the literal suffix associated with the type `std::size_t` since C++23.
+If you use an older standard of C++ it may fail to parse. You can use `ul`
+instead.
 
 Note that we don't reiterate the type of `currentLine` when we change its value.
 Since the type never changes, it would be redundant. 
@@ -396,7 +403,8 @@ An oddity with this syntax is that when declaring a [variable](#variables) of
 these types, the type splits and surrounds the variable name: `int myArray[5]`.
 
 This is one of the two exceptions where the syntax for variables is not strictly
-`type` then `identifier`.
+`type` then `identifier` (the other is function pointers, something we will see
+later).
 
 ````aside > It can be fixed by using a type alias
 If this exception bothers you, you can use a type alias to make it go away. A
@@ -423,20 +431,20 @@ The simplest way to avoid this problem is to use the modern syntax with
 The modern way to declare an array is with `std::array<type, N>`. This second
 form is more consistent and generally clearer.
 
-For instance: `std::array<float, 3>`, or `std::array<char, 250>`.
+For instance: `std::array<float, 3uz>`, or `std::array<char, 250uz>`.
 
 ````illus
 ```cpp
-std::array<float, 3> my3DVector;
-std::array<char, 250> aShortCharacterString {"Some words here."};
+std::array<float, 3uz> my3DVector;
+std::array<char, 250uz> aShortCharacterString {"Some words here."};
 ```
 
-The [image type](./?page=01-data#mage) we discussed previously was mainly formed
+The [image type](./?page=01-data#image) we discussed previously was mainly formed
 of many Bytes, each interpreted as light intensity. Our example image used 88
 Bytes. We could declare:
 
 ```cpp
-std::array<std::byte, 88> imageLightIntensityData;
+std::array<std::byte, 88uz> imageLightIntensityData;
 ```
 
 ````
@@ -449,7 +457,7 @@ first element of an array, we use `[0]` (`[1]` to access the second).
 
 After declaring:
 ```cpp
-std::array<char, 250> aShortCharacterString {"Some words here."};
+std::array<char, 250uz> aShortCharacterString {"Some words here."};
 ```
 
 - `aShortCharacterString[0]` is the character `'S'`
@@ -522,6 +530,24 @@ StyledCharacter myStyledCharacter
 };
 ```
 
+This way of initializing it is called "designated initialization" and has been
+introduced with C++20. If your compiler uses an older version, you can use
+aggregate initialization instead:
+```cpp
+StyledCharacter myStyledCharacter
+{
+    'A',
+    10.0f,
+    true,
+    false
+};
+```
+
+It is more concise, but hareder to read. To know that the second boolean value
+indicates whether the character is in italic, the person reading the code needs
+to know the exact structure of `SyledCharacter`, which is why we prefer the
+designated initialization syntax.
+
 Unfortunately, at this point, our program will not know how to display this new
 type out-of-the-box. But we can access each member of the variable (character,
 size, bold, italic) with the `.` syntax: `variable_identifier.member`:
@@ -576,7 +602,7 @@ where we start being able to make real complex and rich types.
 
 ````illus
 Consider our image type. We saw that an array is convenient to store the light
-intensity data as a `std::array<std::byte, 88>`, for instance.
+intensity data as a `std::array<std::byte, 88uz>`, for instance.
 
 But we also discussed that to be able to interpret it correctly as an image, we
 need to also store the width and height of the image. It would be convenient to
@@ -586,7 +612,7 @@ struct GrayscaleImage
 {
     std::size_t width;
     std::size_t height;
-    std::array<std::byte, 88> lightIntensityData;
+    std::array<std::byte, 88uz> lightIntensityData;
 };
 ```
 
@@ -610,7 +636,7 @@ struct ColourImage
 {
     std::size_t width;
     std::size_t height;
-    std::array<PixelData> pixels;
+    std::array<PixelData, 88uz> pixels;
 };
 ```
 

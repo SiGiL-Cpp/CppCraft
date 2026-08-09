@@ -97,23 +97,35 @@ of at least 8 binary digits, and thus can express 256 distinct values.
 
 ### Bytes as characters
 
-Since 1961, we have been using a standard called <a
+Since the early 80s, we have been using a standard called <a
 href="https://en.wikipedia.org/wiki/ASCII" target="_blank"
-rel="noopener">ASCII</a> which matches numbers between 0 and 255 to specific
+rel="noopener">ASCII</a> to match numbers between 0 and 255 to specific
 characters.
 
+To be precise, the ASCII standard existed since 1961, but only maps numbers
+between 0 and 127 to characters. The remaining mapping for numbers between 128
+and 255 (included) is known as "extended ASCII", and comes in different flavours
+such as Windows-1252, ISO 8859-1, or CP437, so that in practice Linux and
+Windows machines can sometimes disagree on less common characters.
+
 ```illus: Example
-According to this convention, the number `163` represents the
-character `'£'`.
+Since the number `163` is beyond `127`, it is part of the extended ASCII values,
+where standards can disagree.
+
+With Windows-1252 and ISO-8859-1 extensions, `163` maps to the character `'£'`.
+
+On older systems (typically IBM) using the CP437 extension of ASCII, `163`
+represents the character `'ú'`.
 ```
 
 It is worth noting that the character `'1'` in the ASCII standard is encoded by
 the number `49`. Although this number can seem arbitrary when expressed in
 decimal, it makes more sense for those familiar with its binary representation
-(32 + 16 + 1).
+(32 + 16 + 1): numbers are encoded with a 48 prefix + the endoded number.
 
 ASCII is a very common way of interpreting numbers as (Latin) characters, but by
-no means the only one.
+no means the only one. UTF-8 is another very common encoding, particularly in
+modern systems.
 
 ### Bytes as true/false, on/off, yes/no values
 
@@ -367,7 +379,8 @@ There are different format. For our purpose, we will choose:
 - 3 bits for the Mantissa.
 
 **The short version is that the number is computed as `sign`
-2<sup>`Exponent`</sup> `Mantissa`.**
+2<sup>`Exponent`</sup> `Mantissa`**, but this is very imprecise. We will see
+below it is much more complicated thatn this.
 
 3 bits for the *mantissa* means that every 8 (2<sup>3</sup>) values, we will
 double the space between our values when we step away from 0.
@@ -550,15 +563,6 @@ way than before, but we have many more values to play with.
 - For signed integral,
   - [-2,147,483,648, 2,147,483,647] with 4 Bytes (32 bits),
   - [-9,223,372,036,854,775,808, 9,223,372,036,854,775,807] with 8 Bytes (64 bits).
-- Booleans are usually a single Byte, although there are exceptions:
-  - Some niche architectures use 2, 4, or 8-Byte long booleans.
-  - Windows API and some other historical APIs (mac-OS) define their own
-    boolean type over 4 or 8 Bytes.
-  - This doesn't change their basic interpretation.
-  - When interpreting values as multiple booleans, several Bytes means more
-    packed booleans (32 or 64 boolean values at once).
-- Characters are usually represented with smaller values, over one or two Bytes
-  only.
 - A fixed-point number over 4 Bytes (32 bit) can represent values up
   to 20,000 with a 0.000,01 (10<sup>-5</sup>) precision. That's enough to
   measure half the perimeter of the Earth in kilometres while retaining a
@@ -578,6 +582,17 @@ way than before, but we have many more values to play with.
     - With 64 bits (8 Bytes), around 10,000,000, the precision remains much
       higher at about 1.86&times;10<sup>-9</sup> (that's roughly 10 nanometre
       precision over the circumference of the Earth).
+- Booleans are usually a single Byte, although there are exceptions:
+  - Windows API and some other historical APIs (mac-OS) define their own
+    boolean type over 4 or 8 Bytes, but it is a distinct type from `bool` (e.g.
+    `BOOL`).
+  - Some niche architectures use 2, 4, or 8-Byte long booleans (e.g. TI C55x).
+  - This doesn't change their basic interpretation: 0 is `false`, anything else is
+    `true`.
+  - When interpreting multi-byte values as multiple booleans, several Bytes
+    means more packed booleans (32 or 64 boolean values at once).
+- Characters are usually represented with smaller values, over one or two Bytes
+  only.
 
 That's a lot of numbers to play with. Mostly, enough for our purpose. But one
 reasons we want such enormous ranges of numbers is also that we need room for
@@ -690,11 +705,11 @@ allows to represent exactly this movement.
 
 There has been several format over time. In some old format, we use an unsigned
 8-bit value. `0` means pulling the membrane as far as it goes, and `255` pushing it
-as far as it goes the other way.
+as far as it goes the other way, with `128` representing the position where the
+membrane is at rest.
 
 Modern formats usually use signed values, often over 16 bits (2 Bytes). The
-signed format gives a clearer `0` for leaving the membrane at rest (instead of
-`128` for the unsigned 8-bit format).
+signed format gives a clearer `0` for leaving the membrane at rest.
 
 ```pitfall: Caution
 Worth noting that outputting random values to a speaker can damage it. The
