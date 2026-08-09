@@ -228,7 +228,7 @@ function makePlayground(rawContent, title, fold) {
         body: JSON.stringify({
           source: fullCode,
           options: {
-            userArguments:   '-std=c++17 -finput-charset=UTF-8',
+            userArguments:   '-std=c++23 -finput-charset=UTF-8',
             executeParameters: { args: '', stdin: '' },
             compilerOptions:   { executorRequest: true },
             filters:           { execute: true },
@@ -285,28 +285,109 @@ function makePlayground(rawContent, title, fold) {
 // Converts GCC/Clang terminal output to safe HTML with basic colour support.
 
 function ansiToHtml(text) {
-  const SGR = {
-    '0':'', '1':'ansi-bold',
-    '31':'ansi-red',   '32':'ansi-green', '33':'ansi-yellow', '34':'ansi-blue',
-    '1;31':'ansi-bold ansi-red',   '1;32':'ansi-bold ansi-green',
-    '01':'ansi-bold',
-    '01;31':'ansi-bold ansi-red',  '01;32':'ansi-bold ansi-green',
-  };
-  let html = '', open = false;
-  const parts = text.split(/\x1b\[([0-9;]*)([mK])/);
-  for (let i = 0; i < parts.length; i++) {
-    if (i % 3 === 0) {
-      html += parts[i].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    } else if (i % 3 === 1) {
-      const code = parts[i], term = parts[i+1]; i++;
-      if (term === 'K') continue;
-      if (open) { html += '</span>'; open = false; }
-      if (code === '' || code === '0') continue;
-      const cls = SGR[code];
-      if (cls) { html += `<span class="${cls}">`; open = true; }
+  // Rather than a class-name lookup table, we track a style state object
+  // and emit inline style spans. This handles arbitrary RGB colours and
+  // any combination of bold/italic/colour without needing to enumerate them.
+
+  let html = '';
+  let state = { bold: false, italic: false, fg: null, bg: null };
+  let spanOpen = false;
+
+  function escape(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function stateIsDefault(s) {
+    return !s.bold && !s.italic && s.fg === null && s.bg === null;
+  }
+
+  function openSpan() {
+    const parts = [];
+    if (state.bold)   parts.push('font-weight:600');
+    if (state.italic) parts.push('font-style:italic');
+    if (state.fg)     parts.push(`color:${state.fg}`);
+    if (state.bg)     parts.push(`background:${state.bg}`);
+    html += `<span style="${parts.join(';')}">`;
+    spanOpen = true;
+  }
+
+  function closeSpan() {
+    if (spanOpen) { html += '</span>'; spanOpen = false; }
+  }
+
+  function applyCode(code) {
+    // Handle 38;2;R;G;B (fg) and 48;2;R;G;B (bg) as a unit — caller passes
+    // the full code string including semicolons for these.
+    if (/^38;2;/.test(code)) {
+      const [,,r,g,b] = code.split(';');
+      state.fg = `rgb(${r},${g},${b})`;
+      return;
+    }
+    if (/^48;2;/.test(code)) {
+      const [,,r,g,b] = code.split(';');
+      state.bg = `rgb(${r},${g},${b})`;
+      return;
+    }
+    // Standard SGR codes
+    switch (code) {
+      case '':  case '0':                   // reset
+        state = { bold:false, italic:false, fg:null, bg:null }; break;
+      case '1': case '01':  state.bold   = true;  break;
+      case '3':             state.italic = true;  break;
+      case '4':             /* underline — skip */ break;
+      case '22':            state.bold   = false; break;
+      case '23':            state.italic = false; break;
+      case '30': state.fg = '#555';    break; // black (use dark grey)
+      case '31': state.fg = '#e07060'; break; // red
+      case '32': state.fg = '#5dba8a'; break; // green
+      case '33': state.fg = '#b0a850'; break; // yellow
+      case '34': state.fg = '#5a9ade'; break; // blue
+      case '35': state.fg = '#bb88cc'; break; // magenta
+      case '36': state.fg = '#5ababa'; break; // cyan
+      case '37': state.fg = '#cdd4e0'; break; // white
+      case '39': state.fg = null;      break; // default fg
+      case '49': state.bg = null;      break; // default bg
     }
   }
-  if (open) html += '</span>';
+
+  // Split on ESC[ sequences, capturing the parameter string and terminator
+  const parts = text.split(/\x1b\[([0-9;]*)([mK])/);
+
+  for (let i = 0; i < parts.length; i++) {
+    if (i % 3 === 0) {
+      // Plain text
+      if (parts[i]) html += escape(parts[i]);
+    } else if (i % 3 === 1) {
+      const params     = parts[i];      // e.g. "1;31" or "38;2;255;128;0"
+      const terminator = parts[i + 1];
+      i++; // consume terminator
+
+      if (terminator === 'K') continue; // erase-to-EOL, meaningless in HTML
+
+      // Close current span before changing state
+      closeSpan();
+
+      // Parse params — handle 38;2;R;G;B and 48;2;R;G;B as atomic units,
+      // then process remaining codes one by one.
+      const codes = params.split(';');
+      let j = 0;
+      while (j < codes.length) {
+        if ((codes[j] === '38' || codes[j] === '48') && codes[j+1] === '2') {
+          // 24-bit colour: consume 5 tokens (38;2;R;G;B)
+          applyCode(codes.slice(j, j+5).join(';'));
+          j += 5;
+        } else {
+          applyCode(codes[j] || '0');
+          j++;
+        }
+      }
+
+      // Open new span if state is non-default
+      if (!stateIsDefault(state)) openSpan();
+    }
+  }
+
+  closeSpan();
   return html;
 }
 
