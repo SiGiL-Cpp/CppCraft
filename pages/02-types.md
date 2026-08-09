@@ -707,7 +707,8 @@ Here is a simple `StyledCharacter` type:
   };
 ```
 
-- First, declare and initialize a single `StyledCharacter` named `myStyledChar`.
+- First, declare and initialize a single `StyledCharacter` named
+  `myStyledCharacter`.
 - Second, make an array of `StyledCharacter` and name if `myStyledString`.
 
 C++ would not know how to format a `StyledCharacter` out-of-the-box. It works
@@ -717,6 +718,7 @@ There will be help below the exercise.
 
 ```playground
 id: styled-text
+height: 180
 boilerplate_before: |
   #include <array>
   #include <iostream>

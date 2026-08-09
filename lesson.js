@@ -186,6 +186,7 @@ function makePlayground(rawContent, title, fold) {
   editor.className  = 'playground-editor';
   editor.spellcheck = false;
   editor.value      = (config.default_code || '').trimEnd();
+  if (config.height) editor.style.minHeight = config.height + 'px';
 
   const controls = document.createElement('div');
   controls.className = 'playground-controls';
