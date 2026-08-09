@@ -42,7 +42,7 @@ But this information is not only for the compiler's benefit. It is extremely
 important for the programmer who writes or reads the code.
 
 When a program mentions a `pitch`, it could be a short text introducing an idea,
-the specific frequence of a musical note, the distance between threads on a
+the specific frequency of a musical note, the distance between threads on a
 screw, a dark sticky polymer, or a football field. All these things can be
 designated by the same name: "pitch", but have a different meaning, different
 semantic, and thus should be interpreted differently.
@@ -65,7 +65,7 @@ The Type specifies the semantic (the meaning) and avoids ambiguities.
   ["raw data"](?page=01-data#byte).
 ```
 
-On an typical architecture, these 5 types are strictly the same thing from the
+On a typical architecture, these 5 types are strictly the same thing from the
 processor's point of view. But we should read their bits in very different ways.
 
 In this case, the distinction between these types doesn't inform the processor
@@ -82,7 +82,7 @@ value.
 - `std::uint8_t` is a single Byte unsigned integral value.
 - `std::uint16_t` is a two Bytes unsigned integral value.
 - `std::uint32_t` is a four Bytes unsigned integral value.
-- `std::uint64_t` is a eight Bytes unsigned integral value.
+- `std::uint64_t` is an eight Bytes unsigned integral value.
 ```
 
 In this case, in addition to carrying the information of how these values should
@@ -145,7 +145,7 @@ note that we wrote what we meant, mostly.
 It allows us to pretty much ignore the underlying representation and its
 potential complexity.
 
-Since a `char` should be interpreted through the ASCII lense, `'£'` is much
+Since a `char` should be interpreted through the ASCII lens, `'£'` is much
 clearer than `163`.
 
 By writing 163 as `163.0`, we made it clear that we minded the decimal part, and
@@ -210,8 +210,8 @@ If you really want to jump ahead, you can lookup the part of [this page](https:/
 where it says "no initialization is performed".
 ```
 
-This is not a bug of a language but a feature. A core-design principe of C++ is:
-"Pay for what you use".
+This is not a bug of a language but a feature. A core-design principle of C++
+is: "Pay for what you use".
 
 Maybe we will set the values of these variables later, from the user input, and
 thus, it doesn't matter which value they had initially. In this case, making the
@@ -219,7 +219,7 @@ effort of giving them a specific value to replace it later would have been
 paying for something we don't use: wasteful.
 
 If you want the variables to have a specific value (e.g. `0`), it is safer to do
-so explicitely.
+so explicitly.
 ````
 
 We can also give an initial value to our variable when we define it. We call
@@ -284,7 +284,7 @@ const float pi {3.14159265f};
 
 Remember how the syntax is `type identifier {value};`? Now, the type of `pi` is
 `const float`, which means it is a floating-point value that is meant to never
-change, or a "read-only floatin-point".
+change, or a "read-only floating-point".
 
 ```aside> constexpr
 `constexpr` is a different keyword in C++. Contrary to `const`, `constexpr` is
@@ -369,6 +369,274 @@ default_code: |
 
 ## Aggregates
 
+In [this previous chapter](./?page=01-data#even-more-bytes), we have seen also
+seen that some types of data are expressed using several distinct numbers. There
+are different ways of representing these data types. For now, we will limit
+ourselves to the simplest category: aggregates.
+
+There are two main categories of aggregates: arrays and some specific kind of
+class types.
+
 ### Arrays
 
-### `struct`/`class`
+An array is a sequence of a specific number of data-elements, all of the same
+type. For instance: 3 `float`, or 250 `char`.
+
+There are two ways of defining arrays.
+
+#### "C-style" arrays
+
+The built-in way is often called "C-Style" arrays. The syntax is of the form
+`type[N]`.
+
+For instance: `float[3]`, or `char[250]`.
+
+`````pitfall
+An oddity with this syntax is that when declaring a [variable](#variables) of
+these types, the type splits and surrounds the variable name: `int myArray[5]`.
+
+This is one of the two exceptions where the syntax for variables is not strictly
+`type` then `identifier`.
+
+````aside > It can be fixed by using a type alias
+If this exception bothers you, you can use a type alias to make it go away. A
+type alias is simply a way to rename a type. There are two ways of doing it:
+`typedef` and `using`. Here we will only look at the more modern `using` way.
+
+The "C-style" array type can be aliased to a single-word type name with the
+syntax `using AliasName = type`. From there the new alias can be used as
+other type names, on the left of the variable identifier:
+
+```cpp
+using MyArrayTypeAlias = int[5];
+MyArrayTypeAlias myArray;
+```
+````
+
+The simplest way to avoid this problem is to use the modern syntax with
+`std::array`.
+`````
+
+
+#### std::array
+
+The modern way to declare an array is with `std::array<type, N>`. This second
+form is more consistent and generally clearer.
+
+For instance: `std::array<float, 3>`, or `std::array<char, 250>`.
+
+````illus
+```cpp
+std::array<float, 3> my3DVector;
+std::array<char, 250> aShortCharacterString {"Some words here."};
+```
+
+The [image type](./?page=01-data#mage) we discussed previously was mainly formed
+of many Bytes, each interpreted as light intensity. Our example image used 88
+Bytes. We could declare:
+
+```cpp
+std::array<std::byte, 88> imageLightIntensityData;
+```
+
+````
+
+#### Accessing the content of an array
+
+We use the square brackets `[]` with an index between them to access the data
+inside an array. Arrays are "0-indexed" in C++, which means that to access the
+first element of an array, we use `[0]` (`[1]` to access the second).
+
+After declaring:
+```cpp
+std::array<char, 250> aShortCharacterString {"Some words here."};
+```
+
+- `aShortCharacterString[0]` is the character `'S'`
+- `aShortCharacterString[1]` is the character `'o'`
+- `aShortCharacterString[15]` is the character `'.'`
+- `aShortCharacterString[16]` is the special character `'\0'` (which indicates the
+  end of a character string).
+
+```aside: What is "Some words here."?
+In the same way that `'A'` is a literal of type `char`, text in double quotes
+such as `"A"` is a literal of type `const char[N]` when `N` is the length of the
+text **+ 1**. The additional character is to store the special `'\0'` character
+marking the end of the character string.
+
+"Some words here." is thus a `const char[16]`. A read-only C-style, built-in
+array type of 16 characters, with the first being `'S'`, and the last being
+`'\0'`.
+```
+
+### class types
+
+There are three different class types in C++. They can all be aggregates, but
+are not always aggregates. But for now, we will look at one of the three, when
+it is effectively an aggregate.
+
+#### struct
+
+With structures, we can define our own types, by packaging together several data
+types.
+
+The syntax goes like this:
+```cpp
+struct StructureName
+{
+    type member_identifier1;
+    other_type member_identifier2;
+    //...
+};
+```
+
+````illus
+We have seen how to represent characters with ASCII codes, but in this page,
+characters also have a size, can use **bold** or *italic*, etc. We could create
+a `struct` to encode this information:
+
+```cpp
+struct StyledCharacter
+{
+    char character;
+    float size;
+    bool bold;
+    bool italic;
+};
+```
+
+Now we can use this type:
+```cpp
+StyledCharacter myStyledCharacter;
+```
+
+We can also initialize it. There are several ways, but our preferred way of
+initializing it would be:
+```cpp
+StyledCharacter myStyledCharacter
+{
+    .character = 'A',
+    .size = 10.0f,
+    .bold = true,
+    .italic = false
+};
+```
+
+Unfortunately, at this point, our program will not know how to display this new
+type out-of-the-box. But we can access each member of the variable (character,
+size, bold, italic) with the `.` syntax: `variable_identifier.member`:
+
+```playground: Accessing members
+id: type-error-01
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    struct StyledCharacter
+    {
+        char character;
+        float size;
+        bool bold;
+        bool italic;
+    }myStyledCharacter
+    {
+        .character = 'A',
+        .size = 10.0f,
+        .bold = true,
+        .italic = false
+    };
+    auto getMember = [](StyledCharacter myStyledCharacter)
+  {
+    return \
+boilerplate_after: |
+  };
+  std::cout << getMember(myStyledCharacter) << "\n";
+  }
+default_code: |
+  myStyledCharacter.character;
+```
+````
+
+````pitfall
+When declaring a `struct`, or any other class type in C++, don't forget the `;`
+at the end of the declaration:
+```cpp
+struct MyStruct
+{
+    int member1;
+    char member2;
+}; // <-- this semicolon is easy to forget
+```
+````
+
+### Composing aggregates
+
+Nothing prevents you from using arrays in structs and structs in arrays. That's
+where we start being able to make real complex and rich types.
+
+````illus
+Consider our image type. We saw that an array is convenient to store the light
+intensity data as a `std::array<std::byte, 88>`, for instance.
+
+But we also discussed that to be able to interpret it correctly as an image, we
+need to also store the width and height of the image. It would be convenient to
+store them alongside the light intensity bytes:
+```cpp
+struct GrayscaleImage
+{
+    std::size_t width;
+    std::size_t height;
+    std::array<std::byte, 88> lightIntensityData;
+};
+```
+
+But what if our image was a colour image? Or even a colour image with
+transparency?
+One way would be to declare a `struct` encoding all the information for one
+pixel of the image:
+```cpp
+struct PixelData
+{
+    std::uint8_t redIntensity;
+    std::uint8_t greenIntensity;
+    std::uint8_t blueIntensity;
+    float transparency;
+};
+```
+
+and then to store an array of this data structure in our image type:
+```cpp
+struct ColourImage
+{
+    std::size_t width;
+    std::size_t height;
+    std::array<PixelData> pixels;
+};
+```
+
+```aside > How to choose between array or struct when both are possible?
+You may have noted that the size of the image (width/height) and the different
+colour intensities (red, green, blue) have respectively the same type
+(`std::size_t` for the image size, `std::uint8_t` for the colours). So we could
+us an array for them.
+
+That is true, we could. But I preferred not to. Why?
+
+Because of the **semantic**. Reading `myImage.size[0]` or `myPixel[1]` is
+ambiguous: is it the width or the height? Are we sure it is the green component?
+
+By using a `struct` instead, we remove the ambiguity and make it easier to read:
+`myImage.width`, `myImage.height`, `myPixel.greenIntensity`. Avoiding situations
+where the reader has to memorize a lot of information to figure out the code is
+very important to make good-quality code.
+``` 
+
+Note that we could also do it the other way around: we could in the image store
+an array of red colour intensities, then an array of green colour intensities, then
+an array of blue intensities, and finally an array of transparencies.
+
+It would change the order in which the data is written, but would also work. The
+distinction between these two solutions is often referred to as AoS (Array of
+Structures) for the first, and SoA (Structure of Arrays) for the second.
+
+````
