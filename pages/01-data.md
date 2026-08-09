@@ -81,7 +81,7 @@ digits.
 
 Nowadays, such cases are exceptions, rare and far-apart. We will assume 8-bits
 Bytes in this course, as it is the common case and adapting what will be said
-to exotic larger-Byte cases should be straigt-forward.
+to exotic larger-Byte cases should be straightforward.
 
 If we write portable code (code that should work on any computer) we can only
 rely on the "at least" guarantee and consider that on most architectures, a
@@ -121,7 +121,7 @@ represents the character `'ú'`.
 It is worth noting that the character `'1'` in the ASCII standard is encoded by
 the number `49`. Although this number can seem arbitrary when expressed in
 decimal, it makes more sense for those familiar with its binary representation
-(32 + 16 + 1): numbers are encoded with a 48 prefix + the endoded number.
+(32 + 16 + 1): numbers are encoded with a 48 prefix + the encoded number.
 
 ASCII is a very common way of interpreting numbers as (Latin) characters, but by
 no means the only one. UTF-8 is another very common encoding, particularly in
@@ -380,7 +380,7 @@ There are different format. For our purpose, we will choose:
 
 **The short version is that the number is computed as `sign`
 2<sup>`Exponent`</sup> `Mantissa`**, but this is very imprecise. We will see
-below it is much more complicated thatn this.
+below it is much more complicated than this.
 
 3 bits for the *mantissa* means that every 8 (2<sup>3</sup>) values, we will
 double the space between our values when we step away from 0.

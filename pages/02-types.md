@@ -140,7 +140,7 @@ a little careful.
   or ISO-8859-1 encoding, or `153` with CP437 encoding).
 - `true` and `false` are special values of type `bool`<br/>
   (with underlying values `1` and `0` respectively, although any non-zero value
-  is interpreed as `true`).
+  is interpreted as `true`).
 ```
 
 This might be intimidating at first, but it is actually somewhat convenient:
@@ -543,9 +543,9 @@ StyledCharacter myStyledCharacter
 };
 ```
 
-It is more concise, but hareder to read. To know that the second boolean value
+It is more concise, but harder to read. To know that the second boolean value
 indicates whether the character is in italic, the person reading the code needs
-to know the exact structure of `SyledCharacter`, which is why we prefer the
+to know the exact structure of `StyledCharacter`, which is why we prefer the
 designated initialization syntax.
 
 Unfortunately, at this point, our program will not know how to display this new
@@ -616,6 +616,21 @@ struct GrayscaleImage
 };
 ```
 
+The array size is `88` because our image was 11 pixels wide and 8 pixels high.
+Now that we store a size alongside, we could now use a larger buffer, allowing
+for different image sizes. For instance:
+```cpp
+struct GrayscaleImage
+{
+    std::size_t width;
+    std::size_t height;
+    std::array<std::byte, 1024uz> lightIntensityData;
+};
+```
+This would allow to store images of any size as long as `width`&times;`height`
+remains lower or equal to 1024 (e.g. 32&times;32, 128&times;8, 4&times;64,
+8&times;8, ...).
+
 But what if our image was a colour image? Or even a colour image with
 transparency?
 One way would be to declare a `struct` encoding all the information for one
@@ -636,7 +651,7 @@ struct ColourImage
 {
     std::size_t width;
     std::size_t height;
-    std::array<PixelData, 88uz> pixels;
+    std::array<PixelData, 1024uz> pixels;
 };
 ```
 
@@ -644,7 +659,7 @@ struct ColourImage
 You may have noted that the size of the image (width/height) and the different
 colour intensities (red, green, blue) have respectively the same type
 (`std::size_t` for the image size, `std::uint8_t` for the colours). So we could
-us an array for them.
+use an array for them.
 
 That is true, we could. But I preferred not to. Why?
 
