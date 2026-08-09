@@ -360,7 +360,7 @@ It stops us if we attempt to modify a variable we have indicated as being
 constant.
 
 ```playground: Compilation error — enforcing constness
-id: type-error-01
+id: type-error-02
 boilerplate_before: |
   #include <iostream>
   int main()
@@ -553,7 +553,7 @@ type out-of-the-box. But we can access each member of the variable (character,
 size, bold, italic) with the `.` syntax: `variable_identifier.member`:
 
 ```playground: Accessing members
-id: type-error-01
+id: accessing-members
 boilerplate_before: |
   #include <iostream>
   int main()
@@ -694,3 +694,110 @@ distinction between these two solutions is often referred to as AoS (Array of
 Structures) for the first, and SoA (Structure of Arrays) for the second.
 
 ````
+
+### Styled Text
+
+Here is a simple `StyledCharacter` type:
+```cpp
+  struct StyledCharacter
+  {
+    char character;
+    bool bold;
+    bool italic;
+  };
+```
+
+- First, declare and initialize a single `StyledCharacter` named `myStyledChar`.
+- Second, make an array of `StyledCharacter` and name if `myStyledString`.
+
+C++ would not know how to format a `StyledCharacter` out-of-the-box. It works
+here because of hidden code handling it.
+
+There will be help below the exercise.
+
+```playground
+id: styled-text
+boilerplate_before: |
+  #include <array>
+  #include <iostream>
+
+  struct StyledCharacter
+  {
+    char character;
+    bool bold;
+    bool italic;
+  };
+
+  void printStyled(const StyledCharacter& sc)
+  {
+    if (sc.bold)   std::cout << "\x1b[1m";
+    if (sc.italic) std::cout << "\x1b[3m";
+    std::cout << sc.character << "\x1b[0m";
+  }
+
+  template<size_t N>
+  void printStyled(const StyledCharacter (&styledString)[N])
+  {
+    for(size_t i = 0; i < N; ++i)
+    {
+        printStyled(styledString[i]);
+    }
+  }
+
+  template<size_t N>
+  void printStyled(const std::array<StyledCharacter, N>& styledString)
+  {
+    for(size_t i = 0; i < N; ++i)
+    {
+        printStyled(styledString[i]);
+    }
+  }
+
+  struct Exo
+  {
+
+boilerplate_after: |
+  };
+
+  template <typename T>
+  concept HasMyStyledCharacter = requires(T t) {t.myStyledCharacter;};
+
+  template <typename T>
+  concept HasMyStyledString = requires(T t) {t.myStyledString;};
+
+  template <typename T>
+  void processExo(T exo)
+  {
+    static constexpr bool hasMyStyledCharMember = HasMyStyledCharacter<Exo>;
+    static constexpr bool hasMyStyledStringMember = HasMyStyledString<Exo>;
+    if constexpr(hasMyStyledCharMember)
+    {
+        printStyled(exo.myStyledCharacter);
+        std::cout << "\n";
+    }
+    if constexpr(hasMyStyledStringMember)
+    {
+        printStyled(exo.myStyledString);
+        std::cout << "\n";
+    }
+    if constexpr(!hasMyStyledCharMember && !hasMyStyledStringMember)
+    {
+        std::cout << "No member named `myStyledCharacter` or `myStyledString` found.\n";
+    }
+  }
+
+  int main()
+  {
+    Exo exo;
+    processExo(exo);
+    return 0;
+  }
+
+default_code: |
+  StyledCharacter myStyledCharacter {
+    .character='A',
+    .bold=false,
+    .italic=true
+  };
+```
+
