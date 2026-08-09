@@ -111,7 +111,7 @@ The mission of a `std::size_t` is to store the size (in Bytes) of pieces of
 data. It guarantees to be large enough to encode the maximum size of any piece
 of data on the given architecture.
 
-The very point of the x64 architecture is to supports larger data-types than
+The very point of the x64 architecture is to support larger data-types than
 x86, so it is only natural for `std::size_t` to differ between these two
 architectures.
 ```
@@ -564,7 +564,7 @@ boilerplate_before: |
         float size;
         bool bold;
         bool italic;
-    }myStyledCharacter
+    } myStyledCharacter
     {
         .character = 'A',
         .size = 10.0f,
@@ -594,6 +594,19 @@ struct MyStruct
 }; // <-- this semicolon is easy to forget
 ```
 ````
+
+```pitfall> The size of a struct
+While the size of an array is the size of the element the array stores
+multiplied by the number of elements in the array (e.g.
+`std::array<std::uint_16, 8>` stores 8 elements made of 2 Bytes each, so has a
+size of 16 Bytes), it is not as straight-forward with `struct`s.
+
+For reasons that we will explain in the next chapters, the compiler may
+sometimes insert gap Bytes between members.
+
+This is mostly invisible to the programmer, and not something you need to think
+too hard about for now.
+```
 
 ### Composing aggregates
 
