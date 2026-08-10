@@ -598,7 +598,7 @@ struct MyStruct
 ```pitfall> The size of a struct
 While the size of an array is the size of the element the array stores
 multiplied by the number of elements in the array (e.g.
-`std::array<std::uint_16, 8>` stores 8 elements made of 2 Bytes each, so has a
+`std::array<std::uint16_t, 8>` stores 8 elements made of 2 Bytes each, so has a
 size of 16 Bytes), it is not as straight-forward with `struct`s.
 
 For reasons that we will explain in the next chapters, the compiler may
@@ -707,12 +707,15 @@ Here is a simple `StyledCharacter` type:
   };
 ```
 
-- First, declare and initialize a single `StyledCharacter` named
-  `myStyledCharacter`.
-- Second, make an array of `StyledCharacter` and name if `myStyledString`.
+- First, you will find a single `StyledCharacter` named `myStyledCharacter`
+  declared and initialized. You can `Run` the execution or modify it.
+- Second, you can make an array of `StyledCharacter` and name if
+  `myStyledString`. If you initialize it with multiple `StyledCharacter`s, they
+  will be displayed as a character string.
+- What happens if you don't initialize it?
 
-C++ would not know how to format a `StyledCharacter` out-of-the-box. It works
-here because of hidden code handling it.
+C++ would not know how to format a `StyledCharacter` out-of-the-box: it is our
+own custom type. It works here because of hidden code handling it.
 
 There will be help below the exercise.
 
@@ -803,3 +806,76 @@ default_code: |
   };
 ```
 
+````aside> Hint 1: How to declare an array?
+For a built-in C-style array:
+```cpp
+Type identifier[N];
+```
+
+For a modern `std::array`:
+```cpp
+std::array<Type, N> identifier;
+```
+````
+
+````aside> Hint 2: How to declare an array of StyledCharacters?
+For a built-in C-stype array:
+```cpp
+StyledCharacter myStyledString[5];
+```
+
+For a modern `std::array`:
+```cpp
+std::array<StyledCharacter, 5uz> myStyledString;
+```
+````
+
+````aside> Hint 3: How to initialize an array of StyledCharacters?
+One step at a time:
+- Declare the variable
+```cpp
+std::array<StyledCharacter, 5uz> myStyledString;
+// or StyledCharacter myStyledString[5];
+```
+- Then add curly braces `{}` to initilalize it.
+```cpp
+std::array<StyledCharacter, 5uz> myStyledString {};
+```
+- What do we want to initialize it with?
+  - Let's start with a first `StyledCharacter` element. But we have to
+    initialize it as well, so let's give it curly braces too:
+```cpp
+std::array<StyledCharacter, 5uz> myStyledString { StyledCharacter {} };
+```
+<ul style="list-style-type: none;"><li><ul><li>What do we initialize the `styledCharacter`
+with?</li></ul></li></ul>
+
+```cpp
+std::array<StyledCharacter, 5uz> myStyledString {
+  StyledCharacter {
+    .character='A',
+    .bold=false,
+    .italic=false
+  }
+};
+```
+
+<ul style="list-style-type: none;"><li><ul><li>Next let's add a second
+StyledCharacter:</li></ul></li></ul>
+
+```cpp
+std::array<StyledCharacter, 5uz> myStyledString {
+  StyledCharacter {
+    .character='A',
+    .bold=false,
+    .italic=false
+  },
+  StyledCharacter {
+    .character='B',
+    .bold=false,
+    .italic=true
+  }
+};
+```
+
+````
