@@ -916,7 +916,7 @@ to use these initial values.
 
 As such, the compiler lets you save the cost of initialising the variables by
 skipping their initialisation. In such cases, the initial value of the variables
-will not be `0`, but whatever was already in the memory. These value are often
+will **not** be `0`, but whatever was already in the memory. These value are often
 referred to as "random", but it is not quite true. Calling them "garbage" memory
 is more accurate.
 ````
