@@ -449,6 +449,45 @@ std::array<std::byte, 88uz> imageLightIntensityData;
 
 ````
 
+#### Initialising an array
+
+As for other types, a good way to initialise an array is by using the curly
+brackets `{}`. To initialise an array with multiple elements, we separate them
+with commas `,` in the brackets:
+
+```cpp
+int c_style_array[5] {0, 1, 2, 3, 4};
+std::array<float, 5> modern_array {4.5f, 3.5f, 2.5f, 1.5f, 0.5f};
+```
+
+````aside: Arrays of char
+We saw earlier that the compiler deduces the type of values from their specific
+format (the [literals](#literals)). There is such a literal for character
+strings: `"Writing between double quotes"`.
+
+This literal has the type of a read-only array of characters: `const char[N]`,
+where `N`is the length of the text **+ 1**. The additional character is to store
+the special `'\0'` character marking the end of the string.
+
+If the UTF-8 encoding is used and the string contains special characters, its
+length can be more than the number of characters.
+
+The type of `"Hello, world!"` is `const char[14]` (13 characters + `'\0'`).
+
+With UTF-8, the type of `"99¢"` is `const char[5]` (2 characters for
+`99` + 2 characters for `¢` + `'\0'`).
+
+Arrays of characters can also be initialized from such literals:
+```cpp
+std::array<char, 5> myWord {"here"};
+```
+It is equivalent to:
+```cpp
+std::array<char, 5> myWord {'h', 'e', 'r', 'e', '\0'};
+```
+
+````
+
 #### Accessing the content of an array
 
 We use the square brackets `[]` with an index between them to access the data
@@ -465,17 +504,6 @@ std::array<char, 250uz> aShortCharacterString {"Some words here."};
 - `aShortCharacterString[15]` is the character `'.'`
 - `aShortCharacterString[16]` is the special character `'\0'` (which indicates the
   end of a character string).
-
-```aside: What is "Some words here."?
-In the same way that `'A'` is a literal of type `char`, text in double quotes
-such as `"A"` is a literal of type `const char[N]` when `N` is the length of the
-text **+ 1**. The additional character is to store the special `'\0'` character
-marking the end of the character string.
-
-"Some words here." is thus a `const char[16]`. A read-only C-style, built-in
-array type of 16 characters, with the first being `'S'`, and the last being
-`'\0'`.
-```
 
 ### class types
 
