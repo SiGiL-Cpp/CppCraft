@@ -737,7 +737,7 @@ Here is a simple `StyledCharacter` type:
 
 - First, you will find a single `StyledCharacter` named `myStyledCharacter`
   declared and initialized. You can `Run` the execution or modify it.
-- Second, you can make an array of `StyledCharacter` and name if
+- Second, you can make an array of `StyledCharacter` and name it
   `myStyledString`. If you initialize it with multiple `StyledCharacter`s, they
   will be displayed as a character string.
 - What happens if you don't initialize it?
@@ -847,7 +847,7 @@ std::array<Type, N> identifier;
 ````
 
 ````aside> Hint 2: How to declare an array of StyledCharacters?
-For a built-in C-stype array:
+For a built-in C-style array:
 ```cpp
 StyledCharacter myStyledString[5];
 ```
@@ -865,7 +865,7 @@ One step at a time:
 std::array<StyledCharacter, 5uz> myStyledString;
 // or StyledCharacter myStyledString[5];
 ```
-- Then add curly braces `{}` to initilalize it.
+- Then add curly braces `{}` to initialize it.
 ```cpp
 std::array<StyledCharacter, 5uz> myStyledString {};
 ```
@@ -875,8 +875,8 @@ std::array<StyledCharacter, 5uz> myStyledString {};
 ```cpp
 std::array<StyledCharacter, 5uz> myStyledString { StyledCharacter {} };
 ```
-<ul style="list-style-type: none;"><li><ul><li>What do we initialize the `styledCharacter`
-with?</li></ul></li></ul>
+<ul style="list-style-type: none;"><li><ul><li>What do we initialize the
+`StyledCharacter` with?</li></ul></li></ul>
 
 ```cpp
 std::array<StyledCharacter, 5uz> myStyledString {
@@ -906,4 +906,17 @@ std::array<StyledCharacter, 5uz> myStyledString {
 };
 ```
 
+````
+
+````aside> Hint 4: What happens if we skip the initialization?
+A fundamental design principle of C++ is "pay for what you use". The compiler
+cannot guess whether you meant to initialise the variables and forgot, or
+deliberately chose not to pay for their initialisation because you intended not
+to use these initial values.
+
+As such, the compiler lets you save the cost of initialising the variables by
+skipping their initialisation. In such cases, the initial value of the variables
+will not be `0`, but whatever was already in the memory. These value are often
+referred to as "random", but it is not quite true. Calling them "garbage" memory
+is more accurate.
 ````
