@@ -157,43 +157,49 @@ function parseFrontMatter(text) {
 // a DOM, since we're in Node without jsdom.
 
 function mountFoldingSections(html) {
-  const lines  = html.split('\n');
+  // Split into tokens at top-level tag boundaries so elements that share
+  // a line (e.g. </div><h2>) are still treated as separate items.
+  const tokens = html
+    .replace(/>\s*</g, '>\n<')   // ensure every tag transition gets a newline
+    .split('\n')
+    .map(s => s.trim())
+    .filter(s => s.length > 0);
+
   const result = [];
   let i = 0;
 
-  // Returns the heading level of a line, or 0 if not a heading with data-fold
-  function foldLevel(line) {
-    const m = line.match(/^<h([23456])[^>]*data-fold="(open|closed)"[^>]*>/);
+  function foldLevel(tok) {
+    const m = tok.match(/^<h([23456])[^>]*data-fold="(open|closed)"[^>]*>/);
     return m ? parseInt(m[1]) : 0;
   }
 
-  function headingLevel(line) {
-    const m = line.match(/^<h([23456])[\s>]/);
+  function headingLevel(tok) {
+    const m = tok.match(/^<h([23456])[\s>]/);
     return m ? parseInt(m[1]) : 0;
   }
 
-  function headingText(line) {
-    return line.replace(/<[^>]+>/g, '');
+  function headingText(tok) {
+    return tok.replace(/<[^>]+>/g, '');
   }
 
-  while (i < lines.length) {
-    const line  = lines[i];
-    const level = foldLevel(line);
+  while (i < tokens.length) {
+    const tok   = tokens[i];
+    const level = foldLevel(tok);
 
-    if (!level) { result.push(line); i++; continue; }
+    if (!level) { result.push(tok); i++; continue; }
 
-    const foldMatch = line.match(/data-fold="(open|closed)"/);
+    const foldMatch = tok.match(/data-fold="(open|closed)"/);
     const isOpen    = foldMatch && foldMatch[1] === 'open';
-    const text      = headingText(line);
-    const id        = line.match(/id="([^"]+)"/)?.[1] || '';
+    const text      = headingText(tok);
+    const id        = tok.match(/id="([^"]+)"/)?.[1] || '';
 
-    // Collect body lines until next heading of same or higher level
+    // Collect body tokens until next heading of same or higher level
     const body = [];
     i++;
-    while (i < lines.length) {
-      const l = headingLevel(lines[i]);
+    while (i < tokens.length) {
+      const l = headingLevel(tokens[i]);
       if (l > 0 && l <= level) break;
-      body.push(lines[i]);
+      body.push(tokens[i]);
       i++;
     }
 
