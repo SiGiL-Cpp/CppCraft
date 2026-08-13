@@ -1,0 +1,11 @@
+{
+  "name": "cppcraft",
+  "type": "module",
+  "scripts": {
+    "build": "node build/build.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "marked": "^9.1.6"
+  }
+}
