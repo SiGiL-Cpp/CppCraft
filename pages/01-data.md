@@ -554,6 +554,96 @@ of bits instead.
 With 4 or 8 Bytes stacked together, the representations still work in the same
 way than before, but we have many more values to play with.
 
+### 文字化け (mojibake)
+
+We have discussed [before](#bytes-as-characters) that a single Byte can
+represent a character, with ASCII or ASCII-extended conventions. But 256
+characters (and actually less than this since some codes are reserved for
+Control Codes) is not sufficient in a globalised world. Chinese alone requires
+thousands of characters.
+
+That's how Unicode and its infamous USC-2 encoding came about;
+- Unicode was a vast dictionary of characters, where every (mainstream)
+  character in the world would be assigned a unique code (Code Point). It also
+  leaves plenty of unassigned codes for future additions.
+- USC-2 was how it was supposed to be encoded. The idea was simple: 1 Byte is
+  not enough, let's use 2 Bytes. 65,536 distinct values, surely that's enough.
+
+Unicode is a great success. UTC-2 a disaster.
+
+The issue with UTC-2 was that suddenly, every character took two Bytes instead
+of the usual 1 Byte. All existing software tried to display it as if each Byte
+was a character. Incidentally, most of the alternate Byte was `0` for latin
+characters, which was interpreted as a special signal indicating the end of the
+text. That broke a lot of existing software.
+
+#### UTF-8
+About a year later (1992), [Ken
+Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) and [Rob
+Pike](https://en.wikipedia.org/wiki/Rob_Pike) invented the **UTF-8** encoding.
+It is the most widely used character encoding in the world today.
+
+Contrary to UTC-2, UTF-8 is retro-compatible with ASCII. And yet, it can
+represent more than a million characters. Way more than UTC-2 could.
+
+How, you ask? With a clever trick. ASCII only defines the 128 first values,
+between 0 and 127. So UTF-8 keeps those unchanged. That's the
+retro-compatibility. Legacy text in ASCII doesn't break anymore.
+
+That still leaves plenty of values. ASCII-extended associated these values to a
+single character each. UTF-8 uses them as a signal: If the value of a Byte is
+greater than 127 (if the top bit is 1), the character is encoded over several
+Bytes. Between 2 and 4 Bytes.
+
+- If the Byte is between 194 and 223 (starting with 110 in binary), it is
+  encoded over 2 Bytes.
+- If the Byte is between 224 and 239 (starting with 1110 in binary), it is
+  encoded over 3 Bytes.
+- If the Byte is between 240 and 244 (starting with 11110 in binary), it is
+  encoded over 4 Bytes.
+
+The range between 0 and 127 is the same as the ASCII character, encoded over a
+single Byte. But you might notice that this leaves the range between 128 and 193
+unassigned. That's another clever trick of UTF-8.
+
+After a Byte indicating that a character will be encoded over multiple Bytes,
+the following Bytes are called "Continuation Bytes" and taken inside that
+128-193 range. It might feel wasteful, but it is actually very helpful: it
+allows to start reading and UTF-8-encoded file anywhere without confusion. Or to
+recover when a character is corrupted.
+
+#### æ–‡å­—åŒ–ã‘
+
+We've all stumbled one day or another on garbled text. It is often called
+"Mojibake", from the japanese 文字 (character) and 化け (transformation). It is
+what happens when text encoded in one way is read as if it was encoded in a
+different way. For instance, when UTF-8 text is interpreted as ISO-8859-1,
+characters encoded over multiple bytes will be interpreted as multiple
+characters. This is the classic `é` transformed into `Ã©`.
+
+```illus
+What about our `163`, then? Well, it is between 128 and 192 (its binary
+representation is `10100011` so it starts with `10`). That tells us it is a
+continuation Byte. It cannot be a character on its own.
+
+And what character it is will depend on the previous Byte(s).
+
+The simplest case would be that it is part of a 2-Bytes character.
+- If the first Byte is 194, then the character is `£`.
+- If the first Byte is 195, then the character is `ã`.
+- If the first Byte is 204, then the character is `г` (Cyrillic).
+- If the first Byte is 205, then the character is `σ` (Greek).
+
+But it could also be part of a 3 or 4 Bytes character sequence. The
+possibilities are seemingly endless. Here are a few examples:
+- `226 163 130` is the character `⣆` (Braille).
+- `232 163 131` is the character `親` (Chinese/Japanese).
+- `224 164 163` is the character `म` (Hindi).
+- `240 147 163 128` is the hieroglyph &#x138C0; (unlikely to render properly in
+  your browser I'm afraid).
+- `240 159 163 131` is the Grinning Emoji 😀.
+``` 
+
 ### What does using several Bytes together change?
 
 - For the unsigned integral numbers, the range of representable numbers grows
