@@ -33,10 +33,20 @@ jobs:
       - name: Build pages
         run: npm run build
 
+      - name: Assemble site
+        run: |
+          mkdir _site
+          cp index.html _site/
+          cp lesson.css _site/
+          cp runtime.js _site/
+          cp .nojekyll _site/
+          cp -r pages _site/pages
+          cp -r gadgets _site/gadgets
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
   deploy:
     needs: build
