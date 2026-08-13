@@ -1,0 +1,14 @@
+services:
+  dev:
+    image: node:24-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    # Watch rebuilds .md files; serve handles HTTP.
+    # Both run in the same container via sh -c.
+    command: >
+      sh -c "npm install &&
+             node build/watch.js &
+             npx serve -l 8080 . --no-clipboard"
