@@ -234,7 +234,7 @@ function buildShell(meta, articleHtml, navHtml) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
-  <link rel="stylesheet" href="../lesson.css">
+  <link rel="stylesheet" href="lesson.css">
   <link id="hljs-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 </head>
@@ -249,7 +249,7 @@ function buildShell(meta, articleHtml, navHtml) {
     </article>
     ${navHtml}
   </div>
-  <script src="../runtime.js"></script>
+  <script src="runtime.js"></script>
   <script>initPage();</script>
 </body>
 </html>`;
@@ -258,11 +258,12 @@ function buildShell(meta, articleHtml, navHtml) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 const pagesDir = join(ROOT, 'pages');
+const outDir   = ROOT;  // HTML files go to repo root, md sources stay in pages/
 const files    = readdirSync(pagesDir).filter(f => f.endsWith('.md'));
 
 for (const file of files) {
   const mdPath   = join(pagesDir, file);
-  const htmlPath = join(pagesDir, file.replace(/\.md$/, '.html'));
+  const htmlPath = join(outDir, file.replace(/\.md$/, '.html'));
   const raw      = readFileSync(mdPath, 'utf8');
 
   const { meta, body } = parseFrontMatter(raw);

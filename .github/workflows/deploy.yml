@@ -40,7 +40,7 @@ jobs:
           cp lesson.css _site/
           cp runtime.js _site/
           cp .nojekyll _site/
-          cp -r pages _site/pages
+          cp *.html _site/
           cp -r gadgets _site/gadgets
 
       - name: Upload artifact
