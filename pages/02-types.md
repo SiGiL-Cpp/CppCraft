@@ -410,6 +410,23 @@ default_code: |
   pi = 42.f; // <- oops, not a good idea.
 ```
 
+````recap
+- In C++, every value has a type.
+  - This type is defined at compile-time (it doesn't change during the program
+    execution).
+  - The type tells the programmer and the compiler how the value should be
+    interpreted (its semantic), its size in Bytes, and whether it can be
+    modified after its initialization.
+- Literals are values written directly in code.
+  - Their format indicates their type.
+- Variables are labeled values.
+  - They have a Type and an identifier.
+  - The type can be `const`, indicating that this variable should not change
+    value after its initialization.
+  - Variables can be initialised.
+    - If they are not initialised, their value can in some cases be anything as
+      the value previously in memory is reused without being erased.
+````
 
 ## Aggregates
 
