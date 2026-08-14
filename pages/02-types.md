@@ -186,7 +186,7 @@ type, we have to attach a type to this label as well.
 The *syntax* to do so follows this pattern:
 
 ```cpp
-type label;
+Type label;
 ```
 
 The technical term for the label is "identifier", but we often call it the
@@ -198,6 +198,43 @@ char firstLetter;
 bool isUppercase;
 std::uint8_t alpha;
 ```
+````
+
+````aside: Naming Conventions
+In C++, there are few constraints for how identifiers are formatted:
+- They must start with a letter (or an underscore),
+- and be composed of letters, numbers, and underscores.
+
+```pitfall> But the usage of underscores is strictly limited
+Some patterns are reserved for the compiler and the Standard Library usage:
+- Identifiers starting by an underscore followed by an uppercase letter are
+  reserved.
+- Identifiers containing a double underscore (`__`) are reserved.
+- Identifiers starting by an underscore followed by a lowercase letter are
+  reserved in the global scope only.
+```
+
+To keep things simple, we suggest avoiding to start any identifier with an
+underscore, at least for now.
+
+Different people, different companies, different projects will use different
+naming conventions. Usually a mix of:
+- `snake_case` (where an identifier doesn't use uppercase letters and separate
+  words with underscores),
+- `camelCase` (where an identifier starts with a lowercase letter and uses a
+  single uppercase letter to separate words),
+- `PascalCase` (where an identifier starts with a single uppercase letter and
+  uses a single uppercase letter to separate words), 
+- `UPPER_CASE` (where an identifier doesn't use lowercase letters and separate
+  words with underscores).
+
+In this series, I will try to stick to this convention, but keep in mind it is
+arbitrary and you are free to use your own:
+- `PascalCase` for Types,
+- `camelCase` for variable names.
+
+Since the convention used by the Standard Library is different, types coming
+from it will stand out as `snake_case`.
 ````
 
 ````pitfall
