@@ -352,6 +352,32 @@ variable rather than "only" a `const` one.
 both cases, the type of `pi` is `const float`. 
 ```
 
+````aside> West const or East const?
+The keyword `const` can be placed on either side of the Type:
+- West const: `const int i {5};`
+- East const: `int const i {5};`
+
+Which is best and should be preferred has been the topic of passionate debates
+for decades. With people being strongly opinionated about the question, it will
+not be possible to give satisfaction to everyone.
+
+This makes strictly no difference for the compiler and is a pure matter of
+style, taste, and convention.
+
+This series will essentially use a third convention, that we will call Outside
+const and is essentially the same as West const, but makes its intent clearer.
+
+The main benefit of this convention, and the reason we chose it is that it
+doesn't require the reader to be aware of the convention to make what part of
+the type is const unambiguous.
+
+Let it be also mentioned that the C++ standard, the C++ Core Guidelines, and
+the website cppreference all use the West const convention.
+
+We don't wish to present it as better, but simply better suited to our
+educational endeavour.
+````
+
 ## In practice
 
 First and example where we do things properly. If you press "Run", it should
