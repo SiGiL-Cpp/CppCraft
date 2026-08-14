@@ -637,7 +637,7 @@ And what character it is will depend on the previous Byte(s).
 The simplest case would be that it is part of a 2-Bytes character.
 - If the first Byte is 194, then the character is `£`.
 - If the first Byte is 195, then the character is `ã`.
-- If the first Byte is 201, then the character is `ɣ` (Greek).
+- If the first Byte is 201, then the character is `ɣ` (International Phonetic Alphabet).
 - If the first Byte is 206, then the character is `Σ` (Greek).
 - If the first Byte is 207, then the character is `ϣ` (Coptic).
 - If the first Byte is 209, then the character is `ѣ` (Cyrillic).
@@ -823,7 +823,7 @@ intensities. Please be careful if you play with that.
 
 ## 
 ```recap: Takeaway
-- All a program manipulate is made of numbers, at the core.
+- All a program manipulates is made of numbers, at the core.
 - There are many ways to look at these numbers and interpret them.
 - A Byte is a number made of at least 8 binary digits (8 bits). It can represent
   256 different values.
