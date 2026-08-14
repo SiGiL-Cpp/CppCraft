@@ -417,6 +417,7 @@ default_code: |
   - The type tells the programmer and the compiler how the value should be
     interpreted (its semantic), its size in Bytes, and whether it can be
     modified after its initialization.
+    - This is to help structuring the code and avoiding mistakes.
 - Literals are values written directly in code.
   - Their format indicates their type.
 - Variables are labeled values.
@@ -779,14 +780,25 @@ Structures) for the first, and SoA (Structure of Arrays) for the second.
 
 ### Styled Text
 
-Here is a simple `StyledCharacter` type:
+Here is a simple `Colour` struct:
 ```cpp
-  struct StyledCharacter
-  {
+struct Colour
+{
+    std::uint8_t red;
+    std::uint8_t green;
+    std::uint8_t blue;
+};
+```
+
+And here is a `StyledCharacter` type that uses it:
+```cpp
+struct StyledCharacter
+{
     char character;
     bool bold;
     bool italic;
-  };
+    Colour colour;
+};
 ```
 
 - First, you will find a single `StyledCharacter` named `myStyledCharacter`
@@ -806,19 +818,32 @@ id: styled-text
 height: 180
 boilerplate_before: |
   #include <array>
+  #include <cstdint>
   #include <iostream>
+
+  struct Colour
+  {
+    std::uint8_t red;
+    std::uint8_t green;
+    std::uint8_t blue;
+  };
 
   struct StyledCharacter
   {
     char character;
     bool bold;
     bool italic;
+    Colour colour;
   };
 
   void printStyled(const StyledCharacter& sc)
   {
     if (sc.bold)   std::cout << "\x1b[1m";
     if (sc.italic) std::cout << "\x1b[3m";
+    std::cout << "\x1b[38;2;"
+      << static_cast<int>(sc.colour.red) << ";"
+      << static_cast<int>(sc.colour.green) << ";"
+      << static_cast<int>(sc.colour.blue) << "m";
     std::cout << sc.character << "\x1b[0m";
   }
 
@@ -884,7 +909,12 @@ default_code: |
   StyledCharacter myStyledCharacter {
     .character='A',
     .bold=false,
-    .italic=true
+    .italic=true,
+    .colour=Colour {
+        .red=255,
+        .green=0,
+        .blue=0
+    }
   };
 ```
 
@@ -937,7 +967,26 @@ std::array<StyledCharacter, 5uz> myStyledString {
   StyledCharacter {
     .character='A',
     .bold=false,
-    .italic=false
+    .italic=false,
+    .colour=Colour {}
+  }
+};
+```
+<ul style="list-style-type: none;"><li><ul style="list-style-type: none;"><li>
+<ul><li>Colour is also a struct. Let's initialise it too.</li></ul>
+</li></ul></li></ul>
+
+```cpp
+std::array<StyledCharacter, 5uz> myStyledString {
+  StyledCharacter {
+    .character='A',
+    .bold=false,
+    .italic=false,
+    .colour=Colour {
+      .red=128,
+      .green=64,
+      .blue=200
+    }
   }
 };
 ```
@@ -950,12 +999,22 @@ std::array<StyledCharacter, 5uz> myStyledString {
   StyledCharacter {
     .character='A',
     .bold=false,
-    .italic=false
+    .italic=false,
+    .colour=Colour {
+      .red=128,
+      .green=64,
+      .blue=200
+    }
   },
   StyledCharacter {
     .character='B',
     .bold=false,
-    .italic=true
+    .italic=true,
+    .colour=Colour {
+      .red=32,
+      .green=120,
+      .blue=200
+    }
   }
 };
 ```
@@ -968,9 +1027,19 @@ cannot guess whether you meant to initialise the variables and forgot, or
 deliberately chose not to pay for their initialisation because you intended not
 to use these initial values.
 
-As such, the compiler lets you save the cost of initialising the variables by
+As such, the compiler sometimes lets you save the cost of initialising the variables by
 skipping their initialisation. In such cases, the initial value of the variables
-will **not** be `0`, but whatever was already in the memory. These values are
-often referred to as "random", but it is not quite true. Calling them "garbage"
-memory is more accurate.
+will **not** necessarily be `0`, but whatever was already in the memory. These
+values are often referred to as "random", but it is not quite true. Calling them
+"garbage" memory is more accurate.
+
+Here we can see two cases:
+- If the array has at least one value, all the missing values are still
+  initialised by the compiler.
+  - This also applies to the `colour` member variable: if left unspecified, it
+    is still initialised to all `0`.
+- If the array has no initialisation at all, it is uninitialised, and the
+  characters, whether they are italic and/or boled, and their colours are all
+  "garbage".
+
 ````
