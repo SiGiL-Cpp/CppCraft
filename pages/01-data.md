@@ -554,7 +554,7 @@ of bits instead.
 With 4 or 8 Bytes stacked together, the representations still work in the same
 way than before, but we have many more values to play with.
 
-### 文字化け (mojibake)
+### 文字化け
 
 We have discussed [before](#bytes-as-characters) that a single Byte can
 represent a character, with ASCII or ASCII-extended conventions. But 256
@@ -562,16 +562,17 @@ characters (and actually less than this since some codes are reserved for
 Control Codes) is not sufficient in a globalised world. Chinese alone requires
 thousands of characters.
 
-That's how Unicode and its infamous USC-2 encoding came about;
-- Unicode was a vast dictionary of characters, where every (mainstream)
-  character in the world would be assigned a unique code (Code Point). It also
-  leaves plenty of unassigned codes for future additions.
-- USC-2 was how it was supposed to be encoded. The idea was simple: 1 Byte is
+That's how Unicode and its infamous UCS-2 encoding came about:
+- Unicode is a vast dictionary of characters, where every (mainstream)
+  character in the world would be assigned a unique code (Code Point). This
+  includes 600+ emojis since 2010. It also leaves plenty of unassigned codes
+  for future additions.
+- UCS-2 was how it was supposed to be encoded. The idea was simple: 1 Byte is
   not enough, let's use 2 Bytes. 65,536 distinct values, surely that's enough.
 
-Unicode is a great success. UTC-2 a disaster.
+Unicode is a great success. UCS-2 was a disaster.
 
-The issue with UTC-2 was that suddenly, every character took two Bytes instead
+The issue with UCS-2 was that suddenly, every character took two Bytes instead
 of the usual 1 Byte. All existing software tried to display it as if each Byte
 was a character. Incidentally, most of the alternate Byte was `0` for latin
 characters, which was interpreted as a special signal indicating the end of the
@@ -581,20 +582,26 @@ text. That broke a lot of existing software.
 About a year later (1992), [Ken
 Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) and [Rob
 Pike](https://en.wikipedia.org/wiki/Rob_Pike) invented the **UTF-8** encoding.
-It is the most widely used character encoding in the world today.
+UTF-8 stands for Unicode Transformation Format (over 8 bits): it keeps the
+Unicode Code Points, but encodes them better. It is the most widely used
+character encoding in the world today.
 
-Contrary to UTC-2, UTF-8 is retro-compatible with ASCII. And yet, it can
-represent more than a million characters. Way more than UTC-2 could.
+Contrary to UCS-2, UTF-8 is retro-compatible with ASCII. And yet, it can
+represent more than a million characters. Way more than UCS-2 could.
 
-How, you ask? With a clever trick. ASCII only defines the 128 first values,
-between 0 and 127. So UTF-8 keeps those unchanged. That's the
-retro-compatibility. Legacy text in ASCII doesn't break anymore.
+How, you ask? With a clever trick.
+
+ASCII only defines the 128 first values, between 0 and 127. So UTF-8 keeps
+those unchanged. That's the retro-compatibility. Legacy text in ASCII doesn't
+break anymore.
 
 That still leaves plenty of values. ASCII-extended associated these values to a
-single character each. UTF-8 uses them as a signal: If the value of a Byte is
+single character each. UTF-8 uses them as a signal: if the value of a Byte is
 greater than 127 (if the top bit is 1), the character is encoded over several
 Bytes. Between 2 and 4 Bytes.
 
+- If the Byte is between 0 and 127 (starting with 0 in binay), it is encoded
+  over a single Byte, with the same codes as ASCII.
 - If the Byte is between 194 and 223 (starting with 110 in binary), it is
   encoded over 2 Bytes.
 - If the Byte is between 224 and 239 (starting with 1110 in binary), it is
@@ -602,15 +609,14 @@ Bytes. Between 2 and 4 Bytes.
 - If the Byte is between 240 and 244 (starting with 11110 in binary), it is
   encoded over 4 Bytes.
 
-The range between 0 and 127 is the same as the ASCII character, encoded over a
-single Byte. But you might notice that this leaves the range between 128 and 193
+You might notice that this leaves the range between 128 and 193
 unassigned. That's another clever trick of UTF-8.
 
 After a Byte indicating that a character will be encoded over multiple Bytes,
 the following Bytes are called "Continuation Bytes" and taken inside that
-128-193 range. It might feel wasteful, but it is actually very helpful: it
-allows to start reading and UTF-8-encoded file anywhere without confusion. Or to
-recover when a character is corrupted.
+128-193 range (starting with 10 in binary). It might feel wasteful, but it is
+actually very helpful: it allows to start reading and UTF-8-encoded stream
+anywhere without confusion. Or to recover when a character is corrupted.
 
 #### æ–‡å­—åŒ–ã‘
 
@@ -631,17 +637,20 @@ And what character it is will depend on the previous Byte(s).
 The simplest case would be that it is part of a 2-Bytes character.
 - If the first Byte is 194, then the character is `£`.
 - If the first Byte is 195, then the character is `ã`.
-- If the first Byte is 204, then the character is `г` (Cyrillic).
-- If the first Byte is 205, then the character is `σ` (Greek).
+- If the first Byte is 201, then the character is `ɣ` (Greek).
+- If the first Byte is 206, then the character is `Σ` (Greek).
+- If the first Byte is 207, then the character is `ϣ` (Coptic).
+- If the first Byte is 209, then the character is `ѣ` (Cyrillic).
+- If the first Byte is 217, then the character is `٣` (Arabic).
+- If the first Byte is 223, then the character is `ߣ` (N'Ko).
 
 But it could also be part of a 3 or 4 Bytes character sequence. The
 possibilities are seemingly endless. Here are a few examples:
-- `226 163 130` is the character `⣆` (Braille).
-- `232 163 131` is the character `親` (Chinese/Japanese).
-- `224 164 163` is the character `म` (Hindi).
-- `240 147 163 128` is the hieroglyph &#x138C0; (unlikely to render properly in
-  your browser I'm afraid).
-- `240 159 163 131` is the Grinning Emoji 😀.
+- `226 163 134` is the character `⣆` (Braille).
+- `232 163 131` is the character `裃` (Japanese).
+- `224 164 163` is the character `ण` (Hindi Devanagari).
+- `240 147 163 128` is the hieroglyph &#x138C0; (as an image <img src="imgs/hiero.svg" style="filter: invert(var(--dark));"/>).
+- `240 159 164 163` is the Floor Laughing Emoji 🤣.
 ``` 
 
 ### What does using several Bytes together change?
@@ -650,13 +659,16 @@ possibilities are seemingly endless. Here are a few examples:
   (a lot).
   - [0, 4,294,967,295] with 4 Bytes (32 bits).
   - [0, 18,446,744,073,709,551,615] with 8 Bytes (64 bits). (Yes, that's 18 Quintillions.)
+
 - For signed integral,
   - [-2,147,483,648, 2,147,483,647] with 4 Bytes (32 bits),
   - [-9,223,372,036,854,775,808, 9,223,372,036,854,775,807] with 8 Bytes (64 bits).
+
 - A fixed-point number over 4 Bytes (32 bit) can represent values up
   to 20,000 with a 0.000,01 (10<sup>-5</sup>) precision. That's enough to
   measure half the perimeter of the Earth in kilometres while retaining a
   precision at the centimetre.
+
 - Floating-point values also benefit a lot from the additional Bytes.
   - A 32-bit (4 Byte) float can hold 8,388,608 different values per exponent
     band (where our 8-bit representation could only hold 8).
@@ -672,6 +684,7 @@ possibilities are seemingly endless. Here are a few examples:
     - With 64 bits (8 Bytes), around 10,000,000, the precision remains much
       higher at about 1.86&times;10<sup>-9</sup> (that's roughly 10 nanometre
       precision over the circumference of the Earth).
+
 - Booleans are usually a single Byte, although there are exceptions:
   - Windows API and some other historical APIs (mac-OS) define their own
     boolean type over 4 or 8 Bytes, but it is a distinct type from `bool` (e.g.
@@ -681,8 +694,9 @@ possibilities are seemingly endless. Here are a few examples:
     `true`.
   - When interpreting multi-byte values as multiple booleans, several Bytes
     means more packed booleans (32 or 64 boolean values at once).
-- Characters are usually represented with smaller values, over one or two Bytes
-  only.
+
+- Characters nowadays use variable length encoding, usually UTF-8, with between
+  1 and 4 Bytes per characer .
 
 That's a lot of numbers to play with. Mostly, enough for our purpose. But one
 reasons we want such enormous ranges of numbers is also that we need room for

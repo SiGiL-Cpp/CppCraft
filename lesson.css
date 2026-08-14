@@ -5,6 +5,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  --dark:        1;
+  --light:       0;
+
   --bg:          #0f1117;
   --surface:     #181c26;
   --border:      #2a2f3d;
@@ -409,6 +412,9 @@ body {
 /* ─── Light Theme ──────────────────────────────────────────────────────────── */
 
 [data-theme="light"] {
+  --dark:        0;
+  --light:       1;
+
   --bg:          #f5f4f0;
   --surface:     #eeedea;
   --border:      #d0cdc8;
