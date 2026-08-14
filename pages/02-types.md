@@ -456,8 +456,8 @@ brackets `{}`. To initialise an array with multiple elements, we separate them
 with commas `,` in the brackets:
 
 ```cpp
-int c_style_array[5] {0, 1, 2, 3, 4};
-std::array<float, 5> modern_array {4.5f, 3.5f, 2.5f, 1.5f, 0.5f};
+int cStyleArray[5] {0, 1, 2, 3, 4};
+std::array<float, 5> modernArray {4.5f, 3.5f, 2.5f, 1.5f, 0.5f};
 ```
 
 ````aside: Arrays of char
@@ -520,8 +520,8 @@ The syntax goes like this:
 ```cpp
 struct StructureName
 {
-    type member_identifier1;
-    other_type member_identifier2;
+    type memberIdentifier1;
+    OtherType memberIdentifier2;
     //...
 };
 ```
@@ -535,7 +535,7 @@ a `struct` to encode this information:
 struct StyledCharacter
 {
     char character;
-    float size;
+    float fontSize;
     bool bold;
     bool italic;
 };
@@ -552,7 +552,7 @@ initializing it would be:
 StyledCharacter myStyledCharacter
 {
     .character = 'A',
-    .size = 10.0f,
+    .fontSize = 10.0f,
     .bold = true,
     .italic = false
 };
@@ -578,7 +578,7 @@ designated initialization syntax.
 
 Unfortunately, at this point, our program will not know how to display this new
 type out-of-the-box. But we can access each member of the variable (character,
-size, bold, italic) with the `.` syntax: `variable_identifier.member`:
+fontSize, bold, italic) with the `.` syntax: `variableIdentifier.member`:
 
 ```playground: Accessing members
 id: accessing-members
@@ -589,13 +589,13 @@ boilerplate_before: |
     struct StyledCharacter
     {
         char character;
-        float size;
+        float fontSize;
         bool bold;
         bool italic;
     } myStyledCharacter
     {
         .character = 'A',
-        .size = 10.0f,
+        .fontSize = 10.0f,
         .bold = true,
         .italic = false
     };
