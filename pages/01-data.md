@@ -27,7 +27,7 @@ from 0 to 999.
 The computer internally uses a different numeration system, where there are only
 two different digits (0, 1). We can call it "base two", or binary.
 
-In the same way than in base ten, `10` really means "one more than our highest
+In the same way that in base ten, `10` really means "one more than our highest
 digit 9"; in base two, `10` means "one more than our highest digit 1", and thus
 represent the number two.
 
@@ -600,21 +600,21 @@ single character each. UTF-8 uses them as a signal: if the value of a Byte is
 greater than 127 (if the top bit is 1), the character is encoded over several
 Bytes. Between 2 and 4 Bytes.
 
-- If the Byte is between 0 and 127 (starting with 0 in binay), it is encoded
+- If the Byte is between 0 and 127 (starting with 0 in binary), it is encoded
   over a single Byte, with the same codes as ASCII.
-- If the Byte is between 194 and 223 (starting with 110 in binary), it is
+- If the Byte is between 192 and 223 (starting with 110 in binary), it is
   encoded over 2 Bytes.
 - If the Byte is between 224 and 239 (starting with 1110 in binary), it is
   encoded over 3 Bytes.
 - If the Byte is between 240 and 244 (starting with 11110 in binary), it is
   encoded over 4 Bytes.
 
-You might notice that this leaves the range between 128 and 193
+You might notice that this leaves the range between 128 and 191
 unassigned. That's another clever trick of UTF-8.
 
 After a Byte indicating that a character will be encoded over multiple Bytes,
 the following Bytes are called "Continuation Bytes" and taken inside that
-128-193 range (starting with 10 in binary). It might feel wasteful, but it is
+128-191 range (starting with 10 in binary). It might feel wasteful, but it is
 actually very helpful: it allows to start reading and UTF-8-encoded stream
 anywhere without confusion. Or to recover when a character is corrupted.
 
@@ -696,7 +696,7 @@ possibilities are seemingly endless. Here are a few examples:
     means more packed booleans (32 or 64 boolean values at once).
 
 - Characters nowadays use variable length encoding, usually UTF-8, with between
-  1 and 4 Bytes per characer .
+  1 and 4 Bytes per character .
 
 That's a lot of numbers to play with. Mostly, enough for our purpose. But one
 reasons we want such enormous ranges of numbers is also that we need room for

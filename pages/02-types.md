@@ -108,8 +108,8 @@ from one computer to another.
 The *semantic* is our compass:
 
 The mission of a `std::size_t` is to store the size (in Bytes) of pieces of
-data. It guarantees to be large enough to encode the maximum size of any piece
-of data on the given architecture.
+data. It is guaranteed to be large enough to encode the maximum size of any
+piece of data on the given architecture.
 
 The very point of the x64 architecture is to support larger data-types than
 x86, so it is only natural for `std::size_t` to differ between these two
@@ -916,7 +916,7 @@ to use these initial values.
 
 As such, the compiler lets you save the cost of initialising the variables by
 skipping their initialisation. In such cases, the initial value of the variables
-will **not** be `0`, but whatever was already in the memory. These value are often
-referred to as "random", but it is not quite true. Calling them "garbage" memory
-is more accurate.
+will **not** be `0`, but whatever was already in the memory. These values are
+often referred to as "random", but it is not quite true. Calling them "garbage"
+memory is more accurate.
 ````
