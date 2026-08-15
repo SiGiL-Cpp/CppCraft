@@ -127,17 +127,18 @@ This type can be deduced from how we spell out the value. So we will have to be
 a little careful.
 
 ```illus
-- If we write `163`, the value is of type `int`<br/>(the same bits interpreted as
-  unsigned integer read as `163`).
+- If we write `163`, the value is of type `int`<br/>
+  (through the unsigned integer lense, it would read as `163`).
 - If we write `163u`, the value is of type `unsigned int`<br/>
-  (the same bits interpreted as unsigned integer read as `163`)
+  (through the unsigned integer lense, it would read as `163`)
 - If we write `163.0`, the value is of type `double`<br/>
-  (the same bits interpreted as unsigned integer read as `4639939069214720000`).
+  (through the unsigned integer lense, it would read as `4639939069214720000`).
 - If we write `163.0f`, the value is of type `float`<br/>
-  (the same bits interpreted as unsigned integer read as `1126367232`).
+  (through the unsigned integer lense, it would read as `1126367232`).
 - If we write `'£'`, the value is of type `char`<br/>
-  (the same bits interpreted as unsigned integer read as `163` with Windows-1252
-  or ISO-8859-1 encoding, or `153` with CP437 encoding).
+  (through the unsigned integer lense, it would read as `163` with Windows-1252
+  or ISO-8859-1 encoding, or `153` with CP437 encoding. It would fail in UTF-8
+  as `char` is only 1 Byte long, while `'£'` is 2 Bytes long.).
 - `true` and `false` are special values of type `bool`<br/>
   (with underlying values `1` and `0` respectively, although any non-zero value
   is interpreted as `true`).
@@ -266,7 +267,7 @@ We can also give an initial value to our variable when we define it. We call
 this operation *initialization*. The syntax becomes:
 
 ```cpp
-type label {value};
+Type label {value};
 ```
 
 There are other ways to initialize variables, so don't be too surprised if you
@@ -326,7 +327,7 @@ that `pi` is meant to never change, to be constant, using the keyword `const`.
 const float pi {3.14159265f};
 ```
 
-Remember how the syntax is `type identifier {value};`? Now, the type of `pi` is
+Remember how the syntax is `Type identifier {value};`? Now, the type of `pi` is
 `const float`, which means it is a floating-point value that is meant to never
 change, or a "read-only floating-point".
 
@@ -548,7 +549,7 @@ There are two ways of defining arrays.
 #### "C-style" arrays
 
 The built-in way is often called "C-Style" arrays. The syntax is of the form
-`type[N]`.
+`Type[N]`.
 
 For instance: `float[3]`, or `char[250]`.
 
@@ -557,7 +558,7 @@ An oddity with this syntax is that when declaring a [variable](#variables) of
 these types, the type splits and surrounds the variable name: `int myArray[5]`.
 
 This is one of the two exceptions where the syntax for variables is not strictly
-`type` then `identifier` (the other is function pointers, something we will see
+`Type` then `identifier` (the other is function pointers, something we will see
 later).
 
 ````aside > It can be fixed by using a type alias
@@ -566,7 +567,7 @@ type alias is simply a way to rename a type. There are two ways of doing it:
 `typedef` and `using`. Here we will only look at the more modern `using` way.
 
 The "C-style" array type can be aliased to a single-word type name with the
-syntax `using AliasName = type`. From there the new alias can be used as
+syntax `using AliasName = Type`. From there the new alias can be used as
 other type names, on the left of the variable identifier:
 
 ```cpp
@@ -582,7 +583,7 @@ The simplest way to avoid this problem is to use the modern syntax with
 
 #### std::array
 
-The modern way to declare an array is with `std::array<type, N>`. This second
+The modern way to declare an array is with `std::array<Type, N>`. This second
 form is more consistent and generally clearer.
 
 For instance: `std::array<float, 3uz>`, or `std::array<char, 250uz>`.
@@ -674,7 +675,7 @@ The syntax goes like this:
 ```cpp
 struct StructureName
 {
-    type memberIdentifier1;
+    Type memberIdentifier1;
     OtherType memberIdentifier2;
     //...
 };
@@ -1148,7 +1149,7 @@ Here we can see two cases:
 ##
 ````recap
 - In C++, every value (literals or variable) has a type.
-- Aggregates are simple composite types groupng data together.
+- Aggregates are simple composite types grouping data together.
   - Arrays are fixed-size collections of the same type.
     - There is a built-in (C-style) and a modern way to make and use arrays.
   - `struct`s allow to structure different types together, naming each part.
