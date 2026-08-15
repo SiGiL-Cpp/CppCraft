@@ -137,8 +137,8 @@ a little careful.
   (through the unsigned integer lense, it would read as `1126367232`).
 - If we write `'£'`, the value is of type `char`<br/>
   (through the unsigned integer lense, it would read as `163` with Windows-1252
-  or ISO-8859-1 encoding, or `153` with CP437 encoding. It would fail in UTF-8
-  as `char` is only 1 Byte long, while `'£'` is 2 Bytes long.).
+  or ISO-8859-1 encoding, or `153` with CP437 encoding. UTF-8 should use the
+  literal u8'£' or may fail).
 - `true` and `false` are special values of type `bool`<br/>
   (with underlying values `1` and `0` respectively, although any non-zero value
   is interpreted as `true`).
