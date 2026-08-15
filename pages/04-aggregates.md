@@ -29,8 +29,9 @@ The built-in way is often called "C-Style" arrays. The syntax is of the form
 For instance: `float[3]`, or `char[250]`.
 
 `````pitfall
-An oddity with this syntax is that when declaring a [variable](#variables) of
-these types, the type splits and surrounds the variable name: `int myArray[5]`.
+An oddity with this syntax is that when declaring a
+[variable](03-types.html#variables) of these types, the type splits and
+surrounds the variable name: `int myArray[5]`.
 
 This is one of the two exceptions where the syntax for variables is not strictly
 `Type` then `identifier` (the other is function pointers, something we will see
@@ -69,7 +70,7 @@ std::array<float, 3uz> my3DVector;
 std::array<char, 250uz> aShortCharacterString {"Some words here."};
 ```
 
-The [image type](02-data#image) we discussed previously was mainly formed
+The [image type](02-data.html#image) we discussed previously was mainly formed
 of many Bytes, each interpreted as light intensity. Our example image used 88
 Bytes. We could declare:
 
@@ -92,7 +93,7 @@ std::array<float, 5> modernArray {4.5f, 3.5f, 2.5f, 1.5f, 0.5f};
 
 ````aside: Arrays of char
 We saw earlier that the compiler deduces the type of values from their specific
-format (the [literals](#literals)). There is such a literal for character
+format (the [literals](03-types.html#literals)). There is such a literal for character
 strings: `"Writing between double quotes"`.
 
 This literal has the type of a read-only array of characters: `const char[N]`,

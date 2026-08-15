@@ -54,7 +54,7 @@ way than before, but we have many more values to play with.
 
 ### 文字化け
 
-We have discussed [before](#bytes-as-characters) that a single Byte can
+We have discussed [before](01-data.html#bytes-as-characters) that a single Byte can
 represent a character, with ASCII or ASCII-extended conventions. But 256
 characters (and actually less than this since some codes are reserved for
 Control Codes) is not sufficient in a globalised world. Chinese alone requires
@@ -208,7 +208,7 @@ intensity. We will want to express text and images.
 
 ### Text
 
-If we keep to our [ASCII](#bytes-as-characters) representation where a single
+If we keep to our [ASCII](01-data.html#bytes-as-characters) representation where a single
 Byte is a character, a text is simple: it is many Bytes, one after the other,
 each representing a different character.
 
@@ -234,7 +234,7 @@ One solution would be to store these two values, as plain integral numbers.
 
 For instance, a [Word](#a-different-kind-of-word) for the Width of the image,
 another Word for its height, and then we know that the picture will be made of
-*width*&times;*height* [light intensity values](#bytes-as-light-intensity), so we know how many Byte
+*width*&times;*height* [light intensity values](01-data.html#bytes-as-light-intensity), so we know how many Byte
 light-intensity values we expect next.
 
 ```illus: Example
