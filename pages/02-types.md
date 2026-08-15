@@ -352,7 +352,7 @@ variable rather than "only" a `const` one.
 both cases, the type of `pi` is `const float`. 
 ```
 
-````aside> West const or East const?
+`````aside> West const or East const?
 The keyword `const` can be placed on either side of the Type:
 - West const: `const int i {5};`
 - East const: `int const i {5};`
@@ -364,8 +364,81 @@ not be possible to give satisfaction to everyone.
 This makes strictly no difference for the compiler and is a pure matter of
 style, taste, and convention.
 
-This series will essentially use a third convention, that we will call Outside
+This series will essentially use a third convention, that we will call Outer
 const and is essentially the same as West const, but makes its intent clearer.
+
+````aside> Outer const (for readers already familiar with pointers)
+Consider the following code:
+```cpp
+int const * pI;
+```
+This is the East const convention for a non-const pointer to a constant integer.
+
+Our argument is simple: there are readers who will have learned and remember
+that in this case `const` applies to `int` and not to `*`. But there will also
+be readers who ignore this, or have forgotten it.
+
+For the second category of readers, it is ambiguous.
+
+In contrast, using the West const convention:
+```cpp
+const int * pI;
+```
+The same type is unambiguous for both categories of readers.
+
+We call this conversion Outer const because our objective is not to put
+`const` to the left (west) of the type it qualifies, but to put it to the
+outside of it to avoid ambiguity.
+
+For instance, if both `int` and the pointer are `const`, we will write:
+```cpp
+const int * const pI;
+```
+This is exactly the same as West const, but specifically with the intent of
+avoiding `const` between two type markers, where it would be ambiguous.
+
+This convention aims at facilitating how the code is read rather than written.
+
+So far, it is exactly the same than West const, and the next step is to ask what
+happens with a pointer to pointer of `int`: `int**`.
+
+This is where things might start to diverge a little, but first, note that with
+our Outer const convention, few situations are really ambiguous:
+```cpp
+int * * pI1;
+const int * * pI2;
+int * * const pI3;
+const int * * const pI4;
+int * const * const pI5;
+const int * const * const pI6;
+```
+are all unambiguous for readers unfamiliar with which side `const` should attach
+to.
+
+Out of 8 possible composition of `const` in the type, only two would still carry
+the ambiguity:
+```cpp
+int * const * pI7;
+const int * const * pI8;
+```
+
+The likelihood of encountering `pI7` in the wild, or to need this specific type,
+seems lower than `pI8` case. But regardless, our Outer const convention offers
+the same solution in both case, and for even more complex cases:
+
+**Use type aliasing to avoid ambiguity.**
+```cpp
+using IntPtr = int *;
+const IntPtr * pI7;  // No ambiguity
+
+using ConstIntPtr = const int *;
+const ConstIntPtr * pI8;
+```
+
+Although we hope that our readers will remained engaged in learning C++ for a
+long time and eventually learn its subtle rules, we would prefer them to focus
+on more fundamental aspects for the time being.
+````
 
 The main benefit of this convention, and the reason we chose it is that it
 doesn't require the reader to be aware of the convention to make what part of
@@ -376,7 +449,7 @@ the website cppreference all use the West const convention.
 
 We don't wish to present it as better, but simply better suited to our
 educational endeavour.
-````
+`````
 
 ## In practice
 
@@ -841,7 +914,7 @@ There will be help below the exercise.
 
 ```playground
 id: styled-text
-height: 180
+height: 540
 boilerplate_before: |
   #include <array>
   #include <cstdint>
