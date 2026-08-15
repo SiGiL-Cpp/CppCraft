@@ -25,7 +25,7 @@ interpreted while avoiding excessive friction. The programmer remains in
 control.
 
 ```principle
-A Type is a compile-time attribute that keeps track of the size and semantic of
+A Type is a compile-time attribute that keeps track of the size and semantics of
 a category of values.
 ```
 
@@ -45,11 +45,11 @@ When a program mentions a `pitch`, it could be a short text introducing an idea,
 the specific frequency of a musical note, the distance between threads on a
 screw, a dark sticky polymer, or a football field. All these things can be
 designated by the same name: "pitch", but have a different meaning, different
-semantic, and thus should be interpreted differently.
+semantics, and thus should be interpreted differently.
 
-The Type specifies the semantic (the meaning) and avoids ambiguities.
+The Type specifies the semantics (the meaning) and avoids ambiguities.
 
-### Keeping track of the "semantic"
+### Keeping track of the "semantics"
 
 ```illus: Example
 - The type `char` means a Byte that should be interpreted as [an ASCII code for
@@ -105,7 +105,7 @@ architectures. In other words, while the size of a type is known with certainty
 by the compiler, it can sometimes be confusing for the programmer, and change
 from one computer to another.
 
-The *semantic* is our compass:
+The *semantics* is our compass:
 
 The mission of a `std::size_t` is to store the size (in Bytes) of pieces of
 data. It is guaranteed to be large enough to encode the maximum size of any
@@ -214,18 +214,18 @@ Some patterns are reserved for the compiler and the Standard Library usage:
   reserved in the global scope only.
 ```
 
-To keep things simple, we suggest avoiding to start any identifier with an
+To keep things simple, we suggest avoiding starting any identifier with an
 underscore, at least for now.
 
 Different people, different companies, different projects will use different
 naming conventions. Usually a mix of:
-- `snake_case` (where an identifier doesn't use uppercase letters and separate
+- `snake_case` (where an identifier doesn't use uppercase letters and separates
   words with underscores),
 - `camelCase` (where an identifier starts with a lowercase letter and uses a
   single uppercase letter to separate words),
 - `PascalCase` (where an identifier starts with a single uppercase letter and
   uses a single uppercase letter to separate words), 
-- `UPPER_CASE` (where an identifier doesn't use lowercase letters and separate
+- `UPPER_CASE` (where an identifier doesn't use lowercase letters and separates
   words with underscores).
 
 In this series, I will try to stick to this convention, but keep in mind it is
@@ -332,13 +332,13 @@ change, or a "read-only floating-point".
 
 ```aside> constexpr
 `constexpr` is a different keyword in C++. Contrary to `const`, `constexpr` is
-not part of the type of the variable, but it implicitely makes the variable's
+not part of the type of the variable, but it implicitly makes the variable's
 type `const`.
 
-`const` tells that the variable should never change after its initialization.
-`constexpr` says something more: not only should it never change after
-initialization, but also, we know the value it will be initialized with ahead of
-time (at compile time, specifically).
+`const` indicates that the variable should never change after its
+initialization.  `constexpr` says something more: not only should it never
+change after initialization, but also, we know the value it will be initialized
+with ahead of time (at compile time, specifically).
 
 Suppose that in a program, we ask for the name of the user. It cannot be known
 ahead of time, so we can store this data in a `const` variable but not in a
@@ -399,7 +399,7 @@ avoiding `const` between two type markers, where it would be ambiguous.
 
 This convention aims at facilitating how the code is read rather than written.
 
-So far, it is exactly the same than West const, and the next step is to ask what
+So far, it is exactly the same as West const, and the next step is to ask what
 happens with a pointer to pointer of `int`: `int**`.
 
 This is where things might start to diverge a little, but first, note that with
@@ -415,7 +415,7 @@ const int * const * const pI6;
 are all unambiguous for readers unfamiliar with which side `const` should attach
 to.
 
-Out of 8 possible composition of `const` in the type, only two would still carry
+Out of 8 possible compositions of `const` in the type, only two would still carry
 the ambiguity:
 ```cpp
 int * const * pI7;
@@ -435,7 +435,7 @@ using ConstIntPtr = const int *;
 const ConstIntPtr * pI8;
 ```
 
-Although we hope that our readers will remained engaged in learning C++ for a
+Although we hope that our readers will remain engaged in learning C++ for a
 long time and eventually learn its subtle rules, we would prefer them to focus
 on more fundamental aspects for the time being.
 ````
@@ -453,8 +453,8 @@ educational endeavour.
 
 ## In practice
 
-First and example where we do things properly. If you press "Run", it should
-say: `This compiled and ran without error.`.
+First an example where we do things properly. If you press "Run", it should say:
+`This compiled and ran without error.`.
 
 ```playground: Working example
 id: type-no-error
@@ -514,7 +514,7 @@ default_code: |
   - This type is defined at compile-time (it doesn't change during the program
     execution).
   - The type tells the programmer and the compiler how the value should be
-    interpreted (its semantic), its size in Bytes, and whether it can be
+    interpreted (its semantics), its size in Bytes, and whether it can be
     modified after its initialization.
     - This is to help structuring the code and avoiding mistakes.
 - Literals are values written directly in code.
@@ -801,7 +801,7 @@ intensity data as a `std::array<std::byte, 88uz>`, for instance.
 
 But we also discussed that to be able to interpret it correctly as an image, we
 need to also store the width and height of the image. It would be convenient to
-store them alongside the light intensity bytes:
+store them alongside the light intensity Bytes:
 ```cpp
 struct GrayscaleImage
 {
@@ -822,7 +822,7 @@ struct GrayscaleImage
     std::array<std::byte, 1024uz> lightIntensityData;
 };
 ```
-This would allow to store images of any size as long as `width`&times;`height`
+This would allow storing images of any size as long as `width`&times;`height`
 remains lower or equal to 1024 (e.g. 32&times;32, 128&times;8, 4&times;64,
 8&times;8, ...).
 
@@ -858,7 +858,7 @@ use an array for them.
 
 That is true, we could. But I preferred not to. Why?
 
-Because of the **semantic**. Reading `myImage.size[0]` or `myPixel[1]` is
+Because of the **semantics**. Reading `myImage.size[0]` or `myPixel[1]` is
 ambiguous: is it the width or the height? Are we sure it is the green component?
 
 By using a `struct` instead, we remove the ambiguity and make it easier to read:
@@ -1138,7 +1138,7 @@ Here we can see two cases:
   - This also applies to the `colour` member variable: if left unspecified, it
     is still initialised to all `0`.
 - If the array has no initialisation at all, it is uninitialised, and the
-  characters, whether they are italic and/or boled, and their colours are all
+  characters, whether they are italic and/or bold, and their colours are all
   "garbage".
 
 ````

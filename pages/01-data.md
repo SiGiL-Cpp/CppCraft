@@ -498,7 +498,7 @@ after all.
 
 The concept behind these interpretations of a same number is **fundamental** for
 programmers, and we will encounter it at every turn: it is the notion of
-***semantic***: the specific meaning that the data encodes. 
+***semantics***: the specific meaning that the data encodes. 
 ```
 
 Let's take a few minutes to experiment and play with the different
