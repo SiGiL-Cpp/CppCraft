@@ -157,12 +157,18 @@ function parseFrontMatter(text) {
 // a DOM, since we're in Node without jsdom.
 
 function mountFoldingSections(html) {
-  // Extract <pre> blocks first so their internal whitespace is never touched.
+  // Extract <pre> and <textarea> blocks first so their internal whitespace
+  // is never touched by the tokeniser.
   const preBlocks = [];
-  const withPlaceholders = html.replace(/<pre[\s\S]*?<\/pre>/g, match => {
-    preBlocks.push(match);
-    return `\x00PRE${preBlocks.length - 1}\x00`;
-  });
+  const withPlaceholders = html
+    .replace(/<pre[\s\S]*?<\/pre>/g, match => {
+      preBlocks.push(match);
+      return `\x00PRE${preBlocks.length - 1}\x00`;
+    })
+    .replace(/<textarea[\s\S]*?<\/textarea>/g, match => {
+      preBlocks.push(match);
+      return `\x00PRE${preBlocks.length - 1}\x00`;
+    });
 
   // Split into tokens at top-level tag boundaries.
   const tokens = withPlaceholders
