@@ -157,10 +157,16 @@ function parseFrontMatter(text) {
 // a DOM, since we're in Node without jsdom.
 
 function mountFoldingSections(html) {
-  // Split into tokens at top-level tag boundaries so elements that share
-  // a line (e.g. </div><h2>) are still treated as separate items.
-  const tokens = html
-    .replace(/>\s*</g, '>\n<')   // ensure every tag transition gets a newline
+  // Extract <pre> blocks first so their internal whitespace is never touched.
+  const preBlocks = [];
+  const withPlaceholders = html.replace(/<pre[\s\S]*?<\/pre>/g, match => {
+    preBlocks.push(match);
+    return `\x00PRE${preBlocks.length - 1}\x00`;
+  });
+
+  // Split into tokens at top-level tag boundaries.
+  const tokens = withPlaceholders
+    .replace(/>\s*</g, '>\n<')
     .split('\n')
     .map(s => s.trim())
     .filter(s => s.length > 0);
@@ -215,7 +221,9 @@ function mountFoldingSections(html) {
     );
   }
 
-  return result.join('\n');
+  // Restore pre blocks with their original content intact
+  return result.join('\n')
+    .replace(/\x00PRE(\d+)\x00/g, (_, idx) => preBlocks[parseInt(idx)]);
 }
 
 // ─── Page nav ─────────────────────────────────────────────────────────────────
