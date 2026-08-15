@@ -680,6 +680,8 @@ struct StructureName
 };
 ```
 
+Each element of the `struct` is called a member, and is like a variable inside
+the variable, with its type and its identifier.
 ````illus
 We have seen how to represent characters with ASCII codes, but in this page,
 characters also have a size, can use **bold** or *italic*, etc. We could create
@@ -1141,4 +1143,15 @@ Here we can see two cases:
   characters, whether they are italic and/or bold, and their colours are all
   "garbage".
 
+````
+
+##
+````recap
+- In C++, every value (literals or variable) has a type.
+- Aggregates are simple composite types groupng data together.
+  - Arrays are fixed-size collections of the same type.
+    - There is a built-in (C-style) and a modern way to make and use arrays.
+  - `struct`s allow to structure different types together, naming each part.
+  - Both can be composed together (Arrays of `struct`s, `struct` with an array
+    member, arrays of `struct`s with array members...).
 ````
