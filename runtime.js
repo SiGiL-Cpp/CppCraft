@@ -169,6 +169,16 @@ function initPlaygrounds() {
     const bpBefore = decodeURIComponent(editor.dataset.bpBefore || '');
     const bpAfter  = decodeURIComponent(editor.dataset.bpAfter  || '');
 
+    // Tab key inserts 4 spaces instead of moving focus
+    editor.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      e.preventDefault();
+      const start = editor.selectionStart;
+      const end   = editor.selectionEnd;
+      editor.value = editor.value.slice(0, start) + '    ' + editor.value.slice(end);
+      editor.selectionStart = editor.selectionEnd = start + 4;
+    });
+
     runBtn.addEventListener('click', async () => {
       output.textContent = 'Compiling…';
       output.className   = 'playground-output';
