@@ -1,0 +1,27 @@
+[
+  {
+    "id": "01-data",
+    "num": "01 —",
+    "title": "Data"
+  },
+  {
+    "id": "02-data",
+    "num": "02 —",
+    "title": "Data"
+  },
+  {
+    "id": "03-types",
+    "num": "03 —",
+    "title": "Types"
+  },
+  {
+    "id": "04-aggregates",
+    "num": "04 —",
+    "title": "Aggregates"
+  },
+  {
+    "id": "05-processing",
+    "num": "05 —",
+    "title": "Processing"
+  }
+]

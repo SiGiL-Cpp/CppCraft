@@ -275,11 +275,14 @@ function buildShell(meta, articleHtml, navHtml) {
 </html>`;
 }
 
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 const pagesDir = join(ROOT, 'pages');
-const outDir   = ROOT;  // HTML files go to repo root, md sources stay in pages/
-const files    = readdirSync(pagesDir).filter(f => f.endsWith('.md'));
+const outDir   = ROOT;
+const files    = readdirSync(pagesDir).filter(f => f.endsWith('.md')).sort();
+
+const lessons = []; // collected for index injection
 
 for (const file of files) {
   const mdPath   = join(pagesDir, file);
@@ -295,6 +298,18 @@ for (const file of files) {
 
   writeFileSync(htmlPath, fullHtml, 'utf8');
   console.log(`✓  ${file} → ${file.replace('.md', '.html')}`);
+
+  // Collect lesson metadata for the index sidebar
+  const id    = file.replace(/\.md$/, '');
+  const num   = id.match(/^(\d+)/)?.[1] ?? '';
+  const title = meta.title ? meta.title.replace(/^\d+\s*[—-]\s*/, '') : id;
+  lessons.push({ id, num: num ? `${num.padStart(2,'0')} —` : '', title });
 }
+
+// ─── Write lessons.json ───────────────────────────────────────────────────────
+
+const lessonsJson = join(ROOT, 'lessons.json');
+writeFileSync(lessonsJson, JSON.stringify(lessons, null, 2), 'utf8');
+console.log(`✓  lessons.json — ${lessons.length} lesson(s)`);
 
 console.log(`\nBuilt ${files.length} page(s).`);

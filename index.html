@@ -3,11 +3,583 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cppcraft</title>
-  <meta http-equiv="refresh" content="0; url=01-data.html">
-  <link rel="canonical" href="01-data.html">
+  <title>C++Craft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+  <style>
+
+/* ─── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── Tokens ─────────────────────────────────────────────────────────────── */
+:root {
+  --bg:          #0f1117;
+  --surface:     #181c26;
+  --border:      #2a2f3d;
+  --text:        #cdd4e0;
+  --muted:       #5a6580;
+  --faint:       #1e2230;
+  --accent:      #4a7aff;
+  --accent-dim:  #1a2240;
+  --gold:        #b0a850;
+  --gold-dim:    #26241a;
+  --mono:        'IBM Plex Mono', monospace;
+  --sans:        'IBM Plex Sans', sans-serif;
+  --sidebar-w:   260px;
+}
+
+[data-theme="light"] {
+  --bg:          #f5f4f0;
+  --surface:     #eeedea;
+  --border:      #d0cdc8;
+  --text:        #1e1c1a;
+  --muted:       #888480;
+  --faint:       #e8e6e0;
+  --accent:      #1a3aaa;
+  --accent-dim:  #dce8ff;
+  --gold:        #5a5010;
+  --gold-dim:    #f8f6e8;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  height: 44px;
+}
+
+.header-brand {
+  font-family: var(--mono);
+  font-size: 0.9rem; font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.header-brand .acc { color: var(--accent); }
+
+.header-right { display: flex; gap: 0.75rem; align-items: center; }
+
+.theme-toggle, .sidebar-toggle {
+  font-family: var(--mono); font-size: 0.75rem;
+  color: var(--muted); background: transparent;
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 0.25rem 0.6rem; cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.theme-toggle:hover, .sidebar-toggle:hover { color: var(--text); border-color: var(--muted); }
+.sidebar-toggle { display: none; }
+
+/* ─── Layout ─────────────────────────────────────────────────────────────── */
+.body-wrap { display: flex; flex: 1; }
+
+/* ─── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  position: sticky; top: 44px;
+  height: calc(100vh - 44px);
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  padding: 1.75rem 0;
+}
+
+.sb-label {
+  font-family: var(--mono);
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.lesson-list { list-style: none; margin-bottom: 2rem; }
+
+.lesson-list a {
+  display: block;
+  padding: 0.35rem 1.25rem;
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.4;
+  transition: background 0.1s;
+}
+.lesson-list a:hover { background: var(--faint); text-decoration: none; }
+.lesson-list a.current { background: var(--accent-dim); color: var(--accent); font-weight: 600; }
+
+.lesson-num {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.sb-links { padding: 0 1.25rem; }
+.sb-links a {
+  display: block;
+  font-size: 0.82rem; color: var(--muted);
+  padding: 0.2rem 0;
+}
+.sb-links a:hover { color: var(--text); text-decoration: none; }
+
+/* ─── Main ───────────────────────────────────────────────────────────────── */
+.main {
+  flex: 1; min-width: 0;
+  padding: 0 2.5rem 6rem;
+  max-width: 760px;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+.hero {
+  padding: 5rem 0 4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4rem;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-family: var(--mono);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: #eef2ff;
+  margin-bottom: 0.15rem;
+}
+[data-theme="light"] .hero-title { color: #1a1a2e; }
+.hero-title .acc { color: var(--accent); }
+
+.hero-op {
+  font-family: var(--mono);
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 1.75rem;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text);
+  max-width: 540px;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+}
+.hero-sub em { color: #eef2ff; font-style: normal; font-weight: 400; }
+[data-theme="light"] .hero-sub em { color: #1a1a2e; }
+
+.ctas { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+.cta-start {
+  font-family: var(--mono); font-size: 0.85rem; font-weight: 600;
+  color: #eef2ff; background: var(--accent);
+  border: none; border-radius: 6px;
+  padding: 0.65rem 1.4rem;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.cta-start:hover { opacity: 0.85; text-decoration: none; }
+
+.cta-continue {
+  display: none;
+  font-family: var(--mono); font-size: 0.85rem;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  border-radius: 6px;
+  padding: 0.65rem 1.4rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.cta-continue:hover { background: var(--accent-dim); text-decoration: none; }
+
+/* ─── Sections ───────────────────────────────────────────────────────────── */
+.section { margin-bottom: 4rem; }
+
+.section h2 {
+  font-size: 1.25rem; font-weight: 600;
+  color: #eef2ff;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.1rem;
+}
+[data-theme="light"] .section h2 { color: #1a1a2e; }
+
+.section p { margin-bottom: 1rem; font-size: 0.97rem; }
+
+/* ─── Contract ───────────────────────────────────────────────────────────── */
+.contract {
+  border-left: 3px solid var(--gold);
+  background: var(--gold-dim);
+  border-radius: 0 8px 8px 0;
+  padding: 1.4rem 1.75rem;
+  margin: 2rem 0;
+}
+.contract p { font-size: 0.97rem; margin-bottom: 0.85rem; }
+.contract p:last-child { margin-bottom: 0; }
+.contract strong { color: #eef2ff; font-weight: 600; }
+[data-theme="light"] .contract strong { color: #1a1a2e; }
+
+/* ─── Audience ───────────────────────────────────────────────────────────── */
+.audience { list-style: none; margin: 1rem 0; }
+.audience li {
+  display: flex; gap: 0.75rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.95rem;
+}
+.audience li::before {
+  content: '→';
+  font-family: var(--mono);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.not-for {
+  font-size: 0.88rem; color: var(--muted);
+  margin-top: 1rem; padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.not-for a { color: var(--muted); text-decoration: underline; }
+.not-for a:hover { color: var(--text); }
+
+/* ─── Legend ─────────────────────────────────────────────────────────────── */
+.legend { display: flex; flex-direction: column; gap: 0.65rem; margin: 1rem 0; }
+.legend-item { display: flex; align-items: baseline; gap: 1rem; }
+
+.badge {
+  font-family: var(--mono);
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-left: 3px solid;
+  border-radius: 0 3px 3px 0;
+  white-space: nowrap;
+  width: 114px; flex-shrink: 0;
+}
+
+.badge.illus     { background:#1a3a2a; border-color:#2e6e4e; color:#5dba8a; }
+.badge.aside     { background:#1a2a3a; border-color:#2e4e7a; color:#5a9ade; }
+.badge.principle { background:#26261a; border-color:#5a5a2a; color:#b0a850; }
+.badge.pitfall   { background:#3a1f1a; border-color:#7a3a2e; color:#e07060; }
+.badge.recap     { background:#1e1e2e; border-color:#3a3a5a; color:#8888cc; }
+
+[data-theme="light"] .badge.illus     { background:#e8f5ee; border-color:#5dba8a; color:#1a6e42; }
+[data-theme="light"] .badge.aside     { background:#eef3fb; border-color:#5a9ade; color:#1a4a8a; }
+[data-theme="light"] .badge.principle { background:#f8f6e8; border-color:#b0a850; color:#5a5010; }
+[data-theme="light"] .badge.pitfall   { background:#fdf0ee; border-color:#e07060; color:#9a2a1a; }
+[data-theme="light"] .badge.recap     { background:#f0f0f8; border-color:#8888cc; color:#3a3a8a; }
+
+.legend-desc { font-size: 0.87rem; color: var(--text); line-height: 1.4; }
+
+.legend-note { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; }
+
+/* ─── Conventions ────────────────────────────────────────────────────────── */
+.conventions { list-style: none; margin: 0.75rem 0; }
+.conventions li {
+  font-size: 0.9rem;
+  padding: 0.4rem 0 0.4rem 1rem;
+  border-left: 2px solid var(--border);
+  margin-bottom: 0.4rem;
+}
+.conventions li + li { border-top: none; }
+
+code {
+  font-family: var(--mono); font-size: 0.85em;
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 0.1em 0.35em; border-radius: 3px;
+  color: #a8c0e8;
+}
+[data-theme="light"] code { color: #2a4a8a; }
+
+.conv-note { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; }
+
+/* ─── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .sidebar-toggle { display: block; }
+
+  .sidebar {
+    position: fixed; top: 44px; left: 0;
+    height: calc(100vh - 44px);
+    background: var(--bg);
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    z-index: 90;
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  .main { padding: 0 1rem 4rem; }
+  .hero { padding: 2.5rem 0 2rem; }
+  .hero-title { font-size: 2.2rem; }
+}
+  </style>
 </head>
 <body>
-  <p>Redirecting to <a href="01-data.html">the course</a>...</p>
+
+<header class="site-header">
+  <span class="header-brand">C++<span class="acc">Craft</span></span>
+  <div class="header-right">
+    <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">☰ Lessons</button>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">◑ Dark</button>
+  </div>
+</header>
+
+<div class="body-wrap">
+
+  <nav class="sidebar" id="sidebar">
+    <div class="sb-label">Lessons</div>
+    <ul class="lesson-list" id="lesson-list"></ul>
+
+    <div class="sb-label">On this page</div>
+    <div class="sb-links">
+      <a href="#course">The course</a>
+      <a href="#for-whom">Who it's for</a>
+      <a href="#boxes">Box guide</a>
+      <a href="#support">Support</a>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-title">C++<span class="acc">Craft</span></div>
+      <div class="hero-op">Demystifying the dark art</div>
+      <p class="hero-sub">
+	C++Craft is a depth-first C++ course for people who prefer understanding
+	<em>&ldquo;why?&rdquo;</em> over blindly learning rules. It proposes to
+	<em>rebuild the language</em> from its bare metal so as to present the
+	soundness of its logical construction, offering <em>mental models</em>
+	that explain its difficulties rationally.
+      </p>
+      <div class="ctas">
+        <a href="01-data.html" class="cta-start">Start from the beginning</a>
+        <a href="#" class="cta-continue" id="cta-continue">Continue reading</a>
+      </div>
+    </section>
+
+    <!-- The course -->
+    <section class="section" id="course">
+      <h2>The course</h2>
+      <p>
+	If we define the success of a C++ course by how quickly its students
+	become able to write functional C++ code, the focus is on providing the
+	shortest path to delivery. Although it is a perfectly valid approach,
+	C++Craft does something radically different.
+      </p>
+      <p>
+	C++Craft aims at empowering its readers with the tools to understand
+	deeply the basics of the language. Instead of attempting to cover a lot
+	of ground quickly, it builds the language from its most elementary
+	pieces, and <strong>defines its success by how little is left
+	unexplained</strong>.
+      </p>
+      <p>
+	Instead of handing you as many keys as possible to unlock the quickest
+	path to producing code, it invites you to earn them, one at a time.
+	Instead of telling you how to avoid a difficulty, it guides you through
+	solving its puzzle so that you become able to choose how to deal with
+	it.
+	The dark corners of the language often disappear when they are
+	illuminated by the principles, mechanisms, and compromises of the
+	underlying problem.
+      </p>
+      <p>
+	By the time you write your first function in this course, you will know
+	what a function actually is, what happens when it is called, and why.
+        That understanding is the point.
+      </p>
+
+      <div class="contract">
+        <p>
+          <strong>This is not a typical C++ course.</strong>
+          <br/>It will not give you working code in the first ten minutes.
+        </p>
+        <p>
+          It will give you a clear understanding of what that code actually
+          does.<br/>Which takes longer.<br/>At first.
+        </p>
+	<p>
+	  It is built on the conviction that excellence comes from solid
+	  basics.
+	  <br/>Depth rather than breadth.
+	</p>
+        <p>
+	  C++Craft is meant to be a humble stepping stone on your road to
+	  mastering C++. Nothing more, nothing less.
+        </p>
+      </div>
+    </section>
+
+    <!-- Who it's for -->
+    <section class="section" id="for-whom">
+      <h2>Who it is for</h2>
+      <ul class="audience">
+	<li>Complete beginners who want to understand programming, not just make it work.</li>
+        <li>Programmers from other languages (especially python, C#, java, web) who want to understand how C++ is different.</li>
+        <li>Intermediate C++ programmers whose foundations feel shaky and want to rebuild them more solidly.</li>
+      </ul>
+
+      <p class="not-for">
+	If you are looking for quick results, project-oriented, recipes,
+	tutorials, or working code to copy, this is <u>not</u> the right place.
+	Give it a try, but don't insist too much if it's not for you.<br/>
+        <a href="https://www.learncpp.com" target="_blank" rel="noopener">learncpp.com</a>
+        is excellent and might serve you better. Come back when you are ready to go deeper.
+      </p>
+    </section>
+
+    <!-- Box guide -->
+    <section class="section" id="boxes">
+      <h2>Box guide</h2>
+      <p>
+        Lessons use colour-coded boxes to signal the register of what is being
+        said. Think of them as tone or gesturing, independently of the content.
+      </p>
+      <div class="legend">
+        <div class="legend-item">
+          <span class="badge illus">↩ Illus.</span>
+          <span class="legend-desc">A worked illustration: "let's see this in practice."</span>
+        </div>
+        <div class="legend-item">
+          <span class="badge aside">◎ Aside</span>
+          <span class="legend-desc">A tangent or optional reference: "by the way."</span>
+        </div>
+        <div class="legend-item">
+          <span class="badge principle">→ Principle</span>
+          <span class="legend-desc">A particularly important idea: "remember this."</span>
+        </div>
+        <div class="legend-item">
+          <span class="badge pitfall">⚠ Pitfall</span>
+          <span class="legend-desc">Where people get bitten: "easy mistake to make."</span>
+        </div>
+        <div class="legend-item">
+          <span class="badge recap">ℹ Recap</span>
+          <span class="legend-desc">A summary of what was just covered: "here is what we established."</span>
+        </div>
+      </div>
+      <p class="legend-note">
+        Any box can be foldable.
+        Boxes that are folded by default are optional depth; the lesson works without opening them.
+	Don't hesitate to leave them be, you can always return later.
+      </p>
+    </section>
+
+    <!-- Support -->
+    <section class="section" id="support">
+      <h2>Questions & support</h2>
+      <p>
+        Found an error or imprecision?
+        <a href="https://github.com/SiGiL-Cpp/cpp-from-the-ground-up/issues" target="_blank" rel="noopener">Open a GitHub issue</a>.
+        Corrections are welcome and help future readers.
+      </p>
+      <p>
+        Have a question about the content?
+        <a href="mailto:contact@cppcraft.sigil.org.uk">Send an email</a>.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// ─── Theme ────────────────────────────────────────────────────────────────────
+
+function getCookie(n) {
+  return document.cookie.split('; ').reduce((a, p) => {
+    const [k,v] = p.split('=');
+    return k === n ? decodeURIComponent(v) : a;
+  }, null);
+}
+
+function setCookie(n, v, days=365) {
+  const e = new Date(Date.now() + days*864e5).toUTCString();
+  document.cookie = `${n}=${encodeURIComponent(v)};expires=${e};path=/;SameSite=Lax`;
+}
+
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  const btn = document.getElementById('theme-toggle');
+  if (btn) btn.textContent = t === 'dark' ? '☀ Light' : '◑ Dark';
+}
+
+function toggleTheme() {
+  const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  setCookie('theme', next);
+  applyTheme(next);
+}
+
+(function() {
+  const saved = getCookie('theme');
+  const pref  = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  applyTheme(saved || pref);
+})();
+
+// ─── Lessons (loaded from lessons.json generated at build time) ───────────────
+
+function buildNav(lessons) {
+  const list = document.getElementById('lesson-list');
+  const last = localStorage.getItem('cppcraft-last-page');
+
+  lessons.forEach(l => {
+    const li = document.createElement('li');
+    const a  = document.createElement('a');
+    a.href = l.id + '.html';
+    a.innerHTML = `<span class="lesson-num">${l.num}</span>${l.title}`;
+    if (l.id === last) a.classList.add('current');
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+
+  if (last) {
+    const found = lessons.find(l => l.id === last);
+    if (found) {
+      const cta = document.getElementById('cta-continue');
+      cta.style.display = 'inline-block';
+      cta.href = found.id + '.html';
+      cta.textContent = `Continue: ${found.title} →`;
+    }
+  }
+}
+
+fetch('lessons.json')
+  .then(r => r.json())
+  .then(buildNav)
+  .catch(() => {}); // fail silently if JSON not yet generated
+
+// ─── Mobile sidebar ───────────────────────────────────────────────────────────
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+document.addEventListener('click', e => {
+  const sb = document.getElementById('sidebar');
+  const tg = document.getElementById('sidebar-toggle');
+  if (sb.classList.contains('open') && !sb.contains(e.target) && e.target !== tg)
+    sb.classList.remove('open');
+});
+</script>
+
 </body>
 </html>

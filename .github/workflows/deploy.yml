@@ -39,6 +39,7 @@ jobs:
           cp index.html _site/
           cp lesson.css _site/
           cp runtime.js _site/
+          cp lessons.json _site/
           cp .nojekyll _site/
           cp *.html _site/
           cp -r gadgets _site/gadgets
