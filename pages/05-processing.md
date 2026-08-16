@@ -233,8 +233,8 @@ we'll have to free one to copy the new boxes passing by.
 - If that flag is down, we can just throw it away in the furnace.
 - But if the flag is raised, it's the only place we have the mix the apprentice
   just made, we should not throw it away.
-  - What do we do then? We copy the box back into the L2 cache, and switch its
-    "DIRTY" flag up.
+  - What do we do then? We copy the box back into the L2 cache, and switch the
+    L2 cache "DIRTY" flag up.
   - The L2 cache has more containers, so it'll keep it a while, but eventually,
     it will also run out.
   - And we then copy that box back to the L3 cache, with its dirty flag up.
@@ -244,3 +244,126 @@ we'll have to free one to copy the new boxes passing by.
 All this cascade of smaller operations saves a lot of longer back and forth to
 the wall.
 
+### The stack
+
+The apprentice has very limited space on the desk, so whenever we end up with
+somethng we want to keep around, we need to take it back to a drawer.
+
+You remember that most of the drawers are locked and the apprentice would have
+to ask the butler for a key to use them. That's rather annoying. So instead, we
+use that drawer the apprentice has pulled of its slot at the start.
+
+Whenever we have something we want to keep around, we'll place it in a box of
+that drawer.
+
+From the start we have a few of these drawers available for this usage (250-2000
+of them), so there is a lot of things we can keep around in there. When one
+drawer is full, the apprentice pulls another and staks it on top of the first.
+
+In case the apprentice would still manage to fill it up, the last drawer of this
+collection (*guard page*) will automatically trigger an alarm that fetches the
+butler. The butler will turn off the alarm (the apprentice can use the drawer
+then) and set a new alarm on the very next drawer.
+
+This way, we will rarely run out of drawer space for the kind of stuff we want
+to keep around. If we do (usually when we make a mistake in our instructions,
+and our poor apprentice has been running around in circles for a while), our
+plan completely falls apart. It is the famous "stack overflow", and the butler
+will kick our apprentice out of the workshop. Oh well.
+
+There's one drawback to the stack memory, though.
+
+There's always a lot of stuff we want to keep around. Some of which we will
+leave for a bit and return to later. That's fine.  But suppose I want to keep my
+collection of newt eggs nice and tidy, all grouped together in a neat row.
+
+If I place it in the stack and leave it there for a while, I'll inevitably start
+placing other stuff I need to keep around in that same box, next to that
+collection in my stack.
+
+But what happens then if I find a new newt egg? Well, I'm a bit stuck. I would
+like to add it next to the other newt eggs, but I've filled that space already.
+It is fine for collection of stuff that never grows, but for collection we want
+to keep grouped together and can grow, we use a different approach: the Heap.
+
+### The heap
+
+What we call the heap is pretty much all the other drawers. The locked ones. If
+we have a collection we want to keep together but can grow over time, instead of
+struggling with the stack, We'll instruct the apprentice to call the butler, and
+ask this gentlemant for the drawer space we need (*dynamic allocation*).
+
+The butler will make calculations and give us a key (or several if we need a lot
+of drawer space) to some drawers, usually chosen in the top drawers first (at
+the other end of where we pull the drawers for our stack).
+
+Since we tell the butler how much space we need, he will sometimes tell us to
+use space in a drawer we already have access to. For instance, of we tell the
+butler we need to store a Giant's hair, he could tell us to stuff it in the
+drawer over the etched number #6, first box, first subdivision. And later, when
+we call him again to store a pouch of fairy dust, he can tell us "Well, it'll
+fit in that same drawer over the number #6, second box, first subdivision".
+
+Now, if our collection grows, we can either look for more place in our heap
+drawers, or simple ask the butler for a new space large enough to store the
+entire collection, move everything there, and return to the butler the keys to
+the previous location we've just moved the collection from.
+
+Of course, it would be pretty rude to avoid giving back the key when we're done
+using the drawers (*memory leak*). Better make sure it's part of the
+instructions given to the apprentice, because they're not going to think of that
+on their own.
+
+## A busy workshop
+
+So far we've described things as if our apprentice was alone with the butler in
+that workshop. Well, usually, there are multiple programs running simultaneously
+on a computer.
+
+That means, there's a crowd of apprentices, in that workshop, and the butler is
+quite busy.
+
+There's a limited amount of desks, though. Maybe 6-8, maybe 4, maybe 12 or more
+(*number of cores in the processor*).
+
+So when things get busy, the apprentices queue for accessing the desks.
+
+Each apprentice have their own wall of drawers, though. There can be more walls
+than desks. Geometry can get funny in these magic places, I guess.
+
+There's still a limit to how many drawers there can be at a time, and there's a
+secret trick to make it work: slots where the drawers are placed can be accessed
+from behind the wall too, and the butler sometimes grabs a drawer from a queuing
+apprentice and brings it down to the cellar (*paging*). When that apprentice
+gets their turn, the butler will return the drawer from the cellar.
+
+So from time to time, our apprentice will be interrupted by the butler, to leave
+the desk for another apprentice, and gets queuing.
+
+Although that can happen at any time (*preemption* in modern architectures), the
+apprentice is way more likely to be interrupted by the butler when they reach
+out to him. Fair enough, isn't it?
+
+## A bad day in an apprentice alchemist life
+
+Although we are elite master alchemist, it pains me to admit that we sometimes
+make mistakes. And sometimes, the instructions we give our trusty apprentice may
+have a tiny flaw.
+
+Maybe we forgot about the additional `'\0'` character at the end of a character
+string, and skipped it. Now, when our instructions tell our apprentice to read
+that character string until the end, that is, until the special `'\0'`
+character, they'll never stop. They'll look into every sub-partition of every
+box of every drawer, through the whole wall.
+
+Maybe we get lucky and they stumble of a random `0` laying about.
+
+Maybe we're not that lucky and they go on. Maybe we're really unlucky, and the
+apprentice, in their dull obediance, reaches for a drawer beyond ours.
+
+As long as they were browsing our own stuff, it was of course spouting
+non-sense, but it was not so bad. As soon as we reach out of our allowed drawer
+allocation, it's a different story.
+
+This alerts the butler, and, long story short, you have to find a new apprentice.
+Now that I think about it, maybe that's why these apprentices never graduate.
