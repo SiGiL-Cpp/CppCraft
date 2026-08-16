@@ -117,15 +117,15 @@ placed the scrolls.
 
 They pull a drawer off the wall and leave it out for later (the *stack frame*).
 
-Then they reache for the first scroll of instructions.
+Then they reach for the first scroll of instructions.
 
 ### Starting the work
 
-#### Reding instructions
+#### Reading instructions
 
 Since your apprentice cannot memorize the full set of scrolls (there's an awful
 lot of them, and well, you know that apprentice has their own challenges), they
-start by picking the first one, carfully copy sixteen or so instructions, and
+start by picking the first one, carefully copy sixteen or so instructions, and
 walk to the desk.
 
 The magical L-containers (*CPU-cache* or *L-cache*) create a copy of the
@@ -156,7 +156,7 @@ One copy in a L3 container, one in a L2, one in a L1. We have now 5 copies of
 that box: the original in the drawer, the copy on the desk, and 3 copies in the
 L-cache containers.
 
-At the desk, the apprentice places the box over on of the stone vessel, and
+At the desk, the apprentice places the box over one of the stone vessel, and
 opens a special trap door below the ingredients the instruction specified.
 
 And toss the box in the furnace.
@@ -283,8 +283,10 @@ collection in my stack.
 
 But what happens then if I find a new newt egg? Well, I'm a bit stuck. I would
 like to add it next to the other newt eggs, but I've filled that space already.
-It is fine for collection of stuff that never grows, but for collection we want
-to keep grouped together and can grow, we use a different approach: the Heap.
+It is fine for collection of stuff that never grows (if we know its size when we
+write the instructions, i.e. at *compile time*), but for collection we want to
+keep grouped together but don't know the size in advance, or that can grow, we
+use a different approach: the Heap.
 
 ### The heap
 
@@ -326,19 +328,22 @@ quite busy.
 There's a limited amount of desks, though. Maybe 6-8, maybe 4, maybe 12 or more
 (*number of cores in the processor*).
 
-So when things get busy, the apprentices queue for accessing the desks.
+So when things get busy, the apprentices queue for accessing the desks and take
+turns (*context switch*).
 
-Each apprentice have their own wall of drawers, though. There can be more walls
+Each apprentice has their own wall of drawers, though. There can be more walls
 than desks. Geometry can get funny in these magic places, I guess.
 
 There's still a limit to how many drawers there can be at a time, and there's a
 secret trick to make it work: slots where the drawers are placed can be accessed
 from behind the wall too, and the butler sometimes grabs a drawer from a queuing
 apprentice and brings it down to the cellar (*paging*). When that apprentice
-gets their turn, the butler will return the drawer from the cellar.
+gets their turn, the butler will return the drawer from the cellar. This only
+happens in extreme cases.
 
-So from time to time, our apprentice will be interrupted by the butler, to leave
-the desk for another apprentice, and gets queuing.
+So with everyone taking turn, from time to time, our apprentice will be
+interrupted by the butler, to leave the desk for another apprentice, and gets
+queuing.
 
 Although that can happen at any time (*preemption* in modern architectures), the
 apprentice is way more likely to be interrupted by the butler when they reach
@@ -356,7 +361,7 @@ that character string until the end, that is, until the special `'\0'`
 character, they'll never stop. They'll look into every sub-partition of every
 box of every drawer, through the whole wall.
 
-Maybe we get lucky and they stumble of a random `0` laying about.
+Maybe we get lucky and they stumble upon a random `0` laying about.
 
 Maybe we're not that lucky and they go on. Maybe we're really unlucky, and the
 apprentice, in their dull obediance, reaches for a drawer beyond ours.
@@ -365,5 +370,6 @@ As long as they were browsing our own stuff, it was of course spouting
 non-sense, but it was not so bad. As soon as we reach out of our allowed drawer
 allocation, it's a different story.
 
-This alerts the butler, and, long story short, you have to find a new apprentice.
-Now that I think about it, maybe that's why these apprentices never graduate.
+This alerts the butler, and, long story short, you have to find a new
+apprentice.  Now that I think about it, maybe that's why these apprentices never
+graduate.
