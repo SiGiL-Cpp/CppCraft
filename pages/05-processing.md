@@ -28,11 +28,11 @@ laboratory.
 
 ## Memory
 
-The workshop has a large wall of drawers (the *RAM*). Thousands, hundreds of
-thousands of drawers. Each drawer lies in its slot on the wall, and each slot
-has a number etched on its bottom shelf. Under the top left drawer the number
-#1 is etched. Under the drawer next to the number #2, under the one after #3,
-and so on across the whole wall.
+The workshop has a large wall of drawers (the *RAM*). Millions of drawers. Each
+drawer lies in its slot on the wall, and each slot has a number etched on its
+bottom shelf. Under the top left drawer the number #1 is etched. Under the
+drawer next to the number #2, under the one after #3, and so on across the whole
+wall.
 
 ### Memory pages
 
@@ -129,7 +129,7 @@ start by picking the first one, carefully copy sixteen or so instructions, and
 walk to the desk.
 
 The magical L-containers (*CPU-cache* or *L-cache*) create a copy of the
-apprentice node as they pass by. One copy lands in a container labeled "L3"
+apprentice's notes as they pass by. One copy lands in a container labeled "L3"
 first, then one in a container labeled "L2", and finally one in a container
 labeled "L1".
 
@@ -258,7 +258,7 @@ that drawer.
 
 From the start we have a few of these drawers available for this usage (250-2000
 of them), so there is a lot of things we can keep around in there. When one
-drawer is full, the apprentice pulls another and staks it on top of the first.
+drawer is full, the apprentice pulls another and stacks it on top of the first.
 
 In case the apprentice would still manage to fill it up, the last drawer of this
 collection (*guard page*) will automatically trigger an alarm that fetches the
@@ -292,15 +292,15 @@ use a different approach: the Heap.
 
 What we call the heap is pretty much all the other drawers. The locked ones. If
 we have a collection we want to keep together but can grow over time, instead of
-struggling with the stack, We'll instruct the apprentice to call the butler, and
-ask this gentlemant for the drawer space we need (*dynamic allocation*).
+struggling with the stack, we'll instruct the apprentice to call the butler, and
+ask this gentleman for the drawer space we need (*dynamic allocation*).
 
 The butler will make calculations and give us a key (or several if we need a lot
 of drawer space) to some drawers, usually chosen in the top drawers first (at
 the other end of where we pull the drawers for our stack).
 
 Since we tell the butler how much space we need, he will sometimes tell us to
-use space in a drawer we already have access to. For instance, of we tell the
+use space in a drawer we already have access to. For instance, if we tell the
 butler we need to store a Giant's hair, he could tell us to stuff it in the
 drawer over the etched number #6, first box, first subdivision. And later, when
 we call him again to store a pouch of fairy dust, he can tell us "Well, it'll
