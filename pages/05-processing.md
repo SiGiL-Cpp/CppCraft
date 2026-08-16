@@ -48,7 +48,7 @@ This separating system allows to store many small ingredients in the shallow
 tight grid at the bottom of a box, or only one very large ingredients at the top
 of the box, or an intermediate number of medium ingredients at the intermediate
 levels, or even a mix medium and small ingredients. The important part is that
-each ingredient can be stored isolated from other ingredients.
+each ingredient (*data*) can be stored isolated from other ingredients.
 
 ### Process Memory Layout
 
@@ -56,7 +56,8 @@ When the apprentice enters the workshop, some of the bottom drawers are directly
 available.
 - The bottom right ones to store the scrolls where the instructions are
 written (the *compiled code*), so that it's easy to find them when needed.
-- A few more drawers to store the ingredients the apprentice came with.
+- A few more drawers to store the ingredients the apprentice came with (*static
+  data*).
 - And plenty of empty drawers for the apprentice to work with.
 
 But all the drawers above that are locked. If the apprentice needs more drawer
@@ -175,10 +176,10 @@ and the program counter).
 
 The new instruction requires another ingredient. There's two cases.
 - If we're unlucky, the apprentice has to return to the wall, grab the box in
-  the drawer, come back with a copy of it.
+  the drawer, come back with a copy of it (*cache miss*).
 - But if we're lucky, that other ingredient was in the same box as the first, in
   which case, there will be a copy of it in the L1 cache, reachable from the
-  desk.
+  desk (*cache hit*).
 
 Either way, we have now two ingredients at the desk. Maybe in two subdivisions
 of the same stone vessel, maybe in two different stone vessels. That depends on
@@ -203,7 +204,10 @@ subdivision in the specific box of that drawer we kept pulled out of its slot,
 the *stack* drawer.
 
 Well, the apprentice could bring the mix to the drawer and dump it in the box
-there, but modern alchemy schools teach apprentices to do it a different way:
+there, but modern alchemy schools teach apprentices to do it a different way.
+
+```aside> How modern architectures return new values into memory
+It goes like this:
 - The apprentice goes to the wall of drawer and grabs a copy of the target box
   inside the the destination drawer.
 - They come back with the box copy (the cache containers copy the box as they
@@ -243,6 +247,7 @@ we'll have to free one to copy the new boxes passing by.
 
 All this cascade of smaller operations saves a lot of longer back and forth to
 the wall.
+```
 
 ### The stack
 
@@ -306,10 +311,9 @@ drawer over the etched number #6, first box, first subdivision. And later, when
 we call him again to store a pouch of fairy dust, he can tell us "Well, it'll
 fit in that same drawer over the number #6, second box, first subdivision".
 
-Now, if our collection grows, we can either look for more place in our heap
-drawers, or simple ask the butler for a new space large enough to store the
-entire collection, move everything there, and return to the butler the keys to
-the previous location we've just moved the collection from.
+Now, if our collection grows, we'll simply ask the butler for a new space large
+enough to store the entire collection, move everything there, and return to the
+butler the keys to the previous location we've just moved the collection from.
 
 Of course, it would be pretty rude to avoid giving back the key when we're done
 using the drawers (*memory leak*). Better make sure it's part of the
@@ -331,15 +335,19 @@ There's a limited amount of desks, though. Maybe 6-8, maybe 4, maybe 12 or more
 So when things get busy, the apprentices queue for accessing the desks and take
 turns (*context switch*).
 
+This is where what we said about that L3 cache being shared with others comes
+back. There's only one such cabinet in the whole workshop, and everyone uses it.
+
 Each apprentice has their own wall of drawers, though. There can be more walls
 than desks. Geometry can get funny in these magic places, I guess.
 
-There's still a limit to how many drawers there can be at a time, and there's a
-secret trick to make it work: slots where the drawers are placed can be accessed
-from behind the wall too, and the butler sometimes grabs a drawer from a queuing
-apprentice and brings it down to the cellar (*paging*). When that apprentice
-gets their turn, the butler will return the drawer from the cellar. This only
-happens in extreme cases.
+```aside> There's still a limit to how many drawers there can be at a time
+There's a secret trick to make it work: slots where the drawers are placed can
+be accessed from behind the wall too, and the butler sometimes grabs a drawer
+from a queuing apprentice and brings it down to the cellar (*paging*). When that
+apprentice gets their turn, the butler will return the drawer from the cellar.
+This only happens in extreme cases.
+```
 
 So with everyone taking turn, from time to time, our apprentice will be
 interrupted by the butler, to leave the desk for another apprentice, and gets
@@ -371,5 +379,52 @@ non-sense, but it was not so bad. As soon as we reach out of our allowed drawer
 allocation, it's a different story.
 
 This alerts the butler, and, long story short, you have to find a new
-apprentice.  Now that I think about it, maybe that's why these apprentices never
-graduate.
+apprentice (*segmentation fault*).  Now that I think about it, maybe that's why
+these apprentices never graduate.
+
+##
+```pitfall
+There is a limit to every metaphor. This one is no exception. it will serve us
+well in the future lessons, and could likely continue to serve you for years.
+
+Let me address a number of limits:
+- The apprentice in the metaphor represents both the program and the CPU.
+  - The CPU is always there. In that sense, it's more the desk than the
+    apprentice.
+  - Fetching the data from the RAM to the registries is operated by the *bus*,
+    not the CPU.
+- There is a lot of complexity in how the processor operate that is not
+  mentioned here (*pipelining*, *branch-prediction*, *out-of-order execution*,
+  *superscalar*, ...)
+- There is more complexity to the L-Caches.
+- The metaphor doesn't explain that the wall of drawers is the virtual memory
+  space, and there is a physical memory space mapped by the OS.
+- The limits of the stack and why it can't deal with data for which the size is
+  unknown at compile-time is at best glossed-over.
+- The segmentation fault example with the unterminated string is highly
+  unlikely. It is accurate in its principles, but the chances of **not**
+  encountering any `0` before leaving the virtual address space are almost
+  non-existent.
+```
+
+```recap
+- The CPU execute the instructions the programmer provides mechanically, without
+  judgement.
+- The RAM (Random Access Memory) stores everything the program needs, addressed
+  by numbers.
+- The Registers are the CPU's working space. Where operations happen.
+- Moving data from the RAM to the CPU takes time.
+- Caches (L1/L2/L3) reduce this time by staging frequently-used data closer to
+  the CPU.
+- The stack holds temporary values for the current task; it is fast but fixed in
+  shape.
+- The heap holds dynamic allocations; it is flexible but requires explicit
+  management. Don't forget to give that memory back when you're done.
+- The OS mediates access to resources (memory, storage, CPU scheduling...).
+- Multiple programs share the hardware. They take turn when needed, but keep
+  their memory isolated from each other.
+- Mistakes in the program can produce unauthorised operations such as reading or
+  writing memory it doesn't own, which can result in the OS terminating the
+  program.
+  in 
+```
