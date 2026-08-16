@@ -209,7 +209,7 @@ there, but modern alchemy schools teach apprentices to do it a different way.
 ```aside> How modern architectures return new values into memory
 It goes like this:
 - The apprentice goes to the wall of drawer and grabs a copy of the target box
-  inside the the destination drawer.
+  inside the destination drawer.
 - They come back with the box copy (the cache containers copy the box as they
   pass by).
 - And the apprentice tosses the box right into the furnace.
@@ -399,6 +399,9 @@ Let me address a number of limits:
 - There is more complexity to the L-Caches.
 - The metaphor doesn't explain that the wall of drawers is the virtual memory
   space, and there is a physical memory space mapped by the OS.
+- The memory is presented as a two-dimensional array. The logical representation
+  of memory should rather be a very long one-dimensional ribbon, although its
+  physical layout is indeed two-dimensional.
 - The limits of the stack and why it can't deal with data for which the size is
   unknown at compile-time is at best glossed-over.
 - The segmentation fault example with the unterminated string is highly
