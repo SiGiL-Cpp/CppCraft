@@ -356,9 +356,9 @@ Structures) for the first, and SoA (Structure of Arrays) for the second.
 
 ````
 
-### Styled Text
+### Exercise: Styled Text
 
-Here is a simple `Colour` struct:
+Let's put this in practice. Here is a simple `Colour` struct:
 ```cpp
 struct Colour
 {
@@ -378,6 +378,9 @@ struct StyledCharacter
     Colour colour;
 };
 ```
+
+You will find an interactive gadget below where you will be able to play with
+these.
 
 - First, you will find a single `StyledCharacter` named `myStyledCharacter`
   declared and initialized. You can `Run` the execution or modify it.
