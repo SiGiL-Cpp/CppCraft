@@ -175,8 +175,17 @@ function initPlaygrounds() {
       e.preventDefault();
       const start = editor.selectionStart;
       const end   = editor.selectionEnd;
-      editor.value = editor.value.slice(0, start) + '    ' + editor.value.slice(end);
-      editor.selectionStart = editor.selectionEnd = start + 4;
+      if (!e.shiftKey) {
+        editor.value = editor.value.slice(0, start) + '    ' + editor.value.slice(end);
+        editor.selectionStart = editor.selectionEnd = start + 4;
+      } else {
+        const textBeforeCursor = editor.value.slice(0, start);
+        if(const spaceMatch = textBeforeCursor.match(/ {1,4}$/)){
+          const spacesToDelete = spaceMatch[0].length;
+          editor.value = textBeforeCursor.slice(0, -spacesToDelete) + editor.value.slice(end);
+          editor.selectionStart = editor.selectionEnd = start - spacesToDelete;
+        }
+      }
     });
 
     runBtn.addEventListener('click', async () => {
