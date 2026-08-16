@@ -180,7 +180,8 @@ function initPlaygrounds() {
         editor.selectionStart = editor.selectionEnd = start + 4;
       } else {
         const textBeforeCursor = editor.value.slice(0, start);
-        if(const spaceMatch = textBeforeCursor.match(/ {1,4}$/)){
+        const spaceMatch = textBeforeCursor.match(/ {1,4}$/)
+        if(spaceMatch){
           const spacesToDelete = spaceMatch[0].length;
           editor.value = textBeforeCursor.slice(0, -spacesToDelete) + editor.value.slice(end);
           editor.selectionStart = editor.selectionEnd = start - spacesToDelete;
