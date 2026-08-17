@@ -90,7 +90,7 @@ Byte cannot express more than 256 distinct values.
 
 The important difference for us is that an octet is an 8-digit binary number,
 while a Byte is "what the computer works with". We are specifically interested
-in the later. 
+in the latter. 
 
 So a Byte is the smallest kind of number the computer can work with. It is made
 of at least 8 binary digits, and thus can express 256 distinct values.

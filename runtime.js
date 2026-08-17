@@ -308,4 +308,8 @@ function initPage() {
   initPlaygrounds();
   initFoldingSections();
   initHighlighting();
+
+  // Record this page as the last visited, for the index "continue" CTA
+  const pageId = document.body.dataset.pageId;
+  if (pageId) localStorage.setItem('cppcraft-last-page', pageId);
 }

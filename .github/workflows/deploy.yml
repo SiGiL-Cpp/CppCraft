@@ -43,6 +43,8 @@ jobs:
           cp .nojekyll _site/
           cp *.html _site/
           cp -r gadgets _site/gadgets
+          [ -d imgs ] && cp -r imgs _site/imgs || true
+          if [ -d imgs ]; then cp -r imgs _site/imgs; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

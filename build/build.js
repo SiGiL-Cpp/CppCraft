@@ -246,7 +246,7 @@ function buildPageNav(meta) {
 
 // ─── HTML shell ───────────────────────────────────────────────────────────────
 
-function buildShell(meta, articleHtml, navHtml) {
+function buildShell(meta, articleHtml, navHtml, pageId) {
   const title = meta.title ? escHtml(meta.title) : 'cppcraft';
   return `<!DOCTYPE html>
 <html lang="en">
@@ -258,7 +258,7 @@ function buildShell(meta, articleHtml, navHtml) {
   <link id="hljs-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 </head>
-<body>
+<body data-page-id="${escHtml(pageId)}">
   <header class="site-header">
     <nav class="lesson-nav" id="lesson-nav"></nav>
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">◑ Dark</button>
@@ -294,7 +294,7 @@ for (const file of files) {
   articleHtml          = mountFoldingSections(articleHtml);
 
   const navHtml  = buildPageNav(meta);
-  const fullHtml = buildShell(meta, articleHtml, navHtml);
+  const fullHtml = buildShell(meta, articleHtml, navHtml, id);
 
   writeFileSync(htmlPath, fullHtml, 'utf8');
   console.log(`✓  ${file} → ${file.replace('.md', '.html')}`);
