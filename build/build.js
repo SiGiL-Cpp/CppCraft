@@ -294,13 +294,13 @@ for (const file of files) {
   articleHtml          = mountFoldingSections(articleHtml);
 
   const navHtml  = buildPageNav(meta);
+  const id    = file.replace(/\.md$/, '');
   const fullHtml = buildShell(meta, articleHtml, navHtml, id);
 
   writeFileSync(htmlPath, fullHtml, 'utf8');
   console.log(`✓  ${file} → ${file.replace('.md', '.html')}`);
 
   // Collect lesson metadata for the index sidebar
-  const id    = file.replace(/\.md$/, '');
   const num   = id.match(/^(\d+)/)?.[1] ?? '';
   const title = meta.title ? meta.title.replace(/^\d+\s*[—-]\s*/, '') : id;
   lessons.push({ id, num: num ? `${num.padStart(2,'0')} —` : '', title });
