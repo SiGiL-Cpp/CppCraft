@@ -575,3 +575,77 @@ body {
 [data-theme="light"] .playground-output .ansi-green  { color: #1a6e42; }
 [data-theme="light"] .playground-output .ansi-yellow { color: #5a5010; }
 [data-theme="light"] .playground-output .ansi-blue   { color: #1a4a8a; }
+/* ─── Visible scrollbars on code blocks ────────────────────────────────────── */
+/* Makes it obvious there is more content outside the viewport on mobile.       */
+
+.lesson pre {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.lesson pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.lesson pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lesson pre::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.lesson pre::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ─── Blockquote ────────────────────────────────────────────────────────────── */
+/* Used for epigrams, attributed quotes (Bjarne, Sutter, Meyers...)             */
+/* and anonymous aphorisms like "There are 10 types of people".                 */
+/* Standard markdown syntax: > Quote text                                       */
+
+.lesson blockquote {
+  margin: 2rem 0;
+  padding: 0.9rem 1.25rem 0.9rem 1.5rem;
+  border-left: 3px solid var(--muted);
+  background: var(--surface);
+  border-radius: 0 6px 6px 0;
+  color: var(--text);
+}
+
+.lesson blockquote p {
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  line-height: 1.65;
+
+.lesson blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Attribution — last paragraph starting with — (em-dash) gets muted treatment.
+   Markdown usage:
+   > — Author Name */
+.lesson blockquote p:last-child {
+  font-style: normal;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.lesson blockquote p:not(:last-child) {
+  font-style: italic;
+  color: var(--text);
+}
+
+/* Single-paragraph quotes stay italic */
+.lesson blockquote p:only-child {
+  font-style: italic;
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+[data-theme="light"] .lesson blockquote {
+  background: var(--surface);
+  border-color: var(--muted);
+}
