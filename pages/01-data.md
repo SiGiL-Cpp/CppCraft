@@ -124,8 +124,10 @@ decimal, it makes more sense for those familiar with its binary representation
 (32 + 16 + 1): numbers are encoded with a 48 prefix + the encoded number.
 
 ASCII is a very common way of interpreting numbers as (Latin) characters, but by
-no means the only one. UTF-8 is another very common encoding, particularly in
-modern systems.
+no means the only one.
+- IBM has its own encoding: [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC).
+- UTF-8 is another very common encoding, particularly in modern systems, and
+  we'll get back to it in the next chapter.
 
 ### Bytes as true/false, on/off, yes/no values
 
@@ -150,7 +152,7 @@ So our `163` is `true` if we look at it as a boolean value.
 
 <p align="center">
   <img alt="Phineas meme: &quot;Isn't it a little wasteful? - Yes, yes it is&quot;"
-    src="imgs/FWastefulMeme.jpg"/>
+    src="imgs/FWastefulMeme.jpg" width="100%"/>
 </p>
 
 Now, programmers usually hate wasting. If you are curious you can expand this
@@ -178,7 +180,7 @@ values each (0 or 1), each digit can encode a true (1) or false (0) value.
 You could visualise the Byte as a row of 8 switches:
 
 <p align="center">
-  <img alt="8 switches" src="imgs/8switches.webp"/>
+  <img alt="8 switches" src="imgs/8switches.webp" width="100%"/>
 </p>
 
 Each switch is one of the 8 digits, and when the switch is off, that specific
@@ -202,7 +204,7 @@ A range from 0 to 255 is useful, but sometimes we also want to use negative
 values. Since our Byte can only represent 256 distinct values, we will have to
 repurpose some of these values to become negative.
 
-<svg width="592" height="50" style="display:block;margin:auto; --rect-width: 588px;--neg-width: 294px;">
+<svg viewbox="0 0 592 50" width="100%" style="display:block;margin:auto;--rect-width:588px;--neg-width:294px;max-width:594px;">
     <rect x="2" y="2" style="width:var(--neg-width);" height="40" fill="var(--illus)" stroke="rgb(128,128,128)" stroke-width="2"/>
     <rect x="2" y="2" style="transform:translateX(var(--neg-width));width:calc(var(--rect-width) - var(--neg-width));" height="40" fill="var(--aside)" stroke="rgb(128,128,128)" stroke-width="2" />
     <text x="2" y="27" style="transform:translateX(calc(var(--neg-width) / 2));" fill="var(--text)" font-family="sans-serif" font-size="14" text-anchor="middle">[0..127]</text>
@@ -213,7 +215,7 @@ repurpose some of these values to become negative.
 remains unchanged: [0..127] continue to represent the numbers from 0 to 127, but
 the second half, from 128 to 255 is moved to the negative range.<br/>
 
-<svg width="592" height="100" style="display:block;margin:auto; --rect-width: 588px;--neg-width: 294px;" viewBox="-100,0,592, 100">
+<svg width="100%" style="display:block;margin:auto;--rect-width:588px;--neg-width:294px;max-width:592px;" viewBox="-100,0,592, 100">
     <rect x="2" y="2" style="transform:translateX(var(--neg-width));width:var(--neg-width);" height="40" fill="none" stroke="rgb(128,128,128)" stroke-width="2" stroke-dasharray="5,5" />
     <rect x="2" y="2" style="transform:translateX(calc(-1 * var(--neg-width)));width:var(--neg-width);" height="40" fill="none" stroke="rgb(128,128,128)" stroke-width="2" stroke-dasharray="5,5" />
     <rect x="2" y="2" style="width:var(--neg-width);" height="40" fill="var(--illus)" stroke="rgb(128,128,128)" stroke-width="2" />
@@ -231,7 +233,7 @@ was an interpretation of the number `49`, the negative numbers [-128..-1] are an
 interpretation of the numbers in the range [128..255].
 <br/><br/>
 
-<svg width="592" height="100" style="display:block;margin:auto; --rect-width: 588px;--neg-width: 294px;">
+<svg viewbox="0 0 592 100" width="100%" style="display:block;margin:auto;--rect-width:588px;--neg-width:294px;max-width:592px;">
     <rect x="2" y="2" style="width:var(--neg-width);" height="40" fill="var(--aside)" stroke="rgb(128,128,128)" stroke-width="2" />
     <rect x="2" y="2" style="transform:translateX(var(--neg-width));width:calc(var(--rect-width) - var(--neg-width));" height="40" fill="var(--illus)" stroke="rgb(128,128,128)" stroke-width="2"/>
     <text x="2" y="27" style="transform:translateX(calc(var(--neg-width) / 2));" fill="var(--text)" font-family="sans-serif" font-size="14" text-anchor="middle">[-128..-1]</text>
@@ -247,7 +249,7 @@ interpretation of the numbers in the range [128..255].
 <br/>
 To look at it the other way around:
 
-<svg width="592" height="100" style="display:block;margin:auto; --rect-width: 588px;--neg-width: 294px;">
+<svg viewbox="0 0 592 100" width="100%" style="display:block;margin:auto;--rect-width:588px;--neg-width:294px;max-width:592px;">
     <rect x="2" y="2" style="width:var(--neg-width);" height="40" fill="var(--illus)" stroke="rgb(128,128,128)" stroke-width="2" />
     <rect x="2" y="2" style="transform:translateX(var(--neg-width));width:calc(var(--rect-width) - var(--neg-width));" height="40" fill="var(--aside)" stroke="rgb(128,128,128)" stroke-width="2" />
     <text x="2" y="27" style="transform:translateX(calc(var(--neg-width) / 2));" fill="var(--text)" font-family="sans-serif" font-size="14" text-anchor="middle">[0..127]</text>
@@ -289,23 +291,24 @@ operation (`-(-128)` => `-128`), which is obviously mathematically incorrect,
 and can be quite confusing.
 
 ```aside> Why? (Requires familiarity with binary representations) ...
+
 In practice, to negate a signed integer, the CPU is likely to invert all the
 bits and add 1.
 
 Yes, that works. In all the valid cases, that is.
 
-- Consider `1`. Inverting all the bits gives `0b11111110` (`0xFE`). And adding 1
-  to this gives `0b11111111` (`0xFF`), 255, which, if you check above, happens
-  to be the representation of `-1` (255),
-- Consider `-127`, which is `0b10000001` (`0x81`). If we invert it, we get
-  `0b01111110` (`0x7E`). + 1 => `0b01111111` (`0x7F`), 127.
-- Consider `0`. Inverting all the bits gives `0b11111111` (`0xFF`). Add 1 and
+- Consider `1`. Inverting all the bits gives `11111110` in binary. And adding 1
+  to this gives `11111111`, 255 in decimal, which, if you check above, happens
+  to be the representation of `-1`,
+- Consider `-127`, which is `10000001` in binary. If we invert it, we get
+  `01111110`. Then add 1 => `01111111`, 127 in decimal.
+- Consider `0`. Inverting all the bits gives `11111111` in binary. Add 1 and
   every digit carries to the next, until the carry exceeds the number of digits,
-  leaving only 0s: `0b00000000` (`0x00`).
+  leaving only 0s: `00000000`.
 
 But what happens with `-128`? We apply same pattern, of course.
-- `-128` is `0b10000000` (`0x80`). When we invert it, we get `0b01111111`
-  (`0x7F`). To which we add 1, giving `0b10000000` (`0x80`), back to `-128`.
+- `-128` is `10000000` in binary. When we invert it, we get `01111111`. To which
+  we add 1, giving `10000000`, back to `-128` in decimal.
 ```
 
 ````
