@@ -37,9 +37,7 @@ numbers very long, but apart from this it doesn't change much.
 
 A digit in binary is called a **bit**.
 
-```
-There are 10 types of people: those who understand binary and those who don't.
-```
+> There are 10 types of people: those who understand binary and those who don't.
 
 ```aside: Note
 We won't go in details over the binary representation of numbers for now as it
