@@ -454,13 +454,16 @@ But that's not even half of the headache.
 And then there are all the special cases.
 
 ```illus: Example
-For instance, if we were to split `163` according to our format, we would get
-this:
-- The value `1` for the sign,
-- The value `4` for the raw Exponent,
-- The value `3` for the Mantissa.
+Let's see what it would give for our `163` example.
 
-The Exponent is neither 0 nor 15, so we read it by subtracting 7 from it. 
+`163` in binary is `10100011`. If we split it according to our format, we would
+get:
+- The first bit for the sign: `1`, so our number will be negative.
+- The next 4 bits for the Exponent: `0100` in binary, which is `4` in decimal,
+  for the raw Exponent.
+- The 3 last bits for the Mantissa: `011` in binary, which is `3`in decimal.
+
+The raw exponent is neither 0 nor 15, so we read it by subtracting 7 from it. 
 4 - 7 = `-3`.
 
 Since the Exponent is not 0, we should read the Mantissa as a fixed point number
@@ -468,6 +471,9 @@ made of 8<sup>th</sup> and add a leading 1 before it. Three 8<sup>th</sup> is
 `0.375`, and with a leading 1, we get `1.375`.
 
 We can finally form the final result: - 2<sup>-3</sup> × 1.375 = - 0.125 × 1.375 = `-0.171875`.
+
+So the value `163`, through the floating-point lense, is interpreted as
+`-0.171875`.
 ```
 
 Don't worry if you didn't follow everything there, it isn't important for now.
