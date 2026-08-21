@@ -41,9 +41,9 @@ application's execution (runtime).
 But this information is not only for the compiler's benefit. It is extremely
 important for the programmer who writes or reads the code.
 
-When a program mentions a `pitch`, it could be a short text introducing an idea,
-the specific frequency of a musical note, the distance between threads on a
-screw, a dark sticky polymer, or a football field. All these things can be
+When a program mentions a `pitch`, it could mean a short text introducing an
+idea, the specific frequency of a musical note, the distance between threads on
+a screw, a dark sticky polymer, or a football field. All these things can be
 designated by the same name: "pitch", but have a different meaning, different
 semantics, and thus should be interpreted differently.
 
@@ -123,8 +123,8 @@ entire program.
 
 ### Literals
 
-This type can be deduced from how we spell out the value. So we will have to be
-a little careful.
+The type of a value can be deduced from how we spell out the value. So we will
+have to be a little careful.
 
 ```illus
 - If we write `163`, the value is of type `int`<br/>
@@ -212,7 +212,8 @@ Some patterns are reserved for the compiler and the Standard Library usage:
   reserved.
 - Identifiers containing a double underscore (`__`) are reserved.
 - Identifiers starting by an underscore followed by a lowercase letter are
-  reserved in the global scope only.
+  reserved in the global scope only (a place where identifiers are shared across
+  the whole program. We'll get to that later.)
 ```
 
 To keep things simple, we suggest avoiding starting any identifier with an
@@ -267,7 +268,7 @@ We can also give an initial value to our variable when we define it. We call
 this operation *initialization*. The syntax becomes:
 
 ```cpp
-Type label {value};
+Type identifier {value};
 ```
 
 There are other ways to initialize variables, so don't be too surprised if you
@@ -368,7 +369,7 @@ style, taste, and convention.
 This series will essentially use a third convention, that we will call Outer
 const and is essentially the same as West const, but makes its intent clearer.
 
-````aside> Outer const (for readers already familiar with pointers)
+````aside> For readers already familiar with pointers: Outer const
 Consider the following code:
 ```cpp
 int const * pI;

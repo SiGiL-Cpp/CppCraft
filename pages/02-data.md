@@ -155,12 +155,12 @@ possibilities are seemingly endless. Here are a few examples:
 
 - For the unsigned integral numbers, the range of representable numbers grows
   (a lot).
-  - [0, 4,294,967,295] with 4 Bytes (32 bits).
-  - [0, 18,446,744,073,709,551,615] with 8 Bytes (64 bits). (Yes, that's 18 Quintillions.)
+  - [0 ; 4,294,967,295] with 4 Bytes (32 bits).
+  - [0 ; 18,446,744,073,709,551,615] with 8 Bytes (64 bits). (Yes, that's 18 Quintillions.)
 
 - For signed integral,
-  - [-2,147,483,648, 2,147,483,647] with 4 Bytes (32 bits),
-  - [-9,223,372,036,854,775,808, 9,223,372,036,854,775,807] with 8 Bytes (64 bits).
+  - [-2,147,483,648 ; 2,147,483,647] with 4 Bytes (32 bits),
+  - [-9,223,372,036,854,775,808 ; 9,223,372,036,854,775,807] with 8 Bytes (64 bits).
 
 - A fixed-point number over 4 Bytes (32 bit) can represent values up
   to 20,000 with a 0.000,01 (10<sup>-5</sup>) precision. That's enough to
@@ -217,8 +217,9 @@ that it ends with a special character: the "null character", sometimes noted
 '`\0`' (which has the value `0`).
 
 ```illus: Example
-So `76`, `105`, `107`, `101`, `32`, `116`, `104`, `97`, `116`, `46`, `0` can
-represent the words: "Like that.", complete with a null character at the end.
+So interpreted as ASCII, the values `76`, `105`, `107`, `101`, `32`, `116`,
+`104`, `97`, `116`, `46`, `0` can represent the words: "Like that.", complete
+with a null character at the end.
 ```
 
 ### Image
@@ -251,8 +252,9 @@ We could write this:
 - `255`, `0`, `255`, `0`, `0`, `0`, `0`, `0`, `255`, `0`, `255`
 - `0`, `0`, `0`, `255`, `255`, `0`, `255`, `255`, `0`, `0`, `0`
 
-If our Word size is 4 Bytes (32-bit architecture), that would be 96 Bytes that
-we can interpret as an image.
+If our Word size is 4 Bytes (32-bit architecture), that would be 96 Bytes
+(4 for the width as a Word, 4 for the height as a Word, and 11&times;8 Bytes for
+the light intensities) that we can interpret as an image.
 ```
 
 ```aside> Colour Images...

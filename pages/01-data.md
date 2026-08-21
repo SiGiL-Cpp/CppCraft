@@ -157,16 +157,15 @@ of at least 8 binary digits, and thus can express 256 distinct values.
 
 ### Bytes as characters
 
-Since the early 80s, we have been using a standard called <a
-href="https://en.wikipedia.org/wiki/ASCII" target="_blank"
-rel="noopener">ASCII</a> to match numbers between 0 and 255 to specific
-characters.
+Since the early 80s, we have been using a standard called
+[ASCII](href="https://en.wikipedia.org/wiki/ASCII") to match numbers between 0
+and 255 to specific characters.
 
 To be precise, the ASCII standard existed since 1961, but only maps numbers
 between 0 and 127 to characters. The remaining mapping for numbers between 128
 and 255 (included) is known as "extended ASCII", and comes in different flavours
-such as Windows-1252, ISO 8859-1, or CP437, so that in practice Linux and
-Windows machines can sometimes disagree on less common characters.
+such as Windows-1252, ISO 8859-1 (Latin-1), or CP437, so that in practice Linux
+and Windows machines can sometimes disagree on less common characters.
 
 ```illus: Example
 Since the number `163` is beyond `127`, it is part of the extended ASCII values,
@@ -524,6 +523,32 @@ get:
 - The next 4 bits for the Exponent: `0100` in binary, which is `4` in decimal,
   for the raw Exponent.
 - The 3 last bits for the Mantissa: `011` in binary, which is `3`in decimal.
+
+<svg viewBox="161 59 174 66" width="100%"
+style="max-width:200px;display:block;margin:auto;">
+  <rect x="169.068" y="60.056" width="156.785" height="63.788" fill="var(--bg, #0f1117)" stroke-width="1" style="stroke-width: 1px;"/>
+  <line x1="267.302" y1="59.863" x2="267.302" y2="124.027" stroke-width="0.5" style="stroke-width: 0.5px; stroke: var(--text, #cdd4e0); transform-origin: 264.719px 91.946px 0px;"/>
+  <line x1="189.018" y1="59.863" x2="189.018" y2="124.027" stroke-width="0.5" style="stroke-width: 0.5px; stroke: var(--text, #cdd4e0); transform-origin: 186.435px 91.946px 0px;"/>
+  <line x1="326.019" y1="59.863" x2="326.019" y2="124.027" stroke-width="0.5" style="stroke-width: 0.5px; stroke: var(--text, #cdd4e0); transform-origin: 323.435px 91.946px 0px;"/>
+  <line x1="169.018" y1="59.863" x2="169.018" y2="124.027" stroke-width="0.5" style="stroke-width: 0.5px; stroke: var(--text, #cdd4e0); transform-origin: 166.435px 91.946px 0px;"/>
+  <line x1="158" y1="80.53" x2="337.999" y2="80.53" stroke="var(--text, #cdd4e0)" stroke-width="1" style="stroke-width: 1px;"/>
+  <line x1="168.815" y1="123.974" x2="326.211" y2="123.974" stroke="var(--text, #cdd4e0)" style="stroke-width: 0.5px;"/>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, -122.820297, -77.757935)"><tspan style="font-size: 16px;" x="301.732" y="175.393">1</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, -102.548256, -77.757935)"><tspan style="font-size: 16px;" x="301.732" y="175.393">0</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, -83.391724, -77.757927)"><tspan style="font-size: 16px;" x="301.732" y="175.393">1</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, -63.677437, -77.757927)"><tspan style="font-size: 16px;" x="301.732" y="175.393">0</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, -43.963165, -77.757927)"><tspan style="font-size: 16px;" x="301.732" y="175.393">0</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, -24.248856, -77.757927)"><tspan style="font-size: 16px;" x="301.732" y="175.393">0</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, -4.53457, -77.757927)"><tspan style="font-size: 16px;" x="301.732" y="175.393">1</tspan><tspan/><tspan style="font-size: 11px;"/><tspan style="font-size: 11px;"/></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, 15.179707, -77.757935)"><tspan style="font-size: 16px;" x="301.732" y="175.393">1</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, &quot;Cascadia Code&quot;, &quot;Source Code Pro&quot;, Menlo, Consolas, monospace; font-size: 12px; text-anchor: middle; white-space: pre;" x="178.912" y="116.635">s</text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, &quot;Cascadia Code&quot;, &quot;Source Code Pro&quot;, Menlo, Consolas, monospace; font-size: 12px; text-anchor: middle; white-space: pre;" x="227.912" y="116.635">exponent</text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, &quot;Cascadia Code&quot;, &quot;Source Code Pro&quot;, Menlo, Consolas, monospace; font-size: 12px; text-anchor: middle; white-space: pre;" x="296.912" y="116.635">mantissa</text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, &quot;Cascadia Code&quot;, &quot;Source Code Pro&quot;, Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre; stroke-width: 1px;" x="-122.82" y="-99.76"><tspan style="font-size: 16px; word-spacing: 0px; stroke-width: 1px;" x="178.912" y="75.635">1</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, &quot;Cascadia Code&quot;, &quot;Source Code Pro&quot;, Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre; stroke-width: 1px;" x="-73.392" y="-99.76"><tspan style="font-size: 16px; word-spacing: 0px; stroke-width: 1px;" x="228.34" y="75.635">4</tspan></text>
+  <text style="fill: var(--text, #cdd4e0); font-family: ui-monospace, &quot;Cascadia Code&quot;, &quot;Source Code Pro&quot;, Menlo, Consolas, monospace; font-size: 13px; text-anchor: middle; white-space: pre; stroke-width: 1px;" x="-4.535" y="-99.76"><tspan style="font-size: 16px; word-spacing: 0px; stroke-width: 1px;" x="297.197" y="75.635">3</tspan><tspan style="word-spacing: 0px; stroke-width: 1px;"/><tspan style="font-size: 11px; word-spacing: 0px; stroke-width: 1px;"/><tspan style="font-size: 11px; word-spacing: 0px; stroke-width: 1px;"/></text>
+  <line x1="168.815" y1="59.974" x2="326.211" y2="59.974" stroke="var(--text, #cdd4e0)" style="stroke-width: 0.5px;"/>
+</svg>
 
 The raw exponent is neither 0 nor 15, so we read it by subtracting 7 from it. 
 4 - 7 = `-3`.
