@@ -266,16 +266,16 @@ each ingredient (*data*) can be stored isolated from other ingredients.
 
 When the apprentice enters the workshop, some of the bottom drawers are directly
 available.
-- The bottom right ones to store the scrolls where the instructions are
+- The bottom rows to store the scrolls where the instructions are
 written (the *compiled code*), so that it's easy to find them when needed.
-- A few more drawers to store the ingredients the apprentice came with (*static
-  data*).
-- And plenty of empty drawers for the apprentice to work with.
+- A few more rows of drawers above these to store the ingredients the apprentice
+  came with (*static data*).
+- And plenty more rows of empty drawers for the apprentice to work with.
 
-But all the drawers above that are locked. If the apprentice needs more drawer
-space to work than the bottom few, they have to ask the butler who will give
-them a key, with a label on it indicating which drawers have been made available
-for them.
+But all the drawers of the middle and top rows are locked. If the apprentice
+needs more drawer space to work with than the bottom rows, they have to ask the
+butler who will give them a key, with a label on it indicating which drawers
+have been made available for them.
 
 There is also a lot of stuff stored in the cellar (the *drive memory*), a
 market in the nearby town (networking) and other sources of ingredients, but
@@ -411,7 +411,7 @@ note. So without leaving the desk, the apprentice can grab that copy, read the
 next instruction from there, and update the slate with it (the new instruction
 and the program counter).
 
-The new instruction requires another ingredient. There's two cases.
+The new instruction requires another ingredient. There are two cases:
 - If we're unlucky, the apprentice has to return to the wall, grab the box in
   the drawer, come back with a copy of it (*cache miss*).
 - But if we're lucky, that other ingredient was in the same box as the first, in
@@ -456,10 +456,10 @@ throw it into the furnace. But there's a trick. The apprentice brought it there
 just so that it's in the L1 cache.
 
 They now scoop the mix from the stone vessel (the register) and dump it into
-the L1-cache copy. Then they flip a little glowing flat on the copy that reads
+the L1-cache copy. Then they flip a little glowing flag on the copy that reads
 "DIRTY".
 
-Of course, of the destination already had a copy inside the L1 cache, the
+Of course, if the destination already had a copy inside the L1 cache, the
 apprentice would only have turned and flung the mix in there directly from their
 chair without walking all the way to grab the box. And that's exactly the reason
 for doing it this way: next time the apprentice wants to place an ingredient in

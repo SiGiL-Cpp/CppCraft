@@ -370,6 +370,10 @@ This series will essentially use a third convention, that we will call Outer
 const and is essentially the same as West const, but makes its intent clearer.
 
 ````aside> For readers already familiar with pointers: Outer const
+```pitfall: Warning: This is for advanced reader
+Don't worry, we'll return to this later, when we're better
+equipped.
+```
 Consider the following code:
 ```cpp
 int const * pI;

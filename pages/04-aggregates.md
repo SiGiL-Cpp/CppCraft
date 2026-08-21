@@ -6,10 +6,10 @@ next: "05-processing"
 
 # 04 - Aggregates
 
-In [this previous chapter](02-data.html#even-more-bytes), we have seen also
-seen that some types of data are expressed using several distinct numbers. There
-are different ways of representing these data types. For now, we will limit
-ourselves to the simplest category: aggregates.
+In [this previous chapter](02-data.html#even-more-bytes), we have seen that some
+types of data are expressed using several distinct numbers. There are different
+ways of representing these data types. For now, we will limit ourselves to the
+simplest category: aggregates.
 
 There are two main categories of aggregates: arrays and some specific kind of
 class types.
@@ -82,9 +82,9 @@ std::array<std::byte, 88uz> imageLightIntensityData;
 
 #### Initialising an array
 
-As for other types, a good way to initialise an array is by using the curly
-brackets `{}`. To initialise an array with multiple elements, we separate them
-with commas `,` in the brackets:
+A good way to initialise an array is by using the curly brackets `{}`, as we
+have done for other types before. To initialise an array with multiple elements,
+we separate them with commas `,` in the brackets:
 
 ```cpp
 int cStyleArray[5] {0, 1, 2, 3, 4};
@@ -179,7 +179,7 @@ Now we can use this type:
 StyledCharacter myStyledCharacter;
 ```
 
-We can also initialize it. There are several ways, but our preferred way of
+<span id="designated-initialization">We can also initialize it. There are several ways, but our preferred way of
 initializing it would be:
 ```cpp
 StyledCharacter myStyledCharacter
@@ -207,7 +207,7 @@ StyledCharacter myStyledCharacter
 It is more concise, but harder to read. To know that the second boolean value
 indicates whether the character is in italic, the person reading the code needs
 to know the exact structure of `StyledCharacter`, which is why we prefer the
-designated initialization syntax.
+designated initialization syntax.</span>
 
 Unfortunately, at this point, our program will not know how to display this new
 type out-of-the-box. But we can access each member of the variable (character,
@@ -260,7 +260,7 @@ struct MyStruct
 While the size of an array is the size of the element the array stores
 multiplied by the number of elements in the array (e.g.
 `std::array<std::uint16_t, 8>` stores 8 elements made of 2 Bytes each, so has a
-size of 16 Bytes), it is not as straight-forward with `struct`s.
+size of 16 Bytes), it is not as straight-forward with `struct`.
 
 For reasons that we will explain in the next chapters, the compiler may
 sometimes insert gap Bytes between members.
@@ -385,7 +385,7 @@ these.
 - First, you will find a single `StyledCharacter` named `myStyledCharacter`
   declared and initialized. You can `Run` the execution or modify it.
 - Second, you can make an array of `StyledCharacter` and name it
-  `myStyledString`. If you initialize it with multiple `StyledCharacter`s, they
+  `myStyledString`. If you initialize it with multiple `StyledCharacter`, they
   will be displayed as a character string.
 - What happens if you don't initialize it?
 
@@ -553,6 +553,7 @@ std::array<StyledCharacter, 5uz> myStyledString {
   }
 };
 ```
+(see [designated initialization](#designated-initialization))
 <ul style="list-style-type: none;"><li><ul style="list-style-type: none;"><li>
 <ul><li>Colour is also a struct. Let's initialise it too.</li></ul>
 </li></ul></li></ul>
@@ -631,7 +632,7 @@ Here we can see two cases:
 - Aggregates are simple composite types grouping data together.
   - Arrays are fixed-size collections of the same type.
     - There is a built-in (C-style) and a modern way to make and use arrays.
-  - `struct`s allow to structure different types together, naming each part.
-  - Both can be composed together (Arrays of `struct`s, `struct` with an array
-    member, arrays of `struct`s with array members...).
+  - `struct` allow to structure different types together, naming each part.
+  - Both can be composed together (Arrays of `struct`, `struct` with an array
+    member, arrays of `struct` with array members...).
 ````

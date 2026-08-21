@@ -211,7 +211,7 @@ So our `163` is `true` if we look at it as a boolean value.
 
 <p align="center">
   <img alt="Phineas meme: &quot;Isn't it a little wasteful? - Yes, yes it is&quot;"
-    src="imgs/FWastefulMeme.jpg" width="100%"/>
+    src="imgs/FWastefulMeme.jpg" width="100%" style="max-width:400px"/>
 </p>
 
 Now, programmers usually hate wasting. If you are curious you can expand this
