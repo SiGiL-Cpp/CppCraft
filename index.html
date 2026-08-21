@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>C++Craft</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap">
   <style>
 
 /* ─── Reset ──────────────────────────────────────────────────────────────── */
@@ -23,8 +21,8 @@
   --accent-dim:  #1a2240;
   --gold:        #b0a850;
   --gold-dim:    #26241a;
-  --mono:        'IBM Plex Mono', monospace;
-  --sans:        'IBM Plex Sans', sans-serif;
+  --mono:        ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  --sans:        ui-sans-serif, system-ui, sans-serif;
   --sidebar-w:   260px;
 }
 
@@ -529,11 +527,11 @@ function toggleTheme() {
   applyTheme(next);
 }
 
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const saved = getCookie('theme');
   const pref  = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   applyTheme(saved || pref);
-})();
+});
 
 // ─── Lessons (loaded from lessons.json generated at build time) ───────────────
 

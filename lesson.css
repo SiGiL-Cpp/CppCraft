@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap');
-
 /* ─── Reset & Base ─────────────────────────────────────────────────────────── */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -57,9 +55,9 @@ html { font-size: 16px; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
   line-height: 1.7;
-  padding: 2rem 1rem 6rem;
+  padding: 0rem 1rem 6rem;
 }
 
 /* ─── Lesson Container ─────────────────────────────────────────────────────── */
@@ -144,7 +142,7 @@ body {
 .lesson a:hover { border-color: var(--href); }
 
 .lesson code {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.85em;
   background: var(--code-bg);
   border: 1px solid var(--border);
@@ -190,7 +188,7 @@ body {
 }
 
 .box-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -255,7 +253,7 @@ body {
 .playground-editor {
   display: block;
   width: 100%;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.875rem;
   line-height: 1.6;
   color: #b8d0f0;
@@ -284,7 +282,7 @@ body {
 }
 
 .playground-run {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -301,7 +299,7 @@ body {
 .playground-run:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .playground-clear {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.8rem;
   color: var(--muted);
   background: transparent;
@@ -315,7 +313,7 @@ body {
 .playground-clear:hover { color: var(--text); border-color: var(--muted); }
 
 .playground-output {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.82rem;
   color: #90aad0;
   background: #070a12;
@@ -353,7 +351,7 @@ body {
 .svg-scrubber input[type="range"] { flex: 1; accent-color: var(--play-label); }
 
 .svg-frame-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.75rem;
   color: var(--muted);
   white-space: nowrap;
@@ -363,13 +361,26 @@ body {
 
 .load-error {
   color: var(--pitfall-label);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.9rem;
   padding: 2rem;
   text-align: center;
 }
 
 /* ─── Site Header ──────────────────────────────────────────────────────────── */
+
+.site-brand {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.site-brand:hover { text-decoration: none; opacity: 0.8; }
+.site-brand-acc { color: var(--play-label); }
 
 .site-header {
   position: sticky;
@@ -385,7 +396,7 @@ body {
 }
 
 .lesson-nav {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.78rem;
   color: var(--muted);
   display: flex;
@@ -396,7 +407,7 @@ body {
 .lesson-nav a:hover { color: var(--text); }
 
 .theme-toggle {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.75rem;
   color: var(--muted);
   background: transparent;
@@ -523,7 +534,7 @@ body {
 }
 
 .page-nav-link {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
@@ -537,7 +548,7 @@ body {
 .page-nav-link:hover { background: var(--play); border-color: var(--href); }
 
 .page-nav-disabled {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 0.85rem;
   color: var(--muted);
   border: 1px solid var(--border);
@@ -622,13 +633,16 @@ body {
   line-height: 1.65;
 }
 
-/* Attribution — last paragraph gets muted treatment (em-dash attribution line).
+.lesson blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Attribution — last paragraph starting with — (em-dash) gets muted treatment.
    Markdown usage:
    > The quote text.
    >
    > — Author Name */
 .lesson blockquote p:last-child {
-  margin-bottom: 0;
   font-style: normal;
   font-size: 0.88rem;
   color: var(--muted);
