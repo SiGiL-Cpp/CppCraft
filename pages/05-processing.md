@@ -31,8 +31,8 @@ laboratory.
 The workshop has a large wall of drawers (the *RAM*). Millions of drawers. Each
 drawer lies in its slot on the wall, and each slot has a number etched on its
 bottom shelf. Under the top left drawer the number #1 is etched. Under the
-drawer next to the number #2, under the one after #3, and so on across the whole
-wall.
+drawer next to it, the number #2, under the one after #3, and so on across the
+whole wall.
 
 <svg viewBox="10 10 596 753.549" width="100%">
   <g transform="matrix(1, 0, 0, 1, -126.95901489257812, -218.61500549316406)" id="object-0">
