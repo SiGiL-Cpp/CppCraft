@@ -118,6 +118,15 @@ marked.use({
       const attr  = fold ? ` data-fold="${fold}"` : '';
       return `<h${level} id="${id}"${attr}>${clean}</h${level}>\n`;
     },
+    blockquote(quote) {
+      // A paragraph starting with ~ signals an attribution line.
+      // The ~ is consumed (removed); the paragraph gets the attribution class.
+      const attributed = quote.replace(
+        /<p>~\s*/,
+        '<p class="attribution">'
+      );
+      return `<blockquote>${attributed}</blockquote>\n`;
+    },
     code(code, infostring) {
       const info = (infostring || '').trim();
       const candidates = [':', '>', '<'].map(ch => ({ ch, i: info.indexOf(ch) })).filter(x => x.i !== -1).sort((a,b) => a.i - b.i);
