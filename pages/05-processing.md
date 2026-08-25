@@ -34,218 +34,6 @@ bottom shelf. Under the top left drawer the number #1 is etched. Under the
 drawer next to it, the number #2, under the one after #3, and so on across the
 whole wall.
 
-<svg viewBox="10 10 596 753.549" width="100%">
-  <g transform="matrix(1, 0, 0, 1, -126.95901489257812, -218.61500549316406)" id="object-0">
-    <rect x="136.959" y="292.1" width="594.957" height="689" fill="var(--recap, #1e1e2e)" stroke="var(--recap-border, #3a3a5a)" stroke-width="2" style="stroke-width: 2px;"/>
-    <rect x="136.959" y="228.615" width="594.957" height="72" rx="6" fill="var(--recap, #1e1e2e)" stroke="var(--recap-border, #3a3a5a)" stroke-width="2" style="stroke-width: 2px;"/>
-    <text x="434.437" y="268.805" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--recap-label, #8888cc)" style="white-space: pre; stroke-width: 1px;">The Wall of Drawers</text>
-    <g>
-      <g transform="matrix(1, 0, 0, 1, -71.922981, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, -6.922993, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 58.077007, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 123.077019, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 188.077011, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 453.077026, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <text x="171.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#1</text>
-      <text x="236.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#2</text>
-      <text x="301.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#3</text>
-      <text x="366.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#4</text>
-      <text x="431.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#5</text>
-      <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="466.959" y1="336.115" x2="660.959" y2="336.115"/>
-      <text x="696.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#n</text>
-    </g>
-    <g transform="matrix(1, 0, 0, 1, 0, 88)">
-      <g transform="matrix(1, 0, 0, 1, -71.922981, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, -6.922993, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 58.077007, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 123.077019, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 188.077011, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 453.077026, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <text x="171.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#n+1</text>
-      <text x="236.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#n+2</text>
-      <text x="301.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#n+3</text>
-      <text x="366.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#n+4</text>
-      <text x="431.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#n+5</text>
-      <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="466.959" y1="336.115" x2="660.959" y2="336.115"/>
-      <text x="696.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#2n</text>
-    </g>
-    <g transform="matrix(1, 0, 0, 1, 0, 176)">
-      <g transform="matrix(1, 0, 0, 1, -71.922981, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, -6.922993, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 58.077007, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 123.077019, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 188.077011, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 453.077026, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <text x="171.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#2n+1</text>
-      <text x="236.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#2n+2</text>
-      <text x="301.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#2n+3</text>
-      <text x="366.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#2n+4</text>
-      <text x="431.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#2n+5</text>
-      <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="466.959" y1="336.115" x2="660.959" y2="336.115"/>
-      <text x="696.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#3n</text>
-    </g>
-    <g transform="matrix(1, 0, 0, 1, 0, 417)">
-      <g transform="matrix(1, 0, 0, 1, -71.922981, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, -6.922993, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 58.077007, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 123.077019, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 188.077011, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 453.077026, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <text x="171.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#x+1</text>
-      <text x="236.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#x+2</text>
-      <text x="301.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#x+3</text>
-      <text x="366.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#x+4</text>
-      <text x="431.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#x+5</text>
-      <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="466.959" y1="336.115" x2="660.959" y2="336.115"/>
-      <text x="696.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#x+n</text>
-    </g>
-    <g transform="matrix(1, 0, 0, 1, 0, 505)">
-      <g transform="matrix(1, 0, 0, 1, -71.922981, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, -6.922993, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 58.077007, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 123.077019, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 188.077011, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 453.077026, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <text x="171.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#y+1</text>
-      <text x="236.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#y+2</text>
-      <text x="301.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#y+3</text>
-      <text x="366.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#y+4</text>
-      <text x="431.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#y+5</text>
-      <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="466.959" y1="336.115" x2="660.959" y2="336.115"/>
-      <text x="696.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#y+n</text>
-    </g>
-    <g transform="matrix(1, 0, 0, 1, 0, 593)">
-      <g transform="matrix(1, 0, 0, 1, -71.922981, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, -6.922993, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 58.077007, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 123.077019, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 188.077011, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 453.077026, -210.89299)">
-        <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      </g>
-      <text x="171.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#z+1</text>
-      <text x="236.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#z+2</text>
-      <text x="301.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#z+3</text>
-      <text x="366.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#z+4</text>
-      <text x="431.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#z+5</text>
-      <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="466.959" y1="336.115" x2="660.959" y2="336.115"/>
-      <text x="696.959" y="380.387" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--text, #cdd4e0)" style="white-space: pre; stroke-width: 1px;">#z+n</text>
-    </g>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 163.091 331.139 H 180.827 A 4 4 0 0 1 184.827 335.139 V 340.091 A 0 0 0 0 1 184.827 340.091 H 159.091 A 0 0 0 0 1 159.091 340.091 V 335.139 A 4 4 0 0 1 163.091 331.139 Z" bx:shape="rect 159.091 331.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@941c1056"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 228.091 331.139 H 245.827 A 4 4 0 0 1 249.827 335.139 V 340.091 A 0 0 0 0 1 249.827 340.091 H 224.091 A 0 0 0 0 1 224.091 340.091 V 335.139 A 4 4 0 0 1 228.091 331.139 Z" bx:shape="rect 224.091 331.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@640e09b3"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 293.091 331.139 H 310.827 A 4 4 0 0 1 314.827 335.139 V 340.091 A 0 0 0 0 1 314.827 340.091 H 289.091 A 0 0 0 0 1 289.091 340.091 V 335.139 A 4 4 0 0 1 293.091 331.139 Z" bx:shape="rect 289.091 331.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@087e6711"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 358.091 331.139 H 375.827 A 4 4 0 0 1 379.827 335.139 V 340.091 A 0 0 0 0 1 379.827 340.091 H 354.091 A 0 0 0 0 1 354.091 340.091 V 335.139 A 4 4 0 0 1 358.091 331.139 Z" bx:shape="rect 354.091 331.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@73df6263"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 423.091 331.139 H 440.827 A 4 4 0 0 1 444.827 335.139 V 340.091 A 0 0 0 0 1 444.827 340.091 H 419.091 A 0 0 0 0 1 419.091 340.091 V 335.139 A 4 4 0 0 1 423.091 331.139 Z" bx:shape="rect 419.091 331.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@df066090"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 688.091 331.139 H 705.827 A 4 4 0 0 1 709.827 335.139 V 340.091 A 0 0 0 0 1 709.827 340.091 H 684.091 A 0 0 0 0 1 684.091 340.091 V 335.139 A 4 4 0 0 1 688.091 331.139 Z" bx:shape="rect 684.091 331.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@e6043e56"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 163.091 507.139 H 180.827 A 4 4 0 0 1 184.827 511.139 V 516.091 A 0 0 0 0 1 184.827 516.091 H 159.091 A 0 0 0 0 1 159.091 516.091 V 511.139 A 4 4 0 0 1 163.091 507.139 Z" bx:shape="rect 159.091 507.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@2e1aa4ae"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 228.091 507.139 H 245.827 A 4 4 0 0 1 249.827 511.139 V 516.091 A 0 0 0 0 1 249.827 516.091 H 224.091 A 0 0 0 0 1 224.091 516.091 V 511.139 A 4 4 0 0 1 228.091 507.139 Z" bx:shape="rect 224.091 507.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@9f4ad543"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 293.091 507.139 H 310.827 A 4 4 0 0 1 314.827 511.139 V 516.091 A 0 0 0 0 1 314.827 516.091 H 289.091 A 0 0 0 0 1 289.091 516.091 V 511.139 A 4 4 0 0 1 293.091 507.139 Z" bx:shape="rect 289.091 507.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@53b68e41"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 358.091 507.139 H 375.827 A 4 4 0 0 1 379.827 511.139 V 516.091 A 0 0 0 0 1 379.827 516.091 H 354.091 A 0 0 0 0 1 354.091 516.091 V 511.139 A 4 4 0 0 1 358.091 507.139 Z" bx:shape="rect 354.091 507.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@eac59d93"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 423.091 507.139 H 440.827 A 4 4 0 0 1 444.827 511.139 V 516.091 A 0 0 0 0 1 444.827 516.091 H 419.091 A 0 0 0 0 1 419.091 516.091 V 511.139 A 4 4 0 0 1 423.091 507.139 Z" bx:shape="rect 419.091 507.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@c05f2380"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 688.091 507.139 H 705.827 A 4 4 0 0 1 709.827 511.139 V 516.091 A 0 0 0 0 1 709.827 516.091 H 684.091 A 0 0 0 0 1 684.091 516.091 V 511.139 A 4 4 0 0 1 688.091 507.139 Z" bx:shape="rect 684.091 507.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@591cf3aa"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 163.091 419.139 H 180.827 A 4 4 0 0 1 184.827 423.139 V 428.091 A 0 0 0 0 1 184.827 428.091 H 159.091 A 0 0 0 0 1 159.091 428.091 V 423.139 A 4 4 0 0 1 163.091 419.139 Z" bx:shape="rect 159.091 419.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@c940290c"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 228.091 419.139 H 245.827 A 4 4 0 0 1 249.827 423.139 V 428.091 A 0 0 0 0 1 249.827 428.091 H 224.091 A 0 0 0 0 1 224.091 428.091 V 423.139 A 4 4 0 0 1 228.091 419.139 Z" bx:shape="rect 224.091 419.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@15678f41"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 293.091 419.139 H 310.827 A 4 4 0 0 1 314.827 423.139 V 428.091 A 0 0 0 0 1 314.827 428.091 H 289.091 A 0 0 0 0 1 289.091 428.091 V 423.139 A 4 4 0 0 1 293.091 419.139 Z" bx:shape="rect 289.091 419.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@29ddf1db"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 358.091 419.139 H 375.827 A 4 4 0 0 1 379.827 423.139 V 428.091 A 0 0 0 0 1 379.827 428.091 H 354.091 A 0 0 0 0 1 354.091 428.091 V 423.139 A 4 4 0 0 1 358.091 419.139 Z" bx:shape="rect 354.091 419.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@917018e1"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 423.091 419.139 H 440.827 A 4 4 0 0 1 444.827 423.139 V 428.091 A 0 0 0 0 1 444.827 428.091 H 419.091 A 0 0 0 0 1 419.091 428.091 V 423.139 A 4 4 0 0 1 423.091 419.139 Z" bx:shape="rect 419.091 419.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@75e98b7a"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 688.091 419.139 H 705.827 A 4 4 0 0 1 709.827 423.139 V 428.091 A 0 0 0 0 1 709.827 428.091 H 684.091 A 0 0 0 0 1 684.091 428.091 V 423.139 A 4 4 0 0 1 688.091 419.139 Z" bx:shape="rect 684.091 419.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@fa6a790c"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 163.091 749.139 H 180.827 A 4 4 0 0 1 184.827 753.139 V 758.091 A 0 0 0 0 1 184.827 758.091 H 159.091 A 0 0 0 0 1 159.091 758.091 V 753.139 A 4 4 0 0 1 163.091 749.139 Z" bx:shape="rect 159.091 749.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@922f5b32"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 228.091 749.139 H 245.827 A 4 4 0 0 1 249.827 753.139 V 758.091 A 0 0 0 0 1 249.827 758.091 H 224.091 A 0 0 0 0 1 224.091 758.091 V 753.139 A 4 4 0 0 1 228.091 749.139 Z" bx:shape="rect 224.091 749.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@4394feb7"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 293.091 749.139 H 310.827 A 4 4 0 0 1 314.827 753.139 V 758.091 A 0 0 0 0 1 314.827 758.091 H 289.091 A 0 0 0 0 1 289.091 758.091 V 753.139 A 4 4 0 0 1 293.091 749.139 Z" bx:shape="rect 289.091 749.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@fe5932ed"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 358.091 749.139 H 375.827 A 4 4 0 0 1 379.827 753.139 V 758.091 A 0 0 0 0 1 379.827 758.091 H 354.091 A 0 0 0 0 1 354.091 758.091 V 753.139 A 4 4 0 0 1 358.091 749.139 Z" bx:shape="rect 354.091 749.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@e2fa97a7"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 423.091 749.139 H 440.827 A 4 4 0 0 1 444.827 753.139 V 758.091 A 0 0 0 0 1 444.827 758.091 H 419.091 A 0 0 0 0 1 419.091 758.091 V 753.139 A 4 4 0 0 1 423.091 749.139 Z" bx:shape="rect 419.091 749.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@92d076ec"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 688.091 749.139 H 705.827 A 4 4 0 0 1 709.827 753.139 V 758.091 A 0 0 0 0 1 709.827 758.091 H 684.091 A 0 0 0 0 1 684.091 758.091 V 753.139 A 4 4 0 0 1 688.091 749.139 Z" bx:shape="rect 684.091 749.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@77bc321e"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 163.091 925.139 H 180.827 A 4 4 0 0 1 184.827 929.139 V 934.091 A 0 0 0 0 1 184.827 934.091 H 159.091 A 0 0 0 0 1 159.091 934.091 V 929.139 A 4 4 0 0 1 163.091 925.139 Z" bx:shape="rect 159.091 925.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@ca5a8716"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 228.091 925.139 H 245.827 A 4 4 0 0 1 249.827 929.139 V 934.091 A 0 0 0 0 1 249.827 934.091 H 224.091 A 0 0 0 0 1 224.091 934.091 V 929.139 A 4 4 0 0 1 228.091 925.139 Z" bx:shape="rect 224.091 925.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@26fd2c9b"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 293.091 925.139 H 310.827 A 4 4 0 0 1 314.827 929.139 V 934.091 A 0 0 0 0 1 314.827 934.091 H 289.091 A 0 0 0 0 1 289.091 934.091 V 929.139 A 4 4 0 0 1 293.091 925.139 Z" bx:shape="rect 289.091 925.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@c1fd2c55"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 358.091 925.139 H 375.827 A 4 4 0 0 1 379.827 929.139 V 934.091 A 0 0 0 0 1 379.827 934.091 H 354.091 A 0 0 0 0 1 354.091 934.091 V 929.139 A 4 4 0 0 1 358.091 925.139 Z" bx:shape="rect 354.091 925.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@f10ce6c3"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 423.091 925.139 H 440.827 A 4 4 0 0 1 444.827 929.139 V 934.091 A 0 0 0 0 1 444.827 934.091 H 419.091 A 0 0 0 0 1 419.091 934.091 V 929.139 A 4 4 0 0 1 423.091 925.139 Z" bx:shape="rect 419.091 925.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@f5d1f2fc"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 688.091 925.139 H 705.827 A 4 4 0 0 1 709.827 929.139 V 934.091 A 0 0 0 0 1 709.827 934.091 H 684.091 A 0 0 0 0 1 684.091 934.091 V 929.139 A 4 4 0 0 1 688.091 925.139 Z" bx:shape="rect 684.091 925.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@aa951d02"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 163.091 837.139 H 180.827 A 4 4 0 0 1 184.827 841.139 V 846.091 A 0 0 0 0 1 184.827 846.091 H 159.091 A 0 0 0 0 1 159.091 846.091 V 841.139 A 4 4 0 0 1 163.091 837.139 Z" bx:shape="rect 159.091 837.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@09fca8d4"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 228.091 837.139 H 245.827 A 4 4 0 0 1 249.827 841.139 V 846.091 A 0 0 0 0 1 249.827 846.091 H 224.091 A 0 0 0 0 1 224.091 846.091 V 841.139 A 4 4 0 0 1 228.091 837.139 Z" bx:shape="rect 224.091 837.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@ef0d0ad5"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 293.091 837.139 H 310.827 A 4 4 0 0 1 314.827 841.139 V 846.091 A 0 0 0 0 1 314.827 846.091 H 289.091 A 0 0 0 0 1 289.091 846.091 V 841.139 A 4 4 0 0 1 293.091 837.139 Z" bx:shape="rect 289.091 837.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@50a5e0cf"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 358.091 837.139 H 375.827 A 4 4 0 0 1 379.827 841.139 V 846.091 A 0 0 0 0 1 379.827 846.091 H 354.091 A 0 0 0 0 1 354.091 846.091 V 841.139 A 4 4 0 0 1 358.091 837.139 Z" bx:shape="rect 354.091 837.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@735c491d"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 423.091 837.139 H 440.827 A 4 4 0 0 1 444.827 841.139 V 846.091 A 0 0 0 0 1 444.827 846.091 H 419.091 A 0 0 0 0 1 419.091 846.091 V 841.139 A 4 4 0 0 1 423.091 837.139 Z" bx:shape="rect 419.091 837.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@f50ab7ea"/>
-    <path style="fill: var(--aside-border, #2e4e7a);" d="M 688.091 837.139 H 705.827 A 4 4 0 0 1 709.827 841.139 V 846.091 A 0 0 0 0 1 709.827 846.091 H 684.091 A 0 0 0 0 1 684.091 846.091 V 841.139 A 4 4 0 0 1 688.091 837.139 Z" bx:shape="rect 684.091 837.139 25.736 8.952 0 4 4 0 4 4 0 0 0 0 0 0 2@07a28c5c"/>
-  </g>
-  <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="570" y1="347" x2="570" y2="497"/>
-  <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="45" y1="347" x2="45" y2="497" transform="matrix(1.00000006, 0, 0, 1, -0.00000388, 0)"/>
-  <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="110" y1="347" x2="110" y2="497"/>
-  <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="175" y1="347" x2="175" y2="497"/>
-  <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="240" y1="347" x2="240" y2="497"/>
-  <line style="fill: none; stroke-dasharray: 8px; stroke: var(--aside-border, #2e4e7a);" x1="305" y1="347" x2="305" y2="497"/>
-</svg>
-
 ### Memory pages
 
 Inside each drawer, there are little boxes. Typically:
@@ -256,11 +44,147 @@ Inside each drawer, there are little boxes. Typically:
   separator.
 - This subdivision continues with lower and lower separators four more times.
 
+
+<svg
+   width="100%"
+   viewBox="0 0 210 210"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg">
+  <path
+      d="M -0.225,0 H 209.55 V 209.775 H -0.225 Z M 209.55,26.193749 h -210 m 210,26.19375 h -210 m 210,26.193749 h -210 m 210,26.193752 h -210 m 210,26.19375 h -210 m 210,26.19375 h -210 m 210,26.19375 h -210 M 183.35625,0 V 210 M 157.1625,0 V 210 M 130.96875,0 V 210 M 104.775,0 V 210 M 78.58125,0 V 210 M 52.3875,0 V 210 M 26.19375,0 v 210"
+      style="fill:none;stroke:var(--text,#000000);stroke-width:3;stroke-dasharray:none"
+      id="path1"
+      sodipodi:nodetypes="ccccccccccccccccccccccccccccccccc" />
+  <path
+      d="m 209.55,13.096875 h -210 m 210,26.193749 h -210 m 210,26.193749 h -210 m 210,26.19375 h -210 m 210,26.193747 h -210 m 210,26.19375 h -210 m 210,26.19375 h -210 m 210,26.19375 h -210"
+      style="fill:none;stroke:var(--text,#000000);stroke-width:1.5;stroke-dasharray:none"
+      id="path2"
+      sodipodi:nodetypes="cccccccccccccccc" />
+  <path
+      d="m 209.55,0 h -210 M 196.45312,0 V 210 M 170.25938,0 V 210 M 144.06563,0 V 210 M 117.87188,0 V 210 M 91.67813,0 V 210 M 65.48438,0 V 210 M 39.29063,0 V 210 M 13.09688,0 v 210"
+      style="fill:none;stroke:var(--text,#000000);stroke-width:0.75;stroke-dasharray:none"
+      id="path3" />
+  <path
+      d="M 0,0 0,210 M 0,6.5616665 l 210,0 M 0,19.658541 l 210,0 M 0,32.755416 l 210,0 M 0,45.852291 l 210,0 M 0,58.949165 l 210,0 M 0,72.04604 l 210,0 M 0,85.142915 l 210,0 M 0,98.239789 l 210,0 M 0,111.33666 l 210,0 m -210,13.09688 210,0 m -210,13.09687 210,0 m -210,13.09688 210,0 m -210,13.09687 210,0 m -210,13.09688 210,0 m -210,13.09687 210,0 m -210,13.09688 210,0"
+      style="fill:none;stroke:var(--text,#000000);stroke-width:0.375;stroke-dasharray:none"
+      id="path4" />
+  <path
+      d="M 6.5616665,0 V 210 M 19.658541,0 V 210 M 32.755416,0 V 210 M 45.852291,0 V 210 M 58.949165,0 V 210 M 72.04604,0 V 210 M 85.142915,0 V 210 M 98.239789,0 V 210 M 111.33666,0 V 210 M 124.43354,0 V 210 M 137.53041,0 V 210 M 150.62729,0 V 210 M 163.72416,0 V 210 M 176.82104,0 V 210 M 189.91791,0 V 210 M 203.01479,0 v 210"
+      style="fill:none;stroke:var(--text,#000000);stroke-width:0.188;stroke-dasharray:none"
+      id="path5"
+      sodipodi:nodetypes="cccccccccccccccccccccccccccccccc" />
+  <path
+      d="M 0,0 0,210 M 0,3.2742187 l 210,0 M 0,9.822656 l 210,0 m -210,6.548437 210,0 m -210,6.548438 210,0 m -210,6.548437 210,0 m -210,6.548437 210,0 m -210,6.548438 210,0 M 0,49.11328 l 210,0 m -210,6.548437 210,0 m -210,6.548438 210,0 m -210,6.548437 210,0 M 0,75.30703 l 210,0 m -210,6.548437 210,0 m -210,6.548437 210,0 m -210,6.548438 210,0 m -210,6.548438 210,0 m -210,6.54844 210,0 m -210,6.54843 210,0 m -210,6.54844 210,0 m -210,6.54844 210,0 m -210,6.54844 210,0 m -210,6.54843 210,0 m -210,6.54844 210,0 m -210,6.54844 210,0 m -210,6.54844 210,0 m -210,6.54843 210,0 m -210,6.54844 210,0 m -210,6.54844 210,0 m -210,6.54843 210,0 m -210,6.54844 210,0 m -210,6.54844 210,0 m -210,6.54844 210,0"
+      style="fill:none;stroke:var(--text,#000000);stroke-width:0.094;stroke-dasharray:none"
+      id="path6" />
+  <path
+      d="M 3.2338333,0 V 210 M 9.7954998,0 V 210 M 16.357166,0 V 210 M 22.918833,0 V 210 M 29.480499,0 V 210 M 36.042166,0 V 210 M 42.603832,0 V 210 M 49.165499,0 V 210 M 55.727165,0 V 210 M 62.288832,0 V 210 M 68.850498,0 V 210 M 75.412165,0 V 210 M 81.973831,0 V 210 M 88.535498,0 V 210 M 95.097164,0 V 210 M 101.65883,0 V 210 M 108.2205,0 V 210 M 114.78216,0 V 210 M 121.34383,0 V 210 M 127.9055,0 V 210 M 134.46716,0 V 210 M 141.02883,0 V 210 M 147.5905,0 V 210 M 154.15216,0 V 210 M 160.71383,0 V 210 M 167.2755,0 V 210 M 173.83716,0 V 210 M 180.39883,0 V 210 M 186.9605,0 V 210 M 193.52216,0 V 210 M 200.08383,0 V 210 M 206.6455,0 v 210"
+      style="fill:none;stroke:var(--text,#000000);stroke-width:0.047;stroke-dasharray:none"
+      id="path7"
+      sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
+  <path
+      style="fill:#ff0000;fill-opacity:0.8;stroke:none;stroke-width:0.0470001;stroke-dasharray:none"
+      d="M 0,0 H 26.193749 V 26.19375 H 0 Z"
+      id="path8" />
+  <path
+      style="fill:#ff7800;fill-opacity:0.8;stroke:none;stroke-width:0.0470001;stroke-dasharray:none"
+      d="M 26.193749,0 H 52.3875 V 13.096876 H 26.193749 Z"
+      id="path9" />
+  <path
+      style="fill:#ffed00;fill-opacity:0.8;stroke:none;stroke-width:0.0470001;stroke-dasharray:none"
+      d="m 52.400725,0.0132285 h 13.09688 V 13.110105 h -13.09688 z"
+      id="path10" />
+  <path
+      style="fill:#00ff00;fill-opacity:0.8;stroke:none;stroke-width:0.0470001;stroke-dasharray:none"
+      d="m 78.58125,-0.0066148 h 13.09688 v 6.561667 H 78.58125 Z"
+      id="path11" />
+  <path
+      style="fill:#00ffee;fill-opacity:0.8;stroke:none;stroke-width:0.0470001;stroke-dasharray:none"
+      d="m 104.775,-0.0066148 h 6.56166 v 6.561667 H 104.775 Z"
+      id="path12" />
+  <path
+      style="fill:#0070ff;fill-opacity:0.8;stroke:none;stroke-width:0.0470001;stroke-dasharray:none"
+      d="m 130.96875,0 h 6.56167 v 3.274219 h -6.56167 z"
+      id="path13" />
+  <path
+      style="fill:#cc00ff;fill-opacity:0.8;stroke:none;stroke-width:0.0470001;stroke-dasharray:none"
+      d="m 157.16251,0 h 3.4455 v 3.274219 h -3.4455 z"
+      id="path14" />
+</svg>
+
 This separating system allows to store many small ingredients in the shallow
 tight grid at the bottom of a box, or only one very large ingredients at the top
 of the box, or an intermediate number of medium ingredients at the intermediate
 levels, or even a mix medium and small ingredients. The important part is that
 each ingredient (*data*) can be stored isolated from other ingredients.
+
+````aside: Alignment, Padding
+In the [previous chapter](04-aggregates.html#the-size-of-a-struct), we mentioned
+briefly that the size of a `struct` can be deceiving, that it is not always the
+sum of the size of its members, and that there can be gaps.
+
+With this model, we can now explain why this happens:
+
+- Each of the smallest square in the illustration above represents a single
+  Byte.
+- There are 4096 single Bytes in this illustration, as it is the most common
+  size for a *memory page* in current architectures.
+- These Bytes are grouped in a specific way as per the grid structure:
+  - At the lowest level it is a grid of 4096 single Bytes (purple).
+  - At the level above, it is a grid of 2048 groups of 2 Bytes each (navy blue).
+  - Then a grid of 1024 groups of 4 Bytes each (light blue).
+  - A grid of 512 groups of 8 Bytes each (green).
+  - A grid of 256 groups of 16 Bytes each (yellow).
+  - etc.
+
+Note that each Byte belongs to a single group of 2, 4, 8, 16... Bytes.
+
+This is what we call the *alignment*. Although different architectures have
+different mechanism, it is usually more efficient to read data from the memory
+when it is *aligned*. For instance, to read a 32-bits `int` from a single 4-Byte
+group, or a 64-bits floating-point value from a single 8-Byte group.
+
+In the past, old architectures used to crash when this alignment was not
+respected. Nowadays, modern architectures handle it without crashing, but
+typically take more time. If a piece of data happens to straddle an alignment
+boundary, and ends up having some of its Bytes in one group, and the rest in
+another group, some architectures would load the data it two operations, reading
+from one group at a time.
+
+Now let's consider what that means for the `struct` we define.
+
+Suppose we define a `struct` that starts with a 1-Byte-long member,
+and then has a 4-Bytes-long member. For instance:
+
+```cpp
+struct AlignmentExample
+{
+  bool b;
+  std::uint32_t i32;
+};
+```
+
+If this was laid out naively in memory, the 4-Bytes-long member `i32` would be
+misaligned:
+- The 1-Byte-long member `b` would use the first Byte, which is also the first
+  Byte of the first 4-Byte group.
+- The first 4-Byte group would be left with only 3 Bytes left available.
+- The 4-Bytes-long member `i32` would overflow into the next 4-Byte group.
+
+But our compiler is clever and knows about this. It will handle it for us.
+Instead of placing `i32` right after `b`, it will leave a gap of 3 empty Bytes.
+
+Now, `b` uses one Byte of the first 4-Byte group. The rest of this group is
+"padded" with 3 empty Bytes. And `i32` uses the full second 4-Byte group.
+
+Our `struct` is properly aligned. But its size is 8 Bytes, not 5.
+
+Note that the illustration above is misleading in the sense that the logical
+representation of the memory should be a long long mono-dimensional ribbon, and
+not a 2d grid. The grouping is not by square or rectangles, but by chunks of
+consecutive Bytes in that ribbon.
+
+````
 
 ### Process Memory Layout
 
@@ -315,31 +239,6 @@ the ingredients the apprentice will use the most.
 - Finally, the L3 cabinet has plenty of containers, and is still faster to
   access than crossing the whole room to reach the wall of drawers, but it is
   shared with other apprentices.
-
-<svg viewBox="0 0 615 727" width="100%">
-  <g transform="matrix(1, 0, 0, 1, 227.153656, 0)">
-    <g transform="matrix(1, 0, 0, 1, 5.719337, 222.044006)">
-      <rect x="4.627" y="422.956" width="140" height="72" rx="6" fill="var(--illus, #1a3a2a)" stroke="var(--illus-border, #2e6e4e)" stroke-width="2" style="stroke-width: 2px;"/>
-      <text x="74.627" y="463.22" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--illus-label, #5dba8a)" style="white-space: pre; stroke-width: 1px;">Desk</text>
-    </g>
-    <g transform="matrix(1, 0, 0, 1, -93.646667, 93.492325)">
-      <rect x="213.882" y="516.508" width="30" height="30" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      <text x="228.882" y="535.732" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--aside-label, #5a9ade)" style="white-space: pre; stroke-width: 1px;">L1</text>
-    </g>
-    <g transform="matrix(1, 0, 0, 1, -163.514084, -21.507994)">
-      <rect x="213.882" y="516.508" width="60" height="60" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-      <text x="243.882" y="550.717" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--aside-label, #5a9ade)" style="white-space: pre; stroke-width: 1px;" transform="matrix(1, 0, 0, 1, 0.000008, -5.552795)">L2<tspan x="243.8820037841797" dy="1em">​</tspan>Cache</text>
-    </g>
-  </g>
-  <g transform="matrix(1, 0, 0, 1, -126.959015, -218.615005)" id="object-0">
-    <rect x="136.959" y="228.615" width="594.957" height="72" rx="6" fill="var(--recap, #1e1e2e)" stroke="var(--recap-border, #3a3a5a)" stroke-width="2" style="stroke-width: 2px;"/>
-    <text x="434.437" y="268.853" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--recap-label, #8888cc)" style="white-space: pre; stroke-width: 1px;" transform="matrix(1, 0, 0, 1, 0, -5.581062)">The Wall of Drawers<tspan x="434.43701171875" dy="1em">​</tspan>(virtual memory)</text>
-  </g>
-  <g transform="matrix(1, 0, 0, 1, 33.596439, -241.507996)">
-    <rect x="213.882" y="516.508" width="120" height="120" rx="6" fill="var(--aside, #1a2a3a)" stroke="var(--aside-border, #2e4e7a)" stroke-width="2" style="stroke-width: 2px;"/>
-    <text x="243.882" y="550.717" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--aside-label, #5a9ade)" style="white-space: pre; stroke-width: 1px;" transform="matrix(1, 0, 0, 1, 30.000015, 24.629314)">L3<tspan x="243.8820037841797" dy="1em">​</tspan>Cabinet</text>
-  </g>
-</svg>
 
 ## A typical day in an apprentice alchemist life
 

@@ -257,6 +257,7 @@ struct MyStruct
 ````
 
 ```pitfall> The size of a struct
+<a id="the-size-of-a-struct"></a>
 While the size of an array is the size of the element the array stores
 multiplied by the number of elements in the array (e.g.
 `std::array<std::uint16_t, 8>` stores 8 elements made of 2 Bytes each, so has a

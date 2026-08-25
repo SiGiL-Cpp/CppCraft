@@ -60,6 +60,14 @@ body {
   padding: 0rem 1rem 6rem;
 }
 
+:target:before {
+  content:"";
+  display:block;
+  height:120px; /* fixed header height*/
+  margin:-120px 0 0; /* negative fixed header height */
+}
+
+
 /* ─── Lesson Container ─────────────────────────────────────────────────────── */
 
 .lesson {
