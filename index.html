@@ -127,7 +127,7 @@ a:hover { text-decoration: underline; }
   color: var(--muted);
 }
 
-.sb-links { padding: 0 1.25rem; }
+.sb-links { padding: 0 1.25rem; margin-bottom: 2rem; }
 .sb-links a {
   display: block;
   font-size: 0.82rem; color: var(--muted);
@@ -345,9 +345,6 @@ code {
 <div class="body-wrap">
 
   <nav class="sidebar" id="sidebar">
-    <div class="sb-label">Lessons</div>
-    <ul class="lesson-list" id="lesson-list"></ul>
-
     <div class="sb-label">On this page</div>
     <div class="sb-links">
       <a href="#course">The course</a>
@@ -355,6 +352,9 @@ code {
       <a href="#boxes">Box guide</a>
       <a href="#support">Support</a>
     </div>
+
+    <div class="sb-label">Lessons</div>
+    <ul class="lesson-list" id="lesson-list"></ul>
   </nav>
 
   <main class="main">
@@ -499,6 +499,9 @@ code {
 
     <div style="padding: 2rem 0 1rem; border-top: 1px solid var(--border); margin-top: 2rem; text-align: center;">
       <a href="01-data.html" class="cta-start">Let's get started →</a>
+    </div>
+    <div style="text-align: center;margin-top: 4rem;">
+      <img width="50" src="favicon.svg" alt="SiGiL" style="width: 3em;"/>
     </div>
 
   </main>
