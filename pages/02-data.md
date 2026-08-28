@@ -6,7 +6,7 @@ next: "03-types"
 
 # 02 - Data (2/2)
 
-In the [previous lesson](01-data.html) we have seen that a signle Byte can have
+In the [previous lesson](01-data.html) we have seen that a single Byte can have
 many different representations, but there is only so much we can do with 256 values.
 
 ## A Handful of Bytes

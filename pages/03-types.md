@@ -6,7 +6,7 @@ next: "04-aggregates"
 
 # 03 - Types
 
-In [this previous chapter](./01-data.html), we have seen that the same value
+In [this previous chapter](01-data.html), we have seen that the same value
 can be interpreted in many different ways. The processor has no idea about this
 and will operate on the values as it is told to, without consideration for what
 these values represent (we will look into this in more details in the next

@@ -388,7 +388,7 @@ the wall.
 ### The stack
 
 The apprentice has very limited space on the desk, so whenever we end up with
-somethng we want to keep around, we need to take it back to a drawer.
+something we want to keep around, we need to take it back to a drawer.
 
 You remember that most of the drawers are locked and the apprentice would have
 to ask the butler for a key to use them. That's rather annoying. So instead, we
@@ -508,7 +508,7 @@ box of every drawer, through the whole wall.
 Maybe we get lucky and they stumble upon a random `0` laying about.
 
 Maybe we're not that lucky and they go on. Maybe we're really unlucky, and the
-apprentice, in their dull obediance, reaches for a drawer beyond ours.
+apprentice, in their dull obedience, reaches for a drawer beyond ours.
 
 As long as they were browsing our own stuff, it was of course spouting
 non-sense, but it was not so bad. As soon as we reach out of our allowed drawer
@@ -535,9 +535,6 @@ Let me address a number of limits:
 - There is more complexity to the L-Caches.
 - The metaphor doesn't explain that the wall of drawers is the virtual memory
   space, and there is a physical memory space mapped by the OS.
-- The memory is presented as a two-dimensional array. The logical representation
-  of memory should rather be a very long one-dimensional ribbon, although its
-  physical layout is indeed two-dimensional.
 - The limits of the stack and why it can't deal with data for which the size is
   unknown at compile-time is at best glossed-over.
 - The segmentation fault example with the unterminated string is highly

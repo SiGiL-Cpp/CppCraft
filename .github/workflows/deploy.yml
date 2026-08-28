@@ -41,6 +41,7 @@ jobs:
           cp runtime.js _site/
           cp lessons.json _site/
           cp .nojekyll _site/
+          [ -f favicon.svg ] && cp favicon.svg _site/ || true
           cp *.html _site/
           cp -r gadgets _site/gadgets
           [ -d imgs ] && cp -r imgs _site/imgs || true
