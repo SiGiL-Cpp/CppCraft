@@ -16,10 +16,10 @@ several tricky aspects of C++ that would otherwise look like arbitrary rules.
 
 ## CPU
 
-As a master alchemist (a programmer), you rarely enter the lab yourself.
+As a master alchemist (a *programmer*), you rarely enter the lab yourself.
 Instead, you send your apprentice. The poor soul is very obedient and follows
 all your instructions by the letter, but is somewhat lacking in judgement. You
-give them some scrolls with all the instructions (the compiled code), and they
+give them some scrolls with all the instructions (the *compiled code*), and they
 scrupulously go through them. If the instruction tells to set fire to a black
 powder keg, they'll do it without a second thought.
 
@@ -36,7 +36,8 @@ whole wall.
 
 ### Memory pages
 
-Inside each drawer, there are little boxes. Typically:
+Inside each drawer, there are little boxes. Different laboratories (*computer
+architectures*) have different box structures, but typically:
 - A drawer contains 64 (8&times;8) boxes with high sides.
 - Each of these box is divided in two by a separator that goes only a third of
   the way up the box.
@@ -46,6 +47,7 @@ Inside each drawer, there are little boxes. Typically:
 
 
 <svg
+   id="mem-page"
    width="100%"
    viewBox="0 0 210 210"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -115,8 +117,8 @@ Inside each drawer, there are little boxes. Typically:
 This separating system allows to store many small ingredients in the shallow
 tight grid at the bottom of a box, or only one very large ingredients at the top
 of the box, or an intermediate number of medium ingredients at the intermediate
-levels, or even a mix medium and small ingredients. The important part is that
-each ingredient (*data*) can be stored isolated from other ingredients.
+levels, or even a mix medium and small ingredients (*data*). The important part
+is that each ingredient (*data*) can be stored isolated from other ingredients.
 
 ````aside: Alignment, Padding
 In the [previous chapter](04-aggregates.html#the-size-of-a-struct), we mentioned
@@ -125,10 +127,10 @@ sum of the size of its members, and that there can be gaps.
 
 With this model, we can now explain why this happens:
 
-- Each of the smallest square in the illustration above represents a single
-  Byte.
+- Each of the smallest square in [the illustration above](#mem-page) represents
+  a single Byte.
 - There are 4096 single Bytes in this illustration, as it is the most common
-  size for a *memory page* in current architectures.
+  size for a *memory page* in current architectures (you may have to zoom in).
 - These Bytes are grouped in a specific way as per the grid structure:
   - At the lowest level it is a grid of 4096 single Bytes (purple).
   - At the level above, it is a grid of 2048 groups of 2 Bytes each (navy blue).
@@ -168,21 +170,48 @@ If this was laid out naively in memory, the 4-Bytes-long member `i32` would be
 misaligned:
 - The 1-Byte-long member `b` would use the first Byte, which is also the first
   Byte of the first 4-Byte group.
-- The first 4-Byte group would be left with only 3 Bytes left available.
+- As a result, the first 4-Byte group would be left with only 3 Bytes left
+  available.
 - The 4-Bytes-long member `i32` would overflow into the next 4-Byte group.
+
+<table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
+  <tr>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">&nbsp;b&nbsp;</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>...</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>...</code></td>
+    <td style="padding: 8px; text-align: center;"><code>...</code></td>
+  </tr>
+</table>
+
 
 But our compiler is clever and knows about this. It will handle it for us.
 Instead of placing `i32` right after `b`, it will leave a gap of 3 empty Bytes.
+
+<table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
+  <tr>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">&nbsp;b&nbsp;</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>&nbsp;-&nbsp;</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>&nbsp;-&nbsp;</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>&nbsp;-&nbsp;</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+  </tr>
+</table>
 
 Now, `b` uses one Byte of the first 4-Byte group. The rest of this group is
 "padded" with 3 empty Bytes. And `i32` uses the full second 4-Byte group.
 
 Our `struct` is properly aligned. But its size is 8 Bytes, not 5.
 
-Note that the illustration above is misleading in the sense that the logical
-representation of the memory should be a long long mono-dimensional ribbon, and
-not a 2d grid. The grouping is not by square or rectangles, but by chunks of
-consecutive Bytes in that ribbon.
+Note that it is more accurate to think of the memory as a long long
+mono-dimensional ribbon rather than as a 2D grid. The grouping is not by squares
+or rectangles, but by strips of consecutive Bytes in that ribbon.
 
 ````
 
