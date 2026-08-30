@@ -120,7 +120,7 @@ of the box, or an intermediate number of medium ingredients at the intermediate
 levels, or even a mix medium and small ingredients (*data*). The important part
 is that each ingredient (*data*) can be stored isolated from other ingredients.
 
-````aside: Alignment, Padding
+`````aside: Alignment, Padding
 In the [previous chapter](04-aggregates.html#the-size-of-a-struct), we mentioned
 briefly that the size of a `struct` can be deceiving, that it is not always the
 sum of the size of its members, and that there can be gaps.
@@ -162,50 +162,50 @@ and then has a 4-Bytes-long member. For instance:
 struct AlignmentExample
 {
   bool b;
-  std::uint32_t i32;
+  std::uint32_t i;
 };
 ```
 
-If this was laid out naively in memory, the 4-Bytes-long member `i32` would be
+If this was laid out naively in memory, the 4-Bytes-long member `i` would be
 misaligned:
 - The 1-Byte-long member `b` would use the first Byte, which is also the first
   Byte of the first 4-Byte group.
 - As a result, the first 4-Byte group would be left with only 3 Bytes left
   available.
-- The 4-Bytes-long member `i32` would overflow into the next 4-Byte group.
+- The 4-Bytes-long member `i` would overflow into the next 4-Byte group.
 
 <table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
   <tr>
-    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">&nbsp;b&nbsp;</code></td>
-    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
-    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
-    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
-    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
-    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>...</code></td>
-    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>...</code></td>
-    <td style="padding: 8px; text-align: center;"><code>...</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">b</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>&hellip;</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>&hellip;</code></td>
+    <td style="padding: 8px; text-align: center;"><code>&hellip;</code></td>
   </tr>
 </table>
 
 
 But our compiler is clever and knows about this. It will handle it for us.
-Instead of placing `i32` right after `b`, it will leave a gap of 3 empty Bytes.
+Instead of placing `i` right after `b`, it will leave a gap of 3 empty Bytes.
 
 <table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
   <tr>
-    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">&nbsp;b&nbsp;</code></td>
-    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>&nbsp;-&nbsp;</code></td>
-    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>&nbsp;-&nbsp;</code></td>
-    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>&nbsp;-&nbsp;</code></td>
-    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
-    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
-    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
-    <td style="padding: 8px; text-align: center;"><code style="color:#00ffee;">i32</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">b</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
   </tr>
 </table>
 
 Now, `b` uses one Byte of the first 4-Byte group. The rest of this group is
-"padded" with 3 empty Bytes. And `i32` uses the full second 4-Byte group.
+"padded" with 3 empty Bytes. And `i` uses the full second 4-Byte group.
 
 Our `struct` is properly aligned. But its size is 8 Bytes, not 5.
 
@@ -213,7 +213,112 @@ Note that it is more accurate to think of the memory as a long long
 mono-dimensional ribbon rather than as a 2D grid. The grouping is not by squares
 or rectangles, but by strips of consecutive Bytes in that ribbon.
 
+````aside> More on alignment and padding...
+Knowing about alignment and padding will help us understanding some constraints
+of the language, later, but it can also have an impact on performances on its
+own.
+
+Consider the following structure:
+```cpp
+struct AlignmentExample2
+{
+  bool b;
+  std::uint32_t i;
+  char c;
+};
+```
+The alignment constraint from above still applies for the same reasons, so there
+will be 3 Bytes of padding between `b` and `i` as before.
+
+The member `c` can be laid out immediately after `i` without padding, but
+we will have to add more padding after it:
+
+We have seen previously that [aggregates can be
+composed](04-aggregates.html#composing-aggregates). This means we could have
+another `struct` with a member of type `AlignmentExample2`, or simply, an array
+of `AligmentExample2` structures.
+
+Without additional padding, `AlignmentExample2` would be 9 Bytes long, but the
+next `AlignmentExample2` element in the array would land out of alignment:
+
+<table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
+  <tr>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">b</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 8px solid; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">c</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#cc00ff;">b</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 8px solid; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+  </tr>
+</table>
+
+For this reason, and in a similar way than for `b` earlier, 3 more Bytes of
+padding are added at the end of the `struct`.
+
+<table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
+  <tr>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">b</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 8px solid; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">c</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>-</code></td>
+  </tr>
+</table>
+
+So now we have a `struct` that holds 6 Bytes of data, but takes up 12 Bytes in
+memory. A tad wasteful isn't it?
+
+Turns out, we can improve things, if we care more about the space taken in
+memory than we care about the order of members: we can put the member `c` in the
+padding after `i`:
+```cpp
+struct AlignmentExample3
+{
+  bool b;
+  char c;
+  std::uint32_t i;
+};
+```
+Now `AlignmentExample3` is only 8 Bytes long, with only 2 Bytes of padding:
+
+<table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
+  <tr>
+    <td style="border-right: 1px dashed; padding: 8px; text-align:center;"><code style="color:#cc00ff;">b</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#cc00ff;">c</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 4px solid; padding: 8px; text-align: center;"><code>-</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 2px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 1px dashed; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+    <td style="border-right: 8px solid; padding: 8px; text-align: center;"><code style="color:#00aa77;">i</code></td>
+  </tr>
+</table>
+
+But the compiler won't make that decision for us. It will prevent us from
+violating alignment constraints, but it will not change the order of the members
+of out structures.
+
+So knowing about padding will allow us to pack our data more tightly in memory.
 ````
+
+`````
 
 ### Process Memory Layout
 
@@ -231,7 +336,7 @@ butler who will give them a key, with a label on it indicating which drawers
 have been made available for them.
 
 There is also a lot of stuff stored in the cellar (the *drive memory*), a
-market in the nearby town (networking) and other sources of ingredients, but
+market in the nearby town (*networking*) and other sources of ingredients, but
 that all requires asking the butler (the *Operating System*) and takes time to
 bring over.
 
@@ -245,7 +350,7 @@ structures like the boxes in the drawers: a high rim around, a lower separator,
 and lower and lower subdivisions all the way down.
 
 There's at least two different kind of such vessels, and at least 16 of each
-kind. This varies depending on the alchemy workshop (hardware architecture).
+kind. This varies depending on the alchemy workshop (*hardware architecture*).
 
 There is also a slate and chalk in a corner of the desk (the *instruction
 register*).
@@ -257,10 +362,11 @@ meter away there are a few dozen containers of the same size with the label
 "L2", and a couple meters further away, a full cabinet of them, hundreds, with
 the label "L3".
 
-These containers are magical devices, you can't really control them. But every
-time your apprentice passes by them, they magically copy whatever is in your
-apprentice's hands into one of the container. It is most convenient for staging
-the ingredients the apprentice will use the most.
+These containers are magical devices. You can pick stuff from them, but not
+place things into them. Instead, every time your apprentice passes by them, they
+magically copy whatever is in your apprentice's hands into one of the container.
+It is most convenient for staging the ingredients the apprentice will use the
+most.
 - Only a few can be put in the L1-labeled containers, but they can be grabbed
   without moving from the desk.
 - There are more of the L2-labeled containers, but the apprentice has to step
@@ -279,7 +385,7 @@ Arriving in the room, your apprentice places the scrolls with the instructions
 you have given them in the first drawers near the entry. He also hands over a
 specific scroll to the butler instructing them to place the ingredients they
 brought in the freely available drawers at the bottom, next to where they have
-placed the scrolls.
+placed the instruction scrolls.
 
 They pull a drawer off the wall and leave it out for later (the *stack frame*).
 
@@ -323,7 +429,7 @@ that box: the original in the drawer, the copy on the desk, and 3 copies in the
 L-cache containers.
 
 At the desk, the apprentice places the box over one of the stone vessel, and
-opens a special trap door below the ingredients the instruction specified.
+opens a special trap door below the ingredient the instruction specified.
 
 And toss the box in the furnace.
 
@@ -384,8 +490,8 @@ throw it into the furnace. But there's a trick. The apprentice brought it there
 just so that it's in the L1 cache.
 
 They now scoop the mix from the stone vessel (the register) and dump it into
-the L1-cache copy. Then they flip a little glowing flag on the copy that reads
-"DIRTY".
+the L1-cache copy of the destination box. Then they flip a little glowing flag
+on the copy that reads "DIRTY".
 
 Of course, if the destination already had a copy inside the L1 cache, the
 apprentice would only have turned and flung the mix in there directly from their
@@ -399,7 +505,7 @@ but then they would have to go back and forth for every "write" operation.
 If you wonder about the "DIRTY" glowing flag, that's kind of important. If you
 remember, there are only a handful of containers at L1 level. So eventually,
 we'll have to free one to copy the new boxes passing by.
-- If that flag is down, we can just throw it away in the furnace.
+- If that flag is down, we can just throw the old content away in the furnace.
 - But if the flag is raised, it's the only place we have the mix the apprentice
   just made, we should not throw it away.
   - What do we do then? We copy the box back into the L2 cache, and switch the
@@ -421,7 +527,7 @@ something we want to keep around, we need to take it back to a drawer.
 
 You remember that most of the drawers are locked and the apprentice would have
 to ask the butler for a key to use them. That's rather annoying. So instead, we
-use that drawer the apprentice has pulled of its slot at the start.
+use that drawer the apprentice has pulled off its slot at the start.
 
 Whenever we have something we want to keep around, we'll place it in a box of
 that drawer.
@@ -478,9 +584,10 @@ fit in that same drawer over the number #6, second box, first subdivision".
 
 Now, if our collection grows, we'll simply ask the butler for a new space large
 enough to store the entire collection, move everything there, and return to the
-butler the keys to the previous location we've just moved the collection from.
+butler the keys (*deallocation*) to the previous location we've just moved the
+collection from.
 
-Of course, it would be pretty rude to avoid giving back the key when we're done
+Of course, it would be pretty rude to forget giving back the key when we're done
 using the drawers (*memory leak*). Better make sure it's part of the
 instructions given to the apprentice, because they're not going to think of that
 on their own.
@@ -512,13 +619,16 @@ be accessed from behind the wall too, and the butler sometimes grabs a drawer
 from a queuing apprentice and brings it down to the cellar (*paging*). When that
 apprentice gets their turn, the butler will return the drawer from the cellar.
 This only happens in extreme cases.
+
+But when it does happen, it takes a while to get these drawers back, making for
+noticeable lag.
 ```
 
 So with everyone taking turn, from time to time, our apprentice will be
-interrupted by the butler, to leave the desk for another apprentice, and gets
+interrupted by the butler, will leave the desk for another apprentice, and get
 queuing.
 
-Although that can happen at any time (*preemption* in modern architectures), the
+Though that can happen at any time (*preemption* in modern architectures), the
 apprentice is way more likely to be interrupted by the butler when they reach
 out to him. Fair enough, isn't it?
 
