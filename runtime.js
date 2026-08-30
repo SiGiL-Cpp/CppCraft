@@ -296,6 +296,33 @@ function initGadgets(theme) {
   });
 }
 
+// ─── Lesson picker dropdown ───────────────────────────────────────────────────
+
+function buildLessonPicker(lessons, currentPageId) {
+  const dropdown = document.getElementById('lesson-picker-dropdown');
+  if (!dropdown) return;
+
+  lessons.forEach(l => {
+    const a = document.createElement('a');
+    a.href = l.id + '.html';
+    a.className = 'lesson-picker-item' + (l.id === currentPageId ? ' current' : '');
+    a.innerHTML = `<span class="lesson-picker-num">${l.num}</span>${l.title}`;
+    dropdown.appendChild(a);
+  });
+}
+
+function toggleLessonPicker() {
+  const picker = document.getElementById('lesson-picker');
+  picker.classList.toggle('open');
+}
+
+// Close picker when clicking outside
+document.addEventListener('click', (e) => {
+  const picker = document.getElementById('lesson-picker');
+  if (picker && !picker.contains(e.target))
+    picker.classList.remove('open');
+});
+
 // ─── Page init ────────────────────────────────────────────────────────────────
 
 function initPage() {
@@ -312,4 +339,10 @@ function initPage() {
   // Record this page as the last visited, for the index "continue" CTA
   const pageId = document.body.dataset.pageId;
   if (pageId) localStorage.setItem('cppcraft-last-page', pageId);
+
+  // Populate lesson picker from lessons.json
+  fetch('lessons.json')
+    .then(r => r.json())
+    .then(lessons => buildLessonPicker(lessons, pageId))
+    .catch(() => {});
 }

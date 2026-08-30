@@ -272,7 +272,13 @@ function buildShell(meta, articleHtml, navHtml, pageId) {
   <header class="site-header">
     <a href="index.html" class="site-brand">C++<span class="site-brand-acc">Craft</span></a>
     <nav class="lesson-nav" id="lesson-nav"></nav>
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">◑ Dark</button>
+    <div class="header-right">
+      <div class="lesson-picker" id="lesson-picker">
+        <button class="lesson-picker-toggle" id="lesson-picker-toggle" onclick="toggleLessonPicker()" aria-label="Jump to lesson">☰ Lessons</button>
+        <div class="lesson-picker-dropdown" id="lesson-picker-dropdown"></div>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">◑ Dark</button>
+    </div>
   </header>
   <div id="lesson-root">
     <article class="lesson">

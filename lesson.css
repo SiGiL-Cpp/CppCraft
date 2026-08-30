@@ -656,3 +656,78 @@ body {
   background: var(--surface);
   border-color: var(--muted);
 }
+
+/* ─── Header right group ────────────────────────────────────────────────────── */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ─── Lesson picker dropdown ────────────────────────────────────────────────── */
+
+.lesson-picker {
+  position: relative;
+}
+
+.lesson-picker-toggle {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.lesson-picker-toggle:hover { color: var(--text); border-color: var(--muted); }
+.lesson-picker.open .lesson-picker-toggle { color: var(--text); border-color: var(--muted); }
+
+.lesson-picker-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  z-index: 200;
+  overflow: hidden;
+  padding: 0.25rem 0;
+}
+
+.lesson-picker.open .lesson-picker-dropdown { display: block; }
+
+.lesson-picker-item {
+  display: block;
+  padding: 0.4rem 1rem;
+  font-size: 0.82rem;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.4;
+  transition: background 0.1s;
+}
+
+.lesson-picker-item:hover { background: var(--faint, var(--border)); text-decoration: none; }
+
+.lesson-picker-item.current {
+  color: var(--play-label);
+  font-weight: 600;
+  background: var(--accent-dim, var(--play));
+}
+
+.lesson-picker-num {
+  display: inline-block;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-right: 0.4rem;
+  min-width: 2.8em;
+}
