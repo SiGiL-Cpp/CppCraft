@@ -282,12 +282,14 @@ padding are added at the end of the `struct`.
   </tr>
 </table>
 
-So now we have a `struct` that holds 6 Bytes of data, but takes up 12 Bytes in
-memory. A tad wasteful isn't it?
+The good news is that this layout of the memory for this `struct` is perfectly
+fine with regard to alignment. We can repeat it or composite and `i` will be
+aligned. The bad news is that we now have a `struct` that holds 6 Bytes of data,
+but takes up 12 Bytes in memory. A tad wasteful isn't it?
 
 Turns out, we can improve things, if we care more about the space taken in
 memory than we care about the order of members: we can put the member `c` in the
-padding after `i`:
+padding betweeh `b` and `i`:
 ```cpp
 struct AlignmentExample3
 {
@@ -313,7 +315,8 @@ Now `AlignmentExample3` is only 8 Bytes long, with only 2 Bytes of padding:
 
 But the compiler won't make that decision for us. It will prevent us from
 violating alignment constraints, but it will not change the order of the members
-of out structures.
+of our structures. We had to change the order of the members in the `struct`
+definition to get this benefit.
 
 So knowing about padding will allow us to pack our data more tightly in memory.
 ````
@@ -322,18 +325,19 @@ So knowing about padding will allow us to pack our data more tightly in memory.
 
 ### Process Memory Layout
 
-When the apprentice enters the workshop, some of the bottom drawers are directly
-available.
+When the apprentice enters the workshop, some drawers at the bottom of the wall
+of drawers are directly available.
 - The bottom rows to store the scrolls where the instructions are
 written (the *compiled code*), so that it's easy to find them when needed.
 - A few more rows of drawers above these to store the ingredients the apprentice
   came with (*static data*).
-- And plenty more rows of empty drawers for the apprentice to work with.
+- And plenty more rows of empty drawers for the apprentice to work with on his
+  own.
 
-But all the drawers of the middle and top rows are locked. If the apprentice
-needs more drawer space to work with than the bottom rows, they have to ask the
-butler who will give them a key, with a label on it indicating which drawers
-have been made available for them.
+But all the drawers above that, the middle and top rows, are locked. If the
+apprentice needs more drawer space to work with than the bottom rows, they have
+to ask the butler who will give them a key, with a label on it indicating which
+drawers have been made available for them.
 
 There is also a lot of stuff stored in the cellar (the *drive memory*), a
 market in the nearby town (*networking*) and other sources of ingredients, but
