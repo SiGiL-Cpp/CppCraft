@@ -332,12 +332,212 @@ written (the *compiled code*), so that it's easy to find them when needed.
 - A few more rows of drawers above these to store the ingredients the apprentice
   came with (*static data*).
 - And plenty more rows of empty drawers for the apprentice to work with on his
-  own.
+  own (the *stack*).
 
 But all the drawers above that, the middle and top rows, are locked. If the
 apprentice needs more drawer space to work with than the bottom rows, they have
 to ask the butler who will give them a key, with a label on it indicating which
-drawers have been made available for them.
+drawers have been made available for them (the *heap*).
+
+
+````illus> What it looks like...
+<svg viewBox="0 0 261 306" width="100%" height="100%" xmlns="http://w3.org">
+  <defs>
+    <!-- Define the master drawer template asset ONCE -->
+    <g id="single-drawer">
+      <!-- Drawer face uses dynamic row color variables -->
+      <rect width="25" height="30" 
+            fill="var(--drawer-fill)" 
+            stroke="var(--drawer-stroke)" 
+            stroke-width="1" />
+      <!-- Drawer handle is locked completely to --border -->
+      <path fill="var(--muted, rgb(0, 0, 0))" 
+            stroke="var(--muted, rgb(0, 0, 0))" 
+            stroke-width="1"
+            d="M 10.677 13.102 H 14.323 A 3 1.899 0 0 1 17.323 15.001 V 16.899 A 0 0 0 0 1 17.323 16.899 H 7.677 A 0 0 0 0 1 7.677 16.899 V 15.001 A 3 1.899 0 0 1 10.677 13.102 Z" />
+    </g>
+  </defs>
+
+  <style>
+    /* Scoped Variable Mappings linking to your system templates */
+    .row-aside {
+      --drawer-fill: var(--aside, rgb(216, 216, 216));
+      --drawer-stroke: var(--aside-border, rgb(0, 0, 0));
+      --text-color: var(--aside-label, var(--aside-border, rgb(0, 0, 0)));
+    }
+    .row-pitfall {
+      --drawer-fill: var(--pitfall, rgb(216, 216, 216));
+      --drawer-stroke: var(--pitfall-border, rgb(0, 0, 0));
+      --text-color: var(--pitfall-label, var(--pitfall-border, rgb(0, 0, 0)));
+    }
+    .row-recap {
+      --drawer-fill: var(--recap, rgb(216, 216, 216));
+      --drawer-stroke: var(--recap-border, rgb(0, 0, 0));
+      --text-color: var(--recap-label, var(--recap-border, rgb(0, 0, 0)));
+    }
+    .row-principle {
+      --drawer-fill: var(--principle, rgb(216, 216, 216));
+      --drawer-stroke: var(--principle-border, rgb(0, 0, 0));
+      --text-color: var(--principle-label, var(--principle-border, rgb(0, 0, 0)));
+    }
+
+    .cabinet-bg {
+      fill: var(--bg, rgb(240, 240, 240));
+    }
+
+    /* Typographic Overlays Layout */
+    .overlay-text {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      fill: var(--text-color);
+      user-select: none;
+      pointer-events: none; /* Allows pointer clicks to pass through text elements directly onto drawers */
+    }
+
+    /* Semi-transparent text backing box */
+    .label-pill {
+      fill: var(--bg, rgb(240, 240, 240));
+      fill-opacity: 0.4;
+    }
+
+    /* Central Gap Indicator Styles */
+    .gap-line {
+      stroke: var(--text, rgb(0, 0, 0));
+      stroke-dasharray: 4 4;
+      stroke-width: 1;
+      opacity: 0.5;
+    }
+    .gap-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 10px;
+      font-style: italic;
+      fill: var(--text, rgb(0, 0, 0));
+      text-anchor: middle;
+      user-select: none;
+    }
+    .gap-mask {
+      fill: var(--bg, rgb(240, 240, 240));
+    }
+  </style>
+
+  <!-- ========================================== -->
+  <!-- BACKING REGIONS (Original Specs)           -->
+  <!-- ========================================== -->
+  <g id="cabinet-housing">
+    <rect class="cabinet-bg" x="0" y="0" width="261" height="68" />
+    <!-- Central Gap (34px empty region from Y=68 to Y=102) -->
+    <rect class="cabinet-bg" x="0" y="102" width="261" height="204" />
+  </g>
+
+  <!-- ========================================== -->
+  <!-- ASIDE ROWS (Top 2 Rows: Y=2, Y=36)         -->
+  <!-- ========================================== -->
+  <g class="row-aside">
+    <use href="#single-drawer" x="-12.5" y="2" /><use href="#single-drawer" x="-12.5" y="36" />
+    <use href="#single-drawer" x="16.5" y="2" /><use href="#single-drawer" x="16.5" y="36" />
+    <use href="#single-drawer" x="45.5" y="2" /><use href="#single-drawer" x="45.5" y="36" />
+    <use href="#single-drawer" x="74.5" y="2" /><use href="#single-drawer" x="74.5" y="36" />
+    <use href="#single-drawer" x="103.5" y="2" /><use href="#single-drawer" x="103.5" y="36" />
+    <use href="#single-drawer" x="132.5" y="2" /><use href="#single-drawer" x="132.5" y="36" />
+    <use href="#single-drawer" x="161.5" y="2" /><use href="#single-drawer" x="161.5" y="36" />
+    <use href="#single-drawer" x="190.5" y="2" /><use href="#single-drawer" x="190.5" y="36" />
+    <use href="#single-drawer" x="219.5" y="2" /><use href="#single-drawer" x="219.5" y="36" />
+    <use href="#single-drawer" x="248.5" y="2" /><use href="#single-drawer" x="248.5" y="36" />
+  </g>
+
+ <g id="gap-indicator">
+    <line class="gap-line" x1="0" y1="85" x2="261" y2="85" />
+    <!-- Backdrop mask block splits the dashed line path smoothly around text -->
+    <rect class="gap-mask" x="55" y="78" width="151" height="14" />
+    <text class="gap-text" x="130.5" y="88">many more rows of drawers</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- PITFALL ROWS (3 Rows: Y=104, Y=138, Y=172) -->
+  <!-- ========================================== -->
+  <g class="row-pitfall">
+    <use href="#single-drawer" x="-12.5" y="104" /><use href="#single-drawer" x="-12.5" y="138" /><use href="#single-drawer" x="-12.5" y="172" />
+    <use href="#single-drawer" x="16.5" y="104" /><use href="#single-drawer" x="16.5" y="138" /><use href="#single-drawer" x="16.5" y="172" />
+    <use href="#single-drawer" x="45.5" y="104" /><use href="#single-drawer" x="45.5" y="138" /><use href="#single-drawer" x="45.5" y="172" />
+    <use href="#single-drawer" x="74.5" y="104" /><use href="#single-drawer" x="74.5" y="138" /><use href="#single-drawer" x="74.5" y="172" />
+    <use href="#single-drawer" x="103.5" y="104" /><use href="#single-drawer" x="103.5" y="138" /><use href="#single-drawer" x="103.5" y="172" />
+    <use href="#single-drawer" x="132.5" y="104" /><use href="#single-drawer" x="132.5" y="138" /><use href="#single-drawer" x="132.5" y="172" />
+    <use href="#single-drawer" x="161.5" y="104" /><use href="#single-drawer" x="161.5" y="138" /><use href="#single-drawer" x="161.5" y="172" />
+    <use href="#single-drawer" x="190.5" y="104" /><use href="#single-drawer" x="190.5" y="138" /><use href="#single-drawer" x="190.5" y="172" />
+    <use href="#single-drawer" x="219.5" y="104" /><use href="#single-drawer" x="219.5" y="138" /><use href="#single-drawer" x="219.5" y="172" />
+    <use href="#single-drawer" x="248.5" y="104" /><use href="#single-drawer" x="248.5" y="138" /><use href="#single-drawer" x="248.5" y="172" />
+  </g>
+
+  <!-- ========================================== -->
+  <!-- ILLUS ROWS (2 Rows: Y=206, Y=240)          -->
+  <!-- ========================================== -->
+  <g class="row-recap">
+    <use href="#single-drawer" x="-12.5" y="206" /><use href="#single-drawer" x="-12.5" y="240" />
+    <use href="#single-drawer" x="16.5" y="206" /><use href="#single-drawer" x="16.5" y="240" />
+    <use href="#single-drawer" x="45.5" y="206" /><use href="#single-drawer" x="45.5" y="240" />
+    <use href="#single-drawer" x="74.5" y="206" /><use href="#single-drawer" x="74.5" y="240" />
+    <use href="#single-drawer" x="103.5" y="206" /><use href="#single-drawer" x="103.5" y="240" />
+    <use href="#single-drawer" x="132.5" y="206" /><use href="#single-drawer" x="132.5" y="240" />
+    <use href="#single-drawer" x="161.5" y="206" /><use href="#single-drawer" x="161.5" y="240" />
+    <use href="#single-drawer" x="190.5" y="206" /><use href="#single-drawer" x="190.5" y="240" />
+    <use href="#single-drawer" x="219.5" y="206" /><use href="#single-drawer" x="219.5" y="240" />
+    <use href="#single-drawer" x="248.5" y="206" /><use href="#single-drawer" x="248.5" y="240" />
+  </g>
+
+  <!-- ========================================== -->
+  <!-- PRINCIPLE ROW (Bottom 1 Row: Y=274)        -->
+  <!-- ========================================== -->
+  <g class="row-principle">
+    <use href="#single-drawer" x="-12.5" y="274" />
+    <use href="#single-drawer" x="16.5" y="274" />
+    <use href="#single-drawer" x="45.5" y="274" />
+    <use href="#single-drawer" x="74.5" y="274" />
+    <use href="#single-drawer" x="103.5" y="274" />
+    <use href="#single-drawer" x="132.5" y="274" />
+    <use href="#single-drawer" x="161.5" y="274" />
+    <use href="#single-drawer" x="190.5" y="274" />
+    <use href="#single-drawer" x="219.5" y="274" />
+    <use href="#single-drawer" x="248.5" y="274" />
+  </g>
+
+  <!-- ========================================== -->
+  <!-- TEXT LABELS OVERLAYS                       -->
+  <!-- ========================================== -->
+  <!-- Rendered at the end of the file so they sit exactly on top of everything -->
+  
+  <!-- "Heap" overlay over Aside rows (centered vertically in its area) -->
+  <g class="row-aside" transform="translate(200, 26)">
+    <rect class="label-pill" x="-4" y="-10" width="42" height="15" rx="3" />
+    <text class="overlay-text">Heap</text>
+  </g>
+
+  <!-- "Stack" overlay over Pitfall rows -->
+  <g class="row-pitfall" transform="translate(200, 148)">
+    <rect class="label-pill" x="-4" y="-10" width="46" height="15" rx="3" />
+    <text class="overlay-text">Stack</text>
+  </g>
+
+  <!-- "Data" overlay over Illus rows -->
+  <g class="row-recap" transform="translate(200, 230)">
+    <rect class="label-pill" x="-4" y="-10" width="40" height="15" rx="3" />
+    <text class="overlay-text">Data</text>
+  </g>
+
+  <!-- "Code" overlay over Principle row -->
+  <g class="row-principle" transform="translate(200, 292)">
+    <rect class="label-pill" x="-4" y="-10" width="40" height="15" rx="3" />
+    <text class="overlay-text">Code</text>
+  </g>
+</svg>
+
+The rows of drawers between the Heap and the Stack drawers can be unassigned,
+used for the Heap (at the top), or used by the Stack (at the bottom). If we run
+out of unassigned drawers (because both the Heap and the Stack have grown so
+much they end-up meeting), the butler might get into trouble.
+````
+
 
 There is also a lot of stuff stored in the cellar (the *drive memory*), a
 market in the nearby town (*networking*) and other sources of ingredients, but
