@@ -746,12 +746,14 @@ that drawer.
 
 From the start we have a few of these drawers available for this usage (250-2000
 of them), so there is a lot of things we can keep around in there. When one
-drawer is full, the apprentice pulls another and stacks it on top of the first.
+drawer is full, the apprentice pulls the next one from the top, and stacks it on
+top of the full one, working from the top right towards the left and down.
 
-In case the apprentice would still manage to fill it up, the last drawer of this
-collection (*guard page*) will automatically trigger an alarm that fetches the
-butler. The butler will turn off the alarm (the apprentice can use the drawer
-then), unlock the next drawer, and set a new alarm on it.
+In case the apprentice would still manage to fill all the readily available
+stack drawers up, the last drawer of this collection (*guard page*) will
+automatically trigger an alarm that fetches the butler. The butler will turn off
+the alarm (the apprentice can use the drawer then), unlock the next drawer, and
+set a new alarm on it.
 
 This way, we will rarely run out of drawer space for the kind of stuff we want
 to keep around. If we do (usually when we make a mistake in our instructions,
