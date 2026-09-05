@@ -30,9 +30,10 @@ laboratory.
 
 The workshop has a large wall of drawers (the *RAM*). Millions of drawers. Each
 drawer lies in its slot on the wall, and each slot has a number etched on its
-bottom shelf. Under the top left drawer the number #1 is etched. Under the
+bottom shelf. Under the bottom left drawer the number #1 is etched. Under the
 drawer next to it, the number #2, under the one after #3, and so on across the
-whole wall.
+whole wall, ending at the top right, far up under the ceiling, with a very large
+number.
 
 ### Memory pages
 
@@ -118,7 +119,7 @@ This separating system allows to store many small ingredients in the shallow
 tight grid at the bottom of a box, or only one very large ingredients at the top
 of the box, or an intermediate number of medium ingredients at the intermediate
 levels, or even a mix medium and small ingredients (*data*). The important part
-is that each ingredient (*data*) can be stored isolated from other ingredients.
+is that each ingredient can be stored isolated from other ingredients.
 
 `````aside: Alignment, Padding
 In the [previous chapter](04-aggregates.html#the-size-of-a-struct), we mentioned
@@ -129,8 +130,8 @@ With this model, we can now explain why this happens:
 
 - Each of the smallest square in [the illustration above](#mem-page) represents
   a single Byte.
-- There are 4096 single Bytes in this illustration, as it is the most common
-  size for a *memory page* in current architectures (you may have to zoom in).
+- There are 4096 single Bytes in this illustration (you may have to zoom in), as
+  it is the most common size for a *memory page* in current architectures.
 - These Bytes are grouped in a specific way as per the grid structure:
   - At the lowest level it is a grid of 4096 single Bytes (purple).
   - At the level above, it is a grid of 2048 groups of 2 Bytes each (navy blue).
@@ -283,7 +284,7 @@ padding are added at the end of the `struct`.
 </table>
 
 The good news is that this layout of the memory for this `struct` is perfectly
-fine with regard to alignment. We can repeat it or composite and `i` will be
+fine with regard to alignment. We can repeat it or compose it and `i` will be
 aligned. The bad news is that we now have a `struct` that holds 6 Bytes of data,
 but takes up 12 Bytes in memory. A tad wasteful isn't it?
 
@@ -319,25 +320,29 @@ of our structures. We had to change the order of the members in the `struct`
 definition to get this benefit.
 
 So knowing about padding will allow us to pack our data more tightly in memory.
+And tighter data means less effort for the apprentice to move them around. We
+will get to that in the [L-Caches](#l-caches) section of this page.
 ````
 
 `````
 
 ### Process Memory Layout
 
-When the apprentice enters the workshop, some drawers at the bottom of the wall
-of drawers are directly available.
+When the apprentice enters the workshop, some drawers of the wall of drawers are
+directly available.
 - The bottom rows to store the scrolls where the instructions are
 written (the *compiled code*), so that it's easy to find them when needed.
 - A few more rows of drawers above these to store the ingredients the apprentice
   came with (*static data*).
-- And plenty more rows of empty drawers for the apprentice to work with on his
-  own (the *stack*).
+- And plenty more rows of empty drawers right at the top, under the ceiling, for
+  the apprentice to work with on his own (the *stack*).
 
-But all the drawers above that, the middle and top rows, are locked. If the
-apprentice needs more drawer space to work with than the bottom rows, they have
-to ask the butler who will give them a key, with a label on it indicating which
-drawers have been made available for them (the *heap*).
+But all the drawers between the top rows and the stiatic data drawers at the
+bottome are locked. If the apprentice needs more drawer space to work with than
+the top rows, they have to ask the butler who will give them a key, with a
+label on it indicating which drawers have been made available for them (the
+*heap*). These drawers are unlocked from the bottom up (after the code and the
+static data rows, towards the ceiling).
 
 
 ````illus> What it looks like...
@@ -510,13 +515,13 @@ drawers have been made available for them (the *heap*).
   <!-- "Heap" overlay over Aside rows (centered vertically in its area) -->
   <g class="row-aside" transform="translate(200, 26)">
     <rect class="label-pill" x="-4" y="-10" width="42" height="15" rx="3" />
-    <text class="overlay-text">Heap</text>
+    <text class="overlay-text">Stack</text>
   </g>
 
   <!-- "Stack" overlay over Pitfall rows -->
   <g class="row-pitfall" transform="translate(200, 148)">
     <rect class="label-pill" x="-4" y="-10" width="46" height="15" rx="3" />
-    <text class="overlay-text">Stack</text>
+    <text class="overlay-text">Heap</text>
   </g>
 
   <!-- "Data" overlay over Illus rows -->
@@ -550,7 +555,7 @@ Opposite the wall of drawer is the desk where the apprentice works, grinding,
 mincing, crushing, mixing the ingredients into potions or new ingredients.
 
 These operations happen in special stone vessels (*registers*) that are
-structures like the boxes in the drawers: a high rim around, a lower separator,
+structured like the boxes in the drawers: a high rim around, a lower separator,
 and lower and lower subdivisions all the way down.
 
 There's at least two different kind of such vessels, and at least 16 of each
@@ -586,14 +591,16 @@ Let us look at what a good day's work looks like for your apprentice.
 ### Setting up for work
 
 Arriving in the room, your apprentice places the scrolls with the instructions
-you have given them in the first drawers near the entry. He also hands over a
-specific scroll to the butler instructing them to place the ingredients they
-brought in the freely available drawers at the bottom, next to where they have
-placed the instruction scrolls.
+you have given them in the first drawers near the entry (the drawers with the
+lowest numbers etched below them). He also hands over a specific scroll to the
+butler instructing him to place the ingredients they brought in the freely
+available drawers at the bottom, next to where they have placed the instruction
+scrolls.
 
-They pull a drawer off the wall and leave it out for later (the *stack frame*).
+Then they climb a ladder all the way up and pull a drawer off the wall from the
+very top rows and leave it out for later (the *stack frame*).
 
-Then they reach for the first scroll of instructions.
+Then they reach for the first scroll of instructions near the entrance.
 
 ### Starting the work
 
@@ -675,8 +682,8 @@ Next instruction (grabbed from the L1 cache, slate updated).
 
 Suppose it tells the apprentice what to do with the mix (a new composite
 ingredient for later). Maybe, it tells the apprentice to place it in a specific
-subdivision in the specific box of that drawer we kept pulled out of its slot,
-the *stack* drawer.
+subdivision in the specific box of that drawer we kept pulled out of its slot
+from the top rows, the *stack* drawer.
 
 Well, the apprentice could bring the mix to the drawer and dump it in the box
 there, but modern alchemy schools teach apprentices to do it a different way.
@@ -695,30 +702,30 @@ just so that it's in the L1 cache.
 
 They now scoop the mix from the stone vessel (the register) and dump it into
 the L1-cache copy of the destination box. Then they flip a little glowing flag
-on the copy that reads "DIRTY".
+on the cache copy that reads "DIRTY".
 
-Of course, if the destination already had a copy inside the L1 cache, the
-apprentice would only have turned and flung the mix in there directly from their
-chair without walking all the way to grab the box. And that's exactly the reason
-for doing it this way: next time the apprentice wants to place an ingredient in
-there it'll be right next to them in the L1 cache.
+Of course, if the destination already had a copy of the specific box inside the
+L1 cache, the apprentice would only have turned and flung the mix in there
+directly from their chair without walking all the way to grab the box. And
+that's exactly the reason for doing it this way: next time the apprentice wants
+to place an ingredient in there it'll be right next to them in the L1 cache.
 
 In the past, apprentices would have walked to the wall to place the ingredient,
 but then they would have to go back and forth for every "write" operation.
 
 If you wonder about the "DIRTY" glowing flag, that's kind of important. If you
 remember, there are only a handful of containers at L1 level. So eventually,
-we'll have to free one to copy the new boxes passing by.
+we'll have to free one to copy the new boxes and instructions passing by.
 - If that flag is down, we can just throw the old content away in the furnace.
 - But if the flag is raised, it's the only place we have the mix the apprentice
   just made, we should not throw it away.
   - What do we do then? We copy the box back into the L2 cache, and switch the
-    L2 cache "DIRTY" flag up.
+    L2 cache "DIRTY" flag up on that box.
   - The L2 cache has more containers, so it'll keep it a while, but eventually,
     it will also run out.
   - And we then copy that box back to the L3 cache, with its dirty flag up.
   - Finally, when the L3 cache wants to free the container, we write it back to
-    the actual drawer.
+    the actual drawer in the wall.
 
 All this cascade of smaller operations saves a lot of longer back and forth to
 the wall.
@@ -731,7 +738,8 @@ something we want to keep around, we need to take it back to a drawer.
 
 You remember that most of the drawers are locked and the apprentice would have
 to ask the butler for a key to use them. That's rather annoying. So instead, we
-use that drawer the apprentice has pulled off its slot at the start.
+use that drawer the apprentice has pulled off its slot at the start from the top
+rows.
 
 Whenever we have something we want to keep around, we'll place it in a box of
 that drawer.
@@ -743,7 +751,7 @@ drawer is full, the apprentice pulls another and stacks it on top of the first.
 In case the apprentice would still manage to fill it up, the last drawer of this
 collection (*guard page*) will automatically trigger an alarm that fetches the
 butler. The butler will turn off the alarm (the apprentice can use the drawer
-then) and set a new alarm on the very next drawer.
+then), unlock the next drawer, and set a new alarm on it.
 
 This way, we will rarely run out of drawer space for the kind of stuff we want
 to keep around. If we do (usually when we make a mistake in our instructions,
@@ -764,7 +772,7 @@ collection in my stack.
 But what happens then if I find a new newt egg? Well, I'm a bit stuck. I would
 like to add it next to the other newt eggs, but I've filled that space already.
 It is fine for collection of stuff that never grows (if we know its size when we
-write the instructions, i.e. at *compile time*), but for collection we want to
+write the instructions, i.e. at *compile time*), but for collections we want to
 keep grouped together but don't know the size in advance, or that can grow, we
 use a different approach: the Heap.
 
@@ -776,23 +784,24 @@ struggling with the stack, we'll instruct the apprentice to call the butler, and
 ask this gentleman for the drawer space we need (*dynamic allocation*).
 
 The butler will make calculations and give us a key (or several if we need a lot
-of drawer space) to some drawers, usually chosen in the top drawers first (at
-the other end of where we pull the drawers for our stack).
+of drawer space) to some drawers, usually chosen in the bottom drawers first,
+after the "static memory" drawers.
 
 Since we tell the butler how much space we need, he will sometimes tell us to
 use space in a drawer we already have access to. For instance, if we tell the
 butler we need to store a Giant's hair, he could tell us to stuff it in the
-drawer over the etched number #6, first box, first subdivision. And later, when
-we call him again to store a pouch of fairy dust, he can tell us "Well, it'll
-fit in that same drawer over the number #6, second box, first subdivision".
+drawer over the etched number #2053, first box, first subdivision. And later,
+when we call him again to store a pouch of fairy dust, he can tell us "Well,
+it'll fit in that same drawer over the number #2053, second box, first
+subdivision".
 
 Now, if our collection grows, we'll simply ask the butler for a new space large
 enough to store the entire collection, move everything there, and return to the
-butler the keys (*deallocation*) to the previous location we've just moved the
-collection from.
+butler the keys to the previous location we've just moved the
+collection from (*deallocation*).
 
-Of course, it would be pretty rude to forget giving back the key when we're done
-using the drawers (*memory leak*). Better make sure it's part of the
+Of course, it would be pretty rude to forget giving back the keys when we're
+done using the drawers (*memory leak*). Better make sure it's part of the
 instructions given to the apprentice, because they're not going to think of that
 on their own.
 
@@ -845,7 +854,7 @@ have a tiny flaw.
 Maybe we forgot about the additional `'\0'` character at the end of a character
 string, and skipped it. Now, when our instructions tell our apprentice to read
 that character string until the end, that is, until the special `'\0'`
-character, they'll just keep going until they find a stray `0` by sheer luck,
+character, they'll just keep going until they find a stray `0` by sheer luck
 somewhere in the memory.
 
 Or suppose we've put an image in the stack, so that we keep it at hand. Let's
@@ -854,27 +863,27 @@ say it's a 100&times;100 greyscale image, so it uses a `std::array<std::byte,
 Bytes in our architecture. So far so good, but when telling our apprentice to
 retrieve the intensity of a specific pixel of that image, we got our numbers
 wrong, and we multiplied the index by 100. Instead of telling our apprentice to
-look for the 8750th Byte in the array, we told him to fetch the 87500th one.
+look for the 8750th Byte in the array, we told them to fetch the 875000th one.
 
-That's more than 20 drawers beyond the mark. Chances are, that's out of your
-walls of drawers.
+That's more than 200 drawers beyond the mark.
 
 If your stack is already well stocked, that would likely land somewhere in
-there, and your apprentice would return with a random item. It's not the
-ingredient you expected, but that's not too bad.
+there, in your own stack of drawers, and your apprentice would return with a
+random item. It's not the ingredient you expected, but that's not too bad.
 
 It could be a little worse. If you had instructed your apprentice to change this
-value, he's now changing something else (*memory corruption*). That could make
-for nasty surprises later down the line.
+value, they're now changing something unexpected (*memory corruption*). That
+could make for nasty surprises later down the line.
 
-But it could also be much worse. If your stack has not much else than this array,
-your apprentice might end up looking for drawers past the ceiling. And no, that
-won't stop it from trying.
+But it could also be much worse. If your stack contains not much else than this
+array, 200 drawers off the mark might well end up outside of the wall of
+drawers entirely, past the ceiling. And alas, that won't stop your apprentice
+from trying to reach for it.
 
-When he starts attacking the ceiling with a pickaxe, that will not escape the
-butler's attention, and, well, long story short, you have to find a new
-apprentice (*segmentation fault*).  Now that I think about it, maybe that's why
-these apprentices never graduate.
+When they start attacking the ceiling with a pickaxe, that will definitely get
+the butler's attention, and maybe bother him a little. And, well, long story
+short, you have to find a new apprentice (*segmentation fault*).  Now that I
+think about it, maybe that's why these apprentices never graduate.
  
 
 ##
@@ -911,7 +920,7 @@ Let me address a number of limits:
 - The stack holds temporary values for the current task; it is fast but fixed in
   shape.
 - The heap holds dynamic allocations; it is flexible but requires explicit
-  management. Don't forget to give that memory back when you're done.
+  management by the OS. Don't forget to give that memory back when you're done.
 - The OS mediates access to resources (memory, storage, CPU scheduling...).
 - Multiple programs share the hardware. They take turn when needed, but keep
   their memory isolated from each other.
