@@ -289,7 +289,7 @@ but takes up 12 Bytes in memory. A tad wasteful isn't it?
 
 Turns out, we can improve things, if we care more about the space taken in
 memory than we care about the order of members: we can put the member `c` in the
-padding betweeh `b` and `i`:
+padding between `b` and `i`:
 ```cpp
 struct AlignmentExample3
 {
@@ -845,26 +845,43 @@ have a tiny flaw.
 Maybe we forgot about the additional `'\0'` character at the end of a character
 string, and skipped it. Now, when our instructions tell our apprentice to read
 that character string until the end, that is, until the special `'\0'`
-character, they'll never stop. They'll look into every sub-partition of every
-box of every drawer, through the whole wall.
+character, they'll just keep going until they find a stray `0` by sheer luck,
+somewhere in the memory.
 
-Maybe we get lucky and they stumble upon a random `0` laying about.
+Or suppose we've put an image in the stack, so that we keep it at hand. Let's
+say it's a 100&times;100 greyscale image, so it uses a `std::array<std::byte,
+10000>`. It's taking up a few drawers, since each drawer can hold at most 4096
+Bytes in our architecture. So far so good, but when telling our apprentice to
+retrieve the intensity of a specific pixel of that image, we got our numbers
+wrong, and we multiplied the index by 100. Instead of telling our apprentice to
+look for the 8750th Byte in the array, we told him to fetch the 87500th one.
 
-Maybe we're not that lucky and they go on. Maybe we're really unlucky, and the
-apprentice, in their dull obedience, reaches for a drawer beyond ours.
+That's more than 20 drawers beyond the mark. Chances are, that's out of your
+walls of drawers.
 
-As long as they were browsing our own stuff, it was of course spouting
-non-sense, but it was not so bad. As soon as we reach out of our allowed drawer
-allocation, it's a different story.
+If your stack is already well stocked, that would likely land somewhere in
+there, and your apprentice would return with a random item. It's not the
+ingredient you expected, but that's not too bad.
 
-This alerts the butler, and, long story short, you have to find a new
+It could be a little worse. If you had instructed your apprentice to change this
+value, he's now changing something else (*memory corruption*). That could make
+for nasty surprises later down the line.
+
+But it could also be much worse. If your stack has not much else than this array,
+your apprentice might end up looking for drawers past the ceiling. And no, that
+won't stop it from trying.
+
+When he starts attacking the ceiling with a pickaxe, that will not escape the
+butler's attention, and, well, long story short, you have to find a new
 apprentice (*segmentation fault*).  Now that I think about it, maybe that's why
 these apprentices never graduate.
+ 
 
 ##
 ```pitfall
-There is a limit to every metaphor. This one is no exception. it will serve us
-well in the future lessons, and could likely continue to serve you for years.
+There is a limit to every metaphor. This one is no exception. It will serve us
+well in the future lessons, and could likely continue to serve you for years,
+but it has a few flaws.
 
 Let me address a number of limits:
 - The apprentice in the metaphor represents both the program and the CPU.
@@ -880,10 +897,6 @@ Let me address a number of limits:
   space, and there is a physical memory space mapped by the OS.
 - The limits of the stack and why it can't deal with data for which the size is
   unknown at compile-time is at best glossed-over.
-- The segmentation fault example with the unterminated string is highly
-  unlikely. It is accurate in its principles, but the chances of **not**
-  encountering any `0` before leaving the virtual address space are almost
-  non-existent.
 ```
 
 ```recap
