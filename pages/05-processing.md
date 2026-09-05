@@ -337,8 +337,8 @@ written (the *compiled code*), so that it's easy to find them when needed.
 - And plenty more rows of empty drawers right at the top, under the ceiling, for
   the apprentice to work with on his own (the *stack*).
 
-But all the drawers between the top rows and the stiatic data drawers at the
-bottome are locked. If the apprentice needs more drawer space to work with than
+But all the drawers between the top rows and the static data drawers at the
+bottom are locked. If the apprentice needs more drawer space to work with than
 the top rows, they have to ask the butler who will give them a key, with a
 label on it indicating which drawers have been made available for them (the
 *heap*). These drawers are unlocked from the bottom up (after the code and the
@@ -537,10 +537,10 @@ static data rows, towards the ceiling).
   </g>
 </svg>
 
-The rows of drawers between the Heap and the Stack drawers can be unassigned,
-used for the Heap (at the top), or used by the Stack (at the bottom). If we run
-out of unassigned drawers (because both the Heap and the Stack have grown so
-much they end-up meeting), the butler might get into trouble.
+The rows of drawers between the Heap and the Stack are initially unassigned, and
+can be claimed from the top by the Stack, or from the bottom by the Heap. If
+they grew so much they ended up meeting, we would be in trouble, but that would
+require filling up all the memory.
 ````
 
 
@@ -851,11 +851,11 @@ Although we are elite master alchemist, it pains me to admit that we sometimes
 make mistakes. And sometimes, the instructions we give our trusty apprentice may
 have a tiny flaw.
 
-Maybe we forgot about the additional `'\0'` character at the end of a character
-string, and skipped it. Now, when our instructions tell our apprentice to read
-that character string until the end, that is, until the special `'\0'`
-character, they'll just keep going until they find a stray `0` by sheer luck
-somewhere in the memory.
+Maybe we forgot about the additional `'\0'` character at the end of a [character
+string](02-data.html#text), and skipped it. Now, when our instructions tell our
+apprentice to read that character string until the end, that is, until the
+special `'\0'` character, they'll just keep going until they find a stray `0` by
+sheer luck somewhere in the memory.
 
 Or suppose we've put an image in the stack, so that we keep it at hand. Let's
 say it's a 100&times;100 greyscale image, so it uses a `std::array<std::byte,
@@ -896,7 +896,7 @@ Let me address a number of limits:
 - The apprentice in the metaphor represents both the program and the CPU.
   - The CPU is always there. In that sense, it's more the desk than the
     apprentice.
-  - Fetching the data from the RAM to the registries is operated by the *bus*,
+  - Fetching the data from the RAM to the registers is operated by the *bus*,
     not the CPU.
 - There is a lot of complexity in how the processor operate that is not
   mentioned here (*pipelining*, *branch-prediction*, *out-of-order execution*,
