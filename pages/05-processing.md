@@ -904,8 +904,12 @@ Let me address a number of limits:
 - There is more complexity to the L-Caches.
 - The metaphor doesn't explain that the wall of drawers is the virtual memory
   space, and there is a physical memory space mapped by the OS.
+- The image of the apprentice pulling drawers from the top of the wall to stack
+  them conveys the idea of stacking, but suggests moving the memory. It is not
+  the case: the memory pages (drawers) remain where they are. Apart from keeping
+  track of where the stack ends, nothing special happens.
 - The limits of the stack and why it can't deal with data for which the size is
-  unknown at compile-time is at best glossed-over.
+  unknown at compile-time are at best glossed-over.
 ```
 
 ```recap
