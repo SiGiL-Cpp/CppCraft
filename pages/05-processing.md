@@ -237,7 +237,7 @@ we will have to add more padding after it:
 We have seen previously that [aggregates can be
 composed](04-aggregates.html#composing-aggregates). This means we could have
 another `struct` with a member of type `AlignmentExample2`, or simply, an array
-of `AligmentExample2` structures.
+of `AlignmentExample2` structures.
 
 Without additional padding, `AlignmentExample2` would be 9 Bytes long, but the
 next `AlignmentExample2` element in the array would land out of alignment:
