@@ -288,6 +288,7 @@ function buildShell(meta, articleHtml, navHtml, pageId) {
   </div>
   <script src="runtime.js"></script>
   <script>initPage();</script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="d0c0f8dd-e3b3-47e6-8412-396ce04b2533"></script>
 </body>
 </html>`;
 }
