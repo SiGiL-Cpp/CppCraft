@@ -15,7 +15,7 @@ motion and start crafting.
 
 In C++, expressions can do a lot of things. Formally, they are defined as "a
 sequence of operators and operands that specifies a computation". In other
-words, they are the individual steps of the receipes our apprentice (CPU)
+words, they are the individual steps of the recipes our apprentice (CPU)
 elaborates at the desk in the stone vessels (registers).
 
 ### Arithmetic Operators
@@ -23,6 +23,66 @@ elaborates at the desk in the stone vessels (registers).
 The first type of expressions that comes to mind are arithmetic operators
 such as `+`, `-`, `*`, `/`. No surprise here, hopefully: `1 + 1` is an
 expression that yields the value `2`.
+
+`````pitfall
+While this looks easy and simple on the surface, and is in practice trivial to
+use most of the time, there are a few sharp edges.
+
+- First, "small" types, like `bool`, (`signed`/`unsigned`) `char`, `short`, are
+  converted (promoted) to `int` before the operation takes place.
+- Second, if after that promotion, the operands are of the same type, the result
+  of the operation will be of that same type too.
+  - This means that dividing `int` by `int` evaluate to an `int` too. For
+    instance: `12 / 5` returns `2`.
+- Third, otherwise, if after the promotion of short types, the operands are
+  still of different types, the compiler will promote them to a common type.
+  - One simple rule there is that if one operand is of a floating-point type and
+    the other isn't, the floating-point type is chosen as the common type.
+    - That's how we will get a floating point result from a division: by having
+      one operand be a floating point: `12 / 5.0f` will yield `2.4f`.
+
+Beyond this things can get a bit convoluted.
+
+````pitfall> Give me the convoluted stuff!
+Ok, you asked for it.
+
+Let's introduce a few new native types and their
+[literals](03-types.html#literals):
+- `long` is an integral type defined over as many, or more Bytes than an `int`.
+  Because of this it is considered or a "higher order" for conversion. That is,
+  we consider it could be wider, even if it isn't. The literal for it uses the
+  `l` suffix (which can be used along with the `u` suffix for `unsigned long`):
+  `42ul`.
+- `long long` is another distinct integral type defined over as many, or more
+  Bytes than a `long`. The literal for it uses the double `ll` suffix (which can
+  be used along with the u suffix for `unsigned long long`): `42ll`.
+
+Now, let's consider the rules.
+- If both types are floating-point, the higher order one is chosen.
+  - Two `float` produce a `float`, two `double` produce a `double`.
+  - A `float` and a `double` produce a `double`.
+- As we said before, if one is a floating-point type and the other isn't, we use
+  the floating-point type.
+  - Note this can result in massive loss of precision. A 64-bits unsigned
+    integer can express a value as large as `18,446,744,073,709,551,615` with a
+    precision of 1. But a `float` is much less precise around such large
+    numbers. As a result `18446744073709551615ull - 50.f` will return
+    `18446744073709551616` (one more instead of 50 less).
+- If both types are integral types, there is the simple and the difficult cases:
+  - If they are both signed, or both unsigned, the highest order type wins
+    (`long long` prevails over `long`, `long` prevails over `int`). Simple.
+  - If one type is signed, and the other is unsigned, it gets tricky.
+    - If the types have the same number of Bytes, or if the unsigned type is
+      wider than the signed type, we use the unsigned type,
+      - This means that `24u - 60` produces an unsigned result: `4294967260u`.
+    - If the signed type is wide enough that it can represent all the values of
+      the unsigned type (and more), then the signed type is used.
+    - Otherwise, both operands are converted to the unsigned type corresponding
+      with the same size as the signed operand type.
+````
+````aside> If you wonder why
+````
+`````
 
 `-` and `+` can also be used with a single value: `-42` is technically `-`
 applied to `42`. Because it is an operation on a single value, it is called
@@ -55,7 +115,7 @@ binary: `0b1111`.
 - `|` is the bitwise OR operator: `0xff000000 | 0x000000ff` is `0xff0000ff` (any
   bit that is 1 in either operand is kept).
 - `^` is the bitwise XOR operator (eXclusive OR): `0x0000ffff ^ 0x00ffff00`is
-  `00ff00ff` (only the bits differing between both operands are kept)
+  `0x00ff00ff` (only the bits differing between both operands are kept)
 - `<<` shifts the bits of the left-hand-side operand by the right-hand-side
   operand number of bits to the left: `0x0000ffff<<4` is `0x000ffff0`. The
   vacated bits are filled with 0s.
@@ -74,7 +134,7 @@ their own operators:
 - `&&` is the "and" operator. It evaluates to `true` only when both operands are
   `true`.
 - `||` is the "or" operator. It evaluates to `true` if any operand is `true`.
-- `!` is the unary "not" operatod. It changes `true` into `false`, and `false`
+- `!` is the unary "not" operator. It changes `true` into `false`, and `false`
   into `true`.
 
 ### Comparison Operators
@@ -106,7 +166,7 @@ unchanged.
 ````illus: Weak ordering
 Suppose you compare children based on their Date of Birth. In most case, the
 ordering will be easy: the '29th of February 2020' comes before the '1st of
-May 2020', fine. But being born on the same day doen't make two children the
+May 2020', fine. But being born on the same day doesn't make two children the
 same person. Returning to parents a child that lived the same number of days
 than their own might not be good enough, some are bound to notice.
 ````
