@@ -98,14 +98,14 @@ single character each. UTF-8 uses them as a signal: if the value of a Byte is
 greater than 127 (if the top bit is 1), the character is encoded over several
 Bytes. Between 2 and 4 Bytes.
 
-- If the Byte is between 0 and 127 (starting with 0 in binary), it is encoded
-  over a single Byte, with the same codes as ASCII.
-- If the Byte is between 192 and 223 (starting with 110 in binary), it is
-  encoded over 2 Bytes.
-- If the Byte is between 224 and 239 (starting with 1110 in binary), it is
-  encoded over 3 Bytes.
-- If the Byte is between 240 and 244 (starting with 11110 in binary), it is
-  encoded over 4 Bytes.
+- If the Byte is between 0 and 127 (starting with 0 in binary), the character is
+  encoded over a single Byte, with the same codes as ASCII.
+- If the Byte is between 192 and 223 (starting with 110 in binary), the
+  character is encoded over 2 Bytes.
+- If the Byte is between 224 and 239 (starting with 1110 in binary), the
+  character is encoded over 3 Bytes.
+- If the Byte is between 240 and 244 (starting with 11110 in binary), the
+  character is encoded over 4 Bytes.
 
 You might notice that this leaves the range between 128 and 191
 unassigned. That's another clever trick of UTF-8.

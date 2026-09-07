@@ -127,16 +127,14 @@ The type of a value can be deduced from how we spell out the value. So we will
 have to be a little careful.
 
 ```illus
-- If we write `163`, the value is of type `int`<br/>
-  (through the unsigned integer lense, it would read as `163`).
+- If we write `163`, the value is of type `int` (signed)<br/>
 - If we write `163u`, the value is of type `unsigned int`<br/>
-  (through the unsigned integer lense, it would read as `163`)
 - If we write `163.0`, the value is of type `double`<br/>
-  (through the unsigned integer lense, it would read as `4639939069214720000`).
+  (through the unsigned integer lens, it would read as `4639939069214720000`).
 - If we write `163.0f`, the value is of type `float`<br/>
-  (through the unsigned integer lense, it would read as `1126367232`).
+  (through the unsigned integer lens, it would read as `1126367232`).
 - If we write `'£'`, the value is of type `char`<br/>
-  (through the unsigned integer lense, it would read as `163` with Windows-1252
+  (through the unsigned integer lens, it would read as `163` with Windows-1252
   or ISO-8859-1 encoding, or `153` with CP437 encoding. UTF-8 should use the
   literal u8'£' or may fail).
 - `true` and `false` are special values of type `bool`<br/>
