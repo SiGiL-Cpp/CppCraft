@@ -62,12 +62,12 @@ The simplest way to avoid this problem is to use the modern syntax with
 The modern way to declare an array is with `std::array<Type, N>`. This second
 form is more consistent and generally clearer.
 
-For instance: `std::array<float, 3uz>`, or `std::array<char, 250uz>`.
+For instance: `std::array<float, 3UZ>`, or `std::array<char, 250UZ>`.
 
 ````illus
 ```cpp
-std::array<float, 3uz> my3DVector;
-std::array<char, 250uz> aShortCharacterString {"Some words here."};
+std::array<float, 3UZ> my3DVector;
+std::array<char, 250UZ> aShortCharacterString {"Some words here."};
 ```
 
 The [image type](02-data.html#image) we discussed previously was mainly formed
@@ -75,7 +75,7 @@ of many Bytes, each interpreted as light intensity. Our example image used 88
 Bytes. We could declare:
 
 ```cpp
-std::array<std::byte, 88uz> imageLightIntensityData;
+std::array<std::byte, 88UZ> imageLightIntensityData;
 ```
 
 ````
@@ -88,7 +88,7 @@ we separate them with commas `,` in the brackets:
 
 ```cpp
 int cStyleArray[5] {0, 1, 2, 3, 4};
-std::array<float, 5> modernArray {4.5f, 3.5f, 2.5f, 1.5f, 0.5f};
+std::array<float, 5> modernArray {4.5F, 3.5F, 2.5F, 1.5F, 0.5F};
 ```
 
 ````aside: Arrays of char
@@ -127,7 +127,7 @@ first element of an array, we use `[0]` (`[1]` to access the second).
 
 After declaring:
 ```cpp
-std::array<char, 250uz> aShortCharacterString {"Some words here."};
+std::array<char, 250UZ> aShortCharacterString {"Some words here."};
 ```
 
 - `aShortCharacterString[0]` is the character `'S'`
@@ -185,7 +185,7 @@ initializing it would be:
 StyledCharacter myStyledCharacter
 {
     .character = 'A',
-    .fontSize = 10.0f,
+    .fontSize = 10.0F,
     .bold = true,
     .italic = false
 };
@@ -198,7 +198,7 @@ aggregate initialization instead:
 StyledCharacter myStyledCharacter
 {
     'A',
-    10.0f,
+    10.0F,
     true,
     false
 };
@@ -228,7 +228,7 @@ boilerplate_before: |
     } myStyledCharacter
     {
         .character = 'A',
-        .fontSize = 10.0f,
+        .fontSize = 10.0F,
         .bold = true,
         .italic = false
     };
@@ -277,7 +277,7 @@ where we start being able to make real complex and rich types.
 
 ````illus
 Consider our image type. We saw that an array is convenient to store the light
-intensity data as a `std::array<std::byte, 88uz>`, for instance.
+intensity data as a `std::array<std::byte, 88UZ>`, for instance.
 
 But we also discussed that to be able to interpret it correctly as an image, we
 need to also store the width and height of the image. It would be convenient to
@@ -287,7 +287,7 @@ struct GrayscaleImage
 {
     std::size_t width;
     std::size_t height;
-    std::array<std::byte, 88uz> lightIntensityData;
+    std::array<std::byte, 88UZ> lightIntensityData;
 };
 ```
 
@@ -299,7 +299,7 @@ struct GrayscaleImage
 {
     std::size_t width;
     std::size_t height;
-    std::array<std::byte, 1024uz> lightIntensityData;
+    std::array<std::byte, 1024UZ> lightIntensityData;
 };
 ```
 This would allow storing images of any size as long as `width`&times;`height`
@@ -326,7 +326,7 @@ struct ColourImage
 {
     std::size_t width;
     std::size_t height;
-    std::array<PixelData, 1024uz> pixels;
+    std::array<PixelData, 1024UZ> pixels;
 };
 ```
 
@@ -520,7 +520,7 @@ StyledCharacter myStyledString[5];
 
 For a modern `std::array`:
 ```cpp
-std::array<StyledCharacter, 5uz> myStyledString;
+std::array<StyledCharacter, 5UZ> myStyledString;
 ```
 ````
 
@@ -528,24 +528,24 @@ std::array<StyledCharacter, 5uz> myStyledString;
 One step at a time:
 - Declare the variable
 ```cpp
-std::array<StyledCharacter, 5uz> myStyledString;
+std::array<StyledCharacter, 5UZ> myStyledString;
 // or StyledCharacter myStyledString[5];
 ```
 - Then add curly braces `{}` to initialize it.
 ```cpp
-std::array<StyledCharacter, 5uz> myStyledString {};
+std::array<StyledCharacter, 5UZ> myStyledString {};
 ```
 - What do we want to initialize it with?
   - Let's start with a first `StyledCharacter` element. But we have to
     initialize it as well, so let's give it curly braces too:
 ```cpp
-std::array<StyledCharacter, 5uz> myStyledString { StyledCharacter {} };
+std::array<StyledCharacter, 5UZ> myStyledString { StyledCharacter {} };
 ```
 <ul style="list-style-type: none;"><li><ul><li>What do we initialize the
 `StyledCharacter` with?</li></ul></li></ul>
 
 ```cpp
-std::array<StyledCharacter, 5uz> myStyledString {
+std::array<StyledCharacter, 5UZ> myStyledString {
   StyledCharacter {
     .character='A',
     .bold=false,
@@ -560,7 +560,7 @@ std::array<StyledCharacter, 5uz> myStyledString {
 </li></ul></li></ul>
 
 ```cpp
-std::array<StyledCharacter, 5uz> myStyledString {
+std::array<StyledCharacter, 5UZ> myStyledString {
   StyledCharacter {
     .character='A',
     .bold=false,
@@ -578,7 +578,7 @@ std::array<StyledCharacter, 5uz> myStyledString {
 StyledCharacter:</li></ul></li></ul>
 
 ```cpp
-std::array<StyledCharacter, 5uz> myStyledString {
+std::array<StyledCharacter, 5UZ> myStyledString {
   StyledCharacter {
     .character='A',
     .bold=false,

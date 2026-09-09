@@ -127,11 +127,11 @@ The type of a value can be deduced from how we spell out the value. So we will
 have to be a little careful.
 
 ```illus
-- If we write `163`, the value is of type `int` (signed)<br/>
-- If we write `163u`, the value is of type `unsigned int`<br/>
+- If we write `163`, the value is of type `int` (signed).
+- If we write `163U`, the value is of type `unsigned int`.
 - If we write `163.0`, the value is of type `double`<br/>
   (through the unsigned integer lens, it would read as `4639939069214720000`).
-- If we write `163.0f`, the value is of type `float`<br/>
+- If we write `163.0F`, the value is of type `float`<br/>
   (through the unsigned integer lens, it would read as `1126367232`).
 - If we write `'£'`, the value is of type `char`<br/>
   (through the unsigned integer lens, it would read as `163` with Windows-1252
@@ -141,6 +141,33 @@ have to be a little careful.
   (with underlying values `1` and `0` respectively, although any non-zero value
   is interpreted as `true`).
 ```
+
+````aside> long and long long
+Four other literal suffixes that are often used are `L`, `UL`, `LL` and `ULL`:
+- If we write `163L`, the value is of type `long` (signed).
+- If we write `163UL`, the value is of type `unsigned long`.
+- If we write `163LL`, the value is of type `long long` (signed).
+- If we write `163ULL`, the value is of type `unsigned long long`.
+
+These types are for integral numbers, much like `int`, but potentially over more
+Bytes than `int`. Because architectures differ, and embedded platforms can have
+limited options, the types `long` and `long long` don't specify a specific
+number of Bytes. All we are guaranteed is that `long` is defined over as many or
+more Bytes than `int`, and `long long` is defined over as many or more Bytes
+than `long`.
+
+In practice, in modern general-purpose architectures, `int` is almost always
+4 Bytes long, and `long long` is almost always 8 Bytes long. `long` is usually 4
+Bytes long, except on Linux/macOS 64-bit architectures where it is 8 Bytes long.
+
+But 16 Bytes long types are coming up and maybe some day even wider types. Who
+knows, maybe there will be architectures where `long long` means 128 bit, some
+day.
+
+The modern tendency is to use types that spell out a guaranteed number of bits,
+such as `std::uint64_t`, or even types like `std::uint_fast64_t` which will pick
+the fastest unsigned integer type with a width of *at least* 64 bits.
+````
 
 This might be intimidating at first, but it is actually somewhat convenient:
 note that we wrote what we meant, mostly.
@@ -171,9 +198,9 @@ the interpretation handled for us by the compiler is two-fold:
   us in the right direction to understand semantics.
 ```
 
-Note that in the most common architectures, `163`, `163u`, and `163.0f` will have
-a size of 4 Bytes, while `163.0` will take 8 Bytes, and `'£'` only 1 Byte. It
-will be important to be aware of these differences when we try to make our
+Note that in the most common architectures, `163`, `163U`, and `163.0F` will
+have a size of 4 Bytes, while `163.0` will take 8 Bytes, and `'£'` only 1 Byte.
+It will be important to be aware of these differences when we try to make our
 programs efficient.
 
 ### Variables
@@ -276,7 +303,7 @@ see something different in C++ code you read elsewhere.
 ```cpp
 char firstLetter {'@'};
 bool isUppercase {true};
-std::uint8_t alpha {42u};
+std::uint8_t alpha {42U};
 ```
 ````
 
@@ -291,13 +318,13 @@ reading. It is a value that will increase as we progress through the file.
 std::size_t currentLine {0};
 // Further in the program we could change that value.
 // For instance when we reach the 10th line:
-currentLine = 10uz;
+currentLine = 10UZ;
 ```
 
 We define the variable `currentLine`, with the type `std::size_t`, and
 initialize it to `0`. Later, we change its value to `10`.
 
-`uz` is the literal suffix associated with the type `std::size_t` since C++23.
+`UZ` is the literal suffix associated with the type `std::size_t` since C++23.
 If you use an older standard of C++ it may fail to parse. You can use `ul`
 instead.
 
@@ -314,7 +341,7 @@ Conversely, some values never change. Suppose I define the variable `pi`, for
 instance:
 
 ```cpp
-float pi {3.14159265f};
+float pi {3.14159265F};
 ```
 
 It would be odd to later change its value. It would likely be a mistake.
@@ -323,7 +350,7 @@ The type system gives us a tool to guard against such mistakes: we can declare
 that `pi` is meant to never change, to be constant, using the keyword `const`.
 
 ```cpp
-const float pi {3.14159265f};
+const float pi {3.14159265F};
 ```
 
 Remember how the syntax is `Type identifier {value};`? Now, the type of `pi` is
@@ -347,8 +374,8 @@ ahead of time, so we can store this data in a `const` variable but not in a
 But `pi` is known ahead of time, and could (should) be stored in a `constexpr`
 variable rather than "only" a `const` one.
 
-`constexpr float pi {3.14159265f}` is equivalent to `constexpr const float pi
-{3.14159265f}` (so we usually write the first because it's more concise). In
+`constexpr float pi {3.14159265F}` is equivalent to `constexpr const float pi
+{3.14159265F}` (so we usually write the first because it's more concise). In
 both cases, the type of `pi` is `const float`. 
 ```
 
@@ -472,7 +499,7 @@ boilerplate_after: |
 default_code: |
   char c {'A'};
   int i {163};
-  float f {163.5f};
+  float f {163.5F};
   bool b {true};
 ```
 
@@ -491,7 +518,7 @@ boilerplate_after: |
   }
 default_code: |
   char c {163};
-  int i {163.5f};
+  int i {163.5F};
   float f {1e50}; // 1 * 10^50
   bool b {163};
 ```
@@ -509,8 +536,8 @@ boilerplate_after: |
   std::cout << "This compiled and ran without error.";
   }
 default_code: |
-  const float pi {3.14159265f};
-  pi = 42.f; // <- oops, not a good idea.
+  const float pi {3.14159265F};
+  pi = 42.0F; // <- oops, not a good idea.
 ```
 
 ````recap
