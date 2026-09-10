@@ -415,11 +415,12 @@ made of 8<sup>th</sup>, we have -93/8 = `-11.625`.
 
 #### > Bytes as floating point...
 
-The floating-point representation will make more sense later on, but I wanted to
-introduce it here, as it is heavily used in all kind of applications, and more
-tricky than most people realise. Don't worry if you don't get the details, it's
-a folded section for a reason. If you remember that floating points are a
-tricky representation, that's good enough.
+<span id="bytes-as-floating-point">The floating-point representation will make
+more sense later on, but I wanted to introduce it here, as it is heavily used in
+all kind of applications, and more tricky than most people realise. Don't worry
+if you don't get the details, it's a folded section for a reason. If you
+remember that floating points are a tricky representation, that's good
+enough.</span>
 
 One key idea behind this representation is that we usually care about precision
 for small numbers, and not so much for large ones. For instance, over a
