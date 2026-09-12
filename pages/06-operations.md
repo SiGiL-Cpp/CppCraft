@@ -57,7 +57,7 @@ worth noting that the division instructions over integral types result in
 integral types: the decimal part is lost.
 
 ```playground: Integral division
-id: arithmetic-integral-division
+id: integral-division
 height: 10
 boilerplate_before: |
   #include <iostream>
@@ -108,7 +108,7 @@ will conver the other operand to the same floating-point and perform the
 floating-point division instead.
 
 ```playground: Floating-point division
-id: arithmetic-integral-division
+id: floating-point-division
 height: 10
 boilerplate_before: |
   #include <iostream>
@@ -130,7 +130,7 @@ points. But past this point, the floating point values grow 2 by 2 whereas the
 integral values continue to grow 1 by 1.
 
 ```playground: Large int to float
-id: arithmetic-int-to-float
+id: int-to-float
 height: 10
 boilerplate_before: |
   #include <iostream>
@@ -174,6 +174,188 @@ Try removing the `.0F` part from `500000000.0F`, so that the operations is
 between integral numbers, without a conversion to `float`.
 ````
 
+#### Mixing Signed and Unsigned Integral
+
+Contrary to floating-point, signed and unsigned integral types share the same
+registries, but the problem remains: the processor offers instructions for
+signed on signed operations, or for unsigned on unsigned operations, but not for
+a mix of signed and unsigned. So the compiler will have to make a call between
+going with the signed or the unsigned instruction.
+
+Unfortunately, the rules determining which is picked are more complicated in
+this case, and not as well-known as the rule for mixing floating-point and
+integral types.
+
+````principle
+Avoid executing operations on values with different semantics, unless the
+readers of your code are expected to know the rules governing their interaction.
+````
+
+The easiest solution is simply to avoid such situations, typically by explicitly
+converting the operands into equivalent types so that the outcome is
+unsurprising. We will see the conversion operations further down in this page.
+
+````aside> Learning one more conversion rule for signed/unsigned integral
+
+One rule that is worth knowing is that, in such mix, if the signed type is large
+enough to represent all the values of the unsigned type (in addition to the
+negative values it can represent as well), then the unsigned type is converted
+in the signed type.
+
+```playground: Integral Unsigned and wide Signed
+id: integral-unsigned-wide-signed
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout <<
+boilerplate_after: |
+  << "\n";
+  }
+default_code: |
+  50LL - 75U
+```
+
+This is safe in all architectures where a `long long` type (`50LL`) is 64-bit
+and an `unsigned int` (`75U`) is 32-bit: the `unsigned int` will be converted
+into a (signed) `long long` which can represent all its values (and much more),
+and the result will be a signed `long long`.
+````
+
+````aside> The whole signed/unigned integral story
+Again, you don't need to learn these rules. Many C++ programmers don't know
+them, or won't have them in mind while reading your code, so relying on them
+will be confusing for no good reasons. It is best and free to avoid these
+situations.
+
+The main reason for looking into them is to be able to understand what happened
+in situtions where things would have gone wrong.
+
+There are 3 rules for the signed/unsigned of integral types. One is explained in
+the box above. Before we introduce the two remaining rules for signed/unsigned
+integral mix, we need to explain the difference between a type "rank" and its
+size.
+
+Back when we introduced the [`long` and `long long`
+types](03-types.html#aside-long-and-long-long), we said that the size of a
+`long` is either the same or larger than the size of an `int`. This size is an
+undisputable fact, but depends on the specific architecture. On the other hand,
+without knowing the specific architecture, we know that `long` has the
+*potential* to be wider than `int`, and never narrower. This potential is the
+"rank". Similarly, since `long long` is as wide or wider than `long`, `long
+long` has a higher rank than `long`.
+
+Here are the two missing rules for signed/unsigned integral types:
+1. If the types have the same rank, or if the unsigned type outranks the signed
+  type, we use the unsigned type.
+
+```playground: Unsigned outranks Signed
+id: unsigned-signed
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout <<
+boilerplate_after: |
+  << "\n";
+  }
+default_code: |
+  24U - 60
+```
+
+What happens here is an underflow. We try to represent a negative value with an
+unsigned type. We can't and what happens is that the values wrap around: one
+below 0 with unsigned integers wraps all the way to the maximum value it can
+represent. In this case, 36 below 0 is 35 below the maximum value.
+
+2. The last case is when the signed type outranks the unsigned type, but is not
+wide enough represent all the unsigned values. This can happen because the rank
+is independent from the architecture, while the size depends on it. So a signed
+`long long` type outranks an `unsigned long` even if they are the same size. In
+this case, both operands are converted into a new type: the unsigned version of
+the signed type. In the `long long` and `unsigned long` case: `unsigned long
+long`.
+
+```playground: Signed outranks Unsigned
+id: signed-unsigned
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout <<
+boilerplate_after: |
+  << "\n";
+  }
+default_code: |
+  24UL - 60LL
+```
+
+You might notice that in these two new cases, the unsigned type is preferred
+over the signed type. This might seem strange at first, but we have to consider
+a few things:
+- If the signed type was preferred instead, a valid unsigned value could become
+  unexpectedly negative.
+- Overflow (going past the largest value) and underflow (going below the
+  smallest value) of unsigned types is well defined in C++, while it is
+  "Undefined Behaviour" (UB) for signed types.
+
+````
+
+### Sub-integer types
+
+Sub-integer types designates the numeric types that are smaller than an `int`,
+such as `bool`, `char`, `short`.
+
+While modern processors are usually able to perform arithmetic operations on
+these types, it is generally slower than to perform the same operation on an
+`int`, for which the processors are specifically opetimised.
+
+````aside> Why?
+- Some old architectures could simply not perform these operations.
+- Others could but would actually use the `int` instruction, which meant loading
+  a sub-integer into part of the `int` register, and then zero-ing the part of
+  the register the sub-integer type didn't occupy, then performing the
+  operation.
+- Although the outcome is the same, in modern CPUs, the reason comes from how
+  operations are parallelised inside the processor. Explaining this in detail is
+  beyond our scope. In short, modern CPUs perform "out of order" execution and
+  parallelise the computation in complex ways which takes into account the
+  dependencies between the operations. Sub-integer types use part of a register,
+  which creates "false dependencies", that is, dependencies between instructions
+  whose data are unrelated. The false dependencies break the pipelining, which
+  is very costly in performances. Some architectures tried to tackle that
+  problem (Partial Register Renaming), but ended up favouring simpler solutions
+  instead.
+````
+
+For this reason, C++ converts such sub-integer types into the corresponding
+`int` types (`int` or `unsigned int`) before performing an arithmetic operation
+on them.
+
+```playground: Sub-integer type promotion
+id: sub-integer-promotion
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout <<
+boilerplate_after: |
+  << "\n";
+  }
+default_code: |
+  'a' + true
+```
+
+## The operations
+
+With all this out of the way, let's have a quick look at the operations at our
+disposal.
+
+---
 
 // Small types are not great here because complex. We could but we don't.
 #### Small types
@@ -471,7 +653,6 @@ So, in the end, this complexity makes sense for C++, where you only pay for what
 you use. Taking the Rust approach can be done as a programmer's discipline:
 never mixing types in arithmetic operations, to avoid surprises.
 ````
-`````
 
 `-` and `+` can also be used with a single value: `-42` is technically `-`
 applied to `42`. Because it is an operation on a single value, it is called
