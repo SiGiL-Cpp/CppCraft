@@ -11,6 +11,234 @@ motion and start crafting.
 
 # 06 - Operations
 
+## Different operations for different types
+
+Since different types should be interpreted differently depending on their
+semantics (what they represent), they must also be processed according to their
+nature.
+
+````illus: Comparing signed or unsigned integral numbers
+For instance, [signed integral numbers](01-data.html#signed-bytes) split their
+range so that the upper half of their values is interpreted as negative numbers.
+
+For integral numbers over a single Byte, what would be interpreted as `128` for
+an unsigned number is interpreted as `-128` for a signed one, and what would be
+`129` for an unsigned type is interpreted as `-127` for the signed one.
+
+So if we are comparing `127` (which is `127` for both signed and unsigned) with
+`129`/`-127`, we want the comparison to tell us that `127` is smaller in the
+unsigned case (127 < 129), but larger in the signed case (127 > -127), despite
+the underlying data being exactly the same.
+````
+
+Thankfully, the [typing system](03-types.html#the-c-type-system) already tracks
+the type, and with it the semantics of our values. So we don't have to worry
+about it: we say we want to perform an operation on the values, and the type
+system will do the leg work to figure out which operation is appropriate.
+
+This is often simple. For instance:
+- If we multiply two unsigned integral types, it will use the unsigned integral
+  multiplication (`MUL`).
+- If we multiply two signed integral types, it will use the signed integral
+  multiplication (`IMUL`).
+- If we multiply two single-precision floating points (`float`), it will use the
+  single precision floating point multiplication (`MULSS`).
+- If we multiply two double-precision floating points (`double`), it will use
+  the double precision floating point multiplication (`MULSD`).
+
+But this can only work when the processor has in its silicon the specific
+operation available. A processor can have about 1000-1500 different such
+operations it can perform. That's respectable, but not without an end.
+
+````pitfall: Integral division
+Like for the multiplication, the processor has different instructions for
+divisions. Some for floating point types and some for integral types. It is
+worth noting that the division instructions over integral types result in
+integral types: the decimal part is lost.
+
+```playground: Integral division
+id: arithmetic-integral-division
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout <<
+boilerplate_after: |
+  << "\n";
+  }
+default_code: |
+  12 / 5
+```
+
+````
+
+### Heterogeneous operations
+
+Usually, processors don't come with operations over mixed types. This is where
+things can become more complicated and sometimes surprising.
+
+#### Floating Point
+For instance, floating-point numbers are typically handled in a different area
+of the processor (FPU: the Floating Point Unit) than other logical operations
+(handled in the ALU: Arithmetic Logic Unit). This is in large part because of
+their [more complex interpretation](01-data.html#bytes-as-floating-point).
+
+Floating point operations even have to be performed over their very own
+specialized registers (a specific set of stone vessels on the apprentice desk),
+
+So what happens if we try to add or divide a floating-point number with an
+integral one, or the other way around?
+
+Since there are no mixed-type operation between floating point and integral, and
+the available operations even use completely different registers, the processor
+has to settle on a resolution.
+
+In this case, there is a simple rule: when an operation mixes integral and
+floating point types: The integral type operand is converted into the floating
+point type.
+
+````aside: How this rule is useful
+We mentioned above that the division instructions the processor offers for
+integral types results in integral types, which means it truncates the result to
+the unit.
+
+But now we know that if either of the operand is a floating-point, the compiler
+will conver the other operand to the same floating-point and perform the
+floating-point division instead.
+
+```playground: Floating-point division
+id: arithmetic-integral-division
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout <<
+boilerplate_after: |
+  << "\n";
+  }
+default_code: |
+  12 / 5.0F
+```
+````
+
+````pitfall> How this rule can bite
+As long as we use relatively small numbers, we are safe, because floating point
+numbers are more precise than integral up to `16777216` for 32-bit floating
+points. But past this point, the floating point values grow 2 by 2 whereas the
+integral values continue to grow 1 by 1.
+
+```playground: Large int to float
+id: arithmetic-int-to-float
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  #include <iomanip>
+  int main()
+  {
+    auto r {
+boilerplate_after: |
+  };
+  std::cout << std::setprecision(999) << r << "\n";
+  unsigned long long rull = r;
+  long long diff = rull - 18446744073709550000ULL;
+  std::cout << "This is " << std::abs(diff) <<
+    (diff>0?" \033[31m\033[4mmore\033[24m\033[0m" : " less") <<
+    " than 18446744073709550000.\n";
+  }
+default_code: |
+  18446744073709550000ULL - 500000000.0F
+```
+
+This gives a whole new meaning to "less is more". Let's unpack what happens
+there:
+- Since `500000000.0F` is a `float`, `18446744073709550000ULL` is converted to
+  `float`.
+- But `18446744073709550000` is not representable in `float`. So far away from
+  `0`, the single precision floating point values are `1099511627776` apart!
+- The representable values closest to `18446744073709550000` are
+  - `18446742974197923840.0F` (1099511626160 below),
+  - `18446744073709551616.0F` (1616 above).
+- Of course, `18446744073709551616.0F` is the closest candidate.
+- Our operation is now using two `float` operands and has become:<br/>
+  `18446744073709551616.0F - 500000000.0F`
+- The mathematical result of this subtraction should be `18446744073209551616`,
+  but that number is not representable as a `float` either. The representable
+  values around it are the same than for our initial number:
+  - `18446742974197923840.0F` (1099011627776 below),
+  - `18446744073709551616.0F` (500000000 above).
+- And the closest is `18446744073709551616.0F`, so that's our result.
+
+Try removing the `.0F` part from `500000000.0F`, so that the operations is
+between integral numbers, without a conversion to `float`.
+````
+
+
+// Small types are not great here because complex. We could but we don't.
+#### Small types
+
+
+
+
+
+But the processor has only so many different operations it can perform (about
+1000-1500, that's not so bad), and while it provides one comparison for signed
+integral types, and another comparison for unsigned integral types, it doesn't
+provide an operation to compare a signed value with an unsigned value.
+
+What happens then is that the compiler will convert the operands into a common
+type, so that the operation is homogeneous. Which common type is chosen depends
+on a set of rules. The result of such operation is difficult to predict without
+knowing these rules. But rather than learning these rules, there is a simpler
+solution:
+
+````principle
+Avoid executing operations on values with different semantics,
+unless you know the rules governing their interaction.
+````
+
+Some of these rules are simple. Here are a few simple rules:
+- Small types (types over less Bytes than an `int`, such as `bool`, `char`,
+  `short`) are converted
+
+### Floating point and integral numbers
+
+Similarly to signed and unsigned integral
+
+Some of these rules are simple, making some mix safe to use.
+
+- The most used rule is that for operations mixing integral types and
+  floating-point types, the integral type operand is converted into the
+  floating-point type.
+
+````illus
+
+ The difficulty comes when we start mixing it up:
+what if we compared a signed type with an unsigned type? The processor has a
+compare operation for signed, and a compare operation for unsigned, but no
+compare operation for a signed and an unsigned, or the other way around. That
+would require way too many special cases when we would add also the size of the
+types, and whether they are floating point or integral.
+
+
+
+In the alchemy lab metaphor, we have seen there are [different
+registers](05-processing.html#registers) (stone vessels on the desk). And we have
+also seen before that [floating point
+numbers](01-data.html#bytes-as-floating-point) have a complex representation.
+Due to how different and specific the floating point numbers are from the
+integral numbers, they use different registers.
+
+This means that floating point operations and integer operations can't mix
+
+
+
+
+---
+---
+---
+
 ## Expressions
 
 In C++, expressions can do a lot of things. Formally, they are defined as "a
@@ -84,7 +312,7 @@ boilerplate_after: |
   << "\n";
   }
 default_code: |
-  12 / 5.0f
+  12 / 5.0F
 ```
 
 Beyond this, things can get a bit convoluted.
@@ -113,7 +341,7 @@ unsigned integers. Let's introduce them now:
   `-42l`.
 - `long long` is another distinct integral type defined over as many, or more
   Bytes than a `long`. The literal for it uses the double `ll` suffix (which can
-  be used along with the `u` suffix for `unsigned long long`): `42ull`. While it
+  be used along with the `u` suffix for `unsigned long long`): `42ULL`. While it
   is not guaranteed to be any specific size beside being as wide or wider than
   `long`, in modern architectures, it is usually 64 bit long.
 
@@ -131,18 +359,18 @@ boilerplate_after: |
   };
   std::cout << std::setprecision(999) << r << "\n";
   unsigned long long rull = r;
-  long long diff = rull - 18446744073709550000ull;
+  long long diff = rull - 18446744073709550000ULL;
   std::cout << "This is " << std::abs(diff) <<
     (diff>0?" \033[31m\033[4mmore\033[24m\033[0m" : " less") <<
     " than 18446744073709550000.\n";
   }
 default_code: |
-  18446744073709550000ull - 500000000.0f
+  18446744073709550000ULL - 500000000.0F
 ```
 
 This gives a whole new meaning to "less is more". Let's unpack what happens
 there:
-- Since `500000000.0f` is a `float`, `18446744073709550000ull` is converted to
+- Since `500000000.0F` is a `float`, `18446744073709550000ULL` is converted to
   `float`.
 - But `18446744073709550000` is not representable in `float`. So far away from
   `0`, the single precision floating point values are `1099511627776` apart!
@@ -151,7 +379,7 @@ there:
   - `18446744073709551616` above (1616 more).
 - Of course, `18446744073709551616` is the closest candidate.
 - Our operation is now using two `float` operands and has become:
-  `18446744073709551616.0f - 500000000.0f`
+  `18446744073709551616.0F - 500000000.0F`
 - The result of this subtraction is `18446744073209551616`, but that number is
   not representable as a `float` either. The representable values around it are
   the same than for our initial number:
@@ -159,7 +387,7 @@ there:
   - `18446744073709551616` above (500000000 more).
 - And the closest is `18446744073709551616`, so that's our result.
 
-Try removing the `.0f` part from `500000000`, so that the conversion to `float`
+Try removing the `.0F` part from `500000000`, so that the conversion to `float`
 doesn't happen.
 
 ---
@@ -185,7 +413,7 @@ boilerplate_after: |
   << "\n";
   }
 default_code: |
-  24u - 60
+  24U - 60
 ```
 
 What happens here is an underflow. We try to represent a negative value with an
