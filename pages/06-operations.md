@@ -151,12 +151,228 @@ default_code: |
 
 Note that a single `=` sign is an assignment and not a comparison.
 
-````The `<=>` spacecraft operator
+`````aside> The <=> spacecraft operator
 
+While the comparison operators presented above are relatively self-explanatory,
+the semantics (specific meaning) of these operations can sometimes be ambiguous.
+
+- The unambiguous case would be what we call **"strong ordering"**. This is when
+  we can order all the elements, and when two elements are equal, they are
+  exactly the same thing. 
+
+````illus: Strong ordering
+Remember our [light intensities](01-data.html#bytes-as-light-intensity)? Given
+two different light intensity values (`197` and `63`), the order is obvious (`63
+< 197`). And if two pixel of an image have the same light-intensity value,
+that's genuinely the same light intensity: we can exchange them and the image is
+unchanged.
 ````
 
+- But sometimes, equality is not the same as identity. This is what we call
+**"weak ordering"**.
 
+````illus: Weak ordering
+Suppose you compare children based on their Date of Birth. In most case, the
+ordering will be easy: the '29th of February 2020' comes before the '1st of
+May 2020', fine. But being born on the same day doesn't make two children the
+same person. Returning to parents a child that lived the same number of days
+than their own might not be good enough, some are bound to notice.
+````
 
+- Finally, there are things for which some values can be compared, but other
+  values can't be compared. Because some parts can be ordered and other parts
+  can't, we call this **"partial ordering"**.
+
+````illus: Partial ordering
+Now we're organising songs and musical pieces, and we had the brilliant idea to
+sort them by their tonality, or rather by their fundamental frequency. If a
+piece changes fundamental, we use the first one. So far, that's weak ordering:
+several pieces could have the same fundamental frequency while retaining their
+unique identity.
+
+Then we stumble on John Cage's
+[4'33"](https://en.wikipedia.org/wiki/4%E2%80%B233%E2%80%B3), a piece that is
+entirely silent. No sound, no fundamental, no tonality... Fine, we call it 0
+frequency, and it will be the very first of our list. Our ordering survived that
+one.
+
+But then comes [Merzbow](https://en.wikipedia.org/wiki/Merzbow) (Masami Akita),
+a Japanese artist known for his harsh noise music, and who uses a lot of white
+and pink noise in his compositions. Now we have the opposite problem: white and
+pink noise are "all frequencies at the same time".
+
+<p align="center">
+<strong>"What is the fundamental frequency of your piece?<br/>- Merzbow:</strong>
+<br/><img src="imgs/origin-of-the-yes-meme.webp" alt="yes" width="100%" style="max-width:400px"/>
+</p>
+
+We could come up with more rules to make up an arbitrary ordering, but
+objectively, they don't really compare with the other songs.
+````
+
+That's where the C++20 "three-way comparison  oparator `<=>` comes in. It is the
+all-in-one comparison: it answers at the same time whether the operands are
+equal, less or greater.
+
+The semantics of this newer operator solve the issue explained above. It returns
+one of these three types:
+
+- `std::strong_ordering`, which can have one of these values:
+  - `less`
+  - `equivalent` or `equal`
+  - `greater`
+- `std::weak_ordering`, which can have one of these values:
+  - `less`
+  - `equivalent` (but <u>not</u> `equal`)
+  - `greater`
+- `std::partial_ordering`, which can have one of these values:
+  - `less`
+  - `equivalent` (but <u>not</u> `equal`)
+  - `greater`
+  - `unordered`
+
+`std::strong_ordering::equivalent` and `std::weak_ordering::equivalent` are
+different values. The former means that the operands are the same thing,
+interchangeable, while the latter only means they have the same rank in the
+ordering.
+
+```playground: Spacecraft operator
+id: spacecraft-operator
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  #include <string>
+  #include <math.h>
+  #include <limits.h>
+
+  template<typename T>
+  constexpr std::string_view CompToText(T v)
+  {
+    if constexpr(std::is_same_v<T, std::strong_ordering>)
+    {
+      if(v == std::strong_ordering::equal)
+        return "std::strong_ordering::equal";
+      else if(v == std::strong_ordering::less)
+        return "std::strong_ordering::less";
+      else if(v == std::strong_ordering::greater)
+        return "std::strong_ordering::greater";
+      else
+        return "Error";
+    }
+    if constexpr(std::is_same_v<T, std::weak_ordering>)
+    {
+      if(v == std::weak_ordering::equivalent)
+        return "std::weak_ordering::equivalent";
+      else if(v == std::weak_ordering::less)
+        return "std::weak_ordering::less";
+      else if(v == std::weak_ordering::greater)
+        return "std::weak_ordering::greater";
+      else
+        return "Error";
+    }
+    if constexpr(std::is_same_v<T, std::partial_ordering>)
+    {
+      if(v == std::partial_ordering::equivalent)
+        return "std::partial_ordering::equivalent";
+      else if(v == std::partial_ordering::less)
+        return "std::partial_ordering::less";
+      else if(v == std::partial_ordering::greater)
+        return "std::partial_ordering::greater";
+      else if(v == std::partial_ordering::unordered)
+        return "std::partial_ordering::unordered";
+      else
+        return "Error";
+    }
+    if constexpr(std::is_same_v<T, bool>)
+    {
+      if(v) return "true";
+      return "false";
+    }
+    return "Unsupported Type";
+  }
+
+  int main()
+  {
+    std::cout << CompToText(
+boilerplate_after: |
+  ) << "\n";
+  }
+default_code: |
+  207 <=> 42
+```
+`````
+
+### Assignment operations
+
+Assignment operations are different from the operations we have seen so far
+because they *modify* one of their operand.
+
+We can't mofify a [literal](03-types.html#literals) (`10` can't be changed to
+become `42`), but we can modify a [variable](03-types.html#varying-variables).
+
+The operator `=` is the assignment operator (remember that evaluate if two
+values are equal, we use `==`). It is an operator that assigns the value on its
+right-hand side to the left-hand side operand, and evaluates to that value.
+
+```playground: Assignment operations
+id: assignment-operations
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+boilerplate_after: |
+  std::cout << i << "\n";
+  }
+default_code: |
+  int i {8};
+  i = 42;
+```
+
+Just like `1 + 1` evaluates to `2`, `i = 42` evaluates to `42`, but also changes
+the value of `i` along the way.
+
+There are many other assignment operations in C++ such as: `+=`, `-=`, `*=`,
+`/=`, and `%=`. `i += 3` is equivalent to `i = i + 3`, and the others follow the
+same pattern. Try them above. (The bitwise operations also have their matching
+"assignment" variants: `&=`, `|=`, `^=`, `<<=`, and `>>=`).
+
+### Increment and decrement operations
+
+Finally, the operations C++ takes its name from. Increment and decrement
+operations are somewhat similar to assignment operations, as they, too, modify
+the variable they are applied to.
+
+There are 4 such operations.
+- Pre-increment (`++` before the variable name): it increments (adds one to) the
+  variable it is applied to, and evaluates to the new value of the variable.
+- Post-increment (`++` after the variable name): it increments (adds one to) the
+  variable it is applied to, and evaluates to the old value of the variable.
+- Pre-decrement (`--` before the variable name): it decrements (subtracts one
+  from) the variable it is applied to, and evaluates to the new value of the
+  variable.
+- Post-decrement (`--` after the variable name): it decrements (subtracts one
+  from) the variable it is applied to, and evaluates to the old value of the
+  variable.
+
+````illus
+Suppose we have:
+```cpp
+int i {5};
+```
+- `++i` is the pre-increment operation on `i`. It changes `i` value to `6`, and
+  evaluates to `6`.
+  - It is equivalent to `i += 1`, which is equivalent to `i = i + 1`.
+- `i++` is the post-increment operation on `i`. It changes `i` value to `6`, and
+  evaluates to `5` (its value before the increment).
+- `--i` is the pre-decrement operation on `i`. It changes `i` value to `4`, and
+  evaluates to `4`.
+  - It is equivalent to `i -= 1`, which is equivalent to `i = i - 1`.
+- `i--` is the post-decrement operation on `i`. It changes `i` value to `4`, and
+  evaluates to `5` (its value before the decrement).
+````
+
+And that's why C++ is called that: it is an "increment" over the C language.
 
 ## Different operations for different types
 
@@ -196,27 +412,6 @@ This is often simple. For instance:
 But this can only work when the processor has in its silicon the specific
 operation available. A processor can have about 1000-1500 different such
 operations it can perform. That's respectable, but not without an end.
-
-````pitfall: Integral division
-Like for the multiplication, the processor has different instructions for
-divisions. Some for floating point types and some for integral types. It is
-worth noting that the division instructions over integral types result in
-integral types: the decimal part is lost.
-
-```playground: Integral division
-id: integral-division
-height: 10
-boilerplate_before: |
-  #include <iostream>
-  int main()
-  {
-    std::cout <<
-boilerplate_after: |
-  << "\n";
-  }
-default_code: |
-  12 / 5
-```
 
 ````
 
