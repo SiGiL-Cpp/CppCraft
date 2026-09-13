@@ -11,6 +11,153 @@ motion and start crafting.
 
 # 06 - Operations
 
+### Expressions and statements
+
+In C++, **expressions** are defined as "a sequence of operators and operands that
+specifies a computation". In other words, they are the individual steps of the
+recipes our apprentice (CPU) elaborates at the desk in the stone vessels
+(registers).
+
+**Statements**, on the other hand are instructions for the program to do
+something. In C++, the simplest form of statement is an expression followed by a
+semicolon `;`.
+
+- `1 + 1` is an expression that evaluates to `2`.
+- `1 + 1;` is a statement that instructs the compiler to compute the expression
+  above, and then throws that result away.
+
+In this case, this statement will have no effect as nothing changed, but we will
+soon see that many expressions modify the states of the program.
+
+## Homogeneous operations
+
+There are many operations available. We will present some of them concisely, in
+their simplest form where operands are of the same type, then present some
+subtleties.
+
+### Arithmetic operations
+
+`+`, `-`, `*`, `/` are relatively self-exaplanatory, although it is worth noting
+that dividing two integral numbers results in an integral result.
+
+```playground: Integral division
+id: integral-division
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout <<
+boilerplate_after: |
+  << "\n";
+  }
+default_code: |
+  12 / 5
+```
+
+In addition, we also get the `%` operator, called remainder or modulo operator.
+It gives the remainer of a division: `11 % 3` is `2`, because 11 is 3&times;3 +
+2. you can test it above.
+
+````aside> For readers adept at binary: bitwise operators
+There are also operators acting on the bitwise representation of the values.
+
+C++ offers specific [literals](03-types.html#literals) to write numbers in
+binary and hexadecimal, by prefixing the numbers by `0b` and `0x` respectively:
+the number `12` in decimal can be written as `0b1100` in binary, or `0x0c` in
+hexadecimal. For convenience, we will use numbers such as `0xffff0000` and
+`0x00ffff00` for our examples. `0xf` correspond to four consecutive 1s in
+binary: `0b1111`.
+
+- `~` is the unary operator for the "not" operation: swapping all the 1s for 0s
+  and all the 0s for 1s in the binary representation. `~0x00ffff00` is
+  `0xff0000ff`.
+- `&` is the bitwise AND operator: `0x0000ffff & 0x00ffff00` is `0x0000ff00`
+  (only the bits present in both operands are kept).
+- `|` is the bitwise OR operator: `0xff000000 | 0x000000ff` is `0xff0000ff` (any
+  bit that is 1 in either operand is kept).
+- `^` is the bitwise XOR operator (eXclusive OR): `0x0000ffff ^ 0x00ffff00`is
+  `0x00ff00ff` (only the bits differing between both operands are kept)
+- `<<` shifts the bits of the left-hand-side operand by the right-hand-side
+  operand number of bits to the left: `0x0000ffff<<4` is `0x000ffff0`. The
+  vacated bits are filled with 0s.
+- `>>` shifts the bits of the left-hand-side operand by the right-hand-side
+  operand number of bits to the right: `0x0000ffff>>4` is `0x00000fff`. The
+  vacated bits are filled with 0s for unsigned ints and for positive signed
+  ints, but with 1s for negative signed ints (so that the sign bit is kept).
+  This is guaranteed since C++20.
+
+````
+
+### Logical operations
+
+[Boolean values](01-data.html#bytes-as-true-false-on-off-yes-no-values) have
+their own operators:
+- `&&` is the "and" operator. It evaluates to `true` only when both operands are
+  `true`.
+- `||` is the "or" operator. It evaluates to `true` if any operand is `true`.
+- `!` is the unary "not" operator. It changes `true` into `false`, and `false`
+  into `true`.
+
+```playground: Logical operations
+id: logical-operations
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout << ((
+boilerplate_after: |
+  )?"true":"false") << "\n";
+  }
+default_code: |
+  true || false
+```
+
+````aside> Logical operations "short-circuit"
+The one thing to note about these operators is that they "short-circuit":
+- When evaluating an "or" operation `||`, since if either operand is `true`, the
+  expression evaluates to `true`, the first operand (left-hand side operand) is
+  evaluated, and if it is `true`, the evaluation stops there, returning `true`.
+  Only if it is `false` is the second (right-hand side operand) evaluated.
+- Similarly, when evaluating an `and` operation `&&`, if either operand is
+  `false`, the expression evaluates to `false`. So the second operand
+  (right-hand side) is only evaluated if the first one (left-hand side)
+  evaluates to `true`.
+````
+
+### Comparison operations
+
+Values can also be compared. We use `==` (equal), `!=` (not equal), `<`
+(strictly less), `>` (strictly greater), `<=` (less or equal), and `>=` (greater
+or equal). All of these operations evaluate to a
+[boolean](01-data.html#bytes-as-true-false-on-off-yes-no-values) for native
+types.
+
+```playground: Comparison operations
+id: logical-operations
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout << ((
+boilerplate_after: |
+  )?"true":"false") << "\n";
+  }
+default_code: |
+  207 >= 42
+```
+
+Note that a single `=` sign is an assignment and not a comparison.
+
+````The `<=>` spacecraft operator
+
+````
+
+
+
+
 ## Different operations for different types
 
 Since different types should be interpreted differently depending on their
@@ -85,7 +232,7 @@ of the processor (FPU: the Floating Point Unit) than other logical operations
 their [more complex interpretation](01-data.html#bytes-as-floating-point).
 
 Floating point operations even have to be performed over their very own
-specialized registers (a specific set of stone vessels on the apprentice desk),
+specialized registers (a specific set of stone vessels on the apprentice desk).
 
 So what happens if we try to add or divide a floating-point number with an
 integral one, or the other way around?
@@ -104,7 +251,7 @@ integral types results in integral types, which means it truncates the result to
 the unit.
 
 But now we know that if either of the operand is a floating-point, the compiler
-will conver the other operand to the same floating-point and perform the
+will convert the other operand to the same floating-point and perform the
 floating-point division instead.
 
 ```playground: Floating-point division
@@ -177,7 +324,7 @@ between integral numbers, without a conversion to `float`.
 #### Mixing Signed and Unsigned Integral
 
 Contrary to floating-point, signed and unsigned integral types share the same
-registries, but the problem remains: the processor offers instructions for
+registers, but the problem remains: the processor offers instructions for
 signed on signed operations, or for unsigned on unsigned operations, but not for
 a mix of signed and unsigned. So the compiler will have to make a call between
 going with the signed or the unsigned instruction.
@@ -230,7 +377,7 @@ will be confusing for no good reasons. It is best and free to avoid these
 situations.
 
 The main reason for looking into them is to be able to understand what happened
-in situtions where things would have gone wrong.
+in situations where things would have gone wrong.
 
 There are 3 rules for the signed/unsigned of integral types. One is explained in
 the box above. Before we introduce the two remaining rules for signed/unsigned
@@ -306,12 +453,12 @@ a few things:
 
 ### Sub-integer types
 
-Sub-integer types designates the numeric types that are smaller than an `int`,
+Sub-integer types designate the numeric types that are smaller than an `int`,
 such as `bool`, `char`, `short`.
 
 While modern processors are usually able to perform arithmetic operations on
 these types, it is generally slower than to perform the same operation on an
-`int`, for which the processors are specifically opetimised.
+`int`, for which the processors are specifically optimised.
 
 ````aside> Why?
 - Some old architectures could simply not perform these operations.
@@ -350,73 +497,16 @@ default_code: |
   'a' + true
 ```
 
+Both operands are converted to `int` before the addition is performed, and so
+the result is also an `int`. This is another instance of the compiler resolving
+operations by converting operands to a common type.
+
 ## The operations
 
 With all this out of the way, let's have a quick look at the operations at our
 disposal.
 
 ---
-
-// Small types are not great here because complex. We could but we don't.
-#### Small types
-
-
-
-
-
-But the processor has only so many different operations it can perform (about
-1000-1500, that's not so bad), and while it provides one comparison for signed
-integral types, and another comparison for unsigned integral types, it doesn't
-provide an operation to compare a signed value with an unsigned value.
-
-What happens then is that the compiler will convert the operands into a common
-type, so that the operation is homogeneous. Which common type is chosen depends
-on a set of rules. The result of such operation is difficult to predict without
-knowing these rules. But rather than learning these rules, there is a simpler
-solution:
-
-````principle
-Avoid executing operations on values with different semantics,
-unless you know the rules governing their interaction.
-````
-
-Some of these rules are simple. Here are a few simple rules:
-- Small types (types over less Bytes than an `int`, such as `bool`, `char`,
-  `short`) are converted
-
-### Floating point and integral numbers
-
-Similarly to signed and unsigned integral
-
-Some of these rules are simple, making some mix safe to use.
-
-- The most used rule is that for operations mixing integral types and
-  floating-point types, the integral type operand is converted into the
-  floating-point type.
-
-````illus
-
- The difficulty comes when we start mixing it up:
-what if we compared a signed type with an unsigned type? The processor has a
-compare operation for signed, and a compare operation for unsigned, but no
-compare operation for a signed and an unsigned, or the other way around. That
-would require way too many special cases when we would add also the size of the
-types, and whether they are floating point or integral.
-
-
-
-In the alchemy lab metaphor, we have seen there are [different
-registers](05-processing.html#registers) (stone vessels on the desk). And we have
-also seen before that [floating point
-numbers](01-data.html#bytes-as-floating-point) have a complex representation.
-Due to how different and specific the floating point numbers are from the
-integral numbers, they use different registers.
-
-This means that floating point operations and integer operations can't mix
-
-
-
-
 ---
 ---
 ---
