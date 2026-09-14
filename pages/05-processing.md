@@ -20,8 +20,8 @@ As a master alchemist (a *programmer*), you rarely enter the lab yourself.
 Instead, you send your apprentice. The poor soul is very obedient and follows
 all your instructions by the letter, but is somewhat lacking in judgement. You
 give them some scrolls with all the instructions (the *compiled code*), and they
-scrupulously go through them. If the instruction tells to set fire to a black
-powder keg, they'll do it without a second thought.
+scrupulously go through them. If the instruction tells them to set fire to a
+black powder keg, they'll do it without a second thought.
 
 Yet, this apprentice of yours (the *CPU*) is your arms and hands in the
 laboratory.
@@ -40,7 +40,7 @@ number.
 Inside each drawer, there are little boxes. Different laboratories (*computer
 architectures*) have different box structures, but typically:
 - A drawer contains 64 (8&times;8) boxes with high sides.
-- Each of these box is divided in two by a separator that goes only a third of
+- Each of these boxes is divided in two by a separator that goes only a third of
   the way up the box.
 - And each side of the separator is also divided in two by an even lower
   separator.
@@ -118,8 +118,8 @@ architectures*) have different box structures, but typically:
 This separating system allows to store many small ingredients in the shallow
 tight grid at the bottom of a box, or only one very large ingredients at the top
 of the box, or an intermediate number of medium ingredients at the intermediate
-levels, or even a mix medium and small ingredients (*data*). The important part
-is that each ingredient can be stored isolated from other ingredients.
+levels, or even a mix of medium and small ingredients (*data*). The important
+part is that each ingredient can be stored isolated from other ingredients.
 
 `````aside: Alignment, Padding
 In the [previous chapter](04-aggregates.html#the-size-of-a-struct), we mentioned
@@ -128,7 +128,7 @@ sum of the size of its members, and that there can be gaps.
 
 With this model, we can now explain why this happens:
 
-- Each of the smallest square in [the illustration above](#mem-page) represents
+- Each of the smallest squares in [the illustration above](#mem-page) represents
   a single Byte.
 - There are 4096 single Bytes in this illustration (you may have to zoom in), as
   it is the most common size for a *memory page* in current architectures.
@@ -151,13 +151,13 @@ In the past, old architectures used to crash when this alignment was not
 respected. Nowadays, modern architectures handle it without crashing, but
 typically take more time. If a piece of data happens to straddle an alignment
 boundary, and ends up having some of its Bytes in one group, and the rest in
-another group, some architectures would load the data it two operations, reading
+another group, some architectures would load the data in two operations, reading
 from one group at a time.
 
 Now let's consider what that means for the `struct` we define.
 
 Suppose we define a `struct` that starts with a 1-Byte-long member,
-and then has a 4-Bytes-long member. For instance:
+and then has a 4-Byte-long member. For instance:
 
 ```cpp
 struct AlignmentExample
@@ -263,8 +263,8 @@ next `AlignmentExample2` element in the array would land out of alignment:
   </tr>
 </table>
 
-For this reason, and in a similar way than for `b` earlier, 3 more Bytes of
-padding are added at the end of the `struct`.
+For this reason, and in a similar way to `b` earlier, 3 more Bytes of padding
+are added at the end of the `struct`.
 
 <table style="border-collapse: collapse; border:8px solid; margin-bottom: 1.1rem;">
   <tr>
@@ -286,7 +286,7 @@ padding are added at the end of the `struct`.
 The good news is that this layout of the memory for this `struct` is perfectly
 fine with regard to alignment. We can repeat it or compose it and `i` will be
 aligned. The bad news is that we now have a `struct` that holds 6 Bytes of data,
-but takes up 12 Bytes in memory. A tad wasteful isn't it?
+but takes up 12 Bytes in memory. A tad wasteful, isn't it?
 
 Turns out, we can improve things, if we care more about the space taken in
 memory than we care about the order of members: we can put the member `c` in the
@@ -320,8 +320,8 @@ of our structures. We had to change the order of the members in the `struct`
 definition to get this benefit.
 
 So knowing about padding will allow us to pack our data more tightly in memory.
-And tighter data means less effort for the apprentice to move them around. We
-will get to that in the [L-Caches](#l-caches) section of this page.
+And tighter data means less effort for the apprentice to move it around. We will
+get to that in the [L-Caches](#l-caches) section of this page.
 ````
 
 `````
@@ -335,7 +335,7 @@ written (the *compiled code*), so that it's easy to find them when needed.
 - A few more rows of drawers above these to store the ingredients the apprentice
   came with (*static data*).
 - And plenty more rows of empty drawers right at the top, under the ceiling, for
-  the apprentice to work with on his own (the *stack*).
+  the apprentice to work with on their own (the *stack*).
 
 But all the drawers between the top rows and the static data drawers at the
 bottom are locked. If the apprentice needs more drawer space to work with than
@@ -558,7 +558,7 @@ These operations happen in special stone vessels (*registers*) that are
 structured like the boxes in the drawers: a high rim around, a lower separator,
 and lower and lower subdivisions all the way down.
 
-There's at least two different kind of such vessels, and at least 16 of each
+There are at least two different kinds of such vessels, and at least 16 of each
 kind. This varies depending on the alchemy workshop (*hardware architecture*).
 
 There is also a slate and chalk in a corner of the desk (the *instruction
@@ -592,7 +592,7 @@ Let us look at what a good day's work looks like for your apprentice.
 
 Arriving in the room, your apprentice places the scrolls with the instructions
 you have given them in the first drawers near the entry (the drawers with the
-lowest numbers etched below them). He also hands over a specific scroll to the
+lowest numbers etched below them). They also hands over a specific scroll to the
 butler instructing him to place the ingredients they brought in the freely
 available drawers at the bottom, next to where they have placed the instruction
 scrolls.
@@ -642,7 +642,7 @@ L-cache containers.
 At the desk, the apprentice places the box over one of the stone vessel, and
 opens a special trap door below the ingredient the instruction specified.
 
-And toss the box in the furnace.
+And tosses the box in the furnace.
 
 #### Second instruction and memory roundtrip
 
@@ -773,10 +773,10 @@ collection in my stack.
 
 But what happens then if I find a new newt egg? Well, I'm a bit stuck. I would
 like to add it next to the other newt eggs, but I've filled that space already.
-It is fine for collection of stuff that never grows (if we know its size when we
-write the instructions, i.e. at *compile time*), but for collections we want to
-keep grouped together but don't know the size in advance, or that can grow, we
-use a different approach: the Heap.
+It is fine for a collection of stuff that never grows (if we know its size when
+we write the instructions, i.e. at *compile time*), but for collections we want
+to keep grouped together but don't know the size in advance, or that can grow,
+we use a different approach: the Heap.
 
 ### The heap
 
@@ -816,10 +816,10 @@ on a computer.
 That means, there's a crowd of apprentices, in that workshop, and the butler is
 quite busy.
 
-There's a limited amount of desks, though. Maybe 6-8, maybe 4, maybe 12 or more
+There's a limited number of desks, though. Maybe 6-8, maybe 4, maybe 12 or more
 (*number of cores in the processor*).
 
-So when things get busy, the apprentices queue for accessing the desks and take
+So when things get busy, the apprentices queue to access the desks and take
 turns (*context switch*).
 
 This is where what we said about that L3 cache being shared with others comes
@@ -915,8 +915,8 @@ Let me address a number of limits:
 ```
 
 ```recap
-- The CPU execute the instructions the programmer provides mechanically, without
-  judgement.
+- The CPU executes the instructions the programmer provides mechanically,
+  without judgement.
 - The RAM (Random Access Memory) stores everything the program needs, addressed
   by numbers.
 - The Registers are the CPU's working space. Where operations happen.
