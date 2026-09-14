@@ -18,7 +18,7 @@ specifies a computation". In other words, they are the individual steps of the
 recipes our apprentice (CPU) elaborates at the desk in the stone vessels
 (registers).
 
-**Statements**, on the other hand are instructions for the program to do
+**Statements**, on the other hand, are instructions for the program to do
 something. In C++, the simplest form of statement is an expression followed by a
 semicolon `;`.
 
@@ -57,7 +57,7 @@ default_code: |
 
 In addition, we also get the `%` operator, called remainder or modulo operator.
 It gives the remainer of a division: `11 % 3` is `2`, because 11 is 3&times;3 +
-2. you can test it above.
+2. You can test it above.
 
 ````aside> For readers adept at binary: bitwise operators
 There are also operators acting on the bitwise representation of the values.
@@ -66,7 +66,7 @@ C++ offers specific [literals](03-types.html#literals) to write numbers in
 binary and hexadecimal, by prefixing the numbers by `0b` and `0x` respectively:
 the number `12` in decimal can be written as `0b1100` in binary, or `0x0c` in
 hexadecimal. For convenience, we will use numbers such as `0xffff0000` and
-`0x00ffff00` for our examples. `0xf` correspond to four consecutive 1s in
+`0x00ffff00` for our examples. `0xf` corresponds to four consecutive 1s in
 binary: `0b1111`.
 
 - `~` is the unary operator for the "not" operation: swapping all the 1s for 0s
@@ -172,11 +172,11 @@ unchanged.
 **"weak ordering"**.
 
 ````illus: Weak ordering
-Suppose you compare children based on their Date of Birth. In most case, the
+Suppose you compare children based on their Date of Birth. In most cases, the
 ordering will be easy: the '29th of February 2020' comes before the '1st of
 May 2020', fine. But being born on the same day doesn't make two children the
 same person. Returning to parents a child that lived the same number of days
-than their own might not be good enough, some are bound to notice.
+as their own might not be good enough, some are bound to notice.
 ````
 
 - Finally, there are things for which some values can be compared, but other
@@ -307,12 +307,13 @@ default_code: |
 Assignment operations are different from the operations we have seen so far
 because they *modify* one of their operand.
 
-We can't mofify a [literal](03-types.html#literals) (`10` can't be changed to
+We can't modify a [literal](03-types.html#literals) (`10` can't be changed to
 become `42`), but we can modify a [variable](03-types.html#varying-variables).
 
-The operator `=` is the assignment operator (remember that evaluate if two
-values are equal, we use `==`). It is an operator that assigns the value on its
-right-hand side to the left-hand side operand, and evaluates to that value.
+The operator `=` is the assignment operator (remember that to evaluate whether
+two values are equal, we use `==`). It is an operator that assigns the value on
+its right-hand side to the left-hand side operand, and evaluates to that
+left-hand side operand (with its new value).
 
 ```playground: Assignment operations
 id: assignment-operations
@@ -397,7 +398,7 @@ interpreted as `true || (false && false)`.
 The assignments come last. They execute in the right-to-left direction.
 
 While some priorities are well known, some are less known, and to avoid any
-mistakes it is usually preferable to use parenthesis `(` `)` where there is any
+mistakes it is usually preferable to use parentheses `(` `)` where there is any
 risk of ambiguity.
 
 ```playground: Composite expression
@@ -546,7 +547,7 @@ there:
   `18446744073709551616.0F - 500000000.0F`
 - The mathematical result of this subtraction should be `18446744073209551616`,
   but that number is not representable as a `float` either. The representable
-  values around it are the same than for our initial number:
+  values around it are the same as for our initial number:
   - `18446742974197923840.0F` (1099011627776 below),
   - `18446744073709551616.0F` (500000000 above).
 - And the closest is `18446744073709551616.0F`, so that's our result.
@@ -652,12 +653,12 @@ below 0 with unsigned integers wraps all the way to the maximum value it can
 represent. In this case, 36 below 0 is 35 below the maximum value.
 
 2. The last case is when the signed type outranks the unsigned type, but is not
-wide enough represent all the unsigned values. This can happen because the rank
-is independent from the architecture, while the size depends on it. So a signed
-`long long` type outranks an `unsigned long` even if they are the same size. In
-this case, both operands are converted into a new type: the unsigned version of
-the signed type. In the `long long` and `unsigned long` case: `unsigned long
-long`.
+wide enough to represent all the unsigned values. This can happen because the
+rank is independent from the architecture, while the size depends on it. So a
+signed `long long` type outranks an `unsigned long` even if they are the same
+size. In this case, both operands are converted into a new type: the unsigned
+version of the signed type. In the `long long` and `unsigned long` case:
+`unsigned long long`.
 
 ```playground: Signed outranks Unsigned
 id: signed-unsigned
@@ -707,9 +708,8 @@ these types, it is generally slower than to perform the same operation on an
   dependencies between the operations. Sub-integer types use part of a register,
   which creates "false dependencies", that is, dependencies between instructions
   whose data are unrelated. The false dependencies break the pipelining, which
-  is very costly in performances. Some architectures tried to tackle that
-  problem (Partial Register Renaming), but ended up favouring simpler solutions
-  instead.
+  is very costly in performance. Some architectures tried to tackle that problem
+  (Partial Register Renaming), but ended up favouring simpler solutions instead.
 ````
 
 For this reason, C++ converts such sub-integer types into the corresponding
