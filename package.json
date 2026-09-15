@@ -7,7 +7,7 @@
     "serve": "npx serve -l 8080 ."
   },
   "dependencies": {
-    "js-yaml": "^4.1.0",
-    "marked": "^9.1.6"
+    "js-yaml": "^5.4.2",
+    "marked": "^18.0.13"
   }
 }

@@ -33,16 +33,33 @@ function escHtml(s) {
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-function wrapBox(type, label, bodyHtml, fold) {
+// Generate a stable slug for a box from its title or first 5 words of content.
+function idForBox(type, title, rawContent) {
+  const source = title
+    ? title
+    : rawContent.trim()
+        .replace(/```[\s\S]*?```/g, '')
+        .replace(/[*_`#\[\]()>]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .split(' ')
+        .slice(0, 5)
+        .join(' ');
+  return type + '-' + source.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function wrapBox(type, label, bodyHtml, fold, id) {
   const labelText = escHtml(label);
+  const idAttr    = id ? ` id="${id}"` : '';
   if (fold) {
     const open = fold === 'open' ? ' open' : '';
+    // id on box-body so browser auto-opens <details> on anchor navigation
     return `<details class="box box-${type} box-foldable"${open}>
 <summary class="box-label">▸ ${labelText}</summary>
-<div class="box-body">${bodyHtml}</div>
+<div class="box-body"${idAttr}>${bodyHtml}</div>
 </details>`;
   }
-  return `<div class="box box-${type}">
+  return `<div class="box box-${type}"${idAttr}>
 <div class="box-label">${labelText}</div>
 <div class="box-body">${bodyHtml}</div>
 </div>`;
@@ -50,7 +67,9 @@ function wrapBox(type, label, bodyHtml, fold) {
 
 function makeBox(type, label, rawContent, fold) {
   const bodyHtml = marked.parse(rawContent.trim());
-  return wrapBox(type, label, bodyHtml, fold);
+  const isDefault = label === BOX_DEFAULTS[type];
+  const id = idForBox(type, isDefault ? '' : label, rawContent);
+  return wrapBox(type, label, bodyHtml, fold, id);
 }
 
 function makePlayground(rawContent, title, fold) {
@@ -75,14 +94,17 @@ data-bp-after="${bpAfter}">${escHtml(defaultCode)}</textarea>
 <div class="playground-output">—</div>
 <div class="playground-svg" style="display:none"></div>`;
 
-  return wrapBox('playground', label, content, fold);
+  const id = config.id
+    ? `playground-${config.id}`
+    : idForBox('playground', title || '', rawContent);
+  return wrapBox('playground', label, content, fold, id);
 }
 
 function makeGadget(rawContent, title, fold) {
   let config;
   try { config = jsyaml.load(rawContent); } catch { config = {}; }
 
-  const theme  = 'dark'; // build-time default; runtime JS will correct on load
+  const theme  = 'dark';
   const src    = `${config.src}?theme=${theme}`;
   const height = config.height || 400;
 
@@ -90,7 +112,8 @@ function makeGadget(rawContent, title, fold) {
   style="width:100%;height:${height}px;border:none;display:block"
   data-gadget-src="${escHtml(config.src)}"></iframe>`;
 
-  return wrapBox('gadget', title || BOX_DEFAULTS.gadget, content, fold);
+  const id = idForBox('gadget', title || '', rawContent);
+  return wrapBox('gadget', title || BOX_DEFAULTS.gadget, content, fold, id);
 }
 
 // ─── Box dispatch ─────────────────────────────────────────────────────────────
@@ -109,7 +132,9 @@ const BOX_TYPES = {
 
 marked.use({
   renderer: {
-    heading(text, level) {
+    heading(token) {
+      const level = token.depth;
+      const text  = token.text;
       let fold = null, clean = text;
       if (/^(&gt;|>)\s*/.test(text)) { fold = 'closed'; clean = text.replace(/^(&gt;|>)\s*/, ''); }
       else if (/^(&lt;|<)\s*/.test(text)) { fold = 'open'; clean = text.replace(/^(&lt;|<)\s*/, ''); }
@@ -127,7 +152,9 @@ marked.use({
       );
       return `<blockquote>${attributed}</blockquote>\n`;
     },
-    code(code, infostring) {
+    code(token) {
+      const infostring = token.lang || '';
+      const code       = token.text;
       const info = (infostring || '').trim();
       const candidates = [':', '>', '<'].map(ch => ({ ch, i: info.indexOf(ch) })).filter(x => x.i !== -1).sort((a,b) => a.i - b.i);
       const sep   = candidates.length ? candidates[0] : null;
