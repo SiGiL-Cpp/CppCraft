@@ -143,7 +143,8 @@ marked.use({
       const attr  = fold ? ` data-fold="${fold}"` : '';
       return `<h${level} id="${id}"${attr}>${clean}</h${level}>\n`;
     },
-    blockquote(quote) {
+    blockquote(token) {
+      const quote = token.text;
       // A paragraph starting with ~ signals an attribution line.
       // The ~ is consumed (removed); the paragraph gets the attribution class.
       const attributed = quote.replace(
