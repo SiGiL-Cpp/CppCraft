@@ -375,13 +375,43 @@ int i {5};
 
 And that's why C++ is called that: it is an "increment" over the C language.
 
+### Ternary conditional operator and more&hellip;
+
+C++ has a special operation that takes three operators. The first operator is a
+condition, the second is the result of the operation if the condition evaluates
+to `true`, and the third operator is the result of the operation if the
+condition evaluates to false:
+
+```playground: Conditional Operation
+id: conditional-operation
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout << (
+boilerplate_after: |
+  ) << "\n";
+  }
+default_code: |
+  true?"Green":"Red"
+```
+
+Note the ternary conditional operator is an expression, not a statement. We will
+see conditional statements soon.
+
+There are more operations available, and we will see more as we progress. You
+might remember for instance [the subscript `[]`
+operator](04-aggregates.html#accessing-the-content-of-an-array) to access
+members of an array we saw previously. We'll come back to it later as well.
+
 ### Composing operations
 
 Of course, we can compose these operations in many different ways. Operations
 have priorities, and also a direction (left-to-right or right-to-left).
 
 For the operations we have presented here, the increment/decrement operations
-come first, along with the other unary operations.
+come first in terms of priority, along with the other unary operations.
 
 Then multiplication, division and modulo, followed by addition and subtractions.
 
@@ -723,9 +753,9 @@ boilerplate_before: |
   #include <iostream>
   int main()
   {
-    std::cout <<
+    std::cout << (
 boilerplate_after: |
-  << "\n";
+  ) << "\n";
   }
 default_code: |
   'a' + true
@@ -735,3 +765,59 @@ Both operands are converted to `int` before the addition is performed, and so
 the result is also an `int`. This is another instance of the compiler resolving
 operations by converting operands to a common type.
 
+### Explicit conversion
+
+The best way to stay on top of type conversions and to make your code easier to
+read by others is to be *explicit* about your intent.
+
+`static_cast` allows to change the type of a value into a different one, if the
+conversion is possible. The syntax is a bit different from what we have seen so
+far, with the target type between `<>` and the value between `()`:
+
+````illus: static_cast
+For instance, `static_cast<int>(512.7f)` will transform the value `512.7` (a
+`float`) into an `int` (removing the decimal part).
+````
+
+Whenever the type conversion happening for an operation are unclear, it will be
+helpful to explicitely convert them to a common type resolving the ambiguity.
+Some modern languages such as Rust enforce this as a rule, for instance.
+
+Alternatively, we can also use the conversion rules to our advantage:
+
+```playground: Explicit conversion
+id: sub-integer-promotion
+height: 10
+boilerplate_before: |
+  #include <iostream>
+  int main()
+  {
+    std::cout << (
+boilerplate_after: |
+  ) << "\n";
+  }
+default_code: |
+  12 / static_cast<float>(5)
+```
+
+Using [this rule](#aside-how-this-rule-is-useful), by explicitely converting one
+operand, we get a floating point result out of the division between two integral
+values.
+
+##
+````recap
+- Expressions are equence of operators and operands that specifies a
+  computation.
+- Statements are instructions for the program.
+- There are many different operations available in C++.
+  - Only certain operations are available for certain types.
+  - Some operations modify their operands.
+- The compiler will change (convert, promote) the type of the operands in some
+  cases:
+  - When operations are performed on numeric types smaller than an int.
+  - When operations are performed over operands of different types.
+    - For arithmetic operations, when one operand is a floating-point type, the
+      result will be a floating-point type as well.
+  - To chose the type an expression evaluates to and to avoid confusion with it,
+    `static_cast` allows to explicitely convert a value into a chosen type.
+````
