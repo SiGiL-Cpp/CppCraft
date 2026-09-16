@@ -9,7 +9,7 @@ the processor and its surrounding](05-processing.html). Now that we have the raw
 material (data) and a workbench (the hardware), it is time to set things in
 motion and start crafting.
 
-# 06 - Operations
+# 06 - Expressions
 
 ### Expressions and statements
 
@@ -820,6 +820,7 @@ values.
   - When operations are performed over operands of different types.
     - For arithmetic operations, when one operand is a floating-point type, the
       result will be a floating-point type as well.
-  - To chose the type an expression evaluates to and to avoid confusion with it,
-    `static_cast` allows to explicitely convert a value into a chosen type.
+  - To chose the type an expression evaluates to and to avoid confusing or
+    unclear situation with implicit type conversions, `static_cast` allows to
+    explicitely convert a value into a chosen type.
 ````
