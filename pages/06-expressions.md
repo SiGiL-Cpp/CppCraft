@@ -1,7 +1,7 @@
 ---
-title: "06 — Operations"
+title: "06 — Expressions"
 prev: "05-processing"
-next: "07-tbd"
+next: "07-statements"
 ---
 
 We have learned about [Types](03-types.html), and built a [simplified model of
@@ -13,9 +13,9 @@ motion and start crafting.
 
 ### Expressions and statements
 
-In C++, **expressions** are defined as "a sequence of operators and operands that
-specifies a computation". In other words, they are the individual steps of the
-recipes our apprentice (CPU) elaborates at the desk in the stone vessels
+In C++, **expressions** are defined as "a sequence of operators and operands
+that specifies a computation". In other words, they are the individual steps of
+the recipes our apprentice (CPU) elaborates at the desk in the stone vessels
 (registers).
 
 **Statements**, on the other hand, are instructions for the program to do
@@ -28,6 +28,8 @@ semicolon `;`.
 
 In this case, this statement will have no effect as nothing changed, but we will
 soon see that many expressions modify the states of the program.
+
+This chapter focuses on expressions. The next will look at statements.
 
 ## Homogeneous operations
 

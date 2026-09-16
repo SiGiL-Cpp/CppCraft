@@ -1,7 +1,7 @@
 ---
 title: "05 — Processing"
 prev: "04-aggregates"
-next: "06-tbd"
+next: "06-expressions"
 ---
 
 # 05 - Processing
