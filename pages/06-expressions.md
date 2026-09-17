@@ -34,8 +34,8 @@ This chapter focuses on expressions. The next will look at statements.
 ## Homogeneous operations
 
 There are many operations available. We will present some of them concisely, in
-their simplest form where operands are of the same type, then present some
-subtleties.
+their simplest form where operands are of the same native type, then present
+some subtleties.
 
 ### Arithmetic operations
 
@@ -58,8 +58,9 @@ default_code: |
 ```
 
 In addition, we also get the `%` operator, called remainder or modulo operator.
-It gives the remainer of a division: `11 % 3` is `2`, because 11 is 3&times;3 +
-2. You can test it above.
+It gives the remainder of a division: `11 % 3` is `2`, because 11 is 3&times;3 +
+2. Note that it defines the sign of the result like a division operation would.
+You can test it above.
 
 ````aside> For readers adept at binary: bitwise operators
 There are also operators acting on the bitwise representation of the values.
@@ -71,9 +72,9 @@ hexadecimal. For convenience, we will use numbers such as `0xffff0000` and
 `0x00ffff00` for our examples. `0xf` corresponds to four consecutive 1s in
 binary: `0b1111`.
 
-- `~` is the unary operator for the "not" operation: swapping all the 1s for 0s
-  and all the 0s for 1s in the binary representation. `~0x00ffff00` is
-  `0xff0000ff`.
+- `~` is the unary operator for the "bitwise complement" operation: swapping all
+  the 1s for 0s and all the 0s for 1s in the binary representation.
+  `~0x00ffff00` is `0xff0000ff`.
 - `&` is the bitwise AND operator: `0x0000ffff & 0x00ffff00` is `0x0000ff00`
   (only the bits present in both operands are kept).
 - `|` is the bitwise OR operator: `0xff000000 | 0x000000ff` is `0xff0000ff` (any
@@ -160,7 +161,7 @@ the semantics (specific meaning) of these operations can sometimes be ambiguous.
 
 - The unambiguous case would be what we call **"strong ordering"**. This is when
   we can order all the elements, and when two elements are equal, they are
-  exactly the same thing. 
+  indistinguishable. 
 
 ````illus: Strong ordering
 Remember our [light intensities](01-data.html#bytes-as-light-intensity)? Given
@@ -170,15 +171,15 @@ that's genuinely the same light intensity: we can exchange them and the image is
 unchanged.
 ````
 
-- But sometimes, equality is not the same as identity. This is what we call
-**"weak ordering"**.
+- But sometimes, equality is not the same as being indistinguishable. This is
+  what we call **"weak ordering"**.
 
 ````illus: Weak ordering
 Suppose you compare children based on their Date of Birth. In most cases, the
 ordering will be easy: the '29th of February 2020' comes before the '1st of
-May 2020', fine. But being born on the same day doesn't make two children the
-same person. Returning to parents a child that lived the same number of days
-as their own might not be good enough, some are bound to notice.
+May 2020', fine. But being born on the same day doesn't make two children
+indistinguishable. Returning to parents a child that lived the same number of
+days as their own might not be good enough, some are bound to notice.
 ````
 
 - Finally, there are things for which some values can be compared, but other
@@ -336,9 +337,9 @@ Just like `1 + 1` evaluates to `2`, `i = 42` evaluates to `42`, but also changes
 the value of `i` along the way.
 
 There are many other assignment operations in C++ such as: `+=`, `-=`, `*=`,
-`/=`, and `%=`. `i += 3` is equivalent to `i = i + 3`, and the others follow the
-same pattern. Try them above. (The bitwise operations also have their matching
-"assignment" variants: `&=`, `|=`, `^=`, `<<=`, and `>>=`).
+`/=`, and `%=`. `i += 3` is (roughly) equivalent to `i = i + 3`, and the others
+follow the same pattern. Try them above. (The bitwise operations also have their
+matching "assignment" variants: `&=`, `|=`, `^=`, `<<=`, and `>>=`).
 
 ### Increment and decrement operations
 
@@ -379,7 +380,7 @@ And that's why C++ is called that: it is an "increment" over the C language.
 
 ### Ternary conditional operator and more&hellip;
 
-C++ has a special operation that takes three operators. The first operator is a
+C++ has a special operation that takes three operands. The first operator is a
 condition, the second is the result of the operation if the condition evaluates
 to `true`, and the third operator is the result of the operation if the
 condition evaluates to false:
@@ -400,7 +401,8 @@ default_code: |
 ```
 
 Note the ternary conditional operator is an expression, not a statement. We will
-see conditional statements soon.
+see conditional statements soon. Also, only one of the selected operand, between
+the second and third, is evaluated.
 
 There are more operations available, and we will see more as we progress. You
 might remember for instance [the subscript `[]`
@@ -410,10 +412,11 @@ members of an array we saw previously. We'll come back to it later as well.
 ### Composing operations
 
 Of course, we can compose these operations in many different ways. Operations
-have priorities, and also a direction (left-to-right or right-to-left).
+have priorities (precedence), and also a direction (left-to-right or
+right-to-left).
 
 For the operations we have presented here, the increment/decrement operations
-come first in terms of priority, along with the other unary operations.
+come first in terms of precedence, along with the other unary operations.
 
 Then multiplication, division and modulo, followed by addition and subtractions.
 
@@ -475,13 +478,13 @@ system will do the leg work to figure out which operation is appropriate.
 
 This is often simple. For instance:
 - If we multiply two unsigned integral types, it will use the unsigned integral
-  multiplication (`MUL`).
+  multiplication (e.g. x86 `MUL`).
 - If we multiply two signed integral types, it will use the signed integral
-  multiplication (`IMUL`).
+  multiplication (e.g. x86 `IMUL`).
 - If we multiply two single-precision floating points (`float`), it will use the
-  single precision floating point multiplication (`MULSS`).
+  single precision floating point multiplication (e.g. x86 `MULSS`).
 - If we multiply two double-precision floating points (`double`), it will use
-  the double precision floating point multiplication (`MULSD`).
+  the double precision floating point multiplication (e.g. x86 `MULSD`).
 
 But this can only work when the processor has in its silicon the specific
 operation available. A processor can have about 1000-1500 different such
@@ -778,7 +781,7 @@ far, with the target type between `<>` and the value between `()`:
 
 ````illus: static_cast
 For instance, `static_cast<int>(512.7f)` will transform the value `512.7` (a
-`float`) into an `int` (removing the decimal part).
+`float`) into an `int` (discarding the decimal part).
 ````
 
 Whenever the type conversion happening for an operation are unclear, it will be
