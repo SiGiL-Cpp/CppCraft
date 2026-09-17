@@ -60,6 +60,10 @@ body {
   padding: 0rem 1rem 6rem;
 }
 
+del{
+  text-decoration: line-through rgb(from var(--text) r g b / 50%);
+}
+
 :target:before {
   content:"";
   display:block;

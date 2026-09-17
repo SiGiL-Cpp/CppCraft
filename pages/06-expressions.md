@@ -412,8 +412,23 @@ members of an array we saw previously. We'll come back to it later as well.
 ### Composing operations
 
 Of course, we can compose these operations in many different ways. Operations
-have priorities (precedence), and also a direction (left-to-right or
-right-to-left).
+have priorities (precedence), and also an associativity direction (left-to-right
+or right-to-left) for when the precedence isn't enough.
+
+````illus
+```cpp
+5 + 6 * 2
+```
+Because multiplications have a higher precedence than additions, this is
+interpreted as:<br/>`5 + (6 * 2)`.
+
+```cpp
+5 * 6 / 2 * 8
+```
+Multiplications and divisions have the same precedence, so we use associativity
+instead. Multiplication and division have left-to-right associativity, meaning
+that we group from the left to the right: `(((5 * 6) / 2) * 8)`.
+````
 
 For the operations we have presented here, the increment/decrement operations
 come first in terms of precedence, along with the other unary operations.
@@ -431,6 +446,10 @@ interpreted as `true || (false && false)`.
 ````
 
 The assignments come last. They execute in the right-to-left direction.
+
+The best place to check precedences and associativity direction when in doubt is
+not this course, but [a well trusted
+reference](https://en.cppreference.com/cpp/language/operator_precedence).
 
 While some priorities are well known, some are less known, and to avoid any
 mistakes it is usually preferable to use parentheses `(` `)` where there is any
@@ -450,6 +469,75 @@ boilerplate_after: |
 default_code: |
   (45 * 9) / 4 + 11
 ```
+
+`````pitfall: Order of evaluation
+While the precedence and associativity direction tell you how part of an
+expression are grouped, it does **not** tell you **in which order** the parts of
+the expression will be **evaluated**.
+
+And for a good reason: this order is not guaranteed at all. In other words, the
+compiler is free to evaluate any part of an expression in whichever order it
+chooses to.
+
+````illus
+```cpp
+int i {5};
+int undefined;
+undefined = ++i + i;
+```
+
+We can't know what value `undefined` will have with certainty.
+
+We have 3 operations:
+- `++` has the highest precedence.
+- `+` has a lower precedence than `++`.
+= `=` has the lowest precedence.
+
+So we know that the expression will be grouped like this:<br/>
+`undefined = ((++i) + i);`
+
+We know for sure that it will **not** be grouped like this:
+- ~~`(undefined = (++i)) + i`;~~
+- ~~`undefined = ++(i + i);`~~
+
+So it tells us what the operation is. But it **does not** tell us in which order
+the part of the operation are evaluated.
+
+- If `(++i)` is evaluated first, then it evaluates to `6`, and now `i` has the
+  value `6`.
+  - Then, when the other side of the `+` is evaluated, it is `i`, it evluates to
+    `6`.
+  - `undefined` will be `12` at the end of the evaluation.
+- If `i` is evaluated first, then it evaluates to `5`.
+  - Then, when the other side of the `+` is evaluated, it is `(++i)`. It
+    evaluates to `6`, and now `i` has the value `6`.
+  - `undefined` will be `11` at the end of the evaluation.
+- But it's even worse. It is not just `11` or `12`. It is Undefined Behaviour
+  (UB). Which means that anything can happen.
+  - It could evaluate to any value.
+  - It could be ignored (no operation happens at all).
+  - It could break the program downstream from there.
+````
+
+````aside> The assignment is not a problem here
+In which order the two operands of the assignment `=` are evaluated doesn't
+matter here for two reasons:
+- `undefined` doesn't change based on the order of evaluation, so whether it is
+  evaluated first or last doesn't matter.
+- Since C++17, the assignment is guaranteed to evaluate the right-hand side
+  before evaluating the left-hand side. So this very specific order of
+  evaluation is guaranteed.
+````
+
+This only happens because the expression uses in multiple places a value it
+mutates.
+
+````principle
+- If a value appears multiple times in an expression, it should not be mutated.
+- If a value is mutated in an expression, it should not appear more than once.
+````
+
+`````
 
 ## Different operations for different types
 
