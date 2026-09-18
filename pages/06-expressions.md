@@ -19,8 +19,8 @@ the recipes our apprentice (CPU) elaborates at the desk in the stone vessels
 (registers).
 
 **Statements**, on the other hand, are instructions for the program to do
-something. In C++, the simplest form of statement is an expression followed by a
-semicolon `;`.
+something. In C++, one of the simplest form of statement is an expression
+followed by a semicolon `;`.
 
 - `1 + 1` is an expression that evaluates to `2`.
 - `1 + 1;` is a statement that instructs the compiler to compute the expression
@@ -227,11 +227,11 @@ one of these three types:
   - `greater`
 - `std::weak_ordering`, which can have one of these values:
   - `less`
-  - `equivalent` (but <u>not</u> `equal`)
+  - `equivalent` (but <u>not</u> ~~`equal`~~)
   - `greater`
 - `std::partial_ordering`, which can have one of these values:
   - `less`
-  - `equivalent` (but <u>not</u> `equal`)
+  - `equivalent` (but <u>not</u> ~~`equal`~~)
   - `greater`
   - `unordered`
 
