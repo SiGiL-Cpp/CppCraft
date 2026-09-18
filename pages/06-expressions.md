@@ -39,7 +39,7 @@ some subtleties.
 
 ### Arithmetic operations
 
-`+`, `-`, `*`, `/` are relatively self-exaplanatory, although it is worth noting
+`+`, `-`, `*`, `/` are relatively self-explanatory, although it is worth noting
 that dividing two integral numbers results in an integral result.
 
 ```playground: Integral division
@@ -83,7 +83,8 @@ binary: `0b1111`.
   `0x00ff00ff` (only the bits differing between both operands are kept)
 - `<<` shifts the bits of the left-hand-side operand by the right-hand-side
   operand number of bits to the left: `0x0000ffff<<4` is `0x000ffff0`. The
-  vacated bits are filled with 0s.
+  vacated bits are filled with 0s. Since C++20, left shift of negative numbers
+  is well defined (it used to be Undefined Behaviour).
 - `>>` shifts the bits of the left-hand-side operand by the right-hand-side
   operand number of bits to the right: `0x0000ffff>>4` is `0x00000fff`. The
   vacated bits are filled with 0s for unsigned ints and for positive signed
@@ -166,7 +167,7 @@ the semantics (specific meaning) of these operations can sometimes be ambiguous.
 ````illus: Strong ordering
 Remember our [light intensities](01-data.html#bytes-as-light-intensity)? Given
 two different light intensity values (`197` and `63`), the order is obvious (`63
-< 197`). And if two pixel of an image have the same light-intensity value,
+< 197`). And if two pixels of an image have the same light-intensity value,
 that's genuinely the same light intensity: we can exchange them and the image is
 unchanged.
 ````
@@ -213,9 +214,9 @@ We could come up with more rules to make up an arbitrary ordering, but
 objectively, they don't really compare with the other songs.
 ````
 
-That's where the C++20 "three-way comparison  oparator `<=>` comes in. It is the
+That's where the C++20 "three-way comparison  operator `<=>` comes in. It is the
 all-in-one comparison: it answers at the same time whether the operands are
-equal, less or greater.
+equal, less or greater, or in some case if they can't be compared (unordered).
 
 The semantics of this newer operator solve the issue explained above. It returns
 one of these three types:
@@ -235,7 +236,7 @@ one of these three types:
   - `unordered`
 
 `std::strong_ordering::equivalent` and `std::weak_ordering::equivalent` are
-different values. The former means that the operands are the same thing,
+different values. The former means that the operands represent the same thing,
 interchangeable, while the latter only means they have the same rank in the
 ordering.
 
@@ -366,12 +367,12 @@ int i {5};
 ```
 - `++i` is the pre-increment operation on `i`. It changes `i` value to `6`, and
   evaluates to `6`.
-  - It is equivalent to `i += 1`, which is equivalent to `i = i + 1`.
+  - It is similar to `i += 1`, which is similar to `i = i + 1`.
 - `i++` is the post-increment operation on `i`. It changes `i` value to `6`, and
   evaluates to `5` (its value before the increment).
 - `--i` is the pre-decrement operation on `i`. It changes `i` value to `4`, and
   evaluates to `4`.
-  - It is equivalent to `i -= 1`, which is equivalent to `i = i - 1`.
+  - It is similar to `i -= 1`, which is similar to `i = i - 1`.
 - `i--` is the post-decrement operation on `i`. It changes `i` value to `4`, and
   evaluates to `5` (its value before the decrement).
 ````
@@ -401,8 +402,8 @@ default_code: |
 ```
 
 Note the ternary conditional operator is an expression, not a statement. We will
-see conditional statements soon. Also, only one of the selected operand, between
-the second and third, is evaluated.
+see conditional statements soon. Also, only one of the selected operands,
+between the second and third, is evaluated.
 
 There are more operations available, and we will see more as we progress. You
 might remember for instance [the subscript `[]`
@@ -445,7 +446,7 @@ This means that `true || false && false` evaluates to `true`, as it is
 interpreted as `true || (false && false)`.
 ````
 
-The assignments come last. They execute in the right-to-left direction.
+The assignments come last. They use right-to-left associativity.
 
 The best place to check precedences and associativity direction when in doubt is
 not this course, but [a well trusted
@@ -471,13 +472,13 @@ default_code: |
 ```
 
 `````pitfall: Order of evaluation
-While the precedence and associativity direction tell you how part of an
+While the precedence and associativity direction tell you how parts of an
 expression are grouped, it does **not** tell you **in which order** the parts of
 the expression will be **evaluated**.
 
-And for a good reason: this order is not guaranteed at all. In other words, the
-compiler is free to evaluate any part of an expression in whichever order it
-chooses to.
+And for a good reason: this order is not guaranteed at all. In other words,
+unless otherwise specified, the compiler is free to evaluate any part of an
+expression in whichever order it chooses to.
 
 ````illus
 ```cpp
@@ -505,8 +506,8 @@ the part of the operation are evaluated.
 
 - If `(++i)` is evaluated first, then it evaluates to `6`, and now `i` has the
   value `6`.
-  - Then, when the other side of the `+` is evaluated, it is `i`, it evluates to
-    `6`.
+  - Then, when the other side of the `+` is evaluated, it is `i`, it evaluates
+    to `6`.
   - `undefined` will be `12` at the end of the evaluation.
 - If `i` is evaluated first, then it evaluates to `5`.
   - Then, when the other side of the `+` is evaluated, it is `(++i)`. It
@@ -520,7 +521,7 @@ the part of the operation are evaluated.
 ````
 
 ````aside> The assignment is not a problem here
-In which order the two operands of the assignment `=` are evaluated doesn't
+The order in which the two operands of the assignment `=` are evaluated doesn't
 matter here for two reasons:
 - `undefined` doesn't change based on the order of evaluation, so whether it is
   evaluated first or last doesn't matter.
@@ -529,8 +530,8 @@ matter here for two reasons:
   evaluation is guaranteed.
 ````
 
-This only happens because the expression uses in multiple places a value it
-mutates.
+This only happens because the expression uses a value it mutates in multiple
+places.
 
 ````principle
 - If a value appears multiple times in an expression, it should not be mutated.
@@ -564,9 +565,9 @@ the type, and with it the semantics of our values. So we don't have to worry
 about it: we say we want to perform an operation on the values, and the type
 system will do the leg work to figure out which operation is appropriate.
 
-This is often simple. For instance:
-- If we multiply two unsigned integral types, it will use the unsigned integral
-  multiplication (e.g. x86 `MUL`).
+As a simplified model, we could think about it this way:
+- If we multiply two unsigned integral types, the compiler will use the unsigned
+  integral multiplication (e.g. x86 `MUL`).
 - If we multiply two signed integral types, it will use the signed integral
   multiplication (e.g. x86 `IMUL`).
 - If we multiply two single-precision floating points (`float`), it will use the
@@ -575,8 +576,9 @@ This is often simple. For instance:
   the double precision floating point multiplication (e.g. x86 `MULSD`).
 
 But this can only work when the processor has in its silicon the specific
-operation available. A processor can have about 1000-1500 different such
-operations it can perform. That's respectable, but not without an end.
+operation available. A processor provides a finite set of primitive operations,
+and the compiler must express the language’s operations in terms of those
+primitives.
 
 ### Heterogeneous operations
 
@@ -585,9 +587,9 @@ things can become more complicated and sometimes surprising.
 
 #### Floating Point
 For instance, floating-point numbers are typically handled in a different area
-of the processor (FPU: the Floating Point Unit) than other logical operations
-(handled in the ALU: Arithmetic Logic Unit). This is in large part because of
-their [more complex interpretation](01-data.html#bytes-as-floating-point).
+of the processor than other logical operations (different Execution Units). This
+is in large part because of their [more complex
+interpretation](01-data.html#bytes-as-floating-point).
 
 Floating point operations even have to be performed over their very own
 specialized registers (a specific set of stone vessels on the apprentice desk).
@@ -630,9 +632,14 @@ default_code: |
 
 ````pitfall> How this rule can bite
 As long as we use relatively small numbers, we are safe, because floating point
-numbers are more precise than integral up to `16777216` for 32-bit floating
-points. But past this point, the floating point values grow 2 by 2 whereas the
-integral values continue to grow 1 by 1.
+numbers are as or more precise than integral up to `16777216` for 32-bit
+floating points. But past this point, not all integral numbers exist in the
+floating-point representation. `16777217` cannot be represented as a 32-bit
+floating point. The next value after `1677216.0f` is `16777218.0f`, and it
+continues this way 2 by 2 until the next exponent, from which point it becomes 4
+by 4, then 8 by 8, doubling with each subsequent exponent (see [Bytes as
+floating point](01-data.html#bytes-as-floating-point-). On the other hand, the
+integral values continue to grow 1 by 1 across their full range.
 
 ```playground: Large int to float
 id: int-to-float
@@ -675,7 +682,7 @@ there:
   - `18446744073709551616.0F` (500000000 above).
 - And the closest is `18446744073709551616.0F`, so that's our result.
 
-Try removing the `.0F` part from `500000000.0F`, so that the operations is
+Try removing the `.0F` part from `500000000.0F`, so that the operation is
 between integral numbers, without a conversion to `float`.
 ````
 
@@ -707,7 +714,7 @@ enough to represent all the values of the unsigned type (in addition to the
 negative values it can represent as well), then the unsigned type is converted
 in the signed type.
 
-```playground: Integral Unsigned and wide Signed
+```playground: Integral Unsigned and Wide Signed
 id: integral-unsigned-wide-signed
 height: 10
 boilerplate_before: |
@@ -728,7 +735,7 @@ into a (signed) `long long` which can represent all its values (and much more),
 and the result will be a signed `long long`.
 ````
 
-````aside> The whole signed/unigned integral story
+````aside> The whole signed/unsigned integral story
 Again, you don't need to learn these rules. Many C++ programmers don't know
 them, or won't have them in mind while reading your code, so relying on them
 will be confusing for no good reasons. It is best and free to avoid these
@@ -814,30 +821,34 @@ a few things:
 Sub-integer types designate the numeric types that are smaller than an `int`,
 such as `bool`, `char`, `short`.
 
-While modern processors are usually able to perform arithmetic operations on
-these types, it is generally slower than to perform the same operation on an
-`int`, for which the processors are specifically optimised.
+In part for historical reasons, C++ converts these types into `int` or `unsigned
+int` before performing an arithmetic operation on them.
 
 ````aside> Why?
-- Some old architectures could simply not perform these operations.
+- Some old architectures could simply not perform some of these operations.
 - Others could but would actually use the `int` instruction, which meant loading
   a sub-integer into part of the `int` register, and then zero-ing the part of
   the register the sub-integer type didn't occupy, then performing the
   operation.
-- Although the outcome is the same, in modern CPUs, the reason comes from how
-  operations are parallelised inside the processor. Explaining this in detail is
-  beyond our scope. In short, modern CPUs perform "out of order" execution and
-  parallelise the computation in complex ways which takes into account the
-  dependencies between the operations. Sub-integer types use part of a register,
-  which creates "false dependencies", that is, dependencies between instructions
-  whose data are unrelated. The false dependencies break the pipelining, which
-  is very costly in performance. Some architectures tried to tackle that problem
-  (Partial Register Renaming), but ended up favouring simpler solutions instead.
-````
+- So historically, it made sense to avoid the problem entirely by promoting the
+  values to the [word size](02-data.html#a-different-kind-of-word) before making
+  calculations with them.
+- Nowadays, modern CPUs can usually perform these operations, and wouldn't
+  suffer from these issues as much, but the parallelisation happening inside the
+  processor has introduced new headaches with these sub-integer types, making
+  their native support complex and somewhat inconsistent.
+- In addition, the compilers are clever enough to take liberties with how they
+  translate the operations into machine code, and can skip the conversion in
+  some places, bundle some values together in others, minding their business as
+  they see fit under the "as if" rule of C++ (they are allowed to do what they
+  want as long as the program behaves "as if" they followed the rules).
+- Long story short, changing this rule now would be extraordinarily difficult
+  because of all the C++ code that relies on this historical behaviour, and in
+  addition, the benefit for modern architectures might not be worth it,
+  especially considering that compilers have plenty of freedom to adapt the code
+  to the architecture without revising the rule.
 
-For this reason, C++ converts such sub-integer types into the corresponding
-`int` types (`int` or `unsigned int`) before performing an arithmetic operation
-on them.
+````
 
 ```playground: Sub-integer type promotion
 id: sub-integer-promotion
@@ -872,8 +883,8 @@ For instance, `static_cast<int>(512.7f)` will transform the value `512.7` (a
 `float`) into an `int` (discarding the decimal part).
 ````
 
-Whenever the type conversion happening for an operation are unclear, it will be
-helpful to explicitely convert them to a common type resolving the ambiguity.
+Whenever the type conversion happening in an operation are unclear, it will be
+helpful to explicitly convert them to a common type resolving the ambiguity.
 Some modern languages such as Rust enforce this as a rule, for instance.
 
 Alternatively, we can also use the conversion rules to our advantage:
@@ -893,13 +904,13 @@ default_code: |
   12 / static_cast<float>(5)
 ```
 
-Using [this rule](#aside-how-this-rule-is-useful), by explicitely converting one
-operand, we get a floating point result out of the division between two integral
-values.
+Using [the floating-point conversion rule](#aside-how-this-rule-is-useful), by
+explicitly converting one operand, we get a floating point result out of the
+division between two integral values.
 
 ##
 ````recap
-- Expressions are equence of operators and operands that specifies a
+- Expressions are sequence of operators and operands that specifies a
   computation.
 - Statements are instructions for the program.
 - There are many different operations available in C++.
@@ -911,7 +922,7 @@ values.
   - When operations are performed over operands of different types.
     - For arithmetic operations, when one operand is a floating-point type, the
       result will be a floating-point type as well.
-  - To chose the type an expression evaluates to and to avoid confusing or
+  - To choose the type an expression evaluates to and to avoid confusing or
     unclear situation with implicit type conversions, `static_cast` allows to
-    explicitely convert a value into a chosen type.
+    explicitly convert a value into a chosen type.
 ````
