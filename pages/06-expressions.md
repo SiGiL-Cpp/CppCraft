@@ -635,7 +635,7 @@ As long as we use relatively small numbers, we are safe, because floating point
 numbers are as or more precise than integral up to `16777216` for 32-bit
 floating points. But past this point, not all integral numbers exist in the
 floating-point representation. `16777217` cannot be represented as a 32-bit
-floating point. The next value after `1677216.0f` is `16777218.0f`, and it
+floating point. The next value after `16777216.0f` is `16777218.0f`, and it
 continues this way 2 by 2 until the next exponent, from which point it becomes 4
 by 4, then 8 by 8, doubling with each subsequent exponent (see [Bytes as
 floating point](01-data.html#bytes-as-floating-point-). On the other hand, the
