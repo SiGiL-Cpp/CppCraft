@@ -430,6 +430,12 @@ mile, not so much.
 So we will try to spread our 256 values in such a way that we have many values
 close together near 0, and fewer as we step away from 0.
 
+Note there are several ways of representing floating point values, and C++
+doesn't mandate a specific one. The model presented here is a simplification
+of a miniature IEEE754 compressed over a single Byte. We will later assume that
+floating point values follow the IEEE754 standard throughout this series as it
+is the case for the overwhelming majority of modern software.
+
 This representation breaks our 8 binary digits into 3 parts:
 - The first digit is for the *sign* of the number: 0 for positive numbers, 1 for
   negative numbers.

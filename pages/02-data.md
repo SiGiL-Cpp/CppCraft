@@ -21,6 +21,32 @@ In the same way, if we stack two Bytes together, we don't just double the number
 of possible values, we multiply them, giving `65,536` possible values for 8-bits
 Bytes.
 
+````pitfall> Endians
+When we stack two 2-digit numbers, one will represent the ones and tens, and the
+other will represent the hundreds and thousands.
+
+In our left-to-right writing system, it makes sense for us to put the number
+representing the hundreds and thousands to the left of the number representing
+the ones and tens. This is called the **Big-Endian** convention (as in "the big
+end of the number comes first").
+
+But computers don't always follow our human logic. Nowadays, almost all modern
+architectures use the opposite convention: Little-Endian.
+
+In the Little-Endian convention, it is the opposite: we write first the Byte
+containing the lowest bits (the ones and tens in the decimal analogy), and the
+Byte containing the highest bits second (the hundreds and thousands in the
+decimal analogy).
+
+Thinking about how, in most operations, carried numbers have to propagate from
+the ones towards the thousands and the higher end of the number gives a good
+intuition of why this is more efficient.
+
+This is mostly invisible to the programmer, most of the time. That is, until
+reading Big-Endian data in a Little-Endian context, as it happens with
+networking.
+````
+
 We will come back to values encoded over two Bytes a bit later, especially when
 we look at audio formats.
 

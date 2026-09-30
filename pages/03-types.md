@@ -142,6 +142,22 @@ have to be a little careful.
   is interpreted as `true`).
 ```
 
+````aside> float and double
+Although the C++ Standard doesn't mandate much about the floating point types,
+they almost always follow the IEEE-754 standard on modern architectures, which
+means that:
+- `float` is usually a 32-bit floating point type with 1 bit for the sign, 8
+  bits for the exponent, and 23 bits for the mantissa.
+- `double` is usually a 64-bit floating point type with 1 bit for the sign, 11
+  bits for the exponent, and 52 bits for the mantissa.
+
+The intricacies of this representation mentioned [in this previous
+chapter](01-data#bytes-as-floating-point) apply.
+
+This series will assume that floating point values follow the IEEE-754 standard
+throughout.
+````
+
 ````aside> long and long long
 Four other literal suffixes that are often used are `L`, `UL`, `LL` and `ULL`:
 - If we write `163L`, the value is of type `long` (signed).
