@@ -292,6 +292,30 @@ a:hover { text-decoration: underline; }
 
 .legend-note { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; }
 
+/* ─── Functional models box ─────────────────────────────────────────────────── */
+
+.functional-models-box {
+  border-left: 3px solid var(--aside-border, #4462c4);
+  background: var(--aside, #0f1534);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+}
+
+.functional-models-box p {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  margin-bottom: 0.85rem;
+  color: var(--text);
+}
+
+.functional-models-box p:last-child { margin-bottom: 0; }
+
+[data-theme="light"] .functional-models-box {
+  background: var(--aside, #eef2fc);
+  border-color: var(--aside-border, #4462c4);
+}
+
 /* ─── Conventions ────────────────────────────────────────────────────────── */
 .conventions { list-style: none; margin: 0.75rem 0; }
 .conventions li {
@@ -349,6 +373,7 @@ code {
     <div class="sb-links">
       <a href="#course">The course</a>
       <a href="#for-whom">Who it is for</a>
+      <a href="#functional-models">Functional models</a>
       <a href="#boxes">Box guide</a>
       <a href="#support">Support</a>
     </div>
@@ -448,6 +473,41 @@ code {
         is excellent and more geared towards code production.
 	Bookmark <a href="https://cppcraft.sigil.org.uk">C++Craft</a> if you
 	want, and come back when you are ready to go deeper.  </p>
+    </section>
+
+    </section>
+
+    <!-- Functional models -->
+    <section class="section" id="functional-models">
+      <h2>Functional models</h2>
+      <div class="functional-models-box">
+        <p>
+	  C++ has been designed to adapt to many different architectures, which
+	  may come in all shapes and forms. For this reason, C++ assumptions are
+	  usually minimal (a Byte might have any number of bits, floating point
+	  might not follow IEEE-754, word and int size can be pretty much
+	  anything&hellip;), and indeed, exotic architectures exercising such
+	  variations do exist. This extends to hardware architecture and
+	  Operating System behaviour (CPU cache, memory models, etc.).
+        </p>
+	<p>
+	  However, our purpose is to build a functional understanding of the
+	  language, and detailing these variations would be a major distraction
+	  from our goal. For that reason, this course uses functional models and
+	  deliberately simplifies possible hardware architecture variations to a
+	  robust general case, sufficient to explain the language's design.
+	</p>
+	<p>
+	  We will acknowledge the variations, but then set them aside and
+	  proceed assuming the common case for the context of this course.
+	  It is up to readers developing on unusual hardware architectures to
+	  keep in mind the specifics that apply to their platform of choice.
+	</p>
+        <p>
+	  This course is a C++ course, and hardware considerations come into it
+	  to support the understanding of the language we study.
+	</p>
+      </div>
     </section>
 
     <!-- Box guide -->
