@@ -139,7 +139,7 @@ or equal). All of these operations evaluate to a
 types.
 
 ```playground: Comparison operations
-id: logical-operations
+id: comparison-operations
 height: 10
 boilerplate_before: |
   #include <iostream>
@@ -214,7 +214,7 @@ We could come up with more rules to make up an arbitrary ordering, but
 objectively, they don't really compare with the other songs.
 ````
 
-That's where the C++20 "three-way comparison  operator `<=>` comes in. It is the
+That's where the C++20 "three-way comparison operator `<=>` comes in. It is the
 all-in-one comparison: it answers at the same time whether the operands are
 equal, less or greater, or in some case if they can't be compared (unordered).
 
@@ -891,7 +891,7 @@ Some modern languages such as Rust enforce this as a rule, for instance.
 Alternatively, we can also use the conversion rules to our advantage:
 
 ```playground: Explicit conversion
-id: sub-integer-promotion
+id: explicit-convertion
 height: 10
 boilerplate_before: |
   #include <iostream>
