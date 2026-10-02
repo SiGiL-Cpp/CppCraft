@@ -33,6 +33,22 @@ jobs:
       - name: Build pages
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          # Count generated lesson pages (exclude index.html)
+          PAGES=$(ls [0-9][0-9]-*.html 2>/dev/null | wc -l)
+          echo "Generated lesson pages: $PAGES"
+          if [ "$PAGES" -eq 0 ]; then
+            echo "ERROR: No lesson pages were generated. Aborting deploy."
+            exit 1
+          fi
+          # Verify lessons.json exists and is non-empty
+          if [ ! -s lessons.json ]; then
+            echo "ERROR: lessons.json is missing or empty. Aborting deploy."
+            exit 1
+          fi
+          echo "Build verification passed: $PAGES page(s), lessons.json present."
+
       - name: Assemble site
         run: |
           mkdir _site
@@ -42,10 +58,19 @@ jobs:
           cp lessons.json _site/
           cp .nojekyll _site/
           [ -f favicon.svg ] && cp favicon.svg _site/ || true
-          cp *.html _site/
+          cp [0-9][0-9]-*.html _site/
           cp -r gadgets _site/gadgets
           [ -d imgs ] && cp -r imgs _site/imgs || true
-          if [ -d imgs ]; then cp -r imgs _site/imgs; fi
+
+      - name: Verify assembled site
+        run: |
+          PAGES=$(ls _site/[0-9][0-9]-*.html 2>/dev/null | wc -l)
+          echo "Pages in _site: $PAGES"
+          if [ "$PAGES" -eq 0 ]; then
+            echo "ERROR: No pages found in _site after assembly. Aborting deploy."
+            exit 1
+          fi
+          echo "Assembly verification passed."
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -62,3 +87,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+        timeout-minutes: 10
