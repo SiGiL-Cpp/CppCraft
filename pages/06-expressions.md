@@ -334,8 +334,9 @@ default_code: |
   i = 42;
 ```
 
-Just like `1 + 1` evaluates to `2`, `i = 42` evaluates to `42`, but also changes
-the value of `i` along the way.
+Just like `1 + 1` evaluates to `2`, `i = 42` evaluates to `i`, but also changes
+the value of `i` to `42` along the way. So it evaluates to `i` which is now
+`42`.
 
 There are many other assignment operations in C++ such as: `+=`, `-=`, `*=`,
 `/=`, and `%=`. `i += 3` is (roughly) equivalent to `i = i + 3`, and the others

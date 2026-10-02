@@ -912,9 +912,9 @@ Let me address a number of limits:
   track of where the stack ends, nothing special happens.
 - The limits of the stack and why it can't deal with data for which the size is
   unknown at compile-time are at best glossed-over.
-- This is a simplified functional model and different architectures have
-  different properties. The caches can be different in size, the error handling
-  mechanisms can be different or even absent, etc.
+- This is a simplified [functional model](index.html#functional-models) and
+  different architectures have different properties. The caches can be different
+  in size, the error handling mechanisms can be different or even absent, etc.
 ```
 
 ```recap
