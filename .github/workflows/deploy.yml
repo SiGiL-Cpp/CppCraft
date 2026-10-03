@@ -35,14 +35,12 @@ jobs:
 
       - name: Verify build output
         run: |
-          # Count generated lesson pages (exclude index.html)
           PAGES=$(ls [0-9][0-9]-*.html 2>/dev/null | wc -l)
           echo "Generated lesson pages: $PAGES"
           if [ "$PAGES" -eq 0 ]; then
             echo "ERROR: No lesson pages were generated. Aborting deploy."
             exit 1
           fi
-          # Verify lessons.json exists and is non-empty
           if [ ! -s lessons.json ]; then
             echo "ERROR: lessons.json is missing or empty. Aborting deploy."
             exit 1
@@ -51,20 +49,20 @@ jobs:
 
       - name: Assemble site
         run: |
-          mkdir _site
-          cp index.html _site/
-          cp lesson.css _site/
-          cp runtime.js _site/
-          cp lessons.json _site/
-          cp .nojekyll _site/
-          [ -f favicon.svg ] && cp favicon.svg _site/ || true
-          cp [0-9][0-9]-*.html _site/
-          cp -r gadgets _site/gadgets
-          [ -d imgs ] && cp -r imgs _site/imgs || true
+          mkdir -p /tmp/_site
+          cp index.html /tmp/_site/
+          cp lesson.css /tmp/_site/
+          cp runtime.js /tmp/_site/
+          cp lessons.json /tmp/_site/
+          cp .nojekyll /tmp/_site/
+          [ -f favicon.svg ] && cp favicon.svg /tmp/_site/ || true
+          cp [0-9][0-9]-*.html /tmp/_site/
+          cp -r gadgets /tmp/_site/gadgets
+          [ -d imgs ] && cp -r imgs /tmp/_site/imgs || true
 
       - name: Verify assembled site
         run: |
-          PAGES=$(ls _site/[0-9][0-9]-*.html 2>/dev/null | wc -l)
+          PAGES=$(ls /tmp/_site/[0-9][0-9]-*.html 2>/dev/null | wc -l)
           echo "Pages in _site: $PAGES"
           if [ "$PAGES" -eq 0 ]; then
             echo "ERROR: No pages found in _site after assembly. Aborting deploy."
@@ -75,7 +73,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: /tmp/_site
 
   deploy:
     needs: build
