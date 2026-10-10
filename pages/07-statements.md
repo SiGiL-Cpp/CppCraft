@@ -31,7 +31,7 @@ int height {512};
 size_t size {width * height};
 ```
 
-Note that it is possible to declare several variables in one statement.
+It is possible to declare several variables in one statement.
 
 ```cpp
 int i, j, k;
@@ -41,7 +41,7 @@ We show this notation here because it is not uncommon, but we will limit its
 usage to simple cases as in this example, because more elaborate usage can
 become confusing. We'll get back to these sharp edges in a couple of chapters.
 
-Variables have a **scope**, but we'll get to it in a minute.
+Variables have a **scope**, but we'll get to that in a minute.
 
 ## Expression statements
 
@@ -55,6 +55,16 @@ i += 42 * j - 3;
 ```
 The code above shows a declaration statement followed by an expression
 statement.
+
+### Null statements
+
+Surprisingly enough, the expression in an expression statment is optional. Which
+means this is a valid statement:
+
+```cpp
+;
+```
+We'll see both how it can be useful or hurtful shortly.
 
 ## Compound statements
 
@@ -70,18 +80,18 @@ wraps the statements it groups between curly braces `{` `}`.
 }
 ```
 
-This is a single compount statement (wrapping one declaration statement and 3
+This is a single compound statement (wrapping one declaration statement and 3
 expression statements as one group).
 
 ### Variable scope
 
 We mentioned in passing earlier that variable have a scope. The scope of a
-variable defines where it can be accessed from, where its name is known.
+variable defines where it can be accessed from: where its name is known.
 
 A compound statement, also sometimes called a *block* introduces a new variable
 scope. What that means is that variables introduced inside the compound
 statement will "go out of scope" at the end of the compound statement. They may
-or may no longer exist, but we can no longer call their name.
+or may no longer exist, but eithre way, we can no longer call their name.
 
 ```playground: Variable Scope
 id: variable-scope
@@ -162,8 +172,285 @@ confusing.
 Here, when the second variable `a` is introduced inside the compount statement,
 it hides the first one. As long as this second variable `a` is in scope, the
 name `a` will refer to it, making the first variable `a` inaccessible through
-this name.
+this name. After the compound statement ends, closing the scope at the `}`, `a`
+reverts to referring to the first variable `a` declared at the first line, with
+value `1`.
 
 ````
 
+## Selection statements
+
+### if statements
+
+An `if` statement has two main parts:
+- an expression condition,
+- a conditional body statement that is executed only if the condition evaluated
+  to `true`.
+
+The condition must be placed between parenthesis `(` `)` that follow the `if`.
+The condition is "contextually" converted to a boolean value. Instead of an
+expression, it can also be a simple declaration statement.
+
+The body statement that is executed only of the condition is `true` may
+or may not be a compound statement. Either way, it introduces its own scope
+(like a compound statement).
+
+```cpp
+if(a > 100)
+  a -= 50;
+```
+
+Since C++17, the parenthesis after the `if` keyword can also hold an
+initialisation statement before the condition expression. The point of this
+initialisation statement is that it shares the same scope as the body statement.
+It is habitually used to introduce new variables needed in the condition
+expression, but not outside of the if statement. The initialisation statement
+can only be an expression statement or a simple declaration statement.
+
+```cpp
+if(int calc{(a + b) / (c % d)}; calc > 10)
+{
+  result = calc * 3;
+}
+```
+In this example, the initialisation statement allows to compute `calc` only once
+and reuse its value in the conditional body statement, while keeping its scope
+limited to the if statement.
+
+### else clause
+
+`if` statements can also have an `else` clause. The `else` clause has a
+conditional body statement similar to the `if`'s. This statement is executed
+only if the `if`'s condition expression evaluates to `false`.
+
+```cpp
+if(currentSpeed > 0)
+ timeToDestination = distance / currentSpeed;
+else
+  timeToDestination = distance / minSpeed;
+```
+
+If several `if`/`else` are nested into each other, the `else` clause applies to
+the `if` that is closest to it.
+
+One common pattern of such nesting happens when a variable is tested against
+several conditions:
+
+```cpp
+if(a < 100)
+  result = 'A';
+else if(a < 50)
+  result = 'B';
+else if(a < 25)
+  result = 'C';
+else
+  result = 'D';
+```
+
+In many cases it will be clearer to instead wrap any multi-line body statement
+(from an `if`, an `else` or other) inside compound statements:
+
+```cpp
+if(a > 2)
+{
+  if(b < 5)
+    result = 4;
+  else
+    result = 10;
+}
+else
+{
+  if(b < 12)
+    result = 8;
+  else
+    result = 3;
+}
+```
+
+### Branching
+
+Selection statements act like railway switches. The execution "branches", as it
+will follow a single path, and reject the others.
+
+For a long time, this has been the bane of performances.
+
+If we picture the operations the processor must process as a ribbon, the
+processor doesn't opoerate one instruction at a time. It is a "pipeline", with
+several operations being processed simultaneously inside the processor. To put
+it another way, when one operation enters the processor's pipeline, it starts
+being executed, but we don't wait for that operation to complete to start on the
+next operation: as the first operation progresses inside the execution pipeline,
+the next operations enter the pipeline and start their execution as well.
+
+Without conditionals, without branching, this is way more efficient. The ribbon
+of instruction doesn't pause when an instruction enters the pipeline until it
+finishes to push the next, one step at a time. Instead, it crams instructions
+continuously inside the pipeline.
+
+But when a branch reaches the processor, this breaks down: we need to evaluate,
+to execute the condition to know what instruction to execute next.
+
+In the past, what happened was that the whole ribbon would pause, wait for that
+condition to traverse the whole pipeline, and then restart pushing instruction
+from the correct branch in the now empty processor's pipeline.
+
+If we suppose a processor that would have had 5 instructions simultaneously in
+its pipeline, the conditional would then cost about 5 times more than other
+instructions, since 0 instructions are processed while it traverses the
+pipeline, instead of 4.
+
+Nowadays, this has changed. Modern processors have something called "branch
+prediction". There are different quality of branch prediction, but the general
+principle is as follows: instead of stalling, emptying the pipeling while the
+condition goes through, and restarting, it takes one branch (trying to predict
+the right one), and continues to cram it in the processor's pipeline along the
+condition evaluation.
+- If it guessed right, that's perfect: no time has been wasted, the execution
+  simply continues.
+- If it was wrong, these processors have a specific mechanism that allows to
+  "roll back" these instructions from the wrong branch that had their execution
+  started. It's super-fast, and yields an empty pipeline as if nothing had
+  happened. Then we start refilling that pipeline with the correct instruction
+  from the selected branch.
+
+This is much faster than the previous method, especially as processors are
+really good at predicting correctly. Many conditions are skewed one way or
+another. Consider the question of whether you are using the dark or the light
+theme to watch this page. It is highly unlikely that the distribution would be
+perfectly 50/50, if only because dark is the default. If we iterate the pixels
+of an image, we will have to be careful around the boundaries, but most pixels
+are not on a boundary.
+
+Everytime we guess correctly, the cost of branching is 0.
+
+Of course, when we guess wrong, the cost is more, but just slightly more
+(because the roll-back is so fast) than what it was before, without branch
+prediction.
+
+So, even in the worst case, when the probability is exactly 50/50, 50% is just
+slightly more expensive than it was before, but the other 50% is free.
+
+It will be helpful to have that in mind because it will help understanding why
+the language and a lot of code gets to great length to avoid branching, but also
+to understand that this landscape has changed not so long ago, in a way that
+does **not** make the problem entirely vanish, but changes its impact.
+ 
+### switch statements
+
+The `switch` statement can be a good alternative to `if` / `else if` chains. It
+selects and execute one statement out of several options. Unfortunately it is
+also a specific tool for a specific usage with a number of sharp edges.
+
+Like the `if` it has a condition expression (which can also be a simple
+declaration), but instead of converting it to a boolean value, it compares the
+value of the expression agains several options provided as "labels". But here is
+our first sharp edge: the value of that expression must be an integral type.
+`int`, `char`, `bool`, or an `enum` value that we will see later, but no
+character string, no floating-point, no custom types.
+
+There are two types of labels:
+- `case`, followed by a constant expression. If the condition expression
+  evaluates to the value of that constant expression, the execution resumes from
+  that label.
+- `default`. This label is the catch-all for values that don't match other
+  labels. In this sense, it is similar to the `else` clause of an `if`
+  statement.
+
+````pitfall
+But there is a severe trap: instead of jumping over the rejected alternative
+statements, like the `if` jumping over an `else` clause, the `switch` executes
+all the statements after the label it jumps to unless we tell it to skip, with
+the keyword `break`.
+
+It is easy to forget and can lead to puzzling errors.
+````
+
+```cpp
+int result = 0;
+
+switch(a)
+{
+  case 20:
+    result = 1;
+  case 40:
+    result = 2;
+    break;
+  case 80:
+    result = 4;
+    [[fallthrough]]
+  case 100:
+    result += 8;
+    break;
+  default:
+    result = 16;
+    break;
+}
+```
+
+In this example, note that the first `case`, `20`, has no `break`. This means
+that when `a` is `20`, `result = 1` will be executed, and then it will continue
+executing, going to `result = 2`, and then `break`. This is the confusing case
+we mentioned before: because `break` was forgotten, execution continues, and
+overwrites `result`. Observing this program, it will look as if `case 20` is
+inexplicably ignored, yielding instead the result expected for `case 40`.
+
+Most compiler will issue a "warning" in such case. Although warning are usually
+non-blocking (unless explicitely configured to be treated as errors), it can
+save a lot of time to pay attention to them.
+
+`case 40` has a break, and will thus safely jump outside of the `switch` after
+setting `result` to `2`.
+
+`case 80` and `case 100` illustrate a case where we might want to use this
+fallthrough behaviour: because `case 100` modifies `result` instead of setting
+its value, by omitting deliberately the `break` for `case 80`, this case sets
+`result` to `12`: `4 + 8`. Now this will most likely issue the warning we
+mentioned before. To remove this warning, you can tell the compiler you know
+what you are doing by adding `[[fallthtough]]` at the end of the `case`.
+
+Any other value will go to the `default` case, setting `result` to `16`.
+
+````aside> Why is it so finicky?
+As often, there is a good reason for these constraints. The reason is that the
+very point of a `switch` statement is to be more efficient than an `if`/`else
+if`/`else` sequence, most of the time, ideally by minimising the amount of
+[branching](#branching).
+
+One technique to make the `switch` more efficient than a series of `if`/`else
+if`/`if` uses `jump tables`. A jump table is an array containing the different
+destinations to jump to (the case label location in the code).
+
+Instead of testing each value one by one, the compiler uses the value tested
+(the value of the condition expression) as an index into the jump table.
+
+If the values are small and contiguous they are used directly, but even when
+they aren't the compiler can use simple linear arithmetic to (offsetting,
+scaling) to transform the tested value into a convenient index.
+
+For the example above, it could for instance subtract 20 and divide by 20. `case
+20` becomes index `0`, `case 40` index `1`, `case 80` index `3`, and `case 100`
+index `4`. Instead of comparing `a` with many different values, we can compute
+that index (`(a - 20) / 20`), and make only one comparison:
+- index 0: is `a` exactly `20`? If yes, then jump to `case 20`, otherwise, jump
+  to `default`.
+- index 1: is `a` exactly `40`? If yes, then jump to `case 40`, otherwise, jump
+  to `default`.
+- index 2: jump to `default`.
+- index 3: is `a` exactly `80`? If yes, then jump to `case 80`, otherwise, jump
+  to `default`.
+- index 4: is `a` exactly `100`? If yes, then jump to `case 100`, otherwise,
+  jump to `default`.
+- any other index: jump to default.
+
+There are other tricks for different cases, such as using dichotomy to converge
+quickly towards the right test for cases where the `case` values are sparse.
+
+Floating points are [too treacherous](./01-data.html#bytes-as-floating-point-)
+to survive reliably such clever manipulations. Consider for instance that `0.1f
++ 0.2f` is **not** equal to `0.3f`. It would be very error-prone.
+
+Strings have their own challenge. They are inhernetly arrays (many characters),
+making value comparison more involved than for single values.
+
+````
 
