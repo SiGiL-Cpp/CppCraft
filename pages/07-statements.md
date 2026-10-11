@@ -231,17 +231,15 @@ else
 ```
 
 If several `if`/`else` are nested into each other, the `else` clause applies to
-the `if` that is closest to it.
-
-One common pattern of such nesting happens when a variable is tested against
-several conditions:
+the `if` that is closest to it. One common pattern of such nesting happens when
+a variable is tested against several conditions:
 
 ```cpp
-if(a < 100)
+if(a > 100)
   result = 'A';
-else if(a < 50)
+else if(a > 50)
   result = 'B';
-else if(a < 25)
+else if(a > 25)
   result = 'C';
 else
   result = 'D';
@@ -277,18 +275,19 @@ For a long time, this has been the bane of performances.
 If we picture the operations the processor must process as a ribbon, the
 processor doesn't opoerate one instruction at a time. It is a "pipeline", with
 several operations being processed simultaneously inside the processor. To put
-it another way, when one operation enters the processor's pipeline, it starts
+it another way, when one instruction enters the processor's pipeline, it starts
 being executed, but we don't wait for that operation to complete to start on the
-next operation: as the first operation progresses inside the execution pipeline,
-the next operations enter the pipeline and start their execution as well.
+next instruction: as the first operation progresses inside the execution
+pipeline, the next operations enter the pipeline and start their execution as
+well.
 
 Without conditionals, without branching, this is way more efficient. The ribbon
 of instruction doesn't pause when an instruction enters the pipeline until it
 finishes to push the next, one step at a time. Instead, it crams instructions
 continuously inside the pipeline.
 
-But when a branch reaches the processor, this breaks down: we need to evaluate,
-to execute the condition to know what instruction to execute next.
+But when a branch reaches the processor, this breaks down: we need to evaluate
+the condition to know which branch to follow, what instruction to execute next.
 
 In the past, what happened was that the whole ribbon would pause, wait for that
 condition to traverse the whole pipeline, and then restart pushing instruction
