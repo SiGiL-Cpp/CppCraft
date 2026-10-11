@@ -309,7 +309,7 @@ condition evaluation.
 - If it was wrong, these processors have a specific mechanism that allows to
   "roll back" these instructions from the wrong branch that had their execution
   started. It's super-fast, and yields an empty pipeline as if nothing had
-  happened. Then we start refilling that pipeline with the correct instruction
+  happened. Then we start refilling that pipeline with the correct instructions
   from the selected branch.
 
 This is much faster than the previous method, especially as processors are
@@ -336,12 +336,29 @@ before (relative to other instructions).
 
 We mentioned earlier that not all branch-predictors are equal. Low-end
 processors can have branch predictors that are not as performant as high-end
-processors, leading to sometimes significant differences in performances.
+processors, leading to sometimes significant differences in performance.
 
 It will be helpful to have that in mind because it will help understanding why
 the language and a lot of code gets to great length to avoid branching, but also
 to understand that this landscape has changed not so long ago, in a way that
 does **not** make the problem vanish, but changes its dynamic.
+
+````aside> [[likely]]/[[unlikely]]
+C++20 gives us a tool to nudge the branch prediction one way or the other: the
+attributes `[[likely]]` and `[[unlikely]]`.
+
+This is an advanced tool for very specific cases, not something to use
+everywhere. The compiler is free to ignore it: it's only a hint. But also, by
+getting it wrong, we can really damage the performances. Code evolves, and it is
+not so unlikely that the attribute could remain when the probabilities change.
+
+In a `if` statement, the attribute comes after the condition, before the body.
+In an `else` clause, it comes right after the `else`. Confusingly, in a
+`switch` statement (next section), it comes before the `case` keyword.
+
+I would recommend only using these based on (profile-guided) profiling
+measurement suggesting that the compiler gets the prediction wrong.
+````
  
 ### switch statements
 
@@ -414,7 +431,7 @@ fallthrough behaviour: because `case 100` modifies `result` instead of setting
 its value, by omitting deliberately the `break` for `case 80`, this case sets
 `result` to `12`: `4 + 8`. Now this will most likely issue the warning we
 mentioned before. To remove this warning, you can tell the compiler you know
-what you are doing by adding `[[fallthtough]]` at the end of the `case`.
+what you are doing by adding `[[fallthrough]]` at the end of the `case`.
 
 Any other value will go to the `default` case, setting `result` to `16`.
 
