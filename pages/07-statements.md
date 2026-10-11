@@ -290,7 +290,7 @@ But when a branch reaches the processor, this breaks down: we need to evaluate
 the condition to know which branch to follow, what instruction to execute next.
 
 In the past, what happened was that the whole ribbon would pause, wait for that
-condition to traverse the whole pipeline, and then restart pushing instruction
+condition to traverse the whole pipeline, and then restart pushing instructions
 from the correct branch in the now empty processor's pipeline.
 
 If we suppose a processor that would have had 5 instructions simultaneously in
@@ -322,17 +322,26 @@ are not on a boundary.
 
 Everytime we guess correctly, the cost of branching is 0.
 
-Of course, when we guess wrong, the cost is more, but just slightly more
-(because the roll-back is so fast) than what it was before, without branch
-prediction.
+Of course, when we guess wrong, the cost is more, instead. The roll-back is very
+fast, but nowadays processing pipelines are several times longer than they used
+to be, and once all instructions of the wrong branch have been rolled back the
+pipeline needs refilling as before.
 
-So, even in the worst case, when the probability is exactly 50/50, 50% is just
-slightly more expensive than it was before, but the other 50% is free.
+So the situation with these more modern architectures is very different from
+before: branching on conditions that are almost always `true` and only
+occasionally `false`, or on conditions that are almost always `false` and only
+occasionally `true` cost much less than before. On the other hand, conditions
+that are equally distributed (equiprobability), are even more expensive than
+before (relative to other instructions).
+
+We mentioned earlier that not all branch-predictors are equal. Low-end
+processors can have branch predictors that are not as performant as high-end
+processors, leading to sometimes significant differences in performances.
 
 It will be helpful to have that in mind because it will help understanding why
 the language and a lot of code gets to great length to avoid branching, but also
 to understand that this landscape has changed not so long ago, in a way that
-does **not** make the problem entirely vanish, but changes its impact.
+does **not** make the problem vanish, but changes its dynamic.
  
 ### switch statements
 
