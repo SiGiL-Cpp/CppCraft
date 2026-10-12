@@ -281,6 +281,57 @@ next instruction: as the first operation progresses inside the execution
 pipeline, the next operations enter the pipeline and start their execution as
 well.
 
+<svg width="100%">
+  <line x1="-20" y1="80" x2="760" y2="80" stroke="var(--text)"/>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="-20" to="40"></animate>
+  </circle>
+  <circle cx="40" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="40" to="100"></animate>
+  </circle>
+  <circle cx="100" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="100" to="160"></animate>
+  </circle>
+  <circle cx="160" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="160" to="220"></animate>
+  </circle>
+  <circle cx="220" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="220" to="280"></animate>
+  </circle>
+  <circle cx="280" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="280" to="340"></animate>
+  </circle>
+  <circle cx="340" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="340" to="400"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="var(--illus); color-mix(in lab, var(--illus) 83%, var(--illus-label) 17%)"></animate>
+  </circle>
+  <circle cx="400" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 83%, var(--illus-label) 17%)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="400" to="460"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 83%, var(--illus-label) 17%); color-mix(in lab, var(--illus) 67%, var(--illus-label) 33%)"></animate>
+  </circle>
+  <circle cx="460" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 67%, var(--illus-label) 33%)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="460" to="520"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 67%, var(--illus-label) 33%); color-mix(in lab, var(--illus) 50%, var(--illus-label) 50%)"></animate>
+  </circle>
+  <circle cx="520" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 50%, var(--illus-label) 50%)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="520" to="580"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 50%, var(--illus-label) 50%); color-mix(in lab, var(--illus) 33%, var(--illus-label) 67%)"></animate>
+  </circle>
+  <circle cx="580" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 33%, var(--illus-label) 67%)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="580" to="640"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 33%, var(--illus-label) 67%); color-mix(in lab, var(--illus) 17%, var(--illus-label) 83%)"></animate>
+  </circle>
+  <circle cx="640" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 17%, var(--illus-label) 83%)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="640" to="700"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 17%, var(--illus-label) 83%); var(--illus-label)"></animate>
+  </circle>
+  <circle cx="700" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus-label)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="700" to="760"></animate>
+  </circle>
+  <text x="526" y="35" fill="var(--text)" text-anchor="middle" font-size="large" font-weight="bold">CPU</text>
+  <rect x="376" y="5" width="300" height="140" stroke="var(--muted)" stroke-width="5" fill="none"/>
+</svg>
+
 Without conditionals, without branching, this is way more efficient. The ribbon
 of instruction doesn't pause when an instruction enters the pipeline until it
 finishes to push the next, one step at a time. Instead, it crams instructions
@@ -293,9 +344,171 @@ In the past, what happened was that the whole ribbon would pause, wait for that
 condition to traverse the whole pipeline, and then restart pushing instructions
 from the correct branch in the now empty processor's pipeline.
 
+<svg width="100%">
+  <line x1="-20" y1="80" x2="760" y2="80" stroke="var(--text)">
+    <animate attributeName="x1" repeatCount="indefinite" dur="20s" begin="1560ms"
+      values="-20; 370; 370; -20; -20" keyTimes="0; 0.25; 0.4428; 0.4428; 1"/> 
+  </line>
+  <line x1="-20" y1="40" x2="-20" y2="40" stroke="var(--text)">
+    <animate attributeName="x2" repeatCount="indefinite" dur="20s" begin="2340ms"
+      values="-20; 310; 310; -20; -20" keyTimes="0; 0.2114; 0.4038; 0.4038; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="40; 40; 80; 40; 40; -20; -20"
+      keyTimes="0; 0.19; 0.2019; 0.2019; 0.69; 0.7019; 1"/>
+    <animate attributeName="y2" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="40; 40; 80; 40; 40; -20; -20"
+      keyTimes="0; 0.19; 0.2019; 0.2019; 0.69; 0.7019; 1"/>
+    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="1; 1; 0; 1; 1" keyTimes="0; 0.69; 0.7; 0.7; 1"/>
+  </line>
+  <line x1="-20" y1="40" x2="-20" y2="80" stroke="var(--text)">
+    <animate attributeName="x1" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="-20; 310; 310; -20; -20; 310; 310; -20; -20"
+      keyTimes="0; 0.1057; 0.2019; 0.2019; 0.5; 0.6057; 0.69; 0.69; 1"/>
+    <animate attributeName="x2" repeatCount="indefinite" dur="40s" begin="1560ms"
+      values="-20; 370; 370; -20; -20; 370; 370; -20; -20"
+      keyTimes="0; 0.125; 0.2214; 0.2214; 0.5; 0.625; 0.7095; 0.7095; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="40; 40; 80; 40; 40; -20; 40; 40"
+      keyTimes="0; 0.19; 0.2019; 0.2019; 0.69; 0.7019; 0.7019; 1"/>
+  </line>
+  <line x1="-20" y1="120" x2="-20" y2="120" stroke="var(--text)">
+    <animate attributeName="x2" repeatCount="indefinite" dur="20s" begin="2340ms"
+      values="-20; 310; 310; -20; -20" keyTimes="0; 0.2114; 0.4038; 0.4038; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="40s" begin="-17660ms"
+      values="120; 120; 80; 120; 120; 180; 180"
+      keyTimes="0; 0.19; 0.2019; 0.2019; 0.69; 0.7019; 1"/>
+    <animate attributeName="y2" repeatCount="indefinite" dur="40s" begin="-17660ms"
+      values="120; 120; 80; 120; 120; 180; 180"
+      keyTimes="0; 0.19; 0.2019; 0.2019; 0.69; 0.7019; 1"/>
+    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="40s" begin="-17660ms"
+      values="1; 1; 0; 1; 1" keyTimes="0; 0.69; 0.7; 0.7; 1"/>
+  </line>
+  <line x1="-20" y1="120" x2="-20" y2="80" stroke="var(--text)">
+    <animate attributeName="x1" repeatCount="indefinite" dur="40s" begin="-17660ms"
+      values="-20; 310; 310; -20; -20; 310; 310; -20; -20"
+      keyTimes="0; 0.1057; 0.2019; 0.2019; 0.5; 0.6057; 0.69; 0.69; 1"/>
+    <animate attributeName="x2" repeatCount="indefinite" dur="40s" begin="-18440ms"
+      values="-20; 370; 370; -20; -20; 370; 370; -20; -20"
+      keyTimes="0; 0.125; 0.2214; 0.2214; 0.5; 0.625; 0.7095; 0.7095; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="40s" begin="-17660ms"
+      values="120; 120; 80; 120; 120; 180; 120; 120"
+      keyTimes="0; 0.19; 0.2019; 0.2019; 0.69; 0.7019; 0.7019; 1"/>
+  </line>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20s"
+      values="-20; 760; 760" keyTimes="0; 0.5; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20s"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-border));
+        color-mix(in lab, var(--illus) 67%, var(--illus-border));
+        color-mix(in lab, var(--illus) 50%, var(--illus-border));
+        color-mix(in lab, var(--illus) 33%, var(--illus-border));
+        color-mix(in lab, var(--illus) 17%, var(--illus-border));
+        var(--illus-border);
+        var(--illus-border)"
+      keyTimes="
+        0; 0.2538; 0.2859; 0.3179; 0.35; 0.3820; 0.4141; 0.4461; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20s" begin="780ms"
+      values="-20; 760; 760" keyTimes="0; 0.5; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20s" begin="780ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-border));
+        color-mix(in lab, var(--illus) 67%, var(--illus-border));
+        color-mix(in lab, var(--illus) 50%, var(--illus-border));
+        color-mix(in lab, var(--illus) 33%, var(--illus-border));
+        color-mix(in lab, var(--illus) 17%, var(--illus-border));
+        var(--illus-border);
+        var(--illus-border)"
+      keyTimes="
+        0; 0.2538; 0.2859; 0.3179; 0.35; 0.3820; 0.4141; 0.4461; 1">
+    </animate>
+  </circle>
+  <defs>
+    <rect id="cond" x="-14" y="-14" width="28" height="28" transform="rotate(45)" />
+  </defs>
+  <use href="#cond" x="-20" y="80" stroke-width="1.5" stroke="var(--aside-label)" fill="var(--aside)">
+    <animate attributeName="x" repeatCount="indefinite" dur="20s" begin="1560ms"
+      values="-20; 760; 760" keyTimes="0; 0.5; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20s" begin="1560ms"
+      values="
+        var(--aside);
+        var(--aside);
+        color-mix(in lab, var(--aside) 83%, var(--aside-border));
+        color-mix(in lab, var(--aside) 67%, var(--aside-border));
+        color-mix(in lab, var(--aside) 50%, var(--aside-border));
+        color-mix(in lab, var(--aside) 33%, var(--aside-border));
+        color-mix(in lab, var(--aside) 17%, var(--aside-border));
+        var(--aside-border);
+        var(--aside-border)"
+      keyTimes="
+        0; 0.2538; 0.2859; 0.3179; 0.35; 0.3820; 0.4141; 0.4461; 1">
+    </animate>
+  </use>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="-20; 310; 310; 760; 760; -20; 310; 310"
+      keyTimes="0; 0.1057; 0.2019; 0.3461; 0.5; 0.5; 0.6057; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="40; 40; 80; 80; 40; 40; -20; -20"
+      keyTimes="0; 0.19; 0.2019; 0.5; 0.5; 0.69; 0.7019; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-border));
+        color-mix(in lab, var(--illus) 67%, var(--illus-border));
+        color-mix(in lab, var(--illus) 50%, var(--illus-border));
+        color-mix(in lab, var(--illus) 33%, var(--illus-border));
+        color-mix(in lab, var(--illus) 17%, var(--illus-border));
+        var(--illus-border);
+        var(--illus-border);
+        var(--illus);
+        var(--illus)"
+      keyTimes="
+        0; 0.2231; 0.2391; 0.2551; 0.2712; 0.2872; 0.3032; 0.3193; 0.5; 0.5; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="120" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="40s" begin="-17660ms"
+      values="-20; 310; 310; 760; 760; -20; 310; 310"
+      keyTimes="0; 0.1057; 0.2019; 0.3461; 0.5; 0.5; 0.6057; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="40s" begin="2340ms"
+      values="120; 120; 180; 180; 120; 120; 80; 80"
+      keyTimes="0; 0.19; 0.2019; 0.5; 0.5; 0.69; 0.7019; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="40s" begin="-17660ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-border));
+        color-mix(in lab, var(--illus) 67%, var(--illus-border));
+        color-mix(in lab, var(--illus) 50%, var(--illus-border));
+        color-mix(in lab, var(--illus) 33%, var(--illus-border));
+        color-mix(in lab, var(--illus) 17%, var(--illus-border));
+        var(--illus-border);
+        var(--illus-border);
+        var(--illus);
+        var(--illus)"
+      keyTimes="
+        0; 0.2231; 0.2391; 0.2551; 0.2712; 0.2872; 0.3032; 0.3193; 0.5; 0.5; 1">
+    </animate>
+  </circle>
+  <text x="526" y="35" fill="var(--text)" text-anchor="middle" font-size="large" font-weight="bold">CPU</text>
+  <rect x="376" y="5" width="300" height="140" stroke="var(--muted)" stroke-width="5" fill="none"/>
+</svg>
+
 If we suppose a processor that would have had 5 instructions simultaneously in
 its pipeline, the conditional would then cost about 5 times more than other
-instructions, since 0 instructions are processed while it traverses the
+instructions, since 0 other instructions are processed while it traverses the
 pipeline, instead of 4.
 
 Nowadays, this has changed. Modern processors have something called "branch
