@@ -283,49 +283,49 @@ well.
 
 <svg width="100%">
   <line x1="-20" y1="80" x2="760" y2="80" stroke="var(--text)"/>
-  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="-20" to="40"></animate>
   </circle>
-  <circle cx="40" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+  <circle cx="40" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="40" to="100"></animate>
   </circle>
-  <circle cx="100" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+  <circle cx="100" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="100" to="160"></animate>
   </circle>
-  <circle cx="160" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+  <circle cx="160" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="160" to="220"></animate>
   </circle>
-  <circle cx="220" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+  <circle cx="220" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="220" to="280"></animate>
   </circle>
-  <circle cx="280" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+  <circle cx="280" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="280" to="340"></animate>
   </circle>
-  <circle cx="340" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus)">
+  <circle cx="340" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="340" to="400"></animate>
     <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="var(--illus); color-mix(in lab, var(--illus) 83%, var(--illus-label) 17%)"></animate>
   </circle>
-  <circle cx="400" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 83%, var(--illus-label) 17%)">
+  <circle cx="400" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="color-mix(in lab, var(--illus) 83%, var(--illus-label) 17%)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="400" to="460"></animate>
     <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 83%, var(--illus-label) 17%); color-mix(in lab, var(--illus) 67%, var(--illus-label) 33%)"></animate>
   </circle>
-  <circle cx="460" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 67%, var(--illus-label) 33%)">
+  <circle cx="460" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="color-mix(in lab, var(--illus) 67%, var(--illus-label) 33%)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="460" to="520"></animate>
     <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 67%, var(--illus-label) 33%); color-mix(in lab, var(--illus) 50%, var(--illus-label) 50%)"></animate>
   </circle>
-  <circle cx="520" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 50%, var(--illus-label) 50%)">
+  <circle cx="520" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="color-mix(in lab, var(--illus) 50%, var(--illus-label) 50%)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="520" to="580"></animate>
     <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 50%, var(--illus-label) 50%); color-mix(in lab, var(--illus) 33%, var(--illus-label) 67%)"></animate>
   </circle>
-  <circle cx="580" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 33%, var(--illus-label) 67%)">
+  <circle cx="580" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="color-mix(in lab, var(--illus) 33%, var(--illus-label) 67%)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="580" to="640"></animate>
     <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 33%, var(--illus-label) 67%); color-mix(in lab, var(--illus) 17%, var(--illus-label) 83%)"></animate>
   </circle>
-  <circle cx="640" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="color-mix(in lab, var(--illus) 17%, var(--illus-label) 83%)">
+  <circle cx="640" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="color-mix(in lab, var(--illus) 17%, var(--illus-label) 83%)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="640" to="700"></animate>
     <animate attributeName="fill" repeatCount="indefinite" dur="800ms" values="color-mix(in lab, var(--illus) 17%, var(--illus-label) 83%); var(--illus-label)"></animate>
   </circle>
-  <circle cx="700" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-border)" fill="var(--illus-label)">
+  <circle cx="700" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus-label)">
     <animate attributeName="cx" repeatCount="indefinite" dur="800ms" from="700" to="760"></animate>
   </circle>
   <text x="520" y="35" fill="var(--text)" text-anchor="middle" font-size="large" font-weight="bold">CPU</text>
@@ -405,13 +405,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--aside);
         var(--aside);
-        color-mix(in lab, var(--aside) 83%, var(--aside-border));
-        color-mix(in lab, var(--aside) 67%, var(--aside-border));
-        color-mix(in lab, var(--aside) 50%, var(--aside-border));
-        color-mix(in lab, var(--aside) 33%, var(--aside-border));
-        color-mix(in lab, var(--aside) 17%, var(--aside-border));
-        var(--aside-border);
-        var(--aside-border)"
+        color-mix(in lab, var(--aside) 83%, var(--aside-label));
+        color-mix(in lab, var(--aside) 67%, var(--aside-label));
+        color-mix(in lab, var(--aside) 50%, var(--aside-label));
+        color-mix(in lab, var(--aside) 33%, var(--aside-label));
+        color-mix(in lab, var(--aside) 17%, var(--aside-label));
+        var(--aside-label);
+        var(--aside-label)"
       keyTimes="
         0; 0.4333; 0.4889; 0.5444; 0.6; 0.6556; 0.7111; 0.7667; 1">
     </animate>
@@ -428,13 +428,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -459,13 +459,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -490,13 +490,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -521,13 +521,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -552,13 +552,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -583,13 +583,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -611,13 +611,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -630,13 +630,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -649,13 +649,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -672,13 +672,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -703,13 +703,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -734,13 +734,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -766,13 +766,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -797,13 +797,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -828,13 +828,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -856,13 +856,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -875,13 +875,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
@@ -894,13 +894,13 @@ from the correct branch in the now empty processor's pipeline.
       values="
         var(--illus);
         var(--illus);
-        color-mix(in lab, var(--illus) 83%, var(--illus-border));
-        color-mix(in lab, var(--illus) 67%, var(--illus-border));
-        color-mix(in lab, var(--illus) 50%, var(--illus-border));
-        color-mix(in lab, var(--illus) 33%, var(--illus-border));
-        color-mix(in lab, var(--illus) 17%, var(--illus-border));
-        var(--illus-border);
-        var(--illus-border);"
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
       keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
     </animate>
   </circle>
