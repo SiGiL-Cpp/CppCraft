@@ -346,62 +346,62 @@ from the correct branch in the now empty processor's pipeline.
 
 <svg width="100%">
   <line x1="-20" y1="80" x2="760" y2="80" stroke="var(--text)">
-    <animate attributeName="x1" repeatCount="indefinite" dur="12s" begin="0ms"
-      values="-20; 370; 370; -20; -20" keyTimes="0; 0.4333; 0.7667; 0.7667; 1"/> 
+    <animate attributeName="x1" repeatCount="indefinite" dur="14.4s" begin="0ms"
+      values="-20; 370; 370; -20; -20" keyTimes="0; 0.3611; 0.6389; 0.6389; 1"/> 
   </line>
   <line x1="-20" y1="40" x2="-20" y2="40" stroke="var(--text)">
-    <animate attributeName="x2" repeatCount="indefinite" dur="12s" begin="-11200ms"
-      values="-20; 310; 310; -20; -20" keyTimes="0; 0.3667; 0.7; 0.7; 1"/> 
-    <animate attributeName="y1" repeatCount="indefinite" dur="24s" begin="-11200ms"
+    <animate attributeName="x2" repeatCount="indefinite" dur="14.4s" begin="-13600ms"
+      values="-20; 310; 310; -20; -20" keyTimes="0; 0.3056; 0.5833; 0.5833; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="40; 40; 80; 40; 40; -20; -20"
-      keyTimes="0; 0.3278; 0.35; 0.35; 0.8278; 0.85; 1"/>
-    <animate attributeName="y2" repeatCount="indefinite" dur="24s" begin="-11200ms"
+      keyTimes="0; 0.2731; 0.2917; 0.2917; 0.7731; 0.7917; 1"/>
+    <animate attributeName="y2" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="40; 40; 80; 40; 40; -20; -20"
-      keyTimes="0; 0.3278; 0.35; 0.35; 0.8278; 0.85; 1"/>
-    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="24s" begin="-11200ms"
-      values="1; 1; 0; 1; 1" keyTimes="0; 0.8278; 0.845; 0.85; 1"/>
+      keyTimes="0; 0.2731; 0.2917; 0.2917; 0.7731; 0.7917; 1"/>
+    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
+      values="1; 1; 0; 1; 1" keyTimes="0; 0.7731; 0.785; 0.7917; 1"/>
   </line>
   <line x1="-20" y1="40" x2="-20" y2="80" stroke="var(--text)">
-    <animate attributeName="x1" repeatCount="indefinite" dur="24s" begin="-11200ms"
+    <animate attributeName="x1" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="-20; 310; 310; -20; -20; 310; 310; -20; -20"
-      keyTimes="0; 0.1833; 0.35; 0.35; 0.5; 0.6833; 0.8278; 0.8278; 1"/>
-    <animate attributeName="x2" repeatCount="indefinite" dur="24s" begin="-12000ms"
+      keyTimes="0; 0.1528; 0.2917; 0.2917; 0.5; 0.6528; 0.7731; 0.7731; 1"/>
+    <animate attributeName="x2" repeatCount="indefinite" dur="28.8s" begin="-14400ms"
       values="-20; 370; 370; -20; -20; 370; 370; -20; -20"
-      keyTimes="0; 0.2167; 0.3833; 0.3833; 0.5; 0.7167; 0.8611; 0.8611; 1"/> 
-    <animate attributeName="y1" repeatCount="indefinite" dur="24s" begin="-11200ms"
+      keyTimes="0; 0.1806; 0.3194; 0.3194; 0.5; 0.6806; 0.8009; 0.8009; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="40; 40; 80; 40; 40; -20; 40; 40"
-      keyTimes="0; 0.3278; 0.35; 0.35; 0.8278; 0.85; 0.85; 1"/>
+      keyTimes="0; 0.2731; 0.2917; 0.2917; 0.7731; 0.7917; 0.7917; 1"/>
   </line>
   <line x1="-20" y1="120" x2="-20" y2="120" stroke="var(--text)">
-    <animate attributeName="x2" repeatCount="indefinite" dur="12s" begin="800ms"
-      values="-20; 310; 310; -20; -20" keyTimes="0; 0.3667; 0.7; 0.7; 1"/> 
-    <animate attributeName="y1" repeatCount="indefinite" dur="24s" begin="800ms"
+    <animate attributeName="x2" repeatCount="indefinite" dur="14.4s" begin="800ms"
+      values="-20; 310; 310; -20; -20" keyTimes="0; 0.3056; 0.5833; 0.5833; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="120; 120; 80; 120; 120; 180; 180"
-      keyTimes="0; 0.3278; 0.35; 0.35; 0.8278; 0.85; 1"/>
-    <animate attributeName="y2" repeatCount="indefinite" dur="24s" begin="800ms"
+      keyTimes="0; 0.2731; 0.2917; 0.2917; 0.7731; 0.7917; 1"/>
+    <animate attributeName="y2" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="120; 120; 80; 120; 120; 180; 180"
-      keyTimes="0; 0.3278; 0.35; 0.35; 0.8278; 0.85; 1"/>
-    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="24s" begin="800ms"
-      values="1; 1; 0; 1; 1" keyTimes="0; 0.8278; 0.845; 0.85; 1"/>
+      keyTimes="0; 0.2731; 0.2917; 0.2917; 0.7731; 0.7917; 1"/>
+    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="28.8s" begin="800ms"
+      values="1; 1; 0; 1; 1" keyTimes="0; 0.7731; 0.785; 0.7917; 1"/>
   </line>
   <line x1="-20" y1="120" x2="-20" y2="80" stroke="var(--text)">
-    <animate attributeName="x1" repeatCount="indefinite" dur="24s" begin="800ms"
+    <animate attributeName="x1" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="-20; 310; 310; -20; -20; 310; 310; -20; -20"
-      keyTimes="0; 0.1833; 0.35; 0.35; 0.5; 0.6833; 0.8278; 0.8278; 1"/>
-    <animate attributeName="x2" repeatCount="indefinite" dur="24s" begin="0ms"
+      keyTimes="0; 0.1528; 0.2917; 0.2917; 0.5; 0.6528; 0.7731; 0.7731; 1"/>
+    <animate attributeName="x2" repeatCount="indefinite" dur="28.8s" begin="0ms"
       values="-20; 370; 370; -20; -20; 370; 370; -20; -20"
-      keyTimes="0; 0.2167; 0.3833; 0.3833; 0.5; 0.7167; 0.8611; 0.8611; 1"/> 
-    <animate attributeName="y1" repeatCount="indefinite" dur="24s" begin="800ms"
+      keyTimes="0; 0.1806; 0.3194; 0.3194; 0.5; 0.6806; 0.8009; 0.8009; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="120; 120; 80; 120; 120; 180; 120; 120"
-      keyTimes="0; 0.3278; 0.35; 0.35; 0.8278; 0.85; 0.85; 1"/>
+      keyTimes="0; 0.2731; 0.2917; 0.2917; 0.7731; 0.7917; 0.7917; 1"/>
   </line>
   <defs>
     <rect id="cond" x="-14" y="-14" width="28" height="28" transform="rotate(45)" />
   </defs>
   <use href="#cond" x="-20" y="80" stroke-width="1.5" stroke="var(--aside-label)" fill="var(--aside)">
-    <animate attributeName="x" repeatCount="indefinite" dur="12s" begin="0ms"
-      values="-20; 760; 760" keyTimes="0; 0.8667; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="12s" begin="0ms"
+    <animate attributeName="x" repeatCount="indefinite" dur="14.4s" begin="0ms"
+      values="-20; 760; 760" keyTimes="0; 0.7333; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="14.4s" begin="0ms"
       values="
         var(--aside);
         var(--aside);
@@ -413,18 +413,18 @@ from the correct branch in the now empty processor's pipeline.
         var(--aside-label);
         var(--aside-label)"
       keyTimes="
-        0; 0.4333; 0.4889; 0.5444; 0.6; 0.6556; 0.7111; 0.7667; 1">
+        0; 0.3611; 0.4074; 0.4537; 0.5; 0.5463; 0.5926; 0.6389; 1">
     </animate>
   </use>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-11200ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="-20; 310; 310; 760; 760"
-      keyTimes="0; 0.1833; 0.35; 0.6; 1">
+      keyTimes="0; 0.1528; 0.2917; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-11200ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="40; 40; 80; 80"
-      keyTimes="0; 0.3278; 0.35; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-11200ms"
+      keyTimes="0; 0.2731; 0.2917; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="
         var(--illus);
         var(--illus);
@@ -435,27 +435,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-11200ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="-20; 310; 310; 760; 760"
-      keyTimes="0; 0.1833; 0.35; 0.6; 1">
+      keyTimes="0; 0.1528; 0.2917; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-11200ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-13600ms"
       values="120; 120; 180; 180"
-      keyTimes="0; 0.3289; 0.35; 1"></animate>
+      keyTimes="0; 0.2731; 0.2917; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-10400ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-12800ms"
       values="-20; 250; 250; 760; 760"
-      keyTimes="0; 0.15; 0.3167; 0.6; 1">
+      keyTimes="0; 0.125; 0.2639; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-10400ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-12800ms"
       values="40; 40; 80; 80"
-      keyTimes="0; 0.2944; 0.3167; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-10400ms"
+      keyTimes="0; 0.2454; 0.2639; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-12800ms"
       values="
         var(--illus);
         var(--illus);
@@ -466,27 +466,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-10400ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-12800ms"
       values="-20; 250; 250; 760; 760"
-      keyTimes="0; 0.15; 0.3167; 0.6; 1">
+      keyTimes="0; 0.125; 0.2639; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-10400ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-12800ms"
       values="120; 120; 180; 180"
-      keyTimes="0; 0.2944; 0.3167; 1"></animate>
+      keyTimes="0; 0.2454; 0.2639; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-9600ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-12000ms"
       values="-20; 190; 190; 760; 760"
-      keyTimes="0; 0.1167; 0.2833; 0.6; 1">
+      keyTimes="0; 0.0972; 0.2361; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-9600ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-12000ms"
       values="40; 40; 80; 80"
-      keyTimes="0; 0.2611; 0.2833; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-9600ms"
+      keyTimes="0; 0.2176; 0.2361; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-12000ms"
       values="
         var(--illus);
         var(--illus);
@@ -497,27 +497,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-9600ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-12000ms"
       values="-20; 190; 190; 760; 760"
-      keyTimes="0; 0.1167; 0.2833; 0.6; 1">
+      keyTimes="0; 0.0972; 0.2361; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-9600ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-12000ms"
       values="120; 120; 180; 180"
-      keyTimes="0; 0.2611; 0.2833; 1"></animate>
+      keyTimes="0; 0.2176; 0.2361; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-8800ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-11200ms"
       values="-20; 130; 130; 760; 760"
-      keyTimes="0; 0.0833; 0.25; 0.6; 1">
+      keyTimes="0; 0.0694; 0.2083; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-8800ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-11200ms"
       values="40; 40; 80; 80"
-      keyTimes="0; 0.2278; 0.25; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-8800ms"
+      keyTimes="0; 0.1898; 0.2083; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-11200ms"
       values="
         var(--illus);
         var(--illus);
@@ -528,27 +528,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-8800ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-11200ms"
       values="-20; 130; 130; 760; 760"
-      keyTimes="0; 0.0833; 0.25; 0.6; 1">
+      keyTimes="0; 0.0694; 0.2083; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-8800ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-11200ms"
       values="120; 120; 180; 180"
-      keyTimes="0; 0.2278; 0.25; 1"></animate>
+      keyTimes="0; 0.1898; 0.2083; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-8000ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-10400ms"
       values="-20; 70; 70; 760; 760"
-      keyTimes="0; 0.05; 0.2167; 0.6; 1">
+      keyTimes="0; 0.0417; 0.1806; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-8000ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-10400ms"
       values="40; 40; 80; 80"
-      keyTimes="0; 0.1944; 0.2167; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-8000ms"
+      keyTimes="0; 0.1620; 0.1806; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-10400ms"
       values="
         var(--illus);
         var(--illus);
@@ -559,27 +559,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-8000ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-10400ms"
       values="-20; 70; 70; 760; 760"
-      keyTimes="0; 0.05; 0.2167; 0.6; 1">
+      keyTimes="0; 0.0417; 0.1806; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-8000ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-10400ms"
       values="120; 120; 180; 180"
-      keyTimes="0; 0.1944; 0.2167; 1"></animate>
+      keyTimes="0; 0.1620; 0.1806; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-7200ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-9600ms"
       values="-20; 10; 10; 760; 760"
-      keyTimes="0; 0.0167; 0.1833; 0.6; 1">
+      keyTimes="0; 0.0139; 0.1528; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-7200ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-9600ms"
       values="40; 40; 80; 80"
-      keyTimes="0; 0.1611; 0.1833; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-7200ms"
+      keyTimes="0; 0.1343; 0.1528; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-9600ms"
       values="
         var(--illus);
         var(--illus);
@@ -590,24 +590,24 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-7200ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-9600ms"
       values="-20; 10; 10; 760; 760"
-      keyTimes="0; 0.0167; 0.1833; 0.6; 1">
+      keyTimes="0; 0.0139; 0.1528; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="-7200ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="-9600ms"
       values="120; 120; 180; 180"
-      keyTimes="0; 0.1611; 0.1833; 1"></animate>
+      keyTimes="0; 0.1343; 0.1528; 1"></animate>
   </circle>
   <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-6400ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-8800ms"
       values="-20; -20; 760; 760"
-      keyTimes="0; 0.1667; 0.6; 1">
+      keyTimes="0; 0.1389; 0.5; 1">
     </animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-6400ms"
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-8800ms"
       values="
         var(--illus);
         var(--illus);
@@ -618,15 +618,15 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-5600ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-8000ms"
       values="-20; -20; 760; 760"
-      keyTimes="0; 0.1667; 0.6; 1">
+      keyTimes="0; 0.1389; 0.5; 1">
     </animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-5600ms"
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-8000ms"
       values="
         var(--illus);
         var(--illus);
@@ -637,15 +637,15 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="-4800ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-7200ms"
       values="-20; -20; 760; 760"
-      keyTimes="0; 0.1667; 0.6; 1">
+      keyTimes="0; 0.1389; 0.5; 1">
     </animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="-4800ms"
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-7200ms"
       values="
         var(--illus);
         var(--illus);
@@ -656,19 +656,76 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-6400ms"
+      values="-20; -20; 760; 760"
+      keyTimes="0; 0.1389; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-6400ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-5600ms"
+      values="-20; -20; 760; 760"
+      keyTimes="0; 0.1389; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-5600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="-4800ms"
+      values="-20; -20; 760; 760"
+      keyTimes="0; 0.1389; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="-4800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
 <!-- -->
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="800ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="-20; 310; 310; 760; 760"
-      keyTimes="0; 0.1833; 0.35; 0.6; 1">
+      keyTimes="0; 0.1528; 0.2917; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="800ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="120; 120; 80; 80"
-      keyTimes="0; 0.3278; 0.35; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="800ms"
+      keyTimes="0; 0.2731; 0.2917; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="
         var(--illus);
         var(--illus);
@@ -679,27 +736,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="800ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="-20; 310; 310; 760; 760"
-      keyTimes="0; 0.1833; 0.35; 0.6; 1">
+      keyTimes="0; 0.1528; 0.2917; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="800ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="800ms"
       values="40; 40; -20; -20"
-      keyTimes="0; 0.3289; 0.35; 1"></animate>
+      keyTimes="0; 0.2731; 0.2917; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="1600ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="1600ms"
       values="-20; 250; 250; 760; 760"
-      keyTimes="0; 0.15; 0.3167; 0.6; 1">
+      keyTimes="0; 0.125; 0.2639; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="1600ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="1600ms"
       values="120; 120; 80; 80"
-      keyTimes="0; 0.2944; 0.3167; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="1600ms"
+      keyTimes="0; 0.2454; 0.2639; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="1600ms"
       values="
         var(--illus);
         var(--illus);
@@ -710,27 +767,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="1600ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="1600ms"
       values="-20; 250; 250; 760; 760"
-      keyTimes="0; 0.15; 0.3167; 0.6; 1">
+      keyTimes="0; 0.125; 0.2639; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="1600ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="1600ms"
       values="40; 40; -20; -20"
-      keyTimes="0; 0.2944; 0.3167; 1"></animate>
+      keyTimes="0; 0.2454; 0.2639; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="2400ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="2400ms"
       values="-20; 190; 190; 760; 760"
-      keyTimes="0; 0.1167; 0.2833; 0.6; 1">
+      keyTimes="0; 0.0972; 0.2361; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="2400ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="2400ms"
       values="120; 120; 80; 80"
-      keyTimes="0; 0.2611; 0.2833; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="2400ms"
+      keyTimes="0; 0.2176; 0.2361; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="2400ms"
       values="
         var(--illus);
         var(--illus);
@@ -741,28 +798,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="2400ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="2400ms"
       values="-20; 190; 190; 760; 760"
-      keyTimes="0; 0.1167; 0.2833; 0.6; 1">
+      keyTimes="0; 0.0972; 0.2361; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="2400ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="2400ms"
       values="40; 40; -20; -20"
-      values="120; 120; 180; 180"
-      keyTimes="0; 0.2611; 0.2833; 1"></animate>
+      keyTimes="0; 0.2176; 0.2361; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="3200ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="3200ms"
       values="-20; 130; 130; 760; 760"
-      keyTimes="0; 0.0833; 0.25; 0.6; 1">
+      keyTimes="0; 0.0694; 0.2083; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="3200ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="3200ms"
       values="120; 120; 80; 80"
-      keyTimes="0; 0.2278; 0.25; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="3200ms"
+      keyTimes="0; 0.1898; 0.2083; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="3200ms"
       values="
         var(--illus);
         var(--illus);
@@ -773,27 +829,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="3200ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="3200ms"
       values="-20; 130; 130; 760; 760"
-      keyTimes="0; 0.0833; 0.25; 0.6; 1">
+      keyTimes="0; 0.0694; 0.2083; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="3200ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="3200ms"
       values="40; 40; -20; -20"
-      keyTimes="0; 0.2278; 0.25; 1"></animate>
+      keyTimes="0; 0.1898; 0.2083; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="4000ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="4000ms"
       values="-20; 70; 70; 760; 760"
-      keyTimes="0; 0.05; 0.2167; 0.6; 1">
+      keyTimes="0; 0.0417; 0.1806; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="4000ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="4000ms"
       values="120; 120; 80; 80"
-      keyTimes="0; 0.1944; 0.2167; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="4000ms"
+      keyTimes="0; 0.1620; 0.1806; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="4000ms"
       values="
         var(--illus);
         var(--illus);
@@ -804,27 +860,27 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="4000ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="4000ms"
       values="-20; 70; 70; 760; 760"
-      keyTimes="0; 0.05; 0.2167; 0.6; 1">
+      keyTimes="0; 0.0417; 0.1806; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="4000ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="4000ms"
       values="40; 40; -20; -20"
-      keyTimes="0; 0.1944; 0.2167; 1"></animate>
+      keyTimes="0; 0.1620; 0.1806; 1"></animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="4800ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="4800ms"
       values="-20; 10; 10; 760; 760"
-      keyTimes="0; 0.0167; 0.1833; 0.6; 1">
+      keyTimes="0; 0.0139; 0.1528; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="4800ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="4800ms"
       values="120; 120; 80; 80"
-      keyTimes="0; 0.1611; 0.1833; 1"></animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="4800ms"
+      keyTimes="0; 0.1343; 0.1528; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="4800ms"
       values="
         var(--illus);
         var(--illus);
@@ -835,24 +891,24 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="4800ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="4800ms"
       values="-20; 10; 10; 760; 760"
-      keyTimes="0; 0.0167; 0.1833; 0.6; 1">
+      keyTimes="0; 0.0139; 0.1528; 0.5; 1">
     </animate>
-    <animate attributeName="cy" repeatCount="indefinite" dur="24s" begin="4800ms"
+    <animate attributeName="cy" repeatCount="indefinite" dur="28.8s" begin="4800ms"
       values="40; 40; -20; -20"
-      keyTimes="0; 0.1611; 0.1833; 1"></animate>
+      keyTimes="0; 0.1343; 0.1528; 1"></animate>
   </circle>
   <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="5600ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="5600ms"
       values="-20; -20; 760; 760"
-      keyTimes="0; 0.1667; 0.6; 1">
+      keyTimes="0; 0.1389; 0.5; 1">
     </animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="5600ms"
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="5600ms"
       values="
         var(--illus);
         var(--illus);
@@ -863,15 +919,15 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="6400ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="6400ms"
       values="-20; -20; 760; 760"
-      keyTimes="0; 0.1667; 0.6; 1">
+      keyTimes="0; 0.1389; 0.5; 1">
     </animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="6400ms"
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="6400ms"
       values="
         var(--illus);
         var(--illus);
@@ -882,15 +938,15 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
-    <animate attributeName="cx" repeatCount="indefinite" dur="24s" begin="7200ms"
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="7200ms"
       values="-20; -20; 760; 760"
-      keyTimes="0; 0.1667; 0.6; 1">
+      keyTimes="0; 0.1389; 0.5; 1">
     </animate>
-    <animate attributeName="fill" repeatCount="indefinite" dur="24s" begin="7200ms"
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="7200ms"
       values="
         var(--illus);
         var(--illus);
@@ -901,7 +957,64 @@ from the correct branch in the now empty processor's pipeline.
         color-mix(in lab, var(--illus) 17%, var(--illus-label));
         var(--illus-label);
         var(--illus-label);"
-      keyTimes="0; 0.3833; 0.4111; 0.4389; 0.4667; 0.4944; 0.5222; 0.55; 1">
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="8000ms"
+      values="-20; -20; 760; 760"
+      keyTimes="0; 0.1389; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="8000ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="8800ms"
+      values="-20; -20; 760; 760"
+      keyTimes="0; 0.1389; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="8800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="28.8s" begin="9600ms"
+      values="-20; -20; 760; 760"
+      keyTimes="0; 0.1389; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="28.8s" begin="9600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.3194; 0.3426; 0.3657; 0.3889; 0.4120; 0.4352; 0.4583; 1">
     </animate>
   </circle>
   <text x="520" y="35" fill="var(--text)" text-anchor="middle" font-size="large" font-weight="bold">CPU</text>
@@ -929,13 +1042,722 @@ condition evaluation.
 
 This is much faster than the previous method, especially as processors are
 really good at predicting correctly. Many conditions are skewed one way or
-another. Consider the question of whether you are using the dark or the light
-theme to watch this page. It is highly unlikely that the distribution would be
-perfectly 50/50, if only because dark is the default. If we iterate the pixels
-of an image, we will have to be careful around the boundaries, but most pixels
-are not on a boundary.
+another. For instance, we usually expect errors to be exceptional occurrences.
+We will still check for errors often, but with the expectation that is should
+generally pass the check. As another example, configuration values are usually
+very stable, changing only very rarely. The branch predictor can memorise that
+branches on such values always favour a specific outcome, and predict
+accordingly (until the user changes the setting, at which point the prediction
+will be wrong a few times before revising its prediction).
 
 Everytime we guess correctly, the cost of branching is 0.
+
+<svg width="100%">
+  <line x1="-20" y1="80" x2="760" y2="80" stroke="var(--text)">
+    <animate attributeName="x1" repeatCount="indefinite" dur="10.4s" begin="0ms"
+      values="-20; 370; 370; -20; -20" keyTimes="0; 0.5; 0.8846; 0.8846; 1"/> 
+  </line>
+  <line x1="-20" y1="40" x2="-20" y2="40" stroke="var(--text)">
+    <animate attributeName="x2" repeatCount="indefinite" dur="10.4s" begin="-9600ms"
+      values="-20; 310; 310; -20; -20" keyTimes="0; 0.4231; 0.8077; 0.8077; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="40; 40; 80; 40; 40; -20; -20"
+      keyTimes="0; 0.3782; 0.4038; 0.4038; 0.8782; 0.9038; 1"/>
+    <animate attributeName="y2" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="40; 40; 80; 40; 40; -20; -20"
+      keyTimes="0; 0.3782; 0.4038; 0.4038; 0.8782; 0.9038; 1"/>
+    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="1; 1; 0; 1; 1" keyTimes="0; 0.8988; 0.845; 0.9038; 1"/>
+  </line>
+  <line x1="-20" y1="40" x2="-20" y2="80" stroke="var(--text)">
+    <animate attributeName="x1" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="-20; 310; 310; -20; -20; 310; 310; -20; -20"
+      keyTimes="0; 0.2115; 0.4038; 0.4038; 0.5; 0.7115; 0.8782; 0.8782; 1"/>
+    <animate attributeName="x2" repeatCount="indefinite" dur="20.8s" begin="-10400ms"
+      values="-20; 370; 370; -20; -20; 370; 370; -20; -20"
+      keyTimes="0; 0.25; 0.4423; 0.4423; 0.5; 0.75; 0.9167; 0.9167; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="40; 40; 80; 40; 40; -20; 40; 40"
+      keyTimes="0; 0.3782; 0.4038; 0.4038; 0.8782; 0.9038; 0.9038; 1"/>
+  </line>
+  <line x1="-20" y1="120" x2="-20" y2="120" stroke="var(--text)">
+    <animate attributeName="x2" repeatCount="indefinite" dur="10.4s" begin="800ms"
+      values="-20; 310; 310; -20; -20" keyTimes="0; 0.4231; 0.8077; 0.8077; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="120; 120; 80; 120; 120; 180; 180"
+      keyTimes="0; 0.3782; 0.4038; 0.4038; 0.8782; 0.9038; 1"/>
+    <animate attributeName="y2" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="120; 120; 80; 120; 120; 180; 180"
+      keyTimes="0; 0.3782; 0.4038; 0.4038; 0.8782; 0.9038; 1"/>
+    <animate attributeName="stroke-opacity" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="1; 1; 0; 1; 1" keyTimes="0; 0.8988; 0.845; 0.9038; 1"/>
+  </line>
+  <line x1="-20" y1="120" x2="-20" y2="80" stroke="var(--text)">
+    <animate attributeName="x1" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="-20; 310; 310; -20; -20; 310; 310; -20; -20"
+      keyTimes="0; 0.2115; 0.4038; 0.4038; 0.5; 0.7115; 0.8782; 0.8782; 1"/>
+    <animate attributeName="x2" repeatCount="indefinite" dur="20.8s" begin="0ms"
+      values="-20; 370; 370; -20; -20; 370; 370; -20; -20"
+      keyTimes="0; 0.25; 0.4423; 0.4423; 0.5; 0.75; 0.9167; 0.9167; 1"/> 
+    <animate attributeName="y1" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="120; 120; 80; 120; 120; 180; 120; 120"
+      keyTimes="0; 0.3782; 0.4038; 0.4038; 0.8782; 0.9038; 0.9038; 1"/>
+  </line>
+  <defs>
+    <rect id="cond" x="-14" y="-14" width="28" height="28" transform="rotate(45)" />
+  </defs>
+  <use href="#cond" x="-20" y="80" stroke-width="1.5" stroke="var(--aside-label)" fill="var(--aside)">
+    <animate attributeName="x" repeatCount="indefinite" dur="10.4s" begin="0ms"
+      values="-20; 760" keyTimes="0; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="10.4s" begin="0ms"
+      values="
+        var(--aside);
+        var(--aside);
+        color-mix(in lab, var(--aside) 83%, var(--aside-label));
+        color-mix(in lab, var(--aside) 67%, var(--aside-label));
+        color-mix(in lab, var(--aside) 50%, var(--aside-label));
+        color-mix(in lab, var(--aside) 33%, var(--aside-label));
+        color-mix(in lab, var(--aside) 17%, var(--aside-label));
+        var(--aside-label);
+        var(--aside-label)"
+      keyTimes="
+        0; 0.5; 0.5641; 0.6282; 0.6923; 0.7564; 0.8205; 0.8846; 1">
+    </animate>
+  </use>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="-20; 310; 310; 760; 760"
+      keyTimes="0; 0.2115; 0.4038; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-9600ms"
+      values="120; 120; 180; 180"
+      keyTimes="0; 0.3782; 0.4038; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-8800ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-8800ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-8800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-8800ms"
+      values="-20; 250; 250; 760; 760"
+      keyTimes="0; 0.1731; 0.3654; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-8800ms"
+      values="120; 120; 180; 180"
+      keyTimes="0; 0.3397; 0.3654; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-8000ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-8000ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-8000ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-8000ms"
+      values="-20; 190; 190; 760; 760"
+      keyTimes="0; 0.1346; 0.3269; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-8000ms"
+      values="120; 120; 180; 180"
+      keyTimes="0; 0.3013; 0.3269; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-7200ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-7200ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-7200ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-7200ms"
+      values="-20; 130; 130; 760; 760"
+      keyTimes="0; 0.0962; 0.2885; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-7200ms"
+      values="120; 120; 180; 180"
+      keyTimes="0; 0.2628; 0.2885; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-6400ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-6400ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-6400ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-6400ms"
+      values="-20; 70; 70; 760; 760"
+      keyTimes="0; 0.0577; 0.25; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-6400ms"
+      values="120; 120; 180; 180"
+      keyTimes="0; 0.2244; 0.25; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-5600ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-5600ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.1859; 0.2115; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-5600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-5600ms"
+      values="-20; 10; 10; 760; 760"
+      keyTimes="0; 0.0192; 0.2115; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-5600ms"
+      values="120; 120; 180; 180"
+      keyTimes="0; 0.1854; 0.2115; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-4800ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-4800ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.1474; 0.1731; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-4800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-4000ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-4000ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.1090; 0.1346; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-4000ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-3200ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-3200ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.0705; 0.0962; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-3200ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-2400ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-2400ms"
+      values="40; 40; 80; 80"
+      keyTimes="0; 0.0321; 0.0577; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-2400ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-1600ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="-1600ms"
+      values="50; 80; 80"
+      keyTimes="0; 0.0192; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-1600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="-800ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="-800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+<!-- -->
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="-20; 310; 310; 760; 760"
+      keyTimes="0; 0.2115; 0.4038; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="800ms"
+      values="40; 40; -20; -20"
+      keyTimes="0; 0.3782; 0.4038; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="1600ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="1600ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="1600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="1600ms"
+      values="-20; 250; 250; 760; 760"
+      keyTimes="0; 0.1731; 0.3654; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="1600ms"
+      values="40; 40; -20; -20"
+      keyTimes="0; 0.3397; 0.3654; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="2400ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="2400ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="2400ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="2400ms"
+      values="-20; 190; 190; 760; 760"
+      keyTimes="0; 0.1346; 0.3269; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="2400ms"
+      values="40; 40; -20; -20"
+      keyTimes="0; 0.3013; 0.3269; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="3200ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="3200ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="3200ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="3200ms"
+      values="-20; 130; 130; 760; 760"
+      keyTimes="0; 0.0962; 0.2885; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="3200ms"
+      values="40; 40; -20; -20"
+      keyTimes="0; 0.2628; 0.2885; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="4000ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="4000ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.2115; 0.25; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="4000ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="4000ms"
+      values="-20; 70; 70; 760; 760"
+      keyTimes="0; 0.0577; 0.25; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="4000ms"
+      values="40; 40; -20; -20"
+      keyTimes="0; 0.2244; 0.25; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="4800ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="4800ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.1859; 0.2115; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="4800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="4800ms"
+      values="-20; 10; 10; 760; 760"
+      keyTimes="0; 0.0192; 0.2115; 0.6923; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="4800ms"
+      values="40; 40; -20; -20"
+      keyTimes="0; 0.1854; 0.2115; 1"></animate>
+  </circle>
+  <circle cx="-20" cy="40" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="5600ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="5600ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.1474; 0.1731; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="5600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="6400ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="6400ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.1090; 0.1346; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="6400ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="7200ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="7200ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.0705; 0.0962; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="7200ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="8000ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="8000ms"
+      values="120; 120; 80; 80"
+      keyTimes="0; 0.0321; 0.0577; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="8000ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="8800ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="cy" repeatCount="indefinite" dur="20.8s" begin="8800ms"
+      values="110; 80; 80"
+      keyTimes="0; 0.0192; 1"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="8800ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <circle cx="-20" cy="80" r="18" stroke-width="1.5" stroke="var(--illus-label)" fill="var(--illus)">
+    <animate attributeName="cx" repeatCount="indefinite" dur="20.8s" begin="9600ms"
+      values="-20; 760; 760"
+      keyTimes="0; 0.5; 1">
+    </animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="20.8s" begin="9600ms"
+      values="
+        var(--illus);
+        var(--illus);
+        color-mix(in lab, var(--illus) 83%, var(--illus-label));
+        color-mix(in lab, var(--illus) 67%, var(--illus-label));
+        color-mix(in lab, var(--illus) 50%, var(--illus-label));
+        color-mix(in lab, var(--illus) 33%, var(--illus-label));
+        color-mix(in lab, var(--illus) 17%, var(--illus-label));
+        var(--illus-label);
+        var(--illus-label);"
+      keyTimes="0; 0.25; 0.2821; 0.3141; 0.3462; 0.3782; 0.4103; 0.4423; 1">
+    </animate>
+  </circle>
+  <text x="520" y="35" fill="var(--text)" text-anchor="middle" font-size="large" font-weight="bold">CPU</text>
+  <rect x="370" y="5" width="300" height="140" stroke="var(--muted)" stroke-width="5" fill="none"/>
+</svg>
 
 Of course, when we guess wrong, the cost is more, instead. The roll-back is very
 fast, but nowadays processing pipelines are several times longer than they used
@@ -973,6 +1795,13 @@ In an `else` clause, it comes right after the `else`. Confusingly, in a
 
 I would recommend only using these based on (profile-guided) profiling
 measurement suggesting that the compiler gets the prediction wrong.
+````
+
+````aside: To learn more on branch prediction
+As always we presented here a [functional model](index.html#functional-models)
+of branch prediction in this course. There are more nuances to this topic. To
+learn more about it I recommend the blog article [Branch predictor: How many
+"if"s are too many?](https://blog.cloudflare.com/branch-predictor/).
 ````
  
 ### switch statements
